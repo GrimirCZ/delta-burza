@@ -14,11 +14,10 @@ class EnterEventController extends Controller
         $ip = get_ip();
 
         if($ip != null){
-            $registration->visits()->associate(
-                RegistrationVisit::create([
-                    'ip_address' => $ip
-                ])
-            );
+            RegistrationVisit::create([
+                'ip_address' => $ip,
+                'registration_id' => $registration->id
+            ]);
         }
 
         $redir_url = $time == 'ranni' ? $registration->morning_event : $registration->evening_event;
