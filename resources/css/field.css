@@ -1,5 +1,5 @@
 .field {
-    @apply flex justify-between w-3/4;
+    @apply flex justify-between w-full sm:w-3/4;
 }
 
 .field__header {
