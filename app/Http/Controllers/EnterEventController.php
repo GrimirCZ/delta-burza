@@ -24,7 +24,7 @@ class EnterEventController extends Controller
         $redir_url = $time == 'ranni' ? $registration->morning_event : $registration->evening_event;
 
         //ensure that the domain starts with http://
-        return redirect($redir_url);
+        return redirect(fix_url($redir_url));
 
         //
     }
