@@ -1,6 +1,13 @@
 .field {
-    @apply flex justify-between w-full sm:w-3/4;
+    @apply flex justify-between w-full;
 }
+
+@media (min-width: theme('screens.sm')) {
+    .field {
+        @apply w-3/4;
+    }
+}
+
 
 .field__header {
     @apply font-light;
