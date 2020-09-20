@@ -9,10 +9,15 @@
 
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 w-100">
-            <div class="flex">
+            <div>
                 @if($exhibition->registrations->isEmpty())
                     Této výstavy se neúčastní žádné školy
                 @else
+                    @php
+                        if(isset($exhibition)){
+                            $registrations = $exhibition->registrations()->paginate(9);
+                        }
+                    @endphp
                     <table class="table-auto w-full">
                         <tr>
                             <th class="px-4 py-2">Okres</th>
@@ -20,7 +25,8 @@
                             <th class="hidden sm:table-cell px-4 py-2">Ranní akce</th>
                             <th class="hidden sm:table-cell px-4 py-2">Večerní akce</th>
                         </tr>
-                        @foreach($exhibition->registrations as $registration)
+
+                        @foreach($registrations as $registration)
                             <tr>
                                 <td class="border px-4 py-2">{{$registration->school->district->name}}</td>
                                 <td class="border px-4 py-2">
@@ -30,7 +36,7 @@
                                     </a>
                                 </td>
                                 <td class="hidden sm:table-cell text-center border px-4 py-2">
-                                        <a href="/vstoupit/ranni/{{$registration->id}}"
+                                    <a href="/vstoupit/ranni/{{$registration->id}}"
                                        class="underline hover:text-bold">
                                         Vstoupit
                                     </a>
@@ -44,6 +50,9 @@
                             </tr>
                         @endforeach
                     </table>
+                    <div class="mt-8">
+                        {{$registrations->links()}}
+                    </div>
                 @endif
             </div>
         </div>
