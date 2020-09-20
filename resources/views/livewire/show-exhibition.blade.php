@@ -29,13 +29,13 @@
                                         {{$registration->school->name}}
                                     </a>
                                 </td>
-                                <td class="text-center border px-4 py-2">
+                                <td class="hidden sm:table-cell text-center border px-4 py-2">
                                         <a href="/vstoupit/ranni/{{$registration->id}}"
                                        class="underline hover:text-bold">
                                         Vstoupit
                                     </a>
                                 </td>
-                                <td class="text-center border px-4 py-2">
+                                <td class="hidden sm:table-cell text-center border px-4 py-2">
                                     <a href="/vstoupit/vecerni/{{$registration->id}}"
                                        class="underline hover:text-bold">
                                         Vstoupit
