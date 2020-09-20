@@ -16,7 +16,8 @@ class EnterEventController extends Controller
         if($ip != null){
             $registration->visits()->associate(
                 RegistrationVisit::create([
-                    'ip_address' => $ip
+                    'ip_address' => $ip,
+                    'registration_id' => $registration->id
                 ])
             );
         }
