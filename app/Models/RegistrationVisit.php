@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class RegistrationVisit extends Model
 {
-    protected $fillable = ['ip_address', 'registration_id'];
+    protected $fillable = ['ip_address', 'type', 'registration_id'];
 
     public function registration()
     {

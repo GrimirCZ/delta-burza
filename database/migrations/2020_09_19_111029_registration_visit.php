@@ -12,6 +12,7 @@ class RegistrationVisit extends Migration
             $table->bigIncrements('id');
 
             $table->ipAddress("ip_address");
+            $table->string("type");
             $table->foreignId("registration_id")->constrained();
             //
 
