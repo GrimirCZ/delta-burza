@@ -5,6 +5,7 @@ use App\Http\Livewire\ListExhibitions;
 use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowRegistration;
 use App\Http\Livewire\ShowSchool;
+use App\Http\Livewire\ShowSpecialization;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +26,7 @@ Route::get('/vystava/{exhibition}', ShowExhibition::class);
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
 Route::get('/registrace/{registration}', ShowRegistration::class);
 Route::get('/skola/{school}', ShowSchool::class);
+Route::get('/obor/{specialization}', ShowSpecialization::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function(){
     return view('dashboard');

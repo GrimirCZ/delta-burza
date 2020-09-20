@@ -47,7 +47,7 @@
                             <span class="field__header">Adresa:</span>
                             <span class="field__value">
                                 <a href="http://maps.google.com/?q={{$school->address}}" target="_blank">
-                            {{$school->address}}
+                                    {{$school->address}}
                                 </a>
                         </span>
                         </div>
