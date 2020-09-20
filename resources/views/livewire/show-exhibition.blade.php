@@ -13,11 +13,6 @@
                 @if($exhibition->registrations->isEmpty())
                     Této výstavy se neúčastní žádné školy
                 @else
-                    @php
-                        if(isset($exhibition)){
-                            $registrations = $exhibition->registrations()->paginate(9);
-                        }
-                    @endphp
                     <table class="table-auto w-full">
                         <tr>
                             <th class="px-4 py-2">Okres</th>
@@ -26,7 +21,7 @@
                             <th class="hidden sm:table-cell px-4 py-2">Večerní akce</th>
                         </tr>
 
-                        @foreach($registrations as $registration)
+                        @foreach($exhibition->registrations as $registration)
                             <tr>
                                 <td class="border px-4 py-2">{{$registration->school->district->name}}</td>
                                 <td class="border px-4 py-2">
@@ -50,9 +45,6 @@
                             </tr>
                         @endforeach
                     </table>
-                    <div class="mt-8">
-                        {{$registrations->links()}}
-                    </div>
                 @endif
             </div>
         </div>

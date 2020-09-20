@@ -21,7 +21,6 @@ class ListExhibitions extends Component
                 ->orderBy('regions.name')
                 ->orderBy('exhibitions.date')
                 ->select('exhibitions.*')
-                ->paginate(10)
         ])->layout('layouts.client');
     }
 }

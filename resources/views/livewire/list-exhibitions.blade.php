@@ -28,9 +28,6 @@
                     @endforeach
                 </table>
             @endif
-            <div class="mt-8">
-                {{$exhibitions->links()}}
-            </div>
         </div>
     </div>
 </div>
