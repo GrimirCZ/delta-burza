@@ -59,9 +59,8 @@
                 <div class="flex flex-col gap-row-4">
                     @foreach($school->specializations as $specialization)
                         <div class="rounded py-4 px-8">
-                            <a href="/obor/{{$specialization->id}}">{{$specialization->name}}</a><br/>
-                            <span
-                                class="text-sm text-gray-600">{{$specialization->prescribed_specialization->code}}</span>
+                            <a href="/obor/{{$specialization->id}}">{{$specialization->prescribed_specialization->code}}
+                                - {{$specialization->name}}</a><br/>
                         </div>
                     @endforeach
                 </div>
@@ -70,10 +69,19 @@
                 <h2 class="text-2xl">Výstavy</h2>
                 <div class="flex flex-col gap-row-4">
                     @foreach($school->registrations as $registration)
-                        <div class="rounded py-4 px-8">
-                            <a href="/vystava/{{$registration->exhibition->id}}">{{$registration->exhibition->name}}</a><br/>
-                            <span
-                                class="text-sm text-gray-600">{{$registration->exhibition->district->name}}</span>
+                        <div class="grid grid-cols-2">
+                            <div class="rounded py-4 px-8">
+                                <a href="/vystava/{{$registration->exhibition->id}}">{{$registration->exhibition->date}} {{$registration->exhibition->district->name}}
+                                    ({{$registration->exhibition->name}})</a><br/>
+                            </div>
+                            <div class="grid items-center">
+                                {{--                                TODO: variable hours--}}
+                                {{--                                zobrazit jen pokud se kona dnes--}}
+                                <div class="flex justify-start">
+                                    <a href="/vstoupit/ranni/{{$registration->id}}" class="btn btn-primary">Ranni schuzka 8:00 - 12:00</a>
+                                    <a href="/vstoupit/vecerni/{{$registration->id}}" class="ml-4 btn btn-primary">Odpoledni schuzka 18:00 - 21:00</a>
+                                </div>
+                            </div>
                         </div>
                     @endforeach
                 </div>

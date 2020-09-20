@@ -14,15 +14,13 @@
                     <tr>
                         <th class="px-4 py-2">Kraj</th>
                         <th class="px-4 py-2">Datum</th>
-                        <th class="px-4 py-2">Město</th>
-                        <th class="hidden sm:table-cell px-4 py-2">Název</th>
+                        <th class="hidden sm:table-cell px-4 py-2">Vystava</th>
                     </tr>
                     @foreach($exhibitions as $exhibition)
                         <tr>
                             <td class="border px-4 py-2">{{$exhibition->district->region->name}}</td>
                             <td class="border px-4 py-2">{{format_date($exhibition->date)}}</td>
-                            <td class="border px-4 py-2"><a href="/vystava/{{$exhibition->id}}" class="underline hover:text-bold">{{$exhibition->city}}</a></td>
-                            <td class="hidden sm:table-cell border px-4 py-2"><a href="/vystava/{{$exhibition->id}}" class="underline hover:text-bold">{{$exhibition->name}}</a></td>
+                            <td class="border px-4 py-2"><a href="/vystava/{{$exhibition->id}}" class="underline"><span class="font-bold">{{$exhibition->city}}</span> ({{$exhibition->name}})</a></td>
                             <td class="hidden sm:table-cell text-center px-4 py-2"><a href="/vystava/{{$exhibition->id}}" class="underline hover:text-bold">Zobrazit</a></td>
                         </tr>
                     @endforeach

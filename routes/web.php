@@ -24,7 +24,6 @@ Route::get('/', 'App\Http\Controllers\WelcomeController');
 Route::get('/vystavy', ListExhibitions::class);
 Route::get('/vystava/{exhibition}', ShowExhibition::class);
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
-Route::get('/registrace/{registration}', ShowRegistration::class);
 Route::get('/skola/{school}', ShowSchool::class);
 Route::get('/obor/{specialization}', ShowSpecialization::class);
 
