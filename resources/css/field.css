@@ -1,0 +1,11 @@
+.field {
+    @apply flex justify-between w-3/4;
+}
+
+.field__header {
+    @apply font-light;
+}
+
+.field__value {
+    @apply font-bold;
+}

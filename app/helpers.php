@@ -11,6 +11,18 @@ if(!function_exists('format_date')){
     }
 }
 
+
+if(!function_exists('fix_url')){
+    function fix_url(string $str) : string
+    {
+        if(str_starts_with($str, "http") || str_starts_with($str, "http")){
+            return $str;
+        }
+
+        return 'https://' . $str;
+    }
+}
+
 if(!function_exists('get_ip')){
     function get_ip()
     {

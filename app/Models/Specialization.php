@@ -10,7 +10,7 @@ class Specialization extends Model
 
     public function prescribed_specialization()
     {
-        return $this->hasMany(PrescribedSpecialization::class);
+        return $this->belongsTo(PrescribedSpecialization::class);
     }
 
     public function school()
