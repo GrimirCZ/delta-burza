@@ -48,7 +48,7 @@
                                 <span class="inline-block">
                                     {{--                                TODO: variable hours--}}
                                     {{--                                zobrazit jen pokud se kona dnes--}}
-                                    <span class="flex flex-col sm:ml-8 sm:inline justify-start">
+                                    <span class="flex flex-col sm:ml-8 sm:inline justify-end sm:text-right">
                                         <a href="/vstoupit/ranni/{{$registration->id}}"
                                            class="btn text-center btn-primary">Online 8:00-9:00</a>
                                         <a href="/vstoupit/vecerni/{{$registration->id}}"

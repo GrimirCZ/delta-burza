@@ -26,7 +26,7 @@
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
                                 <a href="/" class="font-weight-semibold text-black text-lg">
-                                    Burza škol 2020
+                                    {{ config('app.name', 'Laravel') }}
                                 </a>
                             </div>
 
