@@ -41,16 +41,16 @@
                     <h2 class="text-2xl">Výstavy</h2>
                     <ul class="flex flex-col gap-row-2">
                         @foreach($school->registrations as $registration)
-                            <li class="grid grid-cols-1 sm:grid-cols-2 ml-8 py-2">
+                            <li class="grid grid-cols-1 xl:grid-cols-2 ml-8 py-2">
                                 <div>
                                     <a class="list-disc-block"
                                        href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
                                         ({{$registration->exhibition->name}})</a><br/>
                                 </div>
-                                <div>
+                                <div class="mt-5 xl:mt-0">
                                     {{--                                TODO: variable hours--}}
                                     {{--                                zobrazit jen pokud se kona dnes--}}
-                                    <span class="flex flex-col sm:ml-8 sm:inline-block sm:text-right">
+                                    <span class="flex flex-col xl:ml-8 sm:inline-block sm:text-right">
                                         <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
                                            class="btn text-sm text-center btn-primary">Online 8:00 - 12:00</a>
                                         <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
