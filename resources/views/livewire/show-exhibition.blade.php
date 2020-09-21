@@ -28,7 +28,7 @@
                                     {{$registration->school->district->name}}
                                 </td>
                                 <td class="border px-4 py-2">
-                                    <div class="flex justify-around">
+                                    <div class="flex justify-start">
                                         <div>
                                             <a href="/skola/{{$registration->school->id}}"
                                                class="underline">

@@ -29,7 +29,7 @@
                     <h2 class="text-2xl">Obory</h2>
                     <ul class="flex flex-col gap-row-2">
                         @foreach($school->specializations as $specialization)
-                            <li class="list-disc py-2 ml-8">
+                            <li class="list-disc py-1 ml-8">
                                 <a href="/obor/{{$specialization->id}}">{{$specialization->prescribed_specialization->code}}
                                     - {{$specialization->prescribed_specialization->name}}</a><br/>
                             </li>
