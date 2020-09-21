@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-            <img src="{{asset('storage/images/' . $school->logo())}}" alt="Logo {{$school->name}}">
+        <img src="{{asset('storage/images/' . $school->logo())}}" alt="Logo {{$school->name}}">
     </x-slot>
 
     <div>
@@ -10,81 +10,54 @@
                 <h2 class="text-2xl">Informace</h2>
                 <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 text-center sm:text-left">
                     <div>
-                        <div class="field">
-                            <span class="field__header">Email:</span>
-                            <span class="field__value">
-                            <a href="mailto:{{$school->email}}">{{$school->email}}</a>
-                        </span>
-                        </div>
-                        <div class="field">
-                            <span class="field__header">Telefon:</span>
-                            <span class="field__value">
-                            <a href="tel:{{$school->phone}}">{{$school->phone}}</a>
-                        </span>
-                        </div>
-                        <div class="field">
-                            <span class="field__header">Web:</span>
-                            <span class="field__value">
-                            <a href="{{fix_url($school->web)}}">{{$school->web}}</a>
-                        </span>
-                        </div>
+                        <a href="http://maps.google.com/?q={{$school->address}}" target="_blank" class="font-bold">
+                            {{$school->address}}
+                        </a>
+                        <div class="mt-4"></div>
+                        <a href="mailto:{{$school->email}}" class="font-bold">{{$school->email}}</a><br/>
+                        <a href="tel:{{$school->phone}}" class="font-bold">{{$school->phone}}</a><br/>
+                        <a href="{{fix_url($school->web)}}" class="font-bold">{{$school->web}}</a><br/>
                     </div>
-                    <div>
-                        <div class="field">
-                            <span class="field__header">IČ:</span>
-                            <span class="field__value">
-                            {{$school->ico}}
-                        </span>
-                        </div>
-                        <div class="field">
-                            <span class="field__header">IZO:</span>
-                            <span class="field__value">
-                            {{$school->izo}}
-                        </span>
-                        </div>
-                        <div class="field">
-                            <span class="field__header">Adresa:</span>
-                            <span class="field__value">
-                                <a href="http://maps.google.com/?q={{$school->address}}" target="_blank">
-                                    {{$school->address}}
-                                </a>
-                        </span>
-                        </div>
+                    <div class="mt-4 sm:mt-0">
+                        <span><a href="#" class="font-bold"><img src="{{asset("/images/pdf.svg")}}" alt="PDF"
+                                                                 class="w-6 h-6 inline-block mr-4">Informační brožura.pdf</a></span>
                     </div>
                 </div>
             </div>
-            <div class="mt-8">
-                <h2 class="text-2xl">Obory</h2>
-                <div class="flex flex-col gap-row-4">
-                    @foreach($school->specializations as $specialization)
-                        <div class="rounded py-4 px-8">
-                            <a href="/obor/{{$specialization->id}}">{{$specialization->prescribed_specialization->code}}
-                                - {{$specialization->name}}</a><br/>
-                        </div>
-                    @endforeach
+            <div class="mt-8 grid school-detail-grid">
+                <div>
+                    <h2 class="text-2xl">Obory</h2>
+                    <ul class="flex flex-col gap-row-4">
+                        @foreach($school->specializations as $specialization)
+                            <li class="list-disc py-4 ml-8">
+                                <a href="/obor/{{$specialization->id}}">{{$specialization->prescribed_specialization->code}}
+                                    - {{$specialization->prescribed_specialization->name}}</a><br/>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
-            </div>
-            <div class="mt-8">
-                <h2 class="text-2xl">Výstavy</h2>
-                <div class="flex flex-col gap-row-4">
-                    @foreach($school->registrations as $registration)
-                        <div class="grid grid-cols-1 sm:grid-cols-2">
-                            <div class="rounded py-4 px-8">
-                                <a href="/vystava/{{$registration->exhibition->id}}">{{$registration->exhibition->date}} {{$registration->exhibition->district->name}}
-                                    ({{$registration->exhibition->name}})</a><br/>
-                            </div>
-                            <div class="grid items-center">
-                                {{--                                TODO: variable hours--}}
-                                {{--                                zobrazit jen pokud se kona dnes--}}
-                                <div class="flex flex-col sm:flex-row justify-start">
-                                    <a href="/vstoupit/ranni/{{$registration->id}}" class="btn text-center btn-primary">Ranní
-                                        schůzka 8:00 - 12:00</a>
-                                    <a href="/vstoupit/vecerni/{{$registration->id}}" class="mt-4 sm:mt-0 sm:ml-4 text-center btn btn-primary">Odpolední
-                                        schůzka 18:00 - 21:00</a>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
+                <div>
+                    <h2 class="text-2xl">Výstavy</h2>
+                    <ul class="flex flex-col gap-row-4">
+                        @foreach($school->registrations as $registration)
+                            <li class="list-disc ml-8 py-4">
+                                <span class="inline-block">
+                                    <a href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
+                                        ({{$registration->exhibition->name}})</a><br/>
+                                </span>
+                                <span class="inline-block">
+                                    {{--                                TODO: variable hours--}}
+                                    {{--                                zobrazit jen pokud se kona dnes--}}
+                                    <span class="flex flex-col sm:ml-8 sm:inline justify-start">
+                                        <a href="/vstoupit/ranni/{{$registration->id}}"
+                                           class="btn text-center btn-primary">Online 8:00-9:00</a>
+                                        <a href="/vstoupit/vecerni/{{$registration->id}}"
+                                           class="mt-4 sm:mt-0 sm:ml-2 text-center btn btn-primary">Online 18:00 - 21:00</a>
+                                    </span>
+                                </span>
+                            </li>
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

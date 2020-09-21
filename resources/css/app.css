@@ -4,3 +4,13 @@
 
 @import "field.css";
 @import "btn.css";
+
+.school-detail-grid {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: theme('screens.sm')) {
+    .school-detail-grid {
+        grid-template-columns: 1fr 2fr;
+    }
+}

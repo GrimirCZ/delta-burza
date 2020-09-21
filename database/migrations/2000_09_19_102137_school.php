@@ -16,7 +16,7 @@ class School extends Migration
             $table->string("ico", 8)->unique();
             $table->string("izo", 11)->unique();
 
-            $table->string("name", 64);
+            $table->string("name", 200);
 
             $table->string("email", 255)->unique();
 
