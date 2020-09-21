@@ -68,7 +68,7 @@
                 <h2 class="text-2xl">Výstavy</h2>
                 <div class="flex flex-col gap-row-4">
                     @foreach($school->registrations as $registration)
-                        <div class="grid grid-cols-2">
+                        <div class="grid grid-cols-1 sm:grid-cols-2">
                             <div class="rounded py-4 px-8">
                                 <a href="/vystava/{{$registration->exhibition->id}}">{{$registration->exhibition->date}} {{$registration->exhibition->district->name}}
                                     ({{$registration->exhibition->name}})</a><br/>
@@ -76,10 +76,10 @@
                             <div class="grid items-center">
                                 {{--                                TODO: variable hours--}}
                                 {{--                                zobrazit jen pokud se kona dnes--}}
-                                <div class="flex justify-start">
-                                    <a href="/vstoupit/ranni/{{$registration->id}}" class="btn btn-primary">Ranní
+                                <div class="flex flex-col sm:flex-row justify-start">
+                                    <a href="/vstoupit/ranni/{{$registration->id}}" class="btn text-center btn-primary">Ranní
                                         schůzka 8:00 - 12:00</a>
-                                    <a href="/vstoupit/vecerni/{{$registration->id}}" class="ml-4 btn btn-primary">Odpolední
+                                    <a href="/vstoupit/vecerni/{{$registration->id}}" class="mt-4 sm:mt-0 sm:ml-4 text-center btn btn-primary">Odpolední
                                         schůzka 18:00 - 21:00</a>
                                 </div>
                             </div>
