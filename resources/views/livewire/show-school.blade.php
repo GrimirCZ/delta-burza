@@ -52,9 +52,9 @@
                                     {{--                                zobrazit jen pokud se kona dnes--}}
                                     <span class="flex flex-col sm:ml-8 sm:inline-block sm:text-right">
                                         <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
-                                           class="btn text-center btn-primary">Online 8:00 - 12:00</a>
+                                           class="btn text-sm text-center btn-primary">Online 8:00 - 12:00</a>
                                         <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
-                                           class="mt-4 sm:mt-0 sm:ml-2 text-center btn btn-primary">Online 18:00 - 21:00</a>
+                                           class="mt-4 text-sm sm:mt-0 sm:ml-2 text-center btn btn-primary">Online 18:00 - 21:00</a>
                                     </span>
                                 </div>
                             </li>
