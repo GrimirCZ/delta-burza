@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\File;
 use App\Models\PrescribedSpecialization;
 use App\Models\Registration;
 use App\Models\School;
@@ -30,6 +31,12 @@ class DummyDataSeeder extends Seeder
             'web' => 'www.delta-skola.cz',
             'phone' => '+420 466 611 106',
             'district_id' => '45',
+        ]);
+
+        File::create([
+            'school_id' => $sch->id,
+            'type' => 'logo',
+            'name' => 'delta-logo.png'
         ]);
 
         Specialization::create([

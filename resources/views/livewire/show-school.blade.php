@@ -1,12 +1,11 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{$school->name}}
-        </h2>
+            <img src="{{asset('storage/images/' . $school->logo())}}" alt="Logo {{$school->name}}">
     </x-slot>
 
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 w-100 px-4">
+            <h2 class="font-semibold text-2xl text-gray-800 leading-tight mb-8">{{$school->name}}</h2>
             <div>
                 <h2 class="text-2xl">Informace</h2>
                 <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 text-center sm:text-left">
@@ -78,8 +77,10 @@
                                 {{--                                TODO: variable hours--}}
                                 {{--                                zobrazit jen pokud se kona dnes--}}
                                 <div class="flex justify-start">
-                                    <a href="/vstoupit/ranni/{{$registration->id}}" class="btn btn-primary">Ranni schuzka 8:00 - 12:00</a>
-                                    <a href="/vstoupit/vecerni/{{$registration->id}}" class="ml-4 btn btn-primary">Odpoledni schuzka 18:00 - 21:00</a>
+                                    <a href="/vstoupit/ranni/{{$registration->id}}" class="btn btn-primary">Raní
+                                        schůzka 8:00 - 12:00</a>
+                                    <a href="/vstoupit/vecerni/{{$registration->id}}" class="ml-4 btn btn-primary">Odpolední
+                                        schůzka 18:00 - 21:00</a>
                                 </div>
                             </div>
                         </div>
