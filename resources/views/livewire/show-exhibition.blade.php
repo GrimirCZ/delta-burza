@@ -27,17 +27,25 @@
                                 <td class="text-center border px-4 py-2">
                                     {{$registration->school->district->name}}
                                 </td>
-                                <td class="text-center border px-4 py-2">
-                                    <a href="/skola/{{$registration->school->id}}"
-                                       class="underline">
-                                        {{$registration->school->name}}
-                                    </a>
-                                    @foreach($registration->school->specializations as $specialization)
-                                        <li>
-                                            {{$specialization->prescribed_specialization->code}}
-                                            - {{$specialization->name}}
-                                        </li>
-                                    @endforeach
+                                <td class="border px-4 py-2">
+                                    <div class="flex justify-around">
+                                        <div>
+                                            <a href="/skola/{{$registration->school->id}}"
+                                               class="underline">
+                                                {{$registration->school->name}}
+                                            </a>
+                                            <ul>
+                                                @foreach($registration->school->specializations as $specialization)
+                                                    <li class="text-left list-disc ml-5">
+                                                        <a href="/obor/{{$specialization->id}}">
+                                                            {{$specialization->prescribed_specialization->code}}
+                                                            - {{$specialization->prescribed_specialization->name}}
+                                                        </a>
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </td>
                                 <td class="hidden sm:table-cell text-center border px-4 py-2">
                                     <a href="/vstoupit/ranni/{{$registration->id}}"

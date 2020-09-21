@@ -27,9 +27,9 @@
             <div class="mt-8 grid school-detail-grid">
                 <div>
                     <h2 class="text-2xl">Obory</h2>
-                    <ul class="flex flex-col gap-row-4">
+                    <ul class="flex flex-col gap-row-2">
                         @foreach($school->specializations as $specialization)
-                            <li class="list-disc py-4 ml-8">
+                            <li class="list-disc py-2 ml-8">
                                 <a href="/obor/{{$specialization->id}}">{{$specialization->prescribed_specialization->code}}
                                     - {{$specialization->prescribed_specialization->name}}</a><br/>
                             </li>
@@ -38,9 +38,9 @@
                 </div>
                 <div>
                     <h2 class="text-2xl">Výstavy</h2>
-                    <ul class="flex flex-col gap-row-4">
+                    <ul class="flex flex-col gap-row-2">
                         @foreach($school->registrations as $registration)
-                            <li class="list-disc ml-8 py-4">
+                            <li class="list-disc ml-8 py-2">
                                 <span class="inline-block">
                                     <a href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
                                         ({{$registration->exhibition->name}})</a><br/>
