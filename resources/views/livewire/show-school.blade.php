@@ -77,7 +77,7 @@
                                 {{--                                TODO: variable hours--}}
                                 {{--                                zobrazit jen pokud se kona dnes--}}
                                 <div class="flex justify-start">
-                                    <a href="/vstoupit/ranni/{{$registration->id}}" class="btn btn-primary">Raní
+                                    <a href="/vstoupit/ranni/{{$registration->id}}" class="btn btn-primary">Ranní
                                         schůzka 8:00 - 12:00</a>
                                     <a href="/vstoupit/vecerni/{{$registration->id}}" class="ml-4 btn btn-primary">Odpolední
                                         schůzka 18:00 - 21:00</a>
