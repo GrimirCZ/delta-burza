@@ -18,6 +18,8 @@ class School extends Migration
 
             $table->string("name", 200);
 
+            $table->mediumText("description");
+
             $table->string("email", 255)->unique();
 
             $table->string("web")->nullable();

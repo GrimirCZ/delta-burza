@@ -39,7 +39,7 @@
                                                     <li class="text-left list-disc ml-5">
                                                         <a href="/obor/{{$specialization->id}}">
                                                             {{$specialization->prescribed_specialization->code}}
-                                                            - {{$specialization->prescribed_specialization->name}}
+                                                            - {{$specialization->prescribed_specialization->name}} ({{$specialization->name}})
                                                         </a>
                                                     </li>
                                                 @endforeach

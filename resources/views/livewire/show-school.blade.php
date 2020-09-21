@@ -19,7 +19,7 @@
                         <a href="{{fix_url($school->web)}}" class="font-bold">{{$school->web}}</a><br/>
                     </div>
                     <div class="mt-4 sm:mt-0">
-                        <span><a href="#" class="font-bold"><img src="{{asset("/images/pdf.svg")}}" alt="PDF"
+                        <span><a href="https://deltassie-my.sharepoint.com/:b:/g/personal/formji_delta-skola_cz/EZay0T1NZ25Kp-7G4A3oPFoBheEckjImbPqoHEw6zVh7pw?e=DK63nk" target="_blank" class="font-bold"><img src="{{asset("/images/pdf.svg")}}" alt="PDF"
                                                                  class="w-6 h-6 inline-block mr-4">Informační brožura.pdf</a></span>
                     </div>
                 </div>
@@ -32,6 +32,7 @@
                             <li class="list-disc py-1 ml-8">
                                 <a href="/obor/{{$specialization->id}}">{{$specialization->prescribed_specialization->code}}
                                     - {{$specialization->prescribed_specialization->name}}</a><br/>
+                                (ŠVP: <i>{{$specialization->name}}</i>)
                             </li>
                         @endforeach
                     </ul>
@@ -40,25 +41,29 @@
                     <h2 class="text-2xl">Výstavy</h2>
                     <ul class="flex flex-col gap-row-2">
                         @foreach($school->registrations as $registration)
-                            <li class="list-disc ml-8 py-2">
-                                <span class="inline-block">
-                                    <a href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
+                            <li class="grid grid-cols-1 sm:grid-cols-2 ml-8 py-2">
+                                <div>
+                                    <a class="list-disc-block"
+                                       href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
                                         ({{$registration->exhibition->name}})</a><br/>
-                                </span>
-                                <span class="inline-block">
+                                </div>
+                                <div>
                                     {{--                                TODO: variable hours--}}
                                     {{--                                zobrazit jen pokud se kona dnes--}}
-                                    <span class="flex flex-col sm:ml-8 sm:inline justify-end sm:text-right">
-                                        <a href="/vstoupit/ranni/{{$registration->id}}"
-                                           class="btn text-center btn-primary">Online 8:00-9:00</a>
-                                        <a href="/vstoupit/vecerni/{{$registration->id}}"
+                                    <span class="flex flex-col sm:ml-8 sm:inline-block sm:text-right">
+                                        <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
+                                           class="btn text-center btn-primary">Online 8:00 - 12:00</a>
+                                        <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
                                            class="mt-4 sm:mt-0 sm:ml-2 text-center btn btn-primary">Online 18:00 - 21:00</a>
                                     </span>
-                                </span>
+                                </div>
                             </li>
                         @endforeach
                     </ul>
                 </div>
+            </div>
+            <div class="mt-16">
+                {!! $school->description !!}
             </div>
         </div>
     </div>

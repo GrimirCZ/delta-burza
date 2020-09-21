@@ -30,6 +30,7 @@ class DummyDataSeeder extends Seeder
             'email' => 'info@delta-skola.cz',
             'web' => 'www.delta-skola.cz',
             'phone' => '+420 466 611 106',
+            'description'=> 'School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.',
             'district_id' => '45',
         ]);
 
@@ -49,6 +50,13 @@ class DummyDataSeeder extends Seeder
         Registration::create([
             'school_id' => $sch->id,
             'exhibition_id' => 1, // Praha Schola Progenis
+            'morning_event' => "http://abc.xyz",
+            'evening_event' => 'http://def.xyz',
+            'is_disabled' => false
+        ]);
+        Registration::create([
+            'school_id' => $sch->id,
+            'exhibition_id' => 2, // Praha Schola Progenis
             'morning_event' => "http://abc.xyz",
             'evening_event' => 'http://def.xyz',
             'is_disabled' => false
