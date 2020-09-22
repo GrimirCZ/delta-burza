@@ -70,7 +70,7 @@
                 </div>
 
                 <div class="form-row">
-                    <label for="description">Text o škole (je možné využít html znaků k formátování)</label>
+                    <label for="description">Text o škole (je možné využít html značek k formátování)</label>
                     <textarea name="description" id="description" cols="30" rows="10" wire:model="description" class="input @error('address') input-error @enderror"></textarea>
                     @error('description') <span class="error">{{ $message }}</span> @enderror
                 </div>

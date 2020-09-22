@@ -49,18 +49,45 @@
         </div>
     </div>
     <div class="mt-8">{!! $school->description !!}</div>
-    <div class="mt-8">
-        <h2 class="text-2xl">Obory</h2>
-        <ul class="mt-4">
-            @foreach($school->specializations as $specialization)
-                <li class="list-disc">
-                    <a href="/obor/{{$specialization->id}}">{{$specialization->prescribed_specialization->code}}
-                        - {{$specialization->prescribed_specialization->name}}</a><br/>
-                    (ŠVP: <i>{{$specialization->name}}</i>
-                    <a href="/obor/{{$specialization->id}}" class="text-blue-500 underline">zobrazit</a>
-                </li>
-            @endforeach
-            <li><a href="/obor/create" class="text-blue-500 underline">Přidat obor</a></li>
-        </ul>
+    <div class="grid grid-cols-1 sm:grid-cols-2 mt-8">
+        <div>
+            <h2 class="text-2xl">Obory</h2>
+            <ul class="mt-4 sm:ml-4">
+                @foreach($school->specializations as $specialization)
+                    <li class="list-disc">
+                        <a href="/obor/{{$specialization->id}}">{{$specialization->prescribed_specialization->code}}
+                            - {{$specialization->prescribed_specialization->name}}</a><br/>
+                        (ŠVP: <i>{{$specialization->name}})</i>
+                        <a href="/obor/{{$specialization->id}}" class="text-blue-500 underline">zobrazit</a>
+                    </li>
+                @endforeach
+                <li class="mt-4"><a href="/obor/create/{{$school->id}}" class="text-blue-500 underline">Přidat obor</a></li>
+            </ul>
+        </div>
+        <div>
+            <h2 class="text-2xl">Výstavy</h2>
+            <ul class="flex flex-col gap-row-2">
+                @foreach($school->registrations as $registration)
+                    <li class="grid grid-cols-1 xl:grid-cols-2 ml-8 py-2">
+                        <div>
+                            <a class="list-disc-block"
+                               href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
+                                ({{$registration->exhibition->name}})</a><br/>
+                        </div>
+                        <div class="mt-5 xl:mt-0">
+                            {{--                                TODO: variable hours--}}
+                            {{--                                zobrazit jen pokud se kona dnes--}}
+                            <span class="flex flex-col xl:ml-8 sm:inline-block sm:text-right">
+                                        <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
+                                           class="btn text-sm text-center btn-primary">Online 8:00 - 12:00</a>
+                                        <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
+                                           class="mt-4 text-sm sm:mt-0 sm:ml-2 text-center btn btn-primary">Online 18:00 - 21:00</a>
+                                    </span>
+                        </div>
+                    </li>
+                @endforeach
+                <li class="mt-4"><a href="/vystava/register/{{$school->id}}" class="text-blue-500 underline">Zaregistrovat na výstavu</a></li>
+            </ul>
+        </div>
     </div>
 </div>

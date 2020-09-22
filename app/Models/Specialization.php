@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Specialization extends Model
 {
-    protected $fillable = ['name', 'description', 'school_id', 'field_of_study_id'];
+    protected $fillable = ['name', 'description', 'school_id', 'prescribed_specialization_id'];
 
     public function prescribed_specialization()
     {

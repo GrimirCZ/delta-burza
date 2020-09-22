@@ -8,6 +8,7 @@ use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowRegistration;
 use App\Http\Livewire\ShowSchool;
 use App\Http\Livewire\ShowSpecialization;
+use App\Http\Livewire\CreateSpecialization;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +28,7 @@ Route::get('/vystavy', ListExhibitions::class);
 Route::get('/vystava/{exhibition}', ShowExhibition::class);
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
 Route::get('/obor/{specialization}', ShowSpecialization::class);
+Route::get('/obor/create/{school}', CreateSpecialization::class);
 
 
 Route::get('/skola/vytvorit', CreateSchool::class);
