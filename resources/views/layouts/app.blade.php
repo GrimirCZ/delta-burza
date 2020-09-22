@@ -37,7 +37,13 @@
                                    href="/vystavy">
                                     Výstavy
                                 </a>
-
+                                @if(Auth::check())
+                                    <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none hover:text-black transition duration-150
+                                 ease-in-out"
+                                       href="/dashboard">
+                                        Profil
+                                    </a>
+                                @endif
                             </div>
                         </div>
                         <div class="flex items-center">

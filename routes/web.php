@@ -5,6 +5,7 @@ use App\Http\Controllers\EnterEventController;
 use App\Http\Livewire\CreateRegistration;
 use App\Http\Livewire\CreateSchool;
 use App\Http\Livewire\EditSchool;
+use App\Http\Livewire\EditSpecialization;
 use App\Http\Livewire\ListExhibitions;
 use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowRegistration;
@@ -29,6 +30,7 @@ Route::get('/', 'App\Http\Controllers\WelcomeController');
 Route::get('/vystavy', ListExhibitions::class);
 Route::get('/vystava/{exhibition}', ShowExhibition::class);
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
+Route::get('/obor/{specialization}/upravit', EditSpecialization::class);
 Route::get('/obor/{specialization}', ShowSpecialization::class);
 Route::get('/obor/vytvorit/{school}', CreateSpecialization::class);
 
