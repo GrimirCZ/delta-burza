@@ -10,7 +10,11 @@ class Registration extends Model
         'school_id',
         'exhibition_id',
         'morning_event',
+        'morning_event_start',
+        'morning_event_end',
         'evening_event',
+        'evening_event_start',
+        'evening_event_end',
         'is_disabled'];
 
     public function exhibition()

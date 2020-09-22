@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnterEventController;
+use App\Http\Livewire\CreateRegistration;
 use App\Http\Livewire\CreateSchool;
+use App\Http\Livewire\EditSchool;
 use App\Http\Livewire\ListExhibitions;
 use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowRegistration;
@@ -28,11 +30,13 @@ Route::get('/vystavy', ListExhibitions::class);
 Route::get('/vystava/{exhibition}', ShowExhibition::class);
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
 Route::get('/obor/{specialization}', ShowSpecialization::class);
-Route::get('/obor/create/{school}', CreateSpecialization::class);
+Route::get('/obor/vytvorit/{school}', CreateSpecialization::class);
 
+Route::get('/registrace/vytvorit/{school}', CreateRegistration::class);
 
 Route::get('/skola/vytvorit', CreateSchool::class);
 
+Route::get('/skola/{school}/upravit', EditSchool::class);
 Route::get('/skola/{school}', ShowSchool::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', DashboardController::class)->name('dashboard');

@@ -5,7 +5,14 @@
 .form-row-2 {
     @apply mt-8;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
+}
+
+
+@media (min-width: theme('screens.sm')) {
+    .form-row-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .form-field {
@@ -19,6 +26,10 @@
 .input {
     @apply block shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight;
     width: 95%;
+}
+
+.input-full {
+    width: 97%;
 }
 
 .input:focus {

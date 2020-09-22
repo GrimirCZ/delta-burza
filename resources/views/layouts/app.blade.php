@@ -40,7 +40,17 @@
 
                             </div>
                         </div>
-                      </div>
+                        <div class="flex items-center">
+                            @if(Auth::check())
+                                <form action="{{url("logout")}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="text-blue-500 underline">Odhlásit se</button>
+                                </form>
+                            @else
+                                <a href="{{url("/login")}}" class="text-blue-500 underline">Vstup pro školy</a>
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </nav>
             <!-- Page Heading -->
