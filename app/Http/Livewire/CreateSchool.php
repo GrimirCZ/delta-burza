@@ -45,7 +45,7 @@ class CreateSchool extends Component
 
 
         DB::transaction(function(){
-            $logo_path = $this->logo->store("public.logos");
+            $logo_path = $this->logo->store("public/logos");
 
             $sch = School::create([
                 'address' => $this->address,
