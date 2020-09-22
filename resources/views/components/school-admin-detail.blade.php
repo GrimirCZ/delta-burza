@@ -1,8 +1,12 @@
 {{-- You can change this template using File > Settings > Editor > File and Code Templates > Code > Laravel Ideal Blade View Component --}}
 <div class="mt-8">
     <div class="flex justify-between align-center">
-        <img src="{{asset('storage/' . $school->logo())}}" alt="Logo {{$school->name}}" class="block">
-        <a href="{{url("/skola/$school->id/upravit")}}" class="btn btn-primary">Upravit</a>
+        <div>
+            <img src="{{asset('storage/' . $school->logo())}}" alt="Logo {{$school->name}}" class="block">
+        </div>
+        <div class="flex items-center">
+            <a href="{{url("/skola/$school->id/upravit")}}" class="btn btn-primary">Upravit</a>
+        </div>
     </div>
     <h1 class="text-3xl font-semibold block mt-8">{{$school->name}}</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 mt-8">
