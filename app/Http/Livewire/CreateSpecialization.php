@@ -23,7 +23,7 @@ class CreateSpecialization extends Component
     protected $rules = [
         'name' => 'required|max:255',
         'description' => 'required',
-        'prescribed_specialization_id' => 'required|exists:prescribed_specializations,id',
+        'prescribed_specialization_id' => 'exists:prescribed_specializations,id',
     ];
 
     public function submit()

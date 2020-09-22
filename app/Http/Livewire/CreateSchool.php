@@ -35,7 +35,7 @@ class CreateSchool extends Component
         'web' => 'required|max:255|url',
         'phone' => 'required|max:255',
         'description' => 'required',
-        'district_id' => 'required|exists:districts,id',
+        'district_id' => 'exists:districts,id',
         'logo' => 'image|max:1024', // 1MB Max
     ];
 
