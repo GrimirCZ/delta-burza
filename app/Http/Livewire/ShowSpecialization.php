@@ -16,6 +16,6 @@ class ShowSpecialization extends Component
      */
     public function render()
     {
-        return view('livewire.show-specialization')->layout("layouts.client");
+        return view('livewire.show-specialization');
     }
 }

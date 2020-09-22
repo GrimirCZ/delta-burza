@@ -1,0 +1,40 @@
+.form-row {
+    @apply mt-8;
+}
+
+.form-row-2 {
+    @apply mt-8;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form-field {
+
+}
+
+.label {
+    @apply block text-gray-700 text-sm font-bold mb-2;
+}
+
+.input {
+    @apply block shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight;
+    width: 95%;
+}
+
+.input:focus {
+    @apply outline-none shadow-outline;
+}
+
+.input[type="file"] {
+    border: none;
+    box-shadow: none;
+    padding-left: 0;
+}
+
+.input-error {
+    @apply border-red-500;
+}
+
+.error {
+    @apply text-red-500 text-xs italic block;
+}

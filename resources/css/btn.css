@@ -1,6 +1,10 @@
 .btn {
     @apply rounded px-4 py-2 font-bold;
-    transition: background-color;
+    transition: background-color 250ms;
+}
+
+.btn:focus {
+    @apply outline-none shadow-outline;
 }
 
 .btn-primary {

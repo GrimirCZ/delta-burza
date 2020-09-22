@@ -13,10 +13,10 @@ class School extends Migration
 
             $table->string("address", 255);
 
-            $table->string("ico", 8)->unique();
-            $table->string("izo", 11)->unique();
+            $table->string("ico", 60)->unique();
+            $table->string("izo", 60)->unique();
 
-            $table->string("name", 200);
+            $table->string("name", 255);
 
             $table->mediumText("description");
 

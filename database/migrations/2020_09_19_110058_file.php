@@ -12,7 +12,7 @@ class File extends Migration
             $table->bigIncrements('id');
 
             $table->string("type", 12);
-            $table->string("name", 45);
+            $table->string("name", 128);
             $table->foreignId("school_id")->constrained();
             //
 

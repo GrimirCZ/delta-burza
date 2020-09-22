@@ -15,6 +15,6 @@ class ShowSchool extends Component
      */
     public function render()
     {
-        return view('livewire.show-school')->layout('layouts.client');
+        return view('livewire.show-school');
     }
 }

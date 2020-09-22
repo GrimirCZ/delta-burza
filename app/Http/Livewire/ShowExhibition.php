@@ -17,6 +17,6 @@ class ShowExhibition extends Component
     public function render()
     {
 
-        return view('livewire.show-exhibition')->layout('layouts.client');
+        return view('livewire.show-exhibition');
     }
 }

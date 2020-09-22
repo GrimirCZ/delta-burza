@@ -4,6 +4,7 @@
 
 @import "field.css";
 @import "btn.css";
+@import "form.css";
 
 .school-detail-grid {
     grid-template-columns: 1fr;
