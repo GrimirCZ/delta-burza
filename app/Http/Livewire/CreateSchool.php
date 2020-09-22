@@ -61,7 +61,7 @@ class CreateSchool extends Component
 
             File::create([
                 'type' => 'logo',
-                'name' => $logo_path,
+                'name' => substr($logo_path, 6), // strip the public part
                 'school_id' => $sch->id
             ]);
 
