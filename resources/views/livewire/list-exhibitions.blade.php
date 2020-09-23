@@ -14,7 +14,7 @@
                     <tr>
                         <th class="px-4 py-2">Kraj</th>
                         <th class="px-4 py-2">Datum</th>
-                        <th class="hidden sm:table-cell px-4 py-2">Vystava</th>
+                        <th class="hidden sm:table-cell px-4 py-2">Výstava</th>
                     </tr>
                     @foreach($exhibitions as $exhibition)
                         <tr>
