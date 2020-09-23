@@ -36,9 +36,9 @@ Route::get("/info_pro_zaky_zs", InfoProZakyZS::class)->name("info_zs");
 Route::get('/vystavy', ListExhibitions::class);
 Route::get('/vystava/{exhibition}', ShowExhibition::class);
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
+Route::get('/obor/vytvorit', CreateSpecialization::class);
 Route::get('/obor/{specialization}/upravit', EditSpecialization::class);
 Route::get('/obor/{specialization}', ShowSpecialization::class);
-Route::get('/obor/vytvorit', CreateSpecialization::class);
 
 Route::get('/objednavka/vytvorit/{school}', CreateOrder::class);
 
