@@ -68,7 +68,7 @@
                         </form>
                     </li>
                 @endforeach
-                <li class="mt-4"><a href="/obor/vytvorit/{{$school->id}}" class="text-blue-500 underline">Přidat
+                <li class="mt-4"><a href="/obor/vytvorit" class="text-blue-500 underline">Přidat
                         obor</a></li>
             </ul>
         </div>
@@ -87,7 +87,7 @@
                         </div>
                     </li>
                 @endforeach
-                <li class="mt-4"><a href="/objednavka/vytvorit/{{$school->id}}" class="text-blue-500 underline">Zaregistrovat
+                <li class="mt-4"><a href="/objednavka/vytvorit" class="text-blue-500 underline">Zaregistrovat
                         na výstavu</a></li>
             </ul>
         </div>
