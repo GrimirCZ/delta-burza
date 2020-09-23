@@ -35,16 +35,16 @@
                                             </a>
                                             <ul>
                                                 @php
-                                                // ignore
-                                                    $specializations = $registration
-                                                                        ->school
-                                                                        ->specializations()
-                                                                        ->join("prescribed_specializations", "specializations.prescribed_specialization_id", "=", "prescribed_specializations.id")
-                                                                        ->orderBy("prescribed_specializations.code")
-                                                                        ->orderBy("prescribed_specializations.name")
-                                                                        ->orderBy("specializations.name")
-                                                                        ->select("specializations.*")
-                                                                        ->get();
+                                                    // ignore
+                                                        $specializations = $registration
+                                                                            ->school
+                                                                            ->specializations()
+                                                                            ->join("prescribed_specializations", "specializations.prescribed_specialization_id", "=", "prescribed_specializations.id")
+                                                                            ->orderBy("prescribed_specializations.code")
+                                                                            ->orderBy("prescribed_specializations.name")
+                                                                            ->orderBy("specializations.name")
+                                                                            ->select("specializations.*")
+                                                                            ->get();
                                                 @endphp
                                                 @foreach($specializations as $specialization)
                                                     <li class="text-left list-disc ml-5">
@@ -64,12 +64,14 @@
                                 </td>
                                 <td class="hidden sm:table-cell text-center border px-4 py-2">
                                     <a href="/vstoupit/ranni/{{$registration->id}}"
+                                       target="_blank"
                                        class="underline hover:text-bold">
                                         Vstoupit
                                     </a>
                                 </td>
                                 <td class="hidden sm:table-cell text-center border px-4 py-2">
                                     <a href="/vstoupit/vecerni/{{$registration->id}}"
+                                       target="_blank"
                                        class="underline hover:text-bold">
                                         Vstoupit
                                     </a>
