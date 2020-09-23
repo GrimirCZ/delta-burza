@@ -131,7 +131,12 @@ class CreateOrder extends Component
         )->where("date", ">", DB::raw("CURRENT_DATE"))
             ->min(DB::raw("DATE_ADD(date, INTERVAL -1 DAY)"));
 
-        DB::transaction(function() use ($due_date){
+        $is_first_order = $this->school
+                ->orders()
+                ->join("order_registration", "orders.id", "=", "order_registration.order_id")
+                ->count() == 0;
+
+        DB::transaction(function() use ($due_date, $is_first_order){
             $ord = Order::create([
                 'due_date' => $due_date,
                 'school_id' => $this->school->id,
@@ -147,10 +152,17 @@ class CreateOrder extends Component
                     'evening_event' => $se['evening_event']
                 ]);
 
+                $amount = 1000;
+
+                if($is_first_order){
+                    $amount = 0;
+                    $is_first_order = false;
+                }
+
                 OrderRegistration::create([
                     'order_id' => $ord->id,
                     'registration_id' => $reg->id,
-                    'price' => 1000,
+                    'price' => $amount,
                 ]);
             }
         });
