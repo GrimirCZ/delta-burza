@@ -72,6 +72,15 @@
             <main class="h-full">
                 {{ $slot }}
             </main>
+
+            <footer class="py-6 flex justify-between align-center max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <p>
+                    <a href="{{route("obchodni_podminky")}}" class="link">Obchodní podmínky</a>
+                </p>
+                <p class="text-right text-gray-600 text-sm">
+                    Vytvořil Vít Falta 2020
+                </p>
+            </footer>
         </div>
 
         @stack('modals')

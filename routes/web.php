@@ -16,6 +16,7 @@ use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowSchool;
 use App\Http\Livewire\ShowSpecialization;
 use App\Http\Livewire\CreateSpecialization;
+use App\Http\Livewire\TermsOfUse;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,7 @@ Route::get('/', 'App\Http\Controllers\WelcomeController');
 
 Route::get("/info_pro_stredni_skoly", InfoProStredniSkoly::class)->name("info_ss");
 Route::get("/info_pro_zaky_zs", InfoProZakyZS::class)->name("info_zs");
+Route::get("/obchodni_podminky", TermsOfUse::class)->name("obchodni_podminky");
 
 Route::get('/vystavy', ListExhibitions::class);
 Route::get('/vystava/{exhibition}', ShowExhibition::class);

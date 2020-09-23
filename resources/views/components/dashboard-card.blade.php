@@ -5,8 +5,5 @@
                 {{$slot}}
             </div>
         </div>
-        <p class="mt-6 text-right text-gray-600 text-sm">
-            Vytvořil Vít Falta 2020
-        </p>
     </div>
 </div>
