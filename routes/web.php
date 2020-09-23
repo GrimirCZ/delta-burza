@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DeleteSpecialization;
 use App\Http\Controllers\EnterEventController;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\CreateRegistration;
@@ -38,9 +39,10 @@ Route::get('/vystava/{exhibition}', ShowExhibition::class);
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
 Route::get('/obor/vytvorit', CreateSpecialization::class);
 Route::get('/obor/{specialization}/upravit', EditSpecialization::class);
+Route::delete('/obor/{specialization}/smazat', DeleteSpecialization::class);
 Route::get('/obor/{specialization}', ShowSpecialization::class);
 
-Route::get('/objednavka/vytvorit/{school}', CreateOrder::class);
+Route::get('/objednavka/vytvorit', CreateOrder::class);
 
 Route::get('/registrace/vytvorit', CreateRegistration::class);
 Route::get('/registrace/{registration}/upravit', EditRegistration::class);

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class OrderRegistration extends Model
 {
+    protected $table = "order_registration";
     protected $fillable = ['is_fulfilled', 'price', 'fulfilled_at', 'order_id', 'registration_id'];
 
     public function order()

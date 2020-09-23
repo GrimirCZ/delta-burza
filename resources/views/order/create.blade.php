@@ -15,9 +15,11 @@
                         <select name="exhibition_id" id="exhibition_id"
                                 wire:model="exhibition_id"
                                 class="input @error('exhibition_id') input-error @enderror">
-                            <option selected></option>
+                            @if(!isset($exhibition_id))
+                                <option selected></option>
+                            @endif
                             @foreach($exhibitions as $ue)
-                                <option value="{{$ue->id}}">{{$ue->city}} ({{$ue->name}})</option>
+                                <option value="{{$ue->id}}">{{format_date($ue->date)}} - {{$ue->city}} ({{$ue->name}})</option>
                             @endforeach
                         </select>
                         @error('exhibition_id') <span class="error">{{ $message }}</span> @enderror
@@ -42,7 +44,8 @@
                 </div>
 
                 <div class="form-row">
-                    <button type="submit" class="btn btn-primary">Vytvořit</button>
+                    <button wire:click="back" class="btn btn-secondary">Zpět</button>
+                    <button type="submit" class="btn btn-primary ml-5">@if($state == "EDIT") Uložit @else Vytvořit @endif</button>
                 </div>
             </form>
         </x-dashboard-card>

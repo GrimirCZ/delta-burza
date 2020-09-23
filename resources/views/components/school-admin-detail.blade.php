@@ -63,7 +63,9 @@
                             - {{$specialization->prescribed_specialization->name}}</a><br/>
                         (ŠVP: <i>{{$specialization->name}})</i><br/>
                         <a href="/obor/{{$specialization->id}}/upravit" class="link">Upravit</a>
-                        <form action="/obor/{{$specialization->id}}/smazat" class="inline ml-4">
+                        <form action="/obor/{{$specialization->id}}/smazat" class="inline ml-4" method="post">
+                            @csrf
+                            @method("DELETE")
                             <button type="submit" class="link">Smazat</button>
                         </form>
                     </li>
@@ -81,9 +83,6 @@
                             <a href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
                                 ({{$registration->exhibition->name}})</a><br/>
                             <a href="/registrace/{{$registration->id}}/upravit" class="link">Upravit</a>
-                            <form action="/registrace/{{$registration->id}}/smazat" class="inline ml-4">
-                                <button type="submit" class="link">Smazat</button>
-                            </form>
                         </div>
                     </li>
                 @endforeach
