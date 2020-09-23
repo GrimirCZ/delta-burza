@@ -5,7 +5,7 @@
             <img src="{{asset('storage/' . $school->logo())}}" alt="Logo {{$school->name}}" class="block">
         </div>
         <div class="flex items-center">
-            <a href="{{url("/skola/$school->id/upravit")}}" class="btn btn-primary">Upravit</a>
+            <a href="{{url("/skola/upravit")}}" class="btn btn-primary">Upravit</a>
         </div>
     </div>
     <h1 class="text-3xl font-semibold block mt-8">{{$school->name}}</h1>
