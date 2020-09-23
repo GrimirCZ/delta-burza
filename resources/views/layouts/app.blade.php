@@ -34,20 +34,22 @@
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none hover:text-black transition duration-150
                                  ease-in-out"
-                                   href="/vystavy">
-                                    Výstavy
+                                   href="{{route("info_zs")}}">
+                                    Pro žáky ZŠ
                                 </a>
-                                @if(Auth::check())
-                                    <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none hover:text-black transition duration-150
+                                <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none hover:text-black transition duration-150
                                  ease-in-out"
-                                       href="/dashboard">
-                                        Profil
-                                    </a>
-                                @endif
+                                   href="{{route("info_ss")}}">
+                                    Pro střední školy
+                                </a>
                             </div>
                         </div>
                         <div class="flex items-center">
                             @if(Auth::check())
+                                <a class="link mr-6"
+                                   href="/dashboard">
+                                    Profil
+                                </a>
                                 <form action="{{url("logout")}}" method="post">
                                     @csrf
                                     <button type="submit" class="text-blue-500 underline">Odhlásit se</button>

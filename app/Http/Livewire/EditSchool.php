@@ -40,6 +40,7 @@ class EditSchool extends Component
         'logo' => 'image|max:1024', // 1MB Max
     ];
 
+
     public function submit()
     {
         $this->validate();
@@ -60,6 +61,8 @@ class EditSchool extends Component
                 'district_id' => $this->district_id,
             ]);
 
+            File::where("school_id", $this->school->id)->where("type", "logo")->destroy();
+
             File::create([
                 'type' => 'logo',
                 'name' => substr($logo_path, 6), // strip the public part
@@ -70,8 +73,9 @@ class EditSchool extends Component
         $this->redirect("/dashboard");
     }
 
-    public function mount(School $school)
+    public function mount()
     {
+        $school = Auth::user()->school;
         $this->school = $school;
         $this->address = $school->address;
         $this->ico = $school->ico;

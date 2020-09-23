@@ -55,6 +55,7 @@
                         <label for="district_id" class="label">Okres</label>
                         <select name="district" id="district_id" wire:model="district_id"
                                 class="input @error('address') input-error @enderror">
+                            <option value="" selected></option>
                             @foreach($districts as $district)
                                 <option value="{{$district->id}}">{{$district->name}}</option>
                             @endforeach

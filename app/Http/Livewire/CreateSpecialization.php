@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\PrescribedSpecialization;
 use App\Models\School;
 use App\Models\Specialization;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -26,7 +27,13 @@ class CreateSpecialization extends Component
         'prescribed_specialization_id' => 'exists:prescribed_specializations,id',
     ];
 
-    public function submit()
+    public function mount()
+    {
+        $this->school = Auth::user()->school;
+    }
+
+    public
+    function submit()
     {
         $this->validate();
 
@@ -46,10 +53,11 @@ class CreateSpecialization extends Component
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
+    public
+    function render()
     {
         return view('livewire.create-specialization', [
-            'prescribed_specializations' => PrescribedSpecialization::orderBy('name')->get()
+            'prescribed_specializations' => PrescribedSpecialization::orderBy('code')->get()
         ]);
     }
 }

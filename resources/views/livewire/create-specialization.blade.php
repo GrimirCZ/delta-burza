@@ -10,19 +10,20 @@
             <form wire:submit.prevent="submit">
                 <div class="form-row-2">
                     <div>
-                        <label for="name" class="label">Název oboru</label>
-                        <input id="name" type="text" wire:model="name" class="input @error('name') input-error @enderror">
-                        @error('name') <span class="error">{{ $message }}</span> @enderror
-                    </div>
-                    <div>
-                        <label for="prescribed_specialization_id" class="label">Předepsaný obor</label>
+                        <label for="prescribed_specialization_id" class="label">Obor</label>
                         <select name="prescribed_specialization" id="prescribed_specialization_id" wire:model="prescribed_specialization_id"
                                 class="input @error('prescribed_specialization_id') input-error @enderror">
+                            <option value="" selected></option>
                             @foreach($prescribed_specializations as $ps)
                                 <option value="{{$ps->id}}">{{$ps->code}} - {{$ps->name}}</option>
                             @endforeach
                         </select>
                         @error('prescribed_specialization_id') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        <label for="name" class="label">Název ŠVP</label>
+                        <input id="name" type="text" wire:model="name" class="input @error('name') input-error @enderror">
+                        @error('name') <span class="error">{{ $message }}</span> @enderror
                     </div>
                 </div>
 

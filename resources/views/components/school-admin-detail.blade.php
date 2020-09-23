@@ -61,14 +61,18 @@
                     <li class="list-disc">
                         <a href="/obor/{{$specialization->id}}">{{$specialization->prescribed_specialization->code}}
                             - {{$specialization->prescribed_specialization->name}}</a><br/>
-                        (ŠVP: <i>{{$specialization->name}})</i>
+                        (ŠVP: <i>{{$specialization->name}})</i><br/>
+                        <a href="/obor/{{$specialization->id}}/upravit" class="link">Upravit</a>
+                        <form action="/obor/{{$specialization->id}}/smazat" class="inline ml-4">
+                            <button type="submit" class="link">Smazat</button>
+                        </form>
                     </li>
                 @endforeach
                 <li class="mt-4"><a href="/obor/vytvorit/{{$school->id}}" class="text-blue-500 underline">Přidat
                         obor</a></li>
             </ul>
         </div>
-        <div>
+        <div class="mt-6 sm:mt-0">
             <h2 class="text-2xl">Výstavy</h2>
             <ul class="mt-4 ml-4 sm:ml-8">
                 @foreach($school->registrations as $registration)
@@ -76,10 +80,14 @@
                         <div>
                             <a href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
                                 ({{$registration->exhibition->name}})</a><br/>
+                            <a href="/registrace/{{$registration->id}}/upravit" class="link">Upravit</a>
+                            <form action="/registrace/{{$registration->id}}/smazat" class="inline ml-4">
+                                <button type="submit" class="link">Smazat</button>
+                            </form>
                         </div>
                     </li>
                 @endforeach
-                <li class="mt-4"><a href="/registrace/vytvorit/{{$school->id}}" class="text-blue-500 underline">Zaregistrovat
+                <li class="mt-4"><a href="/objednavka/vytvorit/{{$school->id}}" class="text-blue-500 underline">Zaregistrovat
                         na výstavu</a></li>
             </ul>
         </div>

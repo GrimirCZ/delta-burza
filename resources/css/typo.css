@@ -1,0 +1,11 @@
+.header {
+    @apply font-semibold text-xl text-gray-800 leading-tight py-6;
+}
+
+.subheader {
+    @apply font-semibold text-lg text-gray-700 leading-tight pt-3 pb-6;
+}
+
+.marked-list li {
+    @apply list-disc ml-4;
+}

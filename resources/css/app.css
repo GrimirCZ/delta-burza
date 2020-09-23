@@ -5,6 +5,8 @@
 @import "field.css";
 @import "btn.css";
 @import "form.css";
+@import "link.css";
+@import "typo.css";
 
 .school-detail-grid {
     grid-template-columns: 1fr;
