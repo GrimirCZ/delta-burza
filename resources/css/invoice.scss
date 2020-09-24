@@ -1,0 +1,48 @@
+body {
+    font-family: DejaVu Sans, sans-serif;
+}
+
+.title {
+    font-weight: 400;
+    text-align: center;
+}
+
+@mixin section {
+    background-color: #f2f2f2;
+    border: 1px solid black;
+    padding: 2px 4px;
+    font-size: 14px;
+}
+
+.header {
+    @include section;
+    text-align: center;
+}
+
+.clear {
+    clear: both;
+}
+
+.company_info {
+    @include section;
+    margin-top: 8px;
+
+    &__wrapper {
+        float: left;
+    }
+
+    &__content {
+        font-size: 12px;
+
+        div {
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+    }
+}
+
+.address_line {
+    max-width: 5ch;
+    word-wrap: break-word;
+}

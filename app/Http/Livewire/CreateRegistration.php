@@ -20,8 +20,8 @@ class CreateRegistration extends Component
 
     protected $rules = [
         'exhibition_id' => "exists:exhibitions,id",
-        'morning_event' => 'required|max:255|url',
-        'evening_event' => 'required|max:255|url',
+        'morning_event' => 'required|url',
+        'evening_event' => 'required|url',
     ];
 
     public function mount()

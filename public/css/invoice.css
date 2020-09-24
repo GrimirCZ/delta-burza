@@ -1,0 +1,47 @@
+body {
+  font-family: DejaVu Sans, sans-serif;
+}
+
+.title {
+  font-weight: 400;
+  text-align: center;
+}
+
+.header {
+  background-color: #f2f2f2;
+  border: 1px solid black;
+  padding: 2px 4px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.clear {
+  clear: both;
+}
+
+.company_info {
+  background-color: #f2f2f2;
+  border: 1px solid black;
+  padding: 2px 4px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.company_info__wrapper {
+  float: left;
+}
+
+.company_info__content {
+  font-size: 12px;
+}
+
+.company_info__content div {
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.address_line {
+  max-width: 5ch;
+  word-wrap: break-word;
+}
+

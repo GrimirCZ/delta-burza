@@ -10,8 +10,9 @@
                 <h2 class="text-2xl">Informace</h2>
                 <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 text-center sm:text-left">
                     <div>
-                        <a href="http://maps.google.com/?q={{$school->address}}" target="_blank" class="font-bold">
-                            {{$school->address}}
+                        <a href="http://maps.google.com/?q={{$school->address}}, {{$school->psc}} {{$school->city}}" target="_blank" class="font-bold">
+                            {{$school->address}}<br/>
+                            {{$school->psc}} {{$school->city}}
                         </a>
                         <div class="mt-4"></div>
                         <a href="mailto:{{$school->email}}" class="font-bold">{{$school->email}}</a><br/>

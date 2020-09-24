@@ -17,6 +17,8 @@ class EditSchool extends Component
     public School $school;
 
     public ?string $address;
+    public ?string $psc;
+    public ?string $city;
     public ?string $ico;
     public ?string $izo;
     public ?string $name;
@@ -29,6 +31,8 @@ class EditSchool extends Component
 
     protected $rules = [
         'address' => 'required|max:255',
+        'psc' => 'required|max:6',
+        'city' => 'required|max:255',
         'ico' => 'required|max:10',
         'izo' => 'required|max:11',
         'name' => 'required|max:200',
@@ -51,6 +55,8 @@ class EditSchool extends Component
 
             $this->school->update([
                 'address' => $this->address,
+                'psc' => $this->psc,
+                'city' => $this->city,
                 'ico' => $this->ico,
                 'izo' => $this->izo,
                 'name' => $this->name,
@@ -78,6 +84,8 @@ class EditSchool extends Component
         $school = Auth::user()->school;
         $this->school = $school;
         $this->address = $school->address;
+        $this->psc = $school->psc;
+        $this->city = $school->city;
         $this->ico = $school->ico;
         $this->izo = $school->izo;
         $this->name = $school->name;
