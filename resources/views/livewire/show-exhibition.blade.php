@@ -14,59 +14,47 @@
                 @if($exhibition->registrations->isEmpty())
                     Této výstavy se neúčastní žádné školy
                 @else
-                    <table class="table-auto w-full">
-                        <tr>
-                            <th class="px-4 py-2">Nazev</th>
-                            <th class="px-4 py-2">Okres</th>
-                            <th class="hidden sm:table-cell px-4 py-2">Online {{settings("morning_event_start")}}
-                                - {{settings("morning_event_end")}}</th>
-                            <th class="hidden sm:table-cell px-4 py-2">Online {{settings("evening_event_start")}}
-                                - {{settings("evening_event_end")}}</th>
-                        </tr>
-
+                    <div class="grid md:grid-cols-2 gap-3">
                         @foreach($registrations as $registration)
-                            <tr>
-                                <td class="border px-4 py-2">
-                                    <div class="flex justify-start">
-                                        <div>
-                                            <a href="/skola/{{$registration->school->id}}"
-                                               class="underline">
-                                                {{$registration->school->name}}
-                                            </a>
-                                            <ul>
-                                                @foreach($registration->school->ordered_specializations() as $specialization)
-                                                    <li class="text-left list-disc ml-5">
-                                                        <a href="/obor/{{$specialization->id}}">
-                                                            {{$specialization->prescribed_specialization->code}}
-                                                            - {{$specialization->prescribed_specialization->name}}
-                                                            ({{$specialization->name}})
-                                                        </a>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
+                            <div class="p-5 bg-white shadow-sm box-border">
+                                <div class="leading-3 text-gray-400">{{$registration->school->district->name}}</div>
+                                <a href="/skola/{{$registration->school->id}}"><h3 class="text-2xl font-light">{{$registration->school->name}}</h3></a>
+                                @foreach($registration->school->ordered_specializations() as $specialization)
+                                    <li class="text-left list-disc ml-5">
+                                        <a href="/obor/{{$specialization->id}}">
+                                            {{$specialization->prescribed_specialization->code}}
+                                            - {{$specialization->prescribed_specialization->name}}
+                                            ({{$specialization->name}})
+                                        </a>
+                                    </li>
+                                @endforeach
+
+                                <a href="/vstoupit/ranni/{{$registration->id}}"
+                                       target="_blank"
+                                       class="btn text-sm text-center btn-primary mt-13 block">
+                                    Online 8:00 - 12:00
+                                </a>
+                                <a href="/vstoupit/vecerni/{{$registration->id}}"
+                                   target="_blank"
+                                   class="btn text-sm text-center btn-primary mt-1 block">
+                                    Online 18:00 - 21:00
+                                </a>
+                                <a href="/skola/{{$registration->school->id}}"
+                                   class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
+                                    Detail školy
+                                </a>
+
+                                <div class="mt-4 text-gray-400 text-sm hover:underline">
+                                    <div class="display-inline-block">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline-block h-4 align-middle">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                                        </svg>
+                                        <a href="{{$registration->school->web}}" target="_blank" class="align-middle">{{$registration->school->web}}</a>
                                     </div>
-                                </td>
-                                <td class="text-center border px-4 py-2">
-                                    {{$registration->school->district->name}}
-                                </td>
-                                <td class="hidden sm:table-cell text-center border px-4 py-2">
-                                    <a href="/vstoupit/ranni/{{$registration->id}}"
-                                       target="_blank"
-                                       class="underline hover:text-bold">
-                                        Vstoupit
-                                    </a>
-                                </td>
-                                <td class="hidden sm:table-cell text-center border px-4 py-2">
-                                    <a href="/vstoupit/vecerni/{{$registration->id}}"
-                                       target="_blank"
-                                       class="underline hover:text-bold">
-                                        Vstoupit
-                                    </a>
-                                </td>
-                            </tr>
+                                </div>
+                            </div>
                         @endforeach
-                    </table>
+                    </div>
                 @endif
             </div>
         </div>
