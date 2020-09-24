@@ -34,7 +34,7 @@ class CreateOrder extends Component
     public ?string $morning_event;
     public ?string $evening_event;
 
-    public $listeners = ['transfer' => 'render'];
+    public $listeners = ['transfer' => 'render', 'complete' => 'complete'];
 
     public function mount()
     {
@@ -131,10 +131,7 @@ class CreateOrder extends Component
         )->where("date", ">", DB::raw("CURRENT_DATE"))
             ->min(DB::raw("DATE_ADD(date, INTERVAL -1 DAY)"));
 
-        $is_first_order = $this->school
-                ->orders()
-                ->join("order_registration", "orders.id", "=", "order_registration.order_id")
-                ->count() == 0;
+        $is_first_order = $this->is_first_order();
 
         DB::transaction(function() use ($due_date, $is_first_order){
             $ord = Order::create([
@@ -152,18 +149,26 @@ class CreateOrder extends Component
                     'evening_event' => $se['evening_event']
                 ]);
 
-                $amount = 1000;
 
                 if($is_first_order){
-                    $amount = 0;
                     $is_first_order = false;
+
+
+                    OrderRegistration::create([
+                        'order_id' => $ord->id,
+                        'registration_id' => $reg->id,
+                        'fulfilled_at' => DB::raw("CURRENT_DATE"),
+                        'price' => 0,
+                    ]);
+                } else{
+                    OrderRegistration::create([
+                        'order_id' => $ord->id,
+                        'registration_id' => $reg->id,
+                        'price' => 1000,
+                    ]);
+
                 }
 
-                OrderRegistration::create([
-                    'order_id' => $ord->id,
-                    'registration_id' => $reg->id,
-                    'price' => $amount,
-                ]);
             }
         });
 
@@ -188,6 +193,14 @@ class CreateOrder extends Component
             ->orderBy("date");
     }
 
+    private function is_first_order()
+    {
+        return $this->school
+                ->orders()
+                ->join("order_registration", "orders.id", "=", "order_registration.order_id")
+                ->count() == 0;
+    }
+
     /**
      * Get the view / contents that represent the component.
      *
@@ -197,7 +210,8 @@ class CreateOrder extends Component
     {
         if($this->state == "ALL")
             return view('livewire.create-order', [
-                'selected_exhibitions' => $this->selected_exhibitions
+                'selected_exhibitions' => $this->selected_exhibitions,
+                'is_first_order' => $this->is_first_order(),
             ]);
         else if($this->state == "EDIT" || $this->state == "NEW")
             return view("order.create", [

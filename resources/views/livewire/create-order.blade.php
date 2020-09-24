@@ -12,6 +12,7 @@
                     <table class="table-auto w-full">
                         <tr>
                             <th class="px-4 py-2">Výstava</th>
+                            <th class="px-4 py-2">Cena</th>
                             <th class="px-4 py-2"></th>
                             <th class="px-4 py-2"></th>
                         </tr>
@@ -19,6 +20,16 @@
                             <tr>
                                 <td class="border px-4 py-2">{{format_date($se['date'])}} - {{$se['city']}}
                                     ({{$se['name']}})
+                                </td>
+                                <td class="border px-4 py-2">
+                                    @if($is_first_order)
+                                        0 kč
+                                        @php
+                                            $is_first_order = false;
+                                        @endphp
+                                    @else
+                                        1000 kč
+                                    @endif
                                 </td>
                                 <td class="border px-4 py-2 text-center">
                                     <button wire:click="edit({{$se['id']}})" class="link">Upravit</button>
@@ -35,9 +46,19 @@
 
             <div class="flex mt-6">
                 <button wire:click="cancel" class="link">Zrušit</button>
-                <button wire:click="complete" class="link ml-4">Dokončit</button>
+                <button id="complete" class="link ml-4">Dokončit</button>
             </div>
         </x-dashboard-card>
     </div>
+    <script>
+        const completeBtn = document.querySelector("#complete");
+
+        completeBtn.addEventListener("click", () => {
+           if(confirm("Chcete tuto objednávku odeslat?")){
+               console.log(window.Livewire)
+               window.Livewire.emit('complete')
+           }
+        })
+    </script>
 
 </div>
