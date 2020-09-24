@@ -74,7 +74,7 @@ class CreateOrder extends Component
 
     public function add()
     {
-        $this->exhibition_id = 0;
+        $this->exhibition_id = $this->selectable_exhibitions()->first()->id;
         $this->morning_event = null;
         $this->evening_event = null;
 
@@ -176,6 +176,18 @@ class CreateOrder extends Component
         'evening_event' => 'required|url',
     ];
 
+    private function selectable_exhibitions()
+    {
+        return Exhibition::where("date", ">", DB::raw("CURRENT_DATE"))
+            ->whereNotIn("id",
+                collect($this->selected_exhibitions)->map(fn($ex) => $ex['exhibition_id'])
+                    ->concat(
+                        $this->school->registrations()->select("exhibition_id")->get()
+                    )
+            )
+            ->orderBy("date");
+    }
+
     /**
      * Get the view / contents that represent the component.
      *
@@ -189,15 +201,7 @@ class CreateOrder extends Component
             ]);
         else if($this->state == "EDIT" || $this->state == "NEW")
             return view("order.create", [
-                'exhibitions' => Exhibition::where("date", ">", DB::raw("CURRENT_DATE"))
-                    ->whereNotIn("id",
-                        collect($this->selected_exhibitions)->map(fn($ex) => $ex['exhibition_id'])
-                            ->concat(
-                                $this->school->registrations()->select("exhibition_id")->get()
-                            )
-                    )
-                    ->orderBy("date")
-                    ->get()
+                'exhibitions' => $this->selectable_exhibitions()->get()
             ]);
         else
             return abort(500);
