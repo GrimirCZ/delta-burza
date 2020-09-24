@@ -10,8 +10,9 @@ body {
 .header {
   background-color: #f2f2f2;
   border: 1px solid black;
-  padding: 2px 4px;
+  padding: 2px 8px;
   font-size: 14px;
+  margin-top: 16px;
   text-align: center;
 }
 
@@ -22,26 +23,67 @@ body {
 .company_info {
   background-color: #f2f2f2;
   border: 1px solid black;
-  padding: 2px 4px;
+  padding: 2px 8px;
   font-size: 14px;
-  margin-top: 8px;
+  margin-top: 16px;
 }
 
-.company_info__wrapper {
+.receipt_info {
+  background-color: #f2f2f2;
+  border: 1px solid black;
+  padding: 2px 8px;
+  font-size: 14px;
+  margin-top: 16px;
+}
+
+.receipt_info .col {
+  width: 50%;
   float: left;
 }
 
-.company_info__content {
-  font-size: 12px;
+.receipt_info .col__head,
+.receipt_info .col__value {
+  float: left;
 }
 
-.company_info__content div {
-  font-weight: bold;
-  margin-bottom: 16px;
+.receipt_info .col__value {
+  margin-left: 70%;
 }
 
-.address_line {
-  max-width: 5ch;
-  word-wrap: break-word;
+.items {
+  background-color: #f2f2f2;
+  border: 1px solid black;
+  padding: 2px 8px;
+  font-size: 14px;
+  margin-top: 16px;
+  padding-top: 16px;
+  background-color: white;
+}
+
+table {
+  width: 100%;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.dashed-divider {
+  border-top: 1px dashed black;
+  width: 100%;
+}
+
+.double-divider {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  height: 1px;
+}
+
+.spacer {
+  height: 200px;
+}
+
+.contact-info {
+  font-size: 13px;
 }
 

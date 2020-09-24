@@ -1,10 +1,23 @@
 <?php
 
+use Carbon\Carbon;
+
 if(!function_exists('format_date')){
     function format_date(string $str) : string
     {
         try{
-            return (new  Carbon\Carbon($str))->isoFormat("D. MM. YYYY");
+            return (new  Carbon($str))->isoFormat("D. MM. YYYY");
+        } catch(Exception $e){
+            return "chyba";
+        }
+    }
+}
+
+if(!function_exists('format_date_now')){
+    function format_date_now() : string
+    {
+        try{
+            return Carbon::now()->isoFormat("D. MM. YYYY");
         } catch(Exception $e){
             return "chyba";
         }

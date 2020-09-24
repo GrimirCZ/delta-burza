@@ -10,8 +10,9 @@ body {
 @mixin section {
     background-color: #f2f2f2;
     border: 1px solid black;
-    padding: 2px 4px;
+    padding: 2px 8px;
     font-size: 14px;
+    margin-top: 16px;
 }
 
 .header {
@@ -25,24 +26,56 @@ body {
 
 .company_info {
     @include section;
-    margin-top: 8px;
 
-    &__wrapper {
+}
+
+.receipt_info {
+    @include section;
+
+    .col {
+        width: 50%;
         float: left;
-    }
 
-    &__content {
-        font-size: 12px;
-
-        div {
-            font-weight: bold;
-            margin-bottom: 16px;
+        &__head, &__value {
+            float: left;
         }
 
+        &__value {
+            margin-left: 70%;
+        }
     }
 }
 
-.address_line {
-    max-width: 5ch;
-    word-wrap: break-word;
+.items {
+    @include section;
+    padding-top: 16px;
+    background-color: white;
+}
+
+table {
+    width: 100%;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.dashed-divider {
+    border-top: 1px dashed black;
+    width: 100%;
+}
+
+.double-divider {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+
+    height: 1px;
+}
+
+.spacer {
+    height: 200px;
+}
+
+.contact-info {
+    font-size: 13px;
 }
