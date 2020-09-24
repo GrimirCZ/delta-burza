@@ -9,6 +9,6 @@ set -e
 git checkout production
 git merge master
 
-git push origin production
+git push origin production --force
 
 git checkout master

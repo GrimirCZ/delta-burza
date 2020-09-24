@@ -43,6 +43,14 @@ class School extends Model
         return $this->files()->where("type", "logo")->first()->name ?? "#";
     }
 
+    public function ordered_registrations()
+    {
+        return $this->registrations()
+            ->join("exhibitions", "exhibitions.id", "=","registrations.exhibition_id")
+            ->orderBy("exhibitions.date")
+            ->select("registrations.*");
+    }
+
     public function ordered_specializations()
     {
         return $this->specializations()
