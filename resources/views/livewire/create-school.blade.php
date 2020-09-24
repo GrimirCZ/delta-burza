@@ -23,6 +23,18 @@
                 </div>
                 <div class="form-row-2">
                     <div class="form-field">
+                        <label for="psc" class="label">PSČ</label>
+                        <input id="psc" type="text" wire:model="psc" class="input @error('psc') input-error @enderror">
+                        @error('psc') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                    <div class="form-field">
+                        <label for="city" class="label">IZO</label>
+                        <input id="city" type="text" wire:model="city" class="input @error('city') input-error @enderror">
+                        @error('city') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div class="form-row-2">
+                    <div class="form-field">
                         <label for="ico" class="label">IČ</label>
                         <input id="ico" type="text" wire:model="ico" class="input @error('ico') input-error @enderror">
                         @error('ico') <span class="error">{{ $message }}</span> @enderror

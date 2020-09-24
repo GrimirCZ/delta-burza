@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeleteSpecialization;
 use App\Http\Controllers\EnterEventController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\CreateRegistration;
 use App\Http\Livewire\CreateSchool;
@@ -51,6 +52,7 @@ Route::get('/registrace/vytvorit', CreateRegistration::class);
 Route::get('/registrace/{registration}/upravit', EditRegistration::class);
 
 Route::get("/objednavka/{order}", ShowOrder::class);
+Route::get("/faktura/{order}", InvoiceController::class);
 
 Route::get('/skola/vytvorit', CreateSchool::class);
 

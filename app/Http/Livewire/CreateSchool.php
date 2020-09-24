@@ -16,6 +16,8 @@ class CreateSchool extends Component
     use WithFileUploads;
 
     public ?string $address;
+    public ?string $psc;
+    public ?string $city;
     public ?string $ico;
     public ?string $izo;
     public ?string $name;
@@ -28,6 +30,8 @@ class CreateSchool extends Component
 
     protected $rules = [
         'address' => 'required|max:255',
+        'psc' => 'required|max:6',
+        'city' => 'required|max:255',
         'ico' => 'required|max:10',
         'izo' => 'required|max:11',
         'name' => 'required|max:200',
@@ -49,6 +53,8 @@ class CreateSchool extends Component
 
             $sch = School::create([
                 'address' => $this->address,
+                'psc' => $this->psc,
+                'city' => $this->city,
                 'ico' => $this->ico,
                 'izo' => $this->izo,
                 'name' => $this->name,

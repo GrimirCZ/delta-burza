@@ -46,8 +46,12 @@
             <div class="field">
                 <div class="field__header">Adresa:</div>
                 <div class="field__value">
-                    <a href="http://maps.google.com/?q={{$school->address}}" target="_blank"
-                       class="font-bold">{{$school->address}}</a>
+                    <a href="http://maps.google.com/?q={{$school->address}}, {{$school->psc}} {{$school->city}}"
+                       target="_blank"
+                       class="font-bold">
+                        {{$school->address}}<br/>
+                        {{$school->psc}} {{$school->city}}
+                    </a>
                 </div>
             </div>
         </div>
@@ -83,7 +87,8 @@
                             <a href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
                                 ({{$registration->exhibition->name}})</a><br/>
                             <a href="/registrace/{{$registration->id}}/upravit" class="link">Upravit</a>
-                        </divnpm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})>
+                            </divnpm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13:
+                            wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})>
                     </li>
                 @endforeach
                 <li class="mt-4"><a href="/objednavka/vytvorit" class="text-blue-500 underline">Zaregistrovat
@@ -103,7 +108,7 @@
                         <span class="text-red-700 font-semibold">Nezaplaceno</span>
                     @endif
                      ({{$order->price()}} kč)
-                    <br />
+                    <br/>
                     <a href="/objednavka/{{$order->id}}" class="link">Detail</a>
                 </li>
 
