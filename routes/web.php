@@ -13,6 +13,7 @@ use App\Http\Livewire\EditSpecialization;
 use App\Http\Livewire\InfoProStredniSkoly;
 use App\Http\Livewire\InfoProZakyZS;
 use App\Http\Livewire\ListExhibitions;
+use App\Http\Livewire\ListExhibitionsRegion;
 use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowOrder;
 use App\Http\Livewire\ShowSchool;
@@ -39,6 +40,7 @@ Route::get("/info_pro_zaky_zs", InfoProZakyZS::class)->name("info_zs");
 Route::get("/obchodni_podminky", TermsOfUse::class)->name("obchodni_podminky");
 
 Route::get('/vystavy', ListExhibitions::class);
+Route::get('/vystavy/{region}', ListExhibitionsRegion::class);
 Route::get('/vystava/{exhibition}', ShowExhibition::class);
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
 Route::get('/obor/vytvorit', CreateSpecialization::class);
