@@ -411,7 +411,7 @@
             <p>13.2.2.provádění zpracování poskytnutých osobních údajů pouze v prostorách sídla
                 zpracovatele, do nichž budou mít přístup pouze oprávněné osoby zpracovatele</p>
             <p>13.2.3. nesvěřit zpracování poskytnutých osobních údajů třetí osobě bez předchozího písemného souhlasu
-                správce, tímto není dotčen čl. 14. obchodních podmínek,</p>>
+                správce, tímto není dotčen čl. 14. obchodních podmínek,</p>
             <p>13.2.4.používat odpovídající technické zařízení a programové vybavení způsobem,
                 který vyloučí neoprávněný či nahodilý přístup k poskytnutým osobním údajům ze strany
                 jiných osob, než pověřených zaměstnanců zpracovatele,</p>
