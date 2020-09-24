@@ -100,6 +100,7 @@
             </table>
             <div class="double-divider"></div>
             <div class="spacer"></div>
+            <p>Nejsme plátci DPH</p>
         </div>
         <p class="contact-info">
             Vystavila: Alena Ferešová<br />

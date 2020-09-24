@@ -19352,7 +19352,12 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/* WEBPACK VAR INJECTION */(function(global) {__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+global.redirectToRegion = function (option) {
+  window.location.href = "/vystavy/" + option.value;
+};
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 

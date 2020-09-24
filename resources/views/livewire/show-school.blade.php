@@ -41,7 +41,7 @@
                 <div>
                     <h2 class="text-2xl">Výstavy</h2>
                     <ul class="flex flex-col gap-row-2">
-                        @foreach($school->registrations as $registration)
+                        @foreach($school->ordered_registrations()->get() as $registration)
                             <li class="grid grid-cols-1 xl:grid-cols-2 ml-8 py-2">
                                 <div>
                                     <a class="list-disc-block"
