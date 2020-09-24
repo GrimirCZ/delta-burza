@@ -28,4 +28,9 @@ class Order extends Model
         return $this->join("order_registration", "orders.id", "=", "order_registration.order_id")
             ->sum("order_registration.price");
     }
+
+    public function fulfilled()
+    {
+       return OrderRegistration::where("order_id", "=", $this->id)->whereNull("fulfilled_at")->count() == 0;
+    }
 }

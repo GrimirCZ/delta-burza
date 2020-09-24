@@ -3,26 +3,25 @@
   <ID>DATABASE</ID>
   <OriginalElement>99326a7a-3b65-4bd9-a629-8cc8c59bfe19.SCHEMA:burza</OriginalElement>
   <nodes>
-    <node x="1371.5" y="0.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.personal_access_tokens</node>
+    <node x="57.25" y="789.5">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.registrations</node>
+    <node x="311.75" y="824.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.orders</node>
     <node x="1086.5" y="442.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.prescribed_specializations</node>
-    <node x="977.75" y="801.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.specialization</node>
-    <node x="241.0" y="1137.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.order_registration</node>
+    <node x="0.0" y="1399.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.failed_jobs</node>
     <node x="14.0" y="430.5">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.exhibitions</node>
     <node x="199.0" y="1399.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.migrations</node>
     <node x="1122.0" y="0.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.type_of_studies</node>
-    <node x="0.0" y="1171.5">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.registration_visits</node>
+    <node x="1371.5" y="0.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.personal_access_tokens</node>
     <node x="1088.0" y="175.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.field_of_studies</node>
-    <node x="122.375" y="0.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.regions</node>
+    <node x="285.48645833333336" y="175.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.districts</node>
     <node x="411.0" y="1399.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.password_resets</node>
     <node x="547.25" y="1160.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.sessions</node>
     <node x="538.25" y="373.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.schools</node>
-    <node x="285.48645833333336" y="175.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.districts</node>
+    <node x="122.375" y="0.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.regions</node>
     <node x="521.75" y="709.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.users</node>
-    <node x="0.0" y="1399.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.failed_jobs</node>
     <node x="60.4864583333333" y="175.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.neighboring_regions</node>
+    <node x="241.0" y="1137.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.order_registration</node>
     <node x="767.75" y="812.5">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.files</node>
-    <node x="57.25" y="789.5">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.registrations</node>
-    <node x="311.75" y="824.0">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.orders</node>
+    <node x="0.0" y="1171.5">99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.registration_visits</node>
   </nodes>
   <notes />
   <edges>
@@ -32,12 +31,6 @@
       <point x="673.3499999999999" y="689.0" />
       <point x="38.59999999999991" y="143.0" />
     </edge>
-    <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.exhibitions" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.districts">
-      <point x="0.0" y="-85.5" />
-      <point x="110.5" y="348.0" />
-      <point x="332.73645833333336" y="348.0" />
-      <point x="-47.25" y="74.0" />
-    </edge>
     <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.prescribed_specializations" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.field_of_studies">
       <point x="0.0" y="-74.0" />
       <point x="0.0" y="74.0" />
@@ -45,6 +38,18 @@
     <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.sessions" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.users">
       <point x="0.0" y="-85.5" />
       <point x="0.0" y="189.0" />
+    </edge>
+    <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.exhibitions" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.districts">
+      <point x="0.0" y="-85.5" />
+      <point x="110.5" y="348.0" />
+      <point x="332.73645833333336" y="348.0" />
+      <point x="-47.25" y="74.0" />
+    </edge>
+    <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.order_registration" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.registrations">
+      <point x="-55.25" y="-108.5" />
+      <point x="296.25" y="1112.0" />
+      <point x="217.0" y="1112.0" />
+      <point x="53.25" y="108.5" />
     </edge>
     <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.orders" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.schools">
       <point x="0.0" y="-74.0" />
@@ -58,31 +63,15 @@
       <point x="427.23645833333336" y="348.0" />
       <point x="47.25" y="74.0" />
     </edge>
-    <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.order_registration" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.registrations">
-      <point x="-55.25" y="-108.5" />
-      <point x="296.25" y="1112.0" />
-      <point x="217.0" y="1112.0" />
-      <point x="53.25" y="108.5" />
-    </edge>
     <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.registrations" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.schools">
       <point x="53.25" y="-108.5" />
       <point x="217.0" y="679.0" />
       <point x="557.55" y="679.0" />
       <point x="-77.20000000000005" y="143.0" />
     </edge>
-    <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.specialization" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.schools">
-      <point x="-76.25" y="-97.0" />
-      <point x="1054.0" y="679.0" />
-      <point x="711.9499999999999" y="679.0" />
-      <point x="77.19999999999993" y="143.0" />
-    </edge>
     <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.field_of_studies" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.type_of_studies">
       <point x="0.0" y="-74.0" />
       <point x="0.0" y="62.5" />
-    </edge>
-    <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.specialization" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.prescribed_specializations">
-      <point x="76.25" y="-97.0" />
-      <point x="0.0" y="74.0" />
     </edge>
     <edge source="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.districts" target="99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.regions">
       <point x="0.0" y="-74.0" />
@@ -113,7 +102,7 @@
       <point x="0.0" y="74.0" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.347179169249845" x="1682.9705357142857" y="796.5" />
+  <settings layout="Hierarchic Group" zoom="0.5399876007439554" x="791.5" y="796.5" />
   <SelectedNodes>
     <node>99326a7a-3b65-4bd9-a629-8cc8c59bfe19.TABLE:burza.personal_access_tokens</node>
   </SelectedNodes>

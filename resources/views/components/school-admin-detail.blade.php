@@ -83,7 +83,7 @@
                             <a href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
                                 ({{$registration->exhibition->name}})</a><br/>
                             <a href="/registrace/{{$registration->id}}/upravit" class="link">Upravit</a>
-                        </div>
+                        </divnpm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13: wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})>
                     </li>
                 @endforeach
                 <li class="mt-4"><a href="/objednavka/vytvorit" class="text-blue-500 underline">Zaregistrovat
@@ -91,24 +91,20 @@
             </ul>
         </div>
     </div>
-    <div>
+    <div class="mt-8">
         <h2 class="text-2xl">Objednávky</h2>
         <ul class="mt-4 ml-4 sm:ml-8">
             @foreach($school->orders as $order)
                 <li class="list-disc">
-                    Objednávka do {{format_date($order->due_date)}} ({{$order->price()}} kč)
-                    <ul class="my-2 ml-4 sm:ml-8">
-                        @foreach($order->ordered_registrations as $or)
-                            @php
-                                $exhibition = $or->exhibition();
-                            @endphp
-                            <li class="list-disc">{{format_date($exhibition->date)}} - {{$exhibition->city}}
-                                ({{$exhibition->name}})
-                                @if($or->fulfilled_at == null) <span class="text-red-500 font-semibold">Nezaplaceno ({{$or->price}} kč)</span> @else
-                                    <span class="text-green-500 font-semibold">Zaplaceno</span> @endif
-                            </li>
-                        @endforeach
-                    </ul>
+                    Objednávka č. {{$order->id}} do {{format_date($order->due_date)}}
+                    @if($order->fulfilled())
+                        <span class="text-green-700 font-semibold">Zaplaceno</span>
+                    @else
+                        <span class="text-red-700 font-semibold">Nezaplaceno</span>
+                    @endif
+                     ({{$order->price()}} kč)
+                    <br />
+                    <a href="/objednavka/{{$order->id}}" class="link">Detail</a>
                 </li>
 
             @endforeach

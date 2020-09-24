@@ -17,7 +17,6 @@ class ShowExhibition extends Component
      */
     public function render()
     {
-
         return view('livewire.show-exhibition', [
             'registrations' => $this->exhibition
                 ->registrations()

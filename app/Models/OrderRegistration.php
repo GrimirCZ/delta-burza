@@ -21,7 +21,7 @@ class OrderRegistration extends Model
 
     public function exhibition()
     {
-        return Exhibition::join("registrations", "exhibitions.id", "=", "registrations.id")
+        return Exhibition::join("registrations", "exhibitions.id", "=", "registrations.exhibition_id")
             ->join("order_registration", "order_registration.registration_id", "=", "registrations.id")
             ->where("order_registration.id", "=", $this->id)
             ->select("exhibitions.*")

@@ -13,6 +13,7 @@ use App\Http\Livewire\InfoProStredniSkoly;
 use App\Http\Livewire\InfoProZakyZS;
 use App\Http\Livewire\ListExhibitions;
 use App\Http\Livewire\ShowExhibition;
+use App\Http\Livewire\ShowOrder;
 use App\Http\Livewire\ShowSchool;
 use App\Http\Livewire\ShowSpecialization;
 use App\Http\Livewire\CreateSpecialization;
@@ -48,6 +49,8 @@ Route::get('/objednavka/vytvorit', CreateOrder::class);
 
 Route::get('/registrace/vytvorit', CreateRegistration::class);
 Route::get('/registrace/{registration}/upravit', EditRegistration::class);
+
+Route::get("/objednavka/{order}", ShowOrder::class);
 
 Route::get('/skola/vytvorit', CreateSchool::class);
 
