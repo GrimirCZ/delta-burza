@@ -22,3 +22,11 @@
     @apply mr-2;
     content: "• ";
 }
+
+.body {
+    color: #323234;
+}
+
+.max-w-16 {
+    max-width: 16rem;
+}
