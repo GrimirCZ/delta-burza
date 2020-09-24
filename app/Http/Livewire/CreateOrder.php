@@ -74,7 +74,7 @@ class CreateOrder extends Component
 
     public function add()
     {
-        $this->exhibition_id = null;
+        $this->exhibition_id = 0;
         $this->morning_event = null;
         $this->evening_event = null;
 

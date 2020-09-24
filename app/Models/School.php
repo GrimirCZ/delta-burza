@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class School extends Model
 {
-    protected $fillable = ['address', 'ico', 'izo', 'name', 'email', 'web', 'phone','description', 'district_id'];
+    protected $fillable = ['address', 'ico', 'izo', 'name', 'email', 'web', 'phone', 'description', 'district_id'];
 
     public function users()
     {
@@ -41,5 +41,16 @@ class School extends Model
     public function logo()
     {
         return $this->files()->where("type", "logo")->first()->name ?? "#";
+    }
+
+    public function ordered_specializations()
+    {
+        return $this->specializations()
+            ->join("prescribed_specializations", "specializations.prescribed_specialization_id", "=", "prescribed_specializations.id")
+            ->orderBy("prescribed_specializations.code")
+            ->orderBy("prescribed_specializations.name")
+            ->orderBy("specializations.name")
+            ->select("specializations.*")
+            ->get();
     }
 }

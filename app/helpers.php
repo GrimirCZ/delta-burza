@@ -51,3 +51,16 @@ if(!function_exists('settings')){
         return app(App\Settings::class)->get($key, $default);
     }
 }
+
+if(!function_exists("rand_str")){
+    function rand_str($length = 10)
+    {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for($i = 0; $i < $length; $i++){
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+}

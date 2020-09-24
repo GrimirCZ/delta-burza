@@ -391,7 +391,7 @@
             <p>12.6. Zpracovatel je oprávněn portál https://burzaskol.online prezentovat v rámci
                 vlastní marketingové činnosti třetím osobám, přičemž s tímto správce výslovně souhlasí.</p>
 
-            <h2 class="header">13. ZABEZPEČENÍ OCHRANY OSOBNÍCH ÚDAJŮ</h2 class="header">
+            <h2 class="header">13. ZABEZPEČENÍ OCHRANY OSOBNÍCH ÚDAJŮ</h2>
 
             <p>13.1. Zpracovatel se ve smyslu ust. čl. 28 odst. 3 písm. c) ve spojení s ust.
                 čl. 32 GDPR zavazuje přijmout veškerá technická, organizační, personální a jiná
@@ -409,28 +409,28 @@
                 které poučí o jejich povinnosti zachovávat mlčenlivost ohledně poskytnutých osobních
                 údajů a o dalších povinnostech, které jsou povinni dodržovat tak, aby nedošlo k porušení GDPR,</p>
             <p>13.2.2.provádění zpracování poskytnutých osobních údajů pouze v prostorách sídla
-                zpracovatele, do nichž budou mít přístup pouze oprávněné osoby zpracovatele, 13.2.3. nesvěřit
-                zpracování poskytnutých osobních údajů třetí osobě bez předchozího písemného souhlasu
+                zpracovatele, do nichž budou mít přístup pouze oprávněné osoby zpracovatele</p>
+            <p>13.2.3. nesvěřit zpracování poskytnutých osobních údajů třetí osobě bez předchozího písemného souhlasu
                 správce, tímto není dotčen čl. 14. obchodních podmínek,</p>>
-            <p>13.2.3.používat odpovídající technické zařízení a programové vybavení způsobem,
+            <p>13.2.4.používat odpovídající technické zařízení a programové vybavení způsobem,
                 který vyloučí neoprávněný či nahodilý přístup k poskytnutým osobním údajům ze strany
                 jiných osob, než pověřených zaměstnanců zpracovatele,</p>
-            <p>13.2.4.poskytnuté osobní údaje uchovávat v náležitě zabezpečených objektech a místnostech,</p>
-            <p>13.2.5.poskytnuté osobní údaje v elektronické podobě bude uchovávat na zabezpečených
+            <p>13.2.5.poskytnuté osobní údaje uchovávat v náležitě zabezpečených objektech a místnostech,</p>
+            <p>13.2.6.poskytnuté osobní údaje v elektronické podobě bude uchovávat na zabezpečených
                 serverech nebo na nosičích dat, ke kterým budou mít přístup pouze pověřené osoby
                 na základě přístupových kódů či hesel a poskytnuté osobní údaje bude pravidelně zálohovat,</p>
-            <p>13.2.6.zajistit dálkový přenos poskytnutých osobních údajů, buď pouze prostřednictvím
+            <p>13.2.7.zajistit dálkový přenos poskytnutých osobních údajů, buď pouze prostřednictvím
                 veřejně nepřístupné sítě, nebo prostřednictvím zabezpečeného přenosu po veřejných
                 sítích, zejména prostřednictvím protokolu umožňujícího zabezpečenou komunikaci v
                 počítačové síti; s přihlédnutím k povaze, rozsahu, kontextu a různě závažným rizikům
                 mohou být některé poskytnuté osobní údaje posílány e-mailem,</p>
-            <p>13.2.7.prostřednictvím vhodných technických prostředků zajistit schopnost obnovit
+            <p>13.2.8.prostřednictvím vhodných technických prostředků zajistit schopnost obnovit
                 dostupnost poskytnutých osobních údajů a přístup k nim včas v případě fyzických či technických
                 incidentů,</p>
-            <p>13.2.8. zajistit pravidelné testování posuzování a hodnocení účinnosti zavedených
+            <p>13.2.9. zajistit pravidelné testování posuzování a hodnocení účinnosti zavedených
                 technických a organizačních opatření pro zajištění bezpečnosti zpracování poskytnutých
                 osobních údajů,</p>
-            <p>13.2.9. při ukončení zpracování poskytnutých osobních údajů zajistit fyzickou
+            <p>13.2.10. při ukončení zpracování poskytnutých osobních údajů zajistit fyzickou
                 likvidaci poskytnutých osobních údajů nebo tyto poskytnuté osobní údaje správci předat.</p>
 
             <h2 class="header">14. SOUHLAS SE ZAPOJENÍM DALŠÍCH ZPRACOVATELŮ</h2 class="header">

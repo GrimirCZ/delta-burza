@@ -7,7 +7,9 @@ use App\Models\PrescribedSpecialization;
 use App\Models\Registration;
 use App\Models\School;
 use App\Models\Specialization;
+use App\Models\User;
 use Database\Seeders\DatabaseSeeder;
+use Hash;
 use Illuminate\Database\Seeder;
 
 class DummyDataSeeder extends Seeder
@@ -30,14 +32,14 @@ class DummyDataSeeder extends Seeder
             'email' => 'info@delta-skola.cz',
             'web' => 'www.delta-skola.cz',
             'phone' => '+420 466 611 106',
-            'description'=> 'School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.',
+            'description' => 'School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.',
             'district_id' => '45',
         ]);
 
         File::create([
             'school_id' => $sch->id,
             'type' => 'logo',
-            'name' => 'delta-logo.png'
+            'name' => 'logos/delta-logo.png'
         ]);
 
         Specialization::create([
@@ -47,19 +49,12 @@ class DummyDataSeeder extends Seeder
             'school_id' => $sch->id
         ]);
 
-        Registration::create([
+        User::create([
+            'name' => "admin",
+            'email' => "admin@admin",
+            'password' => Hash::make("admin"),
             'school_id' => $sch->id,
-            'exhibition_id' => 1, // Praha Schola Progenis
-            'morning_event' => "http://abc.xyz",
-            'evening_event' => 'http://def.xyz',
-            'is_disabled' => false
-        ]);
-        Registration::create([
-            'school_id' => $sch->id,
-            'exhibition_id' => 2, // Praha Schola Progenis
-            'morning_event' => "http://abc.xyz",
-            'evening_event' => 'http://def.xyz',
-            'is_disabled' => false
+            'is_main_contact' => true
         ]);
     }
 }

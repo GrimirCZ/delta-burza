@@ -34,19 +34,7 @@
                                                 {{$registration->school->name}}
                                             </a>
                                             <ul>
-                                                @php
-                                                    // ignore
-                                                        $specializations = $registration
-                                                                            ->school
-                                                                            ->specializations()
-                                                                            ->join("prescribed_specializations", "specializations.prescribed_specialization_id", "=", "prescribed_specializations.id")
-                                                                            ->orderBy("prescribed_specializations.code")
-                                                                            ->orderBy("prescribed_specializations.name")
-                                                                            ->orderBy("specializations.name")
-                                                                            ->select("specializations.*")
-                                                                            ->get();
-                                                @endphp
-                                                @foreach($specializations as $specialization)
+                                                @foreach($registration->school->ordered_specializations() as $specialization)
                                                     <li class="text-left list-disc ml-5">
                                                         <a href="/obor/{{$specialization->id}}">
                                                             {{$specialization->prescribed_specialization->code}}
