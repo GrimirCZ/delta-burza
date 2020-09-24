@@ -13,7 +13,7 @@ class Order extends Model
         return $this->belongsTo(School::class);
     }
 
-    public function ordered_registration()
+    public function ordered_registrations()
     {
         return $this->hasMany(OrderRegistration::class);
     }
@@ -21,5 +21,11 @@ class Order extends Model
     public function registration()
     {
         return $this->hasManyThrough(Registration::class, OrderRegistration::class);
+    }
+
+    public function price()
+    {
+        return $this->join("order_registration", "orders.id", "=", "order_registration.order_id")
+            ->sum("order_registration.price");
     }
 }

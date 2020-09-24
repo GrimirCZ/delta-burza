@@ -18,4 +18,13 @@ class OrderRegistration extends Model
     {
         return $this->belongsTo(Registration::class);
     }
+
+    public function exhibition()
+    {
+        return Exhibition::join("registrations", "exhibitions.id", "=", "registrations.id")
+            ->join("order_registration", "order_registration.registration_id", "=", "registrations.id")
+            ->where("order_registration.id", "=", $this->id)
+            ->select("exhibitions.*")
+            ->first();
+    }
 }

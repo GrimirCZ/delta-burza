@@ -91,4 +91,25 @@
             </ul>
         </div>
     </div>
+    <div>
+        <h2 class="text-2xl">Objednávky</h2>
+        <ul class="mt-4 ml-4 sm:ml-8">
+            @foreach($school->orders as $order)
+                <li class="list-disc">
+                    Objednávka do {{format_date($order->due_date)}} ({{$order->price()}} kč)
+                    <ul class="my-2 ml-4 sm:ml-8">
+                        @foreach($order->ordered_registrations as $or)
+                            @php
+                            $exhibition = $or->exhibition();
+                            @endphp
+                            <li class="list-disc">{{format_date($exhibition->date)}} - {{$exhibition->city}}({{$exhibition->name}})
+                            @if($or->fulfilled_at == null) <span class="text-red-500 font-semibold">Nezaplaceno ({{$or->price}} kč)</span> @else <span class="text-green-500 font-semibold">Zaplaceno</span> @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+
+            @endforeach
+        </ul>
+    </div>
 </div>
