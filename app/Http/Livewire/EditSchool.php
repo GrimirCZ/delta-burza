@@ -7,6 +7,7 @@ use App\Models\File;
 use App\Models\School;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -28,22 +29,6 @@ class EditSchool extends Component
     public ?string $description;
     public ?int $district_id;
     public $logo; // school logo file
-
-    protected $rules = [
-        'address' => 'required|max:255',
-        'psc' => 'required|max:6',
-        'city' => 'required|max:255',
-        'ico' => 'required|max:10',
-        'izo' => 'required|max:11',
-        'name' => 'required|max:200',
-        'email' => 'required|max:255|email',
-        'web' => 'required|max:255|url',
-        'phone' => 'required|max:255',
-        'description' => 'required',
-        'district_id' => 'exists:districts,id',
-        'logo' => 'image|max:1024', // 1MB Max
-    ];
-
 
     public function submit()
     {
@@ -94,6 +79,36 @@ class EditSchool extends Component
         $this->phone = $school->phone;
         $this->description = $school->description;
         $this->district_id = $school->district_id;
+
+
+        $this->rules = [
+            'address' => 'required|max:255',
+            'psc' => 'required|max:6',
+            'city' => 'required|max:255',
+            'ico' => [
+                'required',
+                'max:10',
+                Rule::unique("schools", "ico")->ignore($school->id),
+            ],
+            'izo' => [
+                'required',
+                'max:11',
+                Rule::unique("schools", "izo")->ignore($school->id),
+            ],
+            'name' => 'required|max:200',
+            'email' =>
+                [
+                    'required',
+                    'email',
+                    'max:255',
+                    Rule::unique("schools", "email")->ignore($school->id),
+                ],
+            'web' => 'required|max:255|url',
+            'phone' => 'required|max:255',
+            'description' => 'required',
+            'district_id' => 'exists:districts,id',
+            'logo' => 'image|max:1024', // 1MB Max
+        ];
     }
 
     /**

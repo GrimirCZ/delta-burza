@@ -113,7 +113,7 @@ return [
     'starts_with' => 'The :attribute must start with one of the following: :values.',
     'string' => 'The :attribute must be a string.',
     'timezone' => 'The :attribute must be a valid zone.',
-    'unique' => 'The :attribute has already been taken.',
+    'unique' => 'Tato hodnota již v databázi existuje a nelze ji použít znovu.',
     'uploaded' => 'The :attribute failed to upload.',
     'url' => 'Toto pole musí obsahovat platnou url, tj. začínat na http:// nebo https://.',
     'uuid' => 'The :attribute must be a valid UUID.',
