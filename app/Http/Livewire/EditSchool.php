@@ -67,7 +67,7 @@ class EditSchool extends Component
                 'district_id' => $this->district_id,
             ]);
 
-            File::where("school_id", $this->school->id)->where("type", "logo")->destroy();
+            File::where("school_id", $this->school->id)->where("type", "logo")->delete();
 
             File::create([
                 'type' => 'logo',
