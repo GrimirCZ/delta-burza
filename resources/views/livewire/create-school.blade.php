@@ -28,7 +28,7 @@
                         @error('psc') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-field">
-                        <label for="city" class="label">IZO</label>
+                        <label for="city" class="label">Město</label>
                         <input id="city" type="text" wire:model="city" class="input @error('city') input-error @enderror">
                         @error('city') <span class="error">{{ $message }}</span> @enderror
                     </div>
