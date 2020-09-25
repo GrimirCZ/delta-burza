@@ -9,6 +9,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.typekit.net/vxo6dnf.css">
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -19,46 +20,44 @@
     </head>
     <body>
         <div class="min-h-screen bg-gray-100">
-            <nav wire:id="ZiuiHGx76v8LUg3bcjyP" x-data="{ open: false }" class="bg-white border-b border-gray-100">
+            <nav wire:id="ZiuiHGx76v8LUg3bcjyP" x-data="{ open: false }" class="bg-header border-b border-gray-100 p-7">
                 <!-- Primary Navigation Menu -->
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div class="flex justify-between h-16">
-                        <div class="flex">
-                            <!-- Logo -->
-                            <div class="flex-shrink-0 flex items-center">
-                                <a href="/" class="font-weight-semibold text-black text-lg">
-                                    {{ config('app.name', 'Laravel') }}
-                                </a>
-                            </div>
 
-                            <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none hover:text-black transition duration-150
-                                 ease-in-out"
-                                   href="{{route("info_zs")}}">
-                                    Pro žáky ZŠ
-                                </a>
-                                <a class="inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 text-gray-900 focus:outline-none hover:text-black transition duration-150
-                                 ease-in-out"
-                                   href="{{route("info_ss")}}">
-                                    Pro střední školy
-                                </a>
-                            </div>
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+                    <a href="/" class="font-weight-semibold text-3xl font-freude">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
+
+                    <div class="flex justify-between items-center">
+                        <div class="inline-flex">
+                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out"
+                                href="{{route("vystavy")}}">
+                                Výstavy
+                            </a>
+
+                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out"
+                                href="{{route("info_zs")}}">
+                                Pro žáky ZŠ
+                            </a>
+                            <a class="items-center px-1 pt-1 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out"
+                                href="{{route("info_ss")}}">
+                                Pro střední školy
+                            </a>
                         </div>
-                        <div class="flex items-center">
+                        <div class="inline-flex">
                             @if(Auth::check())
-                                <a class="link mr-6"
+                                <a class="mr-6 btn bg-white text-header"
                                    href="/dashboard">
                                     Profil
                                 </a>
                                 <form action="{{url("logout")}}" method="post">
                                     @csrf
-                                    <button type="submit" class="text-blue-500 underline">Odhlásit se</button>
+                                    <button type="submit" class="btn bg-white text-header">Odhlásit se</button>
                                 </form>
                             @else
-                                <a href="{{url("/login")}}" class="text-blue-500 underline">Vstup pro školy</a>
+                                <a href="{{url("/login")}}" class="btn bg-white text-header">Vstup pro školy</a>
                             @endif
-                        </div>
+                       </div>
                     </div>
                 </div>
             </nav>
@@ -79,7 +78,7 @@
                     <a href="{{route("obchodni_podminky")}}" class="link">Obchodní podmínky</a>
                 </p>
                 <p class="text-right text-gray-600 text-sm">
-                    Vytvořil Vít Falta 2020
+                    Vytvořil Vít Falta a Matěj Půhoný 2020
                 </p>
             </footer>
         </div>
