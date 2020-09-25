@@ -5,6 +5,10 @@ body {
 .title {
     font-weight: 400;
     text-align: center;
+
+    h1 {
+        padding-bottom: 14px;
+    }
 }
 
 @mixin section {
@@ -78,4 +82,16 @@ table {
 
 .contact-info {
     font-size: 13px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}
+
+.not-an-invoice {
+    font-size: 12px;
 }

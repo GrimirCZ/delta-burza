@@ -46,7 +46,7 @@ class School extends Model
     public function ordered_registrations()
     {
         return $this->registrations()
-            ->join("exhibitions", "exhibitions.id", "=","registrations.exhibition_id")
+            ->join("exhibitions", "exhibitions.id", "=", "registrations.exhibition_id")
             ->orderBy("exhibitions.date")
             ->select("registrations.*");
     }
@@ -60,5 +60,13 @@ class School extends Model
             ->orderBy("specializations.name")
             ->select("specializations.*")
             ->get();
+    }
+
+
+    public function main_contact()
+    {
+        return $this->users()
+            ->where("is_main_contact", true)
+            ->first();
     }
 }
