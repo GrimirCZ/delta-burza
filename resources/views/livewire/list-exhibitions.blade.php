@@ -7,7 +7,7 @@
         </h2>
     </x-slot>
 
-    <div class="h-full">
+    <div class="h-full px-2">
         <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
             <div class="mb-5">
                 <div class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded">
