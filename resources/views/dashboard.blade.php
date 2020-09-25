@@ -10,7 +10,7 @@
             @if(Auth::user()->school_id == null)
                 <div class="grid justify-around items-center h-72">
                     <a href="/skola/vytvorit" class="text-xl text-blue-600 underline">
-                        Vložte informace o škol.
+                        Vložte informace o škole.
                     </a>
                 </div>
             @else
