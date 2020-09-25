@@ -22,7 +22,7 @@
                         <b>DELTA – Střední škola informatiky a ekonomie, s.r.o.</b>
                     </td>
                     <td class="text-right">
-                        Daňový doklad číslo: <b>2020{{fill_number_to_length($order->id, 4)}}</b>
+                        Číslo zálohové faktury: <b>2020{{fill_number_to_length($order->id, 4)}}</b>
                     </td>
                 </tr>
                 </tbody>
