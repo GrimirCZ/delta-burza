@@ -36,7 +36,6 @@ class EditSchool extends Component
 
 
         DB::transaction(function(){
-            $logo_path = $this->logo->store("public/logos");
 
             $this->school->update([
                 'address' => $this->address,
@@ -52,13 +51,17 @@ class EditSchool extends Component
                 'district_id' => $this->district_id,
             ]);
 
-            File::where("school_id", $this->school->id)->where("type", "logo")->delete();
+            if($this->logo){
+                $logo_path = $this->logo->store("public/logos");
 
-            File::create([
-                'type' => 'logo',
-                'name' => substr($logo_path, 6), // strip the public part
-                'school_id' => $this->school->id
-            ]);
+                File::where("school_id", $this->school->id)->where("type", "logo")->delete();
+
+                File::create([
+                    'type' => 'logo',
+                    'name' => substr($logo_path, 6), // strip the public part
+                    'school_id' => $this->school->id
+                ]);
+            }
         });
 
         $this->redirect("/dashboard");
@@ -107,7 +110,7 @@ class EditSchool extends Component
             'phone' => 'required|max:255',
             'description' => 'required',
             'district_id' => 'exists:districts,id',
-            'logo' => 'image|max:1024', // 1MB Max
+            'logo' => 'sometimes|image|max:1024', // 1MB Max
         ];
     }
 
