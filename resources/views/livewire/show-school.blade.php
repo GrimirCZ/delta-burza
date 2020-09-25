@@ -1,6 +1,6 @@
 <div>
     <x-slot name="header">
-        <img src="{{asset('storage/' . $school->logo())}}" alt="Logo {{$school->name}}">
+        <img src="{{asset('storage/' . $school->logo())}}" class="h-8" alt="Logo {{$school->name}}">
     </x-slot>
 
     <div>

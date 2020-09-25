@@ -2,7 +2,7 @@
 <div class="mt-8">
     <div class="flex justify-between align-center">
         <div>
-            <img src="{{asset('storage/' . $school->logo())}}" alt="Logo {{$school->name}}" class="block">
+            <img src="{{asset('storage/' . $school->logo())}}" alt="Logo {{$school->name}}" class="block h-8">
         </div>
         <div class="flex items-center">
             <a href="{{url("/skola/upravit")}}" class="btn btn-primary">Upravit</a>
