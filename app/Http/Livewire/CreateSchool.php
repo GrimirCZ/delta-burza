@@ -72,6 +72,7 @@ class CreateSchool extends Component
             ]);
 
             Auth::user()->school_id = $sch->id;
+            Auth::user()->is_main_contact = true;
             Auth::user()->push();
         });
 
