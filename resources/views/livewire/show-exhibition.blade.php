@@ -20,13 +20,13 @@
                                 <div class="leading-3 text-gray-400">{{$registration->school->district->name}}</div>
                                 <a href="/skola/{{$registration->school->id}}"><h3 class="text-2xl font-light">{{$registration->school->name}}</h3></a>
                                 @foreach($registration->school->ordered_specializations() as $specialization)
-                                    <li class="text-left list-disc ml-5">
+                                    <div class="text-left list-disc ml-5 mb-3">
                                         <a href="/obor/{{$specialization->id}}">
                                             {{$specialization->prescribed_specialization->code}}
-                                            - {{$specialization->prescribed_specialization->name}}
-                                            ({{$specialization->name}})
+                                            - {{$specialization->prescribed_specialization->name}} <br/>
+                                            <i>(ŠVP: {{$specialization->name}})</i>
                                         </a>
-                                    </li>
+                                    </div>
                                 @endforeach
 
                                 <a href="/vstoupit/ranni/{{$registration->id}}"

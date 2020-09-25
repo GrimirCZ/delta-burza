@@ -82,13 +82,13 @@
                     <div class="bg-white p-5 shadow-sm box-border mt-3">
                         <h2 class="p-2">Obory</h2>
                         @foreach ($school->specializations as $specialization)
-                            <div class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                            <div class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">
                                 <div class="text-sm leading-5 font-medium text-gray-500">
                                     {{$specialization->prescribed_specialization->code}} - {{$specialization->prescribed_specialization->name}} <br>
                                     (ŠVP: <i>{{$specialization->name}}</i>)
                                 </div>
-                                <div class="mt-5 text-sm leading-5 text-gray-900 sm:mt-3">
-                                    <a class="btn btn-primary" href="/obor/{{$specialization->id}}">Více informací o oboru</a>
+                                <div class="mt-5 text-sm leading-5 text-gray-900 md:mt-3">
+                                    <a class="btn btn-primary truncate" href="/obor/{{$specialization->id}}">Více informací o oboru</a>
                                 </div>
                             </div>
                         @endforeach
@@ -99,7 +99,7 @@
             <div class="bg-white p-5 shadow-sm box-border mt-3">
                 <h2 class="text-2xl">Výstavy</h2>
                 @foreach ($school->registrations as $registration)
-                    <div class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                    <div class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 md:gap-4 md:px-6">
                         <div class="text-sm leading-5 font-medium text-gray-500">
                             <a class=""
                                href="/vystava/{{$registration->exhibition->id}}">
