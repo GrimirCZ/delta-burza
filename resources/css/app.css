@@ -42,3 +42,12 @@
 .text-header {
     color: #004a6d;
 }
+
+@media screen and (min-width: 1050px){
+    .header-image {
+        background-image: url("/images/podklad_foto.jpg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: 70%;
+    }
+}

@@ -9,7 +9,7 @@
     </x-slot>
 
     <div>
-        <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 w-100">
+        <div class="max-w-7xl mx-auto py-10 px-2 sm:px-6 lg:px-8 w-100">
             <div>
                 @if($exhibition->registrations->isEmpty())
                     Této výstavy se neúčastní žádné školy
