@@ -3,12 +3,14 @@
 namespace App\Http\Livewire;
 
 use App\Helpers\ExhibitionSelection;
+use App\Jobs\SendInvoice;
 use App\Models\Exhibition;
 use App\Models\Order;
 use App\Models\OrderRegistration;
 use App\Models\Registration;
 use App\Models\School;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -125,11 +127,22 @@ class CreateOrder extends Component
 
     public function complete()
     {
-        $due_date = Exhibition::whereIn(
+        $due_date = new Carbon(Exhibition::whereIn(
             "id",
             collect($this->selected_exhibitions)->map(fn($e) => $e['exhibition_id'])
-        )->where("date", ">", DB::raw("CURRENT_DATE"))
-            ->min(DB::raw("DATE_ADD(date, INTERVAL -1 DAY)"));
+        )
+            ->where("date", ">", DB::raw("CURRENT_DATE"))
+            ->min(DB::raw("DATE_ADD(date, INTERVAL -1 DAY)")));
+
+        $first_exhibition_in = $due_date->diffInDays(Carbon::now());// how far is the first exhibition from current date
+
+        if($first_exhibition_in > 14){
+            $due_date = Carbon::now()->addDays(14);
+        } else if($first_exhibition_in > 2 && $first_exhibition_in < 14){
+            $due_date = $due_date->subDays(2);
+        } else{
+            $due_date = Carbon::today();
+        }
 
         $is_first_order = $this->is_first_order();
 
@@ -170,6 +183,8 @@ class CreateOrder extends Component
                 }
 
             }
+
+            SendInvoice::dispatch($ord->id);
         });
 
         $this->redirect(route("dashboard"));

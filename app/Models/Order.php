@@ -34,4 +34,5 @@ class Order extends Model
     {
         return OrderRegistration::where("order_id", "=", $this->id)->whereNull("fulfilled_at")->count() == 0;
     }
+
 }

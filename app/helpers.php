@@ -77,3 +77,11 @@ if(!function_exists("rand_str")){
         return $randomString;
     }
 }
+
+if(!function_exists('fill_number_to_length')){
+    function fill_number_to_length($num, $length)
+    {
+        $str = strval($num);
+        return str_pad($str, $length, "0", STR_PAD_LEFT);
+    }
+}
