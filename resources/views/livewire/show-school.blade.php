@@ -106,7 +106,7 @@
 
             <div class="bg-white p-5 shadow-sm box-border mt-3">
                 <h2 class="text-2xl">Výstavy</h2>
-                @foreach ($school->ordered_registrations()->get() as $registration)
+                @foreach ($school->ordered_registrations()->where("is_disabled", false)->get() as $registration)
                     <div
                         class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 md:gap-4 md:px-6">
                         <div class="text-sm leading-5 font-medium text-gray-500">

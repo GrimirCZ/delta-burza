@@ -69,4 +69,9 @@ class School extends Model
             ->where("is_main_contact", true)
             ->first();
     }
+
+    public function images()
+    {
+        return $this->files()->where("type", "image");
+    }
 }

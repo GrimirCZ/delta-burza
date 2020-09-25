@@ -59,7 +59,7 @@
     <div class="mt-8">{!! $school->description !!}</div>
     <div class="grid grid-cols-1 sm:grid-cols-2 mt-8">
         <div>
-            <h2 class="text-2xl">Obory <a href="/obor/vytvorit" class="link font-sm">Přidat obor</a></h2>
+            <h2 class="text-2xl">Obory <a href="/obor/vytvorit" class="link text-base">přidat obor</a></h2>
             <ul class="mt-4 ml-4 sm:ml-8">
                 @foreach($school->ordered_specializations() as $specialization)
                     <li class="list-disc">
@@ -77,14 +77,21 @@
             </ul>
         </div>
         <div class="mt-6 sm:mt-0">
-            <h2 class="text-2xl">Výstavy <a href="/objednavka/vytvorit" class="text-blue-500 underline">Zaregistrovat
+            <h2 class="text-2xl">Výstavy <a href="/objednavka/vytvorit" class="link text-base">zaregistrovat
                     na výstavu</a></h2>
             <ul class="mt-4 ml-4 sm:ml-8">
                 @foreach($school->ordered_registrations()->get() as $registration)
                     <li class="list-disc">
                         <div>
                             <a href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
-                                ({{$registration->exhibition->name}})</a><br/>
+                                ({{$registration->exhibition->name}})</a>
+
+                            @if(!$registration->is_disabled)
+                                <span class="text-green-700 font-semibold">Zaplaceno</span>
+                            @else
+                                <span class="text-red-700 font-semibold">Nezaplaceno</span>
+                            @endif
+                            <br/>
                             <a href="/registrace/{{$registration->id}}/upravit" class="link">Upravit</a>
                         </div>
                     </li>
@@ -93,17 +100,18 @@
         </div>
     </div>
     <div class="mt-8">
-        <h2 class="text-2xl">Objednávky</h2>
+        <h2 class="text-2xl align-baseline">Objednávky <a href="/objednavka/vytvorit" class="link text-base">nová
+                objednávka</a></h2>
         <ul class="mt-4 ml-4 sm:ml-8">
             @foreach($school->orders as $order)
                 <li class="list-disc">
-                    Objednávka č. {{$order->id}} do {{format_date($order->due_date)}}
+                    Objednávka č. {{$order->id}} ze dne: {{format_date($order->created_at)}} datum
+                    splatnosti: {{format_date($order->due_date)}} ({{$order->price()}},- Kč)
                     @if($order->fulfilled())
                         <span class="text-green-700 font-semibold">Zaplaceno</span>
                     @else
                         <span class="text-red-700 font-semibold">Nezaplaceno</span>
                     @endif
-                     ({{$order->price()}} kč)
                     <br/>
                     <a href="/objednavka/{{$order->id}}" class="link">Detail</a>
                 </li>

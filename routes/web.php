@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeleteSpecialization;
 use App\Http\Controllers\EnterEventController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\CreateRegistration;
@@ -60,6 +61,8 @@ Route::get('/skola/vytvorit', CreateSchool::class);
 
 Route::get('/skola/upravit', EditSchool::class);
 Route::get('/skola/{school}', ShowSchool::class);
+
+Route::post("/obrazek/nahrat", ImageController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', DashboardController::class)->name('dashboard');
 

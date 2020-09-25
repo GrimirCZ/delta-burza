@@ -64,4 +64,14 @@ class User extends Authenticatable
     public function school(){
         return $this->belongsTo(School::class);
     }
+
+    public function files()
+    {
+        return $this->hasMany(File::class);
+    }
+
+    public function images()
+    {
+        return $this->files()->where("type", "image");
+    }
 }
