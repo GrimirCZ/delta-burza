@@ -22,9 +22,9 @@
                                     Adresa
                                 </dt>
                                 <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                    <a href="http://maps.google.com/?q={{$school->address}}, {{$school->psc}} {{$school->city}}" target="_blank">
-                                        {{$school->address}}<br/>
-                                        {{$school->psc}} {{$school->city}}
+                                    <a href="http://maps.google.com/?q={{$school->address}}, {{$school->psc}} {{$school->city}}"
+                                       target="_blank">
+                                        {{$school->address}}, {{$school->psc}} {{$school->city}}
                                     </a>
                                 </dd>
                             </div>
@@ -61,15 +61,20 @@
                                         <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm leading-5">
                                             <div class="w-0 flex-1 flex items-center">
                                                 <!-- Heroicon name: paper-clip -->
-                                                <svg class="flex-shrink-0 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+                                                <svg class="flex-shrink-0 h-5 w-5 text-gray-400" viewBox="0 0 20 20"
+                                                     fill="currentColor">
+                                                    <path fill-rule="evenodd"
+                                                          d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
+                                                          clip-rule="evenodd"/>
                                                 </svg>
                                                 <span class="ml-2 flex-1 w-0 truncate">
                                                     Informační brožura.pdf
                                                 </span>
                                             </div>
                                             <div class="ml-4 flex-shrink-0">
-                                                <a href="https://deltassie-my.sharepoint.com/:b:/g/personal/formji_delta-skola_cz/EZay0T1NZ25Kp-7G4A3oPFoBheEckjImbPqoHEw6zVh7pw?e=DK63nk" class="font-medium text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out" target="_blank">
+                                                <a href="https://deltassie-my.sharepoint.com/:b:/g/personal/formji_delta-skola_cz/EZay0T1NZ25Kp-7G4A3oPFoBheEckjImbPqoHEw6zVh7pw?e=DK63nk"
+                                                   class="font-medium text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out"
+                                                   target="_blank">
                                                     Stáhnout
                                                 </a>
                                             </div>
@@ -82,13 +87,16 @@
                     <div class="bg-white p-5 shadow-sm box-border mt-3">
                         <h2 class="p-2">Obory</h2>
                         @foreach ($school->specializations as $specialization)
-                            <div class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">
+                            <div
+                                class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">
                                 <div class="text-sm leading-5 font-medium text-gray-500">
-                                    {{$specialization->prescribed_specialization->code}} - {{$specialization->prescribed_specialization->name}} <br>
+                                    {{$specialization->prescribed_specialization->code}}
+                                    - {{$specialization->prescribed_specialization->name}} <br>
                                     (ŠVP: <i>{{$specialization->name}}</i>)
                                 </div>
                                 <div class="mt-5 text-sm leading-5 text-gray-900 md:mt-3">
-                                    <a class="btn btn-primary truncate" href="/obor/{{$specialization->id}}">Více informací o oboru</a>
+                                    <a class="btn btn-primary truncate" href="/obor/{{$specialization->id}}">Více
+                                        informací o oboru</a>
                                 </div>
                             </div>
                         @endforeach
@@ -99,7 +107,8 @@
             <div class="bg-white p-5 shadow-sm box-border mt-3">
                 <h2 class="text-2xl">Výstavy</h2>
                 @foreach ($school->registrations as $registration)
-                    <div class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 md:gap-4 md:px-6">
+                    <div
+                        class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 md:gap-4 md:px-6">
                         <div class="text-sm leading-5 font-medium text-gray-500">
                             <a class=""
                                href="/vystava/{{$registration->exhibition->id}}">
@@ -108,7 +117,8 @@
                                     {{format_date($registration->exhibition->date)}}
                                 </div>
                                 <div class="text-lg font-light">
-                                    <span class="font-black">{{$registration->exhibition->district->name}}</span> ({{$registration->exhibition->name}})
+                                    <span class="font-black">{{$registration->exhibition->district->name}}</span>
+                                    ({{$registration->exhibition->name}})
                                 </div>
                             </a>
                         </div>
@@ -116,9 +126,11 @@
                             {{--                                TODO: variable hours--}}
                             {{--                                zobrazit jen pokud se kona dnes--}}
                             <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
-                               class="btn text-sm text-center btn-primary">Online {{settings("morning_event_start")}} - {{settings("morning_event_end")}}</a>
+                               class="btn text-sm text-center btn-primary">Online {{settings("morning_event_start")}}
+                                - {{settings("morning_event_end")}}</a>
                             <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
-                               class="mt-4 text-sm sm:mt-0 sm:ml-2 text-center btn btn-primary">Online {{settings("evening_event_start")}} - {{settings("evening_event_end")}}</a>
+                               class="mt-4 text-sm sm:mt-0 sm:ml-2 text-center btn btn-primary">Online {{settings("evening_event_start")}}
+                                - {{settings("evening_event_end")}}</a>
                         </div>
                     </div>
                 @endforeach

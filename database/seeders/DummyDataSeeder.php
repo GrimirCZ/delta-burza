@@ -25,12 +25,14 @@ class DummyDataSeeder extends Seeder
         //
 
         $sch = School::create([
-            'address' => 'Ke Kamenci 151, 530 03 Pardubice',
+            'address' => 'Ke Kamenci 151',
+            'psc' => '530 03',
+            'city' => 'Pardubice',
             'ico' => '62061178',
             'izo' => '044 434 324',
             'name' => 'DELTA - Střední škola informatiky a ekonomie, s.r.o.',
             'email' => 'info@delta-skola.cz',
-            'web' => 'www.delta-skola.cz',
+            'web' => 'http://www.delta-skola.cz',
             'phone' => '+420 466 611 106',
             'description' => 'School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.',
             'district_id' => '45',
@@ -51,8 +53,8 @@ class DummyDataSeeder extends Seeder
 
         User::create([
             'name' => "admin",
-//            'email' => "falta.vit@zsbcuo.cz",
-            'email' => "jiri.formanek@delta-skola.cz",
+            'email' => "falta.vit@zsbcuo.cz",
+//            'email' => "jiri.formanek@delta-skola.cz",
             'password' => Hash::make("admin"),
             'school_id' => $sch->id,
             'is_main_contact' => true

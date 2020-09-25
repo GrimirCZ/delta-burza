@@ -32,7 +32,34 @@ class EditSchool extends Component
 
     public function submit()
     {
-        $this->validate();
+        $this->validate([
+            'address' => 'required|max:255',
+            'psc' => 'required|max:6',
+            'city' => 'required|max:255',
+            'ico' => [
+                'required',
+                'max:10',
+                Rule::unique("schools", "ico")->ignore($this->school->id),
+            ],
+            'izo' => [
+                'required',
+                'max:11',
+                Rule::unique("schools", "izo")->ignore($this->school->id),
+            ],
+            'name' => 'required|max:200',
+            'email' =>
+                [
+                    'required',
+                    'email',
+                    'max:255',
+                    Rule::unique("schools", "email")->ignore($this->school->id),
+                ],
+            'web' => 'required|max:255|url',
+            'phone' => 'required|max:255',
+            'description' => 'required',
+            'district_id' => 'exists:districts,id',
+            'logo' => 'nullable|image|max:1024', // 1MB Max
+        ]);
 
 
         DB::transaction(function(){
@@ -82,36 +109,6 @@ class EditSchool extends Component
         $this->phone = $school->phone;
         $this->description = $school->description;
         $this->district_id = $school->district_id;
-
-
-        $this->rules = [
-            'address' => 'required|max:255',
-            'psc' => 'required|max:6',
-            'city' => 'required|max:255',
-            'ico' => [
-                'required',
-                'max:10',
-                Rule::unique("schools", "ico")->ignore($school->id),
-            ],
-            'izo' => [
-                'required',
-                'max:11',
-                Rule::unique("schools", "izo")->ignore($school->id),
-            ],
-            'name' => 'required|max:200',
-            'email' =>
-                [
-                    'required',
-                    'email',
-                    'max:255',
-                    Rule::unique("schools", "email")->ignore($school->id),
-                ],
-            'web' => 'required|max:255|url',
-            'phone' => 'required|max:255',
-            'description' => 'required',
-            'district_id' => 'exists:districts,id',
-            'logo' => 'sometimes|image|max:1024', // 1MB Max
-        ];
     }
 
     /**
