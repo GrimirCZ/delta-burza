@@ -123,7 +123,6 @@
                             </a>
                         </div>
                         <div class="mt-5 text-sm leading-5 text-gray-900 sm:mt-3">
-                            {{--                                TODO: variable hours--}}
                             {{--                                zobrazit jen pokud se kona dnes--}}
                             <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
                                class="btn text-sm text-center btn-primary">Online {{settings("morning_event_start")}}
