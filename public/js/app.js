@@ -19357,6 +19357,13 @@ module.exports = function(module) {
 global.redirectToRegion = function (option) {
   window.location.href = "/vystavy/" + option.value;
 };
+
+global.burgerMenu = false;
+
+global.toggleMenu = function () {
+  global.burgerMenu = !global.burgerMenu;
+  document.getElementById('burger-menu').style.width = global.burgerMenu ? "auto" : 0;
+};
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),

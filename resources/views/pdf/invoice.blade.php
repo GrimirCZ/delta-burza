@@ -35,7 +35,7 @@
                         Dodavatel:
                         <div>
                             <div class="bold">
-                                DELTA-Střední škola informatiky a ekonomie s.r.o.<br/>
+                                DELTA-Střední škola informatiky<br/> a ekonomie s.r.o.<br/>
                                 Ke Kamenci 151<br/>
                                 530 03 Pardubice<br/>
                             </div>
@@ -105,7 +105,9 @@
                 </tbody>
             </table>
             <div class="double-divider"></div>
-            <div class="spacer"></div>
+            <div class="spacer text-right">
+                <img src="{{resource_path()."/imgs/sign.png"}}" class="img-small" alt="podpis">
+            </div>
             <p>Nejsme plátci DPH</p>
         </div>
         <p class="contact-info">

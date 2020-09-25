@@ -59,7 +59,7 @@
     <div class="mt-8">{!! $school->description !!}</div>
     <div class="grid grid-cols-1 sm:grid-cols-2 mt-8">
         <div>
-            <h2 class="text-2xl">Obory</h2>
+            <h2 class="text-2xl">Obory <a href="/obor/vytvorit" class="link font-sm">Přidat obor</a></h2>
             <ul class="mt-4 ml-4 sm:ml-8">
                 @foreach($school->ordered_specializations() as $specialization)
                     <li class="list-disc">
@@ -74,25 +74,21 @@
                         </form>
                     </li>
                 @endforeach
-                <li class="mt-4"><a href="/obor/vytvorit" class="text-blue-500 underline">Přidat
-                        obor</a></li>
             </ul>
         </div>
         <div class="mt-6 sm:mt-0">
-            <h2 class="text-2xl">Výstavy</h2>
+            <h2 class="text-2xl">Výstavy <a href="/objednavka/vytvorit" class="text-blue-500 underline">Zaregistrovat
+                    na výstavu</a></h2>
             <ul class="mt-4 ml-4 sm:ml-8">
-                @foreach($school->registrations as $registration)
+                @foreach($school->ordered_registrations()->get() as $registration)
                     <li class="list-disc">
                         <div>
                             <a href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
                                 ({{$registration->exhibition->name}})</a><br/>
                             <a href="/registrace/{{$registration->id}}/upravit" class="link">Upravit</a>
-                            </divnpm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.13:
-                            wanted {"os":"darwin","arch":"any"} (current: {"os":"linux","arch":"x64"})>
+                        </div>
                     </li>
                 @endforeach
-                <li class="mt-4"><a href="/objednavka/vytvorit" class="text-blue-500 underline">Zaregistrovat
-                        na výstavu</a></li>
             </ul>
         </div>
     </div>
