@@ -11,11 +11,12 @@
                 <div class="form-row-2">
                     <div class="form-field">
                         <label for="name" class="label">Název školy</label>
-                        <input id="name" type="text" wire:model="name" class="input @error('name') input-error @enderror">
+                        <input id="name" type="text" wire:model="name"
+                               class="input @error('name') input-error @enderror">
                         @error('name') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-field">
-                        <label for="address" class="label">Adresa</label>
+                        <label for="address" class="label">Ulice a č.p.</label>
                         <input id="address" type="text" wire:model="address"
                                class="input @error('address') input-error @enderror">
                         @error('address') <span class="error">{{ $message }}</span> @enderror
@@ -29,7 +30,8 @@
                     </div>
                     <div class="form-field">
                         <label for="city" class="label">Město</label>
-                        <input id="city" type="text" wire:model="city" class="input @error('city') input-error @enderror">
+                        <input id="city" type="text" wire:model="city"
+                               class="input @error('city') input-error @enderror">
                         @error('city') <span class="error">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -48,7 +50,8 @@
                 <div class="form-row-2">
                     <div class="form-field">
                         <label for="email" class="label">Emailová adresa</label>
-                        <input id="email" type="text" wire:model="email" class="input @error('email') input-error @enderror">
+                        <input id="email" type="text" wire:model="email"
+                               class="input @error('email') input-error @enderror">
                         @error('email') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div class="form-field">
@@ -60,7 +63,8 @@
                 <div class="form-row-2">
                     <div>
                         <label for="phone" class="label">Telefon</label>
-                        <input id="phone" type="text" wire:model="phone" class="input @error('phone') input-error @enderror">
+                        <input id="phone" type="text" wire:model="phone"
+                               class="input @error('phone') input-error @enderror">
                         @error('phone') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div>
@@ -84,7 +88,8 @@
 
                 <div class="form-row">
                     <label for="description">Text o škole (je možné využít html značek k formátování)</label>
-                    <textarea name="description" id="description" cols="30" rows="10" wire:model="description" class="input @error('address') input-error @enderror"></textarea>
+                    <textarea name="description" id="description" cols="30" rows="10" wire:model="description"
+                              class="input @error('address') input-error @enderror"></textarea>
                     @error('description') <span class="error">{{ $message }}</span> @enderror
                 </div>
 
