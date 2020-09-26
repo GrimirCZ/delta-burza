@@ -105,7 +105,8 @@
         <ul class="mt-4 ml-4 sm:ml-8">
             @foreach($school->orders as $order)
                 <li class="list-disc">
-                    Objednávka č. 2020{{fill_number_to_length($order->id, 4)}} ze dne: {{format_date($order->created_at)}} datum
+                    Objednávka č. 2020{{fill_number_to_length($order->id, 4)}} ze
+                    dne: {{format_date($order->created_at)}} datum
                     splatnosti: {{format_date($order->due_date)}} ({{$order->price()}},- Kč)
                     @if($order->fulfilled())
                         <span class="text-green-700 font-semibold">Zaplaceno</span>
@@ -117,6 +118,28 @@
                     <a href="/objednavka/{{$order->id}}/zaplatit" class="link">Zaplatit</a>
                 </li>
 
+            @endforeach
+        </ul>
+    </div>
+    <div class="mt-8">
+        <h2 class="text-2xl align-baseline">Soubory</h2>
+        <ul class="mt-4 ml-4 sm:ml-8">
+            @foreach($school->files as $file)
+                @if($file->type == "brojure")
+                    <li class="list-disc">
+                        Brožura.pdf
+                    </li>
+                @elseif($file->type=="image")
+                    <li class="list-disc">
+                        <img src="{{asset("storage/".$file->name)}}" width="180" alt="obrázek" class="inline">
+                        <br/>
+                        <form action="{{url("/obrazek/$file->id/smazat")}}" method="post">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit" class="link">Smazat</button>
+                        </form>
+                    </li>
+                @endif
             @endforeach
         </ul>
     </div>

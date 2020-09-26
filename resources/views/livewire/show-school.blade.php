@@ -72,7 +72,7 @@
                                                 </span>
                                             </div>
                                             <div class="ml-4 flex-shrink-0">
-                                                <a href="https://deltassie-my.sharepoint.com/:b:/g/personal/formji_delta-skola_cz/EZay0T1NZ25Kp-7G4A3oPFoBheEckjImbPqoHEw6zVh7pw?e=DK63nk"
+                                                <a href="{{asset('storage/' . $school->brojure())}}"
                                                    class="font-medium text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out"
                                                    target="_blank">
                                                     Stáhnout

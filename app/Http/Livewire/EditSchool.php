@@ -29,6 +29,7 @@ class EditSchool extends Component
     public ?string $description;
     public ?int $district_id;
     public $logo; // school logo file
+    public $brojure; // school pdf brojure
 
     public function submit()
     {
@@ -59,6 +60,7 @@ class EditSchool extends Component
             'description' => 'required',
             'district_id' => 'exists:districts,id',
             'logo' => 'nullable|image|max:1024', // 1MB Max
+            'brojure' => 'nullable|file|max:5120', // 5MB Max
         ]);
 
 
@@ -86,6 +88,18 @@ class EditSchool extends Component
                 File::create([
                     'type' => 'logo',
                     'name' => substr($logo_path, 6), // strip the public part
+                    'school_id' => $this->school->id
+                ]);
+            }
+
+            if($this->brojure){
+                $brojure_path = $this->brojure->store("public/brojures");
+
+                File::where("school_id", $this->school->id)->where("type", "brojure")->delete();
+
+                File::create([
+                    'type' => 'brojure',
+                    'name' => substr($brojure_path, 7), // strip the public part, wtf
                     'school_id' => $this->school->id
                 ]);
             }

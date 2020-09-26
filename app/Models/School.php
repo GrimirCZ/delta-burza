@@ -43,6 +43,11 @@ class School extends Model
         return $this->files()->where("type", "logo")->first()->name ?? "#";
     }
 
+    public function brojure()
+    {
+        return $this->files()->where("type", "brojure")->first()->name ?? "#";
+    }
+
     public function ordered_registrations()
     {
         return $this->registrations()

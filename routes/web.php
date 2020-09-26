@@ -64,7 +64,8 @@ Route::get('/skola/vytvorit', CreateSchool::class);
 Route::get('/skola/upravit', EditSchool::class);
 Route::get('/skola/{school}', ShowSchool::class);
 
-Route::post("/obrazek/nahrat", ImageController::class);
+Route::post("/obrazek/nahrat", "App\Http\Controllers\ImageController@nahrat");
+Route::delete("/obrazek/{file}/smazat", "App\Http\Controllers\ImageController@smazat");
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', DashboardController::class)->name('dashboard');
 

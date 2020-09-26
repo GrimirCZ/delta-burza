@@ -27,6 +27,7 @@ class CreateSchool extends Component
     public ?string $description;
     public ?int $district_id;
     public $logo; // school logo file
+    public $brojure; // school pdf brojure
 
     protected $rules = [
         'address' => 'required|max:255',
@@ -41,6 +42,7 @@ class CreateSchool extends Component
         'description' => 'required',
         'district_id' => 'exists:districts,id',
         'logo' => 'image|max:1024', // 1MB Max
+        'brojure' => 'nullable|file|max:5120', // 5MB Max
     ];
 
     public function submit()
@@ -73,6 +75,15 @@ class CreateSchool extends Component
                 'school_id' => $sch->id
             ]);
 
+            if($this->brojure){
+                $brojure_path = $this->brojure->store("public/brojures");
+
+                File::create([
+                    'type' => 'brojure',
+                    'name' => substr($brojure_path, 6), // strip the public part
+                    'school_id' => $sch->id
+                ]);
+            }
 
             // images during editing were associated to the user as an intermediary, transfer their ownership to the school
             $user->images()->update([

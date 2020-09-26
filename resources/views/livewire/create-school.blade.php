@@ -80,10 +80,17 @@
                     </div>
                 </div>
 
-                <div class="form-row">
-                    <label for="logo" class="label">Logo</label>
-                    <input type="file" wire:model="logo" id="logo" class="input">
-                    @error('logo') <span class="error">{{ $message }}</span> @enderror
+                <div class="form-row-2">
+                    <div>
+                        <label for="logo" class="label">Logo</label>
+                        <input type="file" wire:model="logo" id="logo" class="input">
+                        @error('logo') <span class="error">{{ $message }}</span> @enderror
+                    </div>
+                    <div>
+                        <label for="brojure" class="label">Brožura</label>
+                        <input type="file" wire:model="brojure" id="brojure" class="input">
+                        @error('brojure') <span class="error">{{ $message }}</span> @enderror
+                    </div>
                 </div>
 
                 <div class="form-row">
