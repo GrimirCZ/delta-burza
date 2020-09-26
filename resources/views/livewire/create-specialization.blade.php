@@ -11,7 +11,8 @@
                 <div class="form-row-2">
                     <div>
                         <label for="prescribed_specialization_id" class="label">Obor</label>
-                        <select name="prescribed_specialization" id="prescribed_specialization_id" wire:model="prescribed_specialization_id"
+                        <select name="prescribed_specialization" id="prescribed_specialization_id"
+                                wire:model="prescribed_specialization_id"
                                 class="input @error('prescribed_specialization_id') input-error @enderror">
                             <option value="" selected></option>
                             @foreach($prescribed_specializations as $ps)
@@ -22,20 +23,19 @@
                     </div>
                     <div>
                         <label for="name" class="label">Název ŠVP</label>
-                        <input id="name" type="text" wire:model="name" class="input @error('name') input-error @enderror">
+                        <input id="name" type="text" wire:model="name"
+                               class="input @error('name') input-error @enderror">
                         @error('name') <span class="error">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
                 <div class="form-row">
-                    <label for="description">Popis oboru (je možné využít html značek k formátování)</label>
-                    <textarea name="description" id="description" cols="30" rows="10" wire:model="description" class="input @error('address') input-error @enderror"></textarea>
-                    @error('description') <span class="error">{{ $message }}</span> @enderror
+                    <x-rich-text-editor label="Popis oboru" field="description"/>
                 </div>
 
 
                 <div class="form-row">
-                    <button type="submit" class="btn btn-primary">Vytvořit</button>
+                    <button type="submit" class="btn btn-primary">Uložit</button>
                 </div>
             </form>
         </x-dashboard-card>
