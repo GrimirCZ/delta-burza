@@ -15,6 +15,7 @@ use App\Http\Livewire\InfoProStredniSkoly;
 use App\Http\Livewire\InfoProZakyZS;
 use App\Http\Livewire\ListExhibitions;
 use App\Http\Livewire\ListExhibitionsRegion;
+use App\Http\Livewire\PayOrder;
 use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowOrder;
 use App\Http\Livewire\ShowSchool;
@@ -54,6 +55,7 @@ Route::get('/objednavka/vytvorit', CreateOrder::class);
 Route::get('/registrace/vytvorit', CreateRegistration::class);
 Route::get('/registrace/{registration}/upravit', EditRegistration::class);
 
+Route::get("/objednavka/{order}/zaplatit", PayOrder::class);
 Route::get("/objednavka/{order}", ShowOrder::class);
 Route::get("/faktura/{order}", InvoiceController::class);
 

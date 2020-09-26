@@ -37,7 +37,10 @@ class SendInvoice implements ShouldQueue
 
         $pdf->save('storage/invoices/' . $pdf_name);
 
-        Mail::to($user)->send(new InvoiceMail($user, $order, $pdf_name));
+        $order->invoice = $pdf_name;
+        $order->push();
+
+        Mail::to($user)->queue(new InvoiceMail($user, $order, $pdf_name));
         //
     }
 }

@@ -1,11 +1,21 @@
 <div>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">Objednávka č. {{$order->id}}
-            do {{format_date($order->due_date)}}</h2>
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            Objednávka č. 2020{{fill_number_to_length($order->id, 4)}} ze dne: {{format_date($order->created_at)}} datum
+            splatnosti: {{format_date($order->due_date)}} ({{$order->price()}},- Kč)
+        </h2>
     </x-slot>
 
     <div class="py-12">
         <x-dashboard-card>
+            <div class="py-6 px-4">
+                @if($order->invoice)
+                    <div>
+                        <img width="20" src="{{asset("/images/pdf.svg")}}" alt="PDF" class="inline">
+                        <a href="{{asset("/storage/invoices/$order->invoice")}}">Zálohová faktura.pdf</a>
+                    </div>
+                @endif
+            </div>
             <table class="table-auto w-full">
                 <tr>
                     <th class="px-4 py-2">Výstava</th>

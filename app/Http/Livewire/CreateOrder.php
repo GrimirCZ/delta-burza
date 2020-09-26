@@ -217,6 +217,13 @@ class CreateOrder extends Component
                 ->count() == 0;
     }
 
+    private function price()
+    {
+        return $this->is_first_order() ?
+            (count($this->selected_exhibitions) - 1) * 1000 :
+            count($this->selected_exhibitions) * 1000;
+    }
+
     /**
      * Get the view / contents that represent the component.
      *
@@ -228,6 +235,7 @@ class CreateOrder extends Component
             return view('livewire.create-order', [
                 'selected_exhibitions' => $this->selected_exhibitions,
                 'is_first_order' => $this->is_first_order(),
+                'price' => $this->price()
             ]);
         else if($this->state == "EDIT" || $this->state == "NEW")
             return view("order.create", [

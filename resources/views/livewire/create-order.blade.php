@@ -39,6 +39,17 @@
                                 </td>
                             </tr>
                         @endforeach
+                        <tr>
+                            <td></td>
+                            <td class="px-4 py-2">
+                                @if($price == 0)
+                                    Zdarma
+                                @else
+                                    {{$price}},- Kč
+                                @endif
+                            </td>
+                            <td class="2"></td>
+                        </tr>
                     </table>
                 @endif
                 <button wire:click="add" class="link mt-4">Přidat výstavu</button>
@@ -54,10 +65,10 @@
         const completeBtn = document.querySelector("#complete");
 
         completeBtn.addEventListener("click", () => {
-           if(confirm("Chcete tuto objednávku odeslat?")){
-               console.log(window.Livewire)
-               window.Livewire.emit('complete')
-           }
+            if (confirm("Chcete tuto objednávku odeslat?")) {
+                console.log(window.Livewire)
+                window.Livewire.emit('complete')
+            }
         })
     </script>
 

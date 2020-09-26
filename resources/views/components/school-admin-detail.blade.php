@@ -105,7 +105,7 @@
         <ul class="mt-4 ml-4 sm:ml-8">
             @foreach($school->orders as $order)
                 <li class="list-disc">
-                    Objednávka č. {{$order->id}} ze dne: {{format_date($order->created_at)}} datum
+                    Objednávka č. 2020{{fill_number_to_length($order->id, 4)}} ze dne: {{format_date($order->created_at)}} datum
                     splatnosti: {{format_date($order->due_date)}} ({{$order->price()}},- Kč)
                     @if($order->fulfilled())
                         <span class="text-green-700 font-semibold">Zaplaceno</span>
@@ -114,6 +114,7 @@
                     @endif
                     <br/>
                     <a href="/objednavka/{{$order->id}}" class="link">Detail</a>
+                    <a href="/objednavka/{{$order->id}}/zaplatit" class="link">Zaplatit</a>
                 </li>
 
             @endforeach

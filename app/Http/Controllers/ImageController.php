@@ -38,7 +38,7 @@ class ImageController extends Controller
 
         $filepath = "images/" . uniqid() . ".jpg";
 
-        $img->save(public_path() . "/storage/" . $filepath, 80, "jpg");
+        $img->save(public_path() . "/storage/" . $filepath, 100, "jpg");
 
         // if school does not exist use user for the ownership
         if($user->school_id != null){
