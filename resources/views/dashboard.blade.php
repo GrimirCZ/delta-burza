@@ -98,7 +98,7 @@
                                 Adresa
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                <a href="http://maps.google.com/?q={{$school->address}}, {{$school->psc}} {{$school->city}}">
+                                <a href="http://maps.google.com/?q={{Auth::User()->school->address}}, {{Auth::User()->school->psc}} {{Auth::User()->school->city}}">
                                     {{Auth::User()->school->address}}
                                 </a>
                             </dd>
