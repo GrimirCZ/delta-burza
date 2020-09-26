@@ -51,6 +51,8 @@ class CreateSchool extends Component
         DB::transaction(function(){
             $logo_path = $this->logo->store("public/logos");
 
+            $user = Auth::user();
+
             $sch = School::create([
                 'address' => $this->address,
                 'psc' => $this->psc,
@@ -71,9 +73,15 @@ class CreateSchool extends Component
                 'school_id' => $sch->id
             ]);
 
-            Auth::user()->school_id = $sch->id;
-            Auth::user()->is_main_contact = true;
-            Auth::user()->push();
+
+            $user->images()->update([
+                'school_id' => $sch->id,
+                'user_id' => null
+            ]);
+
+            $user->school_id = $sch->id;
+            $user->is_main_contact = true;
+            $user->push();
         });
 
         $this->redirect("/dashboard");
