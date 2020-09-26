@@ -74,6 +74,7 @@ class CreateSchool extends Component
             ]);
 
 
+            // images during editing were associated to the user as an intermediary, transfer their ownership to the school
             $user->images()->update([
                 'school_id' => $sch->id,
                 'user_id' => null
