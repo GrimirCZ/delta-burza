@@ -1,12 +1,8 @@
 <div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            <span class="font-bold">{{$exhibition->city}}</span>
-            ({{$exhibition->name}})<br/>
-            <span
-                class="text-gray-500 text-base">{{format_date($exhibition->date)}}</span>
-        </h2>
-    </x-slot>
+    <x-ownHeader
+        top="{{$exhibition->district->region->name}} {{format_date($exhibition->date)}}">
+        <span class="font-bold">{{$exhibition->city}}</span> ({{$exhibition->name}})
+    </x-ownHeader>
 
     <div>
         <div class="max-w-7xl mx-auto py-10 px-2 sm:px-6 lg:px-8 w-100">

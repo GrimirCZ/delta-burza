@@ -19407,9 +19407,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /mnt/Data/Work/burza/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /mnt/Data/Work/burza/resources/css/invoice.scss */"./resources/css/invoice.scss");
-module.exports = __webpack_require__(/*! /mnt/Data/Work/burza/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! F:\projects\WEB\023-delta-burza\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! F:\projects\WEB\023-delta-burza\resources\css\invoice.scss */"./resources/css/invoice.scss");
+module.exports = __webpack_require__(/*! F:\projects\WEB\023-delta-burza\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

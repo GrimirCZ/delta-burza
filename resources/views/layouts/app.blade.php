@@ -24,9 +24,9 @@
                  class="bg-header border-b border-gray-100 p-7 pb-5 header-image">
                 <!-- Primary Navigation Menu -->
 
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-white">
                     <div class="justify-between items-center flex">
-                        <a href="/" class="inline-flex font-weight-semibold text-2xl sm:text-3xl font-freude">
+                        <a href="/" class="inline-flex font-weight-semibold text-2xl sm:text-3xl font-freude title-shadow">
                             {{ config('app.name', 'Laravel') }}
                         </a>
                         <div onClick="toggleMenu()" class="btn bg-white text-header sm:hidden cursor-pointer">
@@ -57,16 +57,16 @@
                         </div>
                         <div class="inline-flex">
                             @if(Auth::check())
-                                <a class="mr-6 btn bg-white text-header"
+                                <a class="mr-6 btn bg-white text-header rounded-full"
                                    href="/dashboard">
                                     Profil
                                 </a>
                                 <form action="{{url("logout")}}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn bg-white text-header">Odhlásit se</button>
+                                    <button type="submit" class="btn bg-white text-header rounded-full">Odhlásit se</button>
                                 </form>
                             @else
-                                <a href="{{url("/login")}}" class="btn bg-white text-header">Vstup pro školy</a>
+                                <a href="{{url("/login")}}" class="btn bg-white text-header rounded-full">Vstup pro školy</a>
                             @endif
                         </div>
                     </div>
@@ -118,16 +118,16 @@
                 </div>
             </div>
 
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
             <!-- Page Content -->
             <main class="h-full">
+                <div>
+                     @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                </div>
+
                 {{ $slot }}
             </main>
 
