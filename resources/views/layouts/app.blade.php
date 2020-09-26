@@ -24,9 +24,9 @@
                  class="bg-header border-b border-gray-100 p-7 pb-5 header-image">
                 <!-- Primary Navigation Menu -->
 
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-white">
                     <div class="justify-between items-center flex">
-                        <a href="/" class="inline-flex font-weight-semibold text-2xl sm:text-3xl font-freude">
+                        <a href="/" class="inline-flex font-weight-semibold text-2xl sm:text-3xl font-freude title-shadow">
                             {{ config('app.name', 'Laravel') }}
                         </a>
                         <div onClick="toggleMenu()" class="btn bg-white text-header sm:hidden cursor-pointer">
@@ -35,38 +35,38 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M4 6h16M4 12h16M4 18h16"/>
                             </svg>
-                            <div class="inline-block align-middle">Menu</div>
+                            <div class="inline-block align-middle font-freude">Menu</div>
                         </div>
                     </div>
 
                     <div class="justify-between items-center hidden sm:flex">
                         <div class="inline-flex">
-                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out"
+                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("vystavy")}}">
                                 Výstavy
                             </a>
 
-                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out"
+                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("info_zs")}}">
                                 Pro žáky ZŠ
                             </a>
-                            <a class="items-center px-1 pt-1 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out"
+                            <a class="items-center px-1 pt-1 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("info_ss")}}">
                                 Pro střední školy
                             </a>
                         </div>
                         <div class="inline-flex">
                             @if(Auth::check())
-                                <a class="mr-6 btn bg-white text-header"
+                                <a class="mr-6 btn bg-white text-header rounded-full font-freude"
                                    href="/dashboard">
                                     Profil
                                 </a>
                                 <form action="{{url("logout")}}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn bg-white text-header">Odhlásit se</button>
+                                    <button type="submit" class="btn bg-white text-header rounded-full font-freude">Odhlásit se</button>
                                 </form>
                             @else
-                                <a href="{{url("/login")}}" class="btn bg-white text-header">Vstup pro školy</a>
+                                <a href="{{url("/login")}}" class="btn bg-white text-header rounded-full font-freude">Vstup pro školy</a>
                             @endif
                         </div>
                     </div>
@@ -99,18 +99,33 @@
                                     </h2>
 
                                 </header>
-                                <div class="relative flex-1 px-4 sm:px-6">
-                                    <!-- Replace with your content -->
+                                <div class="relative flex-1 px-4 sm:px-6 text-gray-700">
                                     <div class="absolute inset-0 px-4 sm:px-6">
                                         <a href="{{route("vystavy")}}"
-                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200">Výstavy</a>
+                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">Výstavy</a>
                                         <a href="{{route("info_zs")}}"
-                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200">Pro
+                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">Pro
                                             žáky ZŠ</a>
-                                        <a href="{{route("info_ss")}}" class="block hover:text-blue-400 py-3">Pro
+                                        <a href="{{route("info_ss")}}" class="block hover:text-blue-400 py-3 font-freude">Pro
                                             střední školy</a>
+
+
+                                        <div class="mt-8">
+                                            @if(Auth::check())
+                                                <a class="mr-6 btn bg-header text-white rounded-full font-freude"
+                                                   href="/dashboard">
+                                                    Profil
+                                                </a>
+                                                <form action="{{url("logout")}}" method="post" class="inline-block">
+                                                    @csrf
+                                                    <button type="submit" class="btn bg-header text-white rounded-full font-freude inline-block">Odhlásit se</button>
+                                                </form>
+                                            @else
+                                                <a href="{{url("/login")}}" class="btn bg-header text-white rounded-full font-freude">Vstup pro školy</a>
+                                            @endif
+                                        </div>
                                     </div>
-                                    <!-- /End replace -->
+
                                 </div>
                             </div>
                         </div>
@@ -118,16 +133,16 @@
                 </div>
             </div>
 
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
             <!-- Page Content -->
             <main class="h-full">
+                <div>
+                     @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                </div>
+
                 {{ $slot }}
             </main>
 

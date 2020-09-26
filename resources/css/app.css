@@ -43,6 +43,10 @@
     color: #004a6d;
 }
 
+.title-shadow {
+    text-shadow: 4px 5px 15px black;
+}
+
 @media screen and (min-width: 1050px){
     .header-image {
         background-image: url("/images/podklad_foto.jpg");
@@ -50,4 +54,8 @@
         background-repeat: no-repeat;
         background-position: 70%;
     }
+}
+
+.rounded-full {
+    border-radius: 9999px !important;
 }

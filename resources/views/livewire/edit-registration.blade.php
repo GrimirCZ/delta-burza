@@ -1,9 +1,9 @@
 <div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Registrace na výstavu
-        </h2>
-    </x-slot>
+    <x-ownHeader
+        top="Registrace na výstavu"
+        bottom="{{format_date($exhibition->date)}}">
+        <b>{{$exhibition->city}}</b> {{$exhibition->name}}
+    </x-ownHeader>
 
     <div class="py-12">
         <x-dashboard-card>

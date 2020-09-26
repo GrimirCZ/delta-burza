@@ -1,12 +1,6 @@
 <div class="h-full">
     <script src="/js/app.js"></script>
 
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Výstavy
-        </h2>
-    </x-slot>
-
     <div class="h-full px-2">
         <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
             <div class="mb-5">
