@@ -46,7 +46,7 @@ class EditSpecialization extends Component
             'prescribed_specialization_id' => $this->prescribed_specialization_id,
         ]);
 
-        $this->redirect(url("/obor/" . $this->specialization->id));
+        $this->redirect(url("/dashboard"));
     }
 
     /**
