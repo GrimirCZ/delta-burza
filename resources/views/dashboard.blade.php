@@ -159,9 +159,9 @@
                                 </td>
                                 <td class="px-8 py-5">
                                     @if(!$registration->is_disabled)
-                                        <span class="text-green-700 font-semibold">Zaplaceno</span>
+                                        <span class="text-green-700 font-semibold">Aktivní</span>
                                     @else
-                                        <span class="text-red-700 font-semibold">Nezaplaceno</span>
+                                        <span class="text-red-700 font-semibold">Neaktivní</span>
                                     @endif
                                 </td>
                                 <td class="px-8 py-5 text-right">
@@ -191,7 +191,7 @@
                                 <td class="px-8 py-5">
                                     Objednávka č. 2020{{fill_number_to_length($order->id, 4)}} ze
                                     dne: {{format_date($order->created_at)}} datum
-                                    splatnosti: {{format_date($order->due_date)}} ({{$order->price()}},- Kč)
+                                    splatnosti: {{format_date($order->due_date)}} ({{number_format($order->price(), 0,",",".")}},- Kč)
                                 </td>
                                 <td class="px-8 py-5">
                                     @if($order->fulfilled())

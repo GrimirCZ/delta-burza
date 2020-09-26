@@ -25,7 +25,7 @@
                     </thead>
                     <tbody class="divide-y divide-gray-200">
                         @foreach($selected_exhibitions as $se)
-                            <tr class="{{$loop->index %2 == 1 ? "" : ""}}">
+                            <tr>
                                 <td class="px-4 py-2">{{format_date($se['date'])}} - {{$se['city']}}
                                     ({{$se['name']}})
                                 </td>
