@@ -28,7 +28,7 @@ class InvoiceMail extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->from("info@burzaskol.online")
-            ->subject("Předmět: Zálohová faktura k objednávce č. " . $this->order->id)
+            ->subject("Zálohová faktura k objednávce č. " . $this->order->id)
             ->view('emails.invoice')
             ->with([
                 'user' => $this->user,
