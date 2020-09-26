@@ -160,7 +160,7 @@ class CreateOrder extends Component
 
                     'morning_event' => $se['morning_event'],
                     'evening_event' => $se['evening_event'],
-                    'is_disabled' => $is_first_order // make first enabled, rest after the payment is processed
+                    'is_disabled' => !$is_first_order // make first enabled, rest after the payment is processed
                 ]);
 
 
