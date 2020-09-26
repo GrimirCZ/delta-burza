@@ -1,8 +1,8 @@
 <div>
-    <x-ownHeader
+    <x-own-header
         top="{{$exhibition->district->region->name}} {{format_date($exhibition->date)}}">
         <span class="font-bold">{{$exhibition->city}}</span> ({{$exhibition->name}})
-    </x-ownHeader>
+    </x-own-header>
 
     <div>
         <div class="max-w-7xl mx-auto py-10 px-2 sm:px-6 lg:px-8 w-100">

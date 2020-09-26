@@ -1,9 +1,9 @@
 <div>
-    <x-ownHeader
+    <x-own-header
         top="Registrace na výstavu"
         bottom="{{format_date($exhibition->date)}}">
         <b>{{$exhibition->city}}</b> {{$exhibition->name}}
-    </x-ownHeader>
+    </x-own-header>
 
     <div class="py-12">
         <x-dashboard-card>
