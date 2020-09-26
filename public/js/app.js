@@ -19357,6 +19357,13 @@ module.exports = function(module) {
 global.redirectToRegion = function (option) {
   window.location.href = "/vystavy/" + option.value;
 };
+
+global.burgerMenu = false;
+
+global.toggleMenu = function () {
+  global.burgerMenu = !global.burgerMenu;
+  document.getElementById('burger-menu').style.width = global.burgerMenu ? "auto" : 0;
+};
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
@@ -19400,9 +19407,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /mnt/Data/Work/burza/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /mnt/Data/Work/burza/resources/css/invoice.scss */"./resources/css/invoice.scss");
-module.exports = __webpack_require__(/*! /mnt/Data/Work/burza/resources/css/app.css */"./resources/css/app.css");
+__webpack_require__(/*! F:\projects\WEB\023-delta-burza\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! F:\projects\WEB\023-delta-burza\resources\css\invoice.scss */"./resources/css/invoice.scss");
+module.exports = __webpack_require__(/*! F:\projects\WEB\023-delta-burza\resources\css\app.css */"./resources/css/app.css");
 
 
 /***/ })

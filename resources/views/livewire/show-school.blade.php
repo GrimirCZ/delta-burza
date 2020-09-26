@@ -1,14 +1,16 @@
 <div>
-    <x-slot name="header">
-        <img src="{{asset('storage/' . $school->logo())}}" class="h-8" alt="Logo {{$school->name}}">
-    </x-slot>
+    <div class="sm:flex justify-between max-w-7xl mx-auto py-10 pb-0 px-2 sm:px-6 lg:px-8 w-100 items-center">
+        <div class="inline-block">
+            <div class="top text-gray-600">{{$school->district->name}}</div>
+            <h1 class="font-light text-3xl text-gray-800">{{$school->name}}</h1>
+        </div>
+        <div class="inline-block">
+            <img src="{{asset('storage/' . $school->logo())}}" class="h-8" alt="Logo {{$school->name}}">
+        </div>
+    </div>
 
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 w-100 px-4">
-            <h1 class="text-3xl text-gray-800 leading-tight mb-8 font-light">
-                {{$school->name}}
-            </h1>
-
             <div class="grid md:grid-cols-2 gap-3">
                 <div class="bg-white p-5 shadow-sm box-border">
                     {!! $school->description !!}

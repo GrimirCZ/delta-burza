@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Registration;
 use App\Models\School;
+use App\Models\Exhibition;
 use Livewire\Component;
 
 class EditRegistration extends Component
@@ -45,6 +46,8 @@ class EditRegistration extends Component
      */
     public function render()
     {
-        return view('livewire.edit-registration');
+        return view('livewire.edit-registration', [
+            'exhibition' => Exhibition::find($this->registration->exhibition_id)
+        ]);
     }
 }

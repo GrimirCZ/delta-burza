@@ -19,17 +19,17 @@
         <script src="{{asset("js/app.js")}}"></script>
     </head>
     <body>
-        <div class="min-h-screen bg-gray-100">
-            <nav wire:id="ZiuiHGx76v8LUg3bcjyP" x-data="{ open: false }" class="bg-header border-b border-gray-100 p-7 pb-5 header-image">
+        <div class="min-h-screen bg-gray-100 ">
+            <nav wire:id="ZiuiHGx76v8LUg3bcjyP" x-data="{ open: false }" class="bg-header border-b border-gray-100 py-7 px-4 pb-5 header-image font-freude">
                 <!-- Primary Navigation Menu -->
 
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-white">
+                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-white">
                     <div class="justify-between items-center flex">
-                        <a href="/" class="inline-flex font-weight-semibold text-2xl sm:text-3xl font-freude">
+                        <a href="/" class="inline-flex font-weight-semibold text-2xl sm:text-3xl font-freude title-shadow">
                             {{ config('app.name', 'Laravel') }}
                         </a>
-                        <div onClick="toggleMenu()" class="btn bg-white text-header sm:hidden cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline-block h-5 align-middle">
+                        <div onClick="toggleMenu()" class="btn bg-white text-header sm:hidden cursor-pointer rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline-block h-5 align-middle mr-2">
                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                             <div class="inline-block align-middle">Menu</div>
@@ -54,16 +54,16 @@
                         </div>
                         <div class="inline-flex">
                             @if(Auth::check())
-                                <a class="mr-6 btn bg-white text-header"
+                                <a class="mr-6 btn bg-white text-header rounded-full"
                                    href="/dashboard">
                                     Profil
                                 </a>
                                 <form action="{{url("logout")}}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn bg-white text-header">Odhlásit se</button>
+                                    <button type="submit" class="btn bg-white text-header rounded-full">Odhlásit se</button>
                                 </form>
                             @else
-                                <a href="{{url("/login")}}" class="btn bg-white text-header">Vstup pro školy</a>
+                                <a href="{{url("/login")}}" class="btn bg-white text-header rounded-full">Vstup pro školy</a>
                             @endif
                        </div>
                     </div>
@@ -94,13 +94,26 @@
 
                       </header>
                       <div class="relative flex-1 px-4 sm:px-6">
-                        <!-- Replace with your content -->
                         <div class="absolute inset-0 px-4 sm:px-6">
                             <a href="{{route("vystavy")}}" class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200">Výstavy</a>
                             <a href="{{route("info_zs")}}" class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200">Pro žáky ZŠ</a>
                             <a href="{{route("info_ss")}}" class="block hover:text-blue-400 py-3">Pro střední školy</a>
+
+                            <div class="inline-flex mt-10">
+                                @if(Auth::check())
+                                    <a class="mr-6 btn bg-header text-white rounded-full"
+                                       href="/dashboard">
+                                        Profil
+                                    </a>
+                                    <form action="{{url("logout")}}" method="post">
+                                        @csrf
+                                        <button type="submit" class="btn bg-header text-white rounded-full">Odhlásit se</button>
+                                    </form>
+                                @else
+                                    <a href="{{url("/login")}}" class="btn bg-header text-white rounded-full">Vstup pro školy</a>
+                                @endif
+                            </div>
                         </div>
-                        <!-- /End replace -->
                       </div>
                     </div>
                   </div>
@@ -108,16 +121,16 @@
               </div>
             </div>
 
-
-            <!-- Page Heading -->
-            <header class="bg-white shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
-                </div>
-            </header>
-
             <!-- Page Content -->
             <main class="h-full">
+                <div>
+                     @if (session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                </div>
+
                 {{ $slot }}
             </main>
 
