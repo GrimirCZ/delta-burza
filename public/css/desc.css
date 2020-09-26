@@ -1,0 +1,306 @@
+.default-css {
+  /* Begin bidirectionality settings (do not change) */
+}
+
+.default-css html,
+.default-css address,
+.default-css blockquote,
+.default-css body,
+.default-css dd,
+.default-css div,
+.default-css dl,
+.default-css dt,
+.default-css fieldset,
+.default-css form,
+.default-css frame,
+.default-css frameset,
+.default-css h1,
+.default-css h2,
+.default-css h3,
+.default-css h4,
+.default-css h5,
+.default-css h6,
+.default-css noframes,
+.default-css ol,
+.default-css p,
+.default-css ul,
+.default-css center,
+.default-css dir,
+.default-css hr,
+.default-css menu,
+.default-css pre {
+  display: block;
+  unicode-bidi: embed;
+}
+
+.default-css li {
+  display: list-item;
+}
+
+.default-css head {
+  display: none;
+}
+
+.default-css table {
+  display: table;
+}
+
+.default-css tr {
+  display: table-row;
+}
+
+.default-css thead {
+  display: table-header-group;
+}
+
+.default-css tbody {
+  display: table-row-group;
+}
+
+.default-css tfoot {
+  display: table-footer-group;
+}
+
+.default-css col {
+  display: table-column;
+}
+
+.default-css colgroup {
+  display: table-column-group;
+}
+
+.default-css td,
+.default-css th {
+  display: table-cell;
+}
+
+.default-css caption {
+  display: table-caption;
+}
+
+.default-css th {
+  font-weight: bolder;
+  text-align: center;
+}
+
+.default-css caption {
+  text-align: center;
+}
+
+.default-css body {
+  margin: 8px;
+}
+
+.default-css h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.default-css h2 {
+  font-size: 1.5em;
+  margin: 0.75em 0;
+}
+
+.default-css h3 {
+  font-size: 1.17em;
+  margin: 0.83em 0;
+}
+
+.default-css h4,
+.default-css p,
+.default-css blockquote,
+.default-css ul,
+.default-css fieldset,
+.default-css form,
+.default-css ol,
+.default-css dl,
+.default-css dir,
+.default-css menu {
+  margin: 1.12em 0;
+}
+
+.default-css h5 {
+  font-size: 0.83em;
+  margin: 1.5em 0;
+}
+
+.default-css h6 {
+  font-size: 0.75em;
+  margin: 1.67em 0;
+}
+
+.default-css h1,
+.default-css h2,
+.default-css h3,
+.default-css h4,
+.default-css h5,
+.default-css h6,
+.default-css b,
+.default-css strong {
+  font-weight: bolder;
+}
+
+.default-css blockquote {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.default-css i,
+.default-css cite,
+.default-css em,
+.default-css var,
+.default-css address {
+  font-style: italic;
+}
+
+.default-css pre,
+.default-css tt,
+.default-css code,
+.default-css kbd,
+.default-css samp {
+  font-family: monospace;
+}
+
+.default-css pre {
+  white-space: pre;
+}
+
+.default-css button,
+.default-css textarea,
+.default-css input,
+.default-css select {
+  display: inline-block;
+}
+
+.default-css big {
+  font-size: 1.17em;
+}
+
+.default-css small,
+.default-css sub,
+.default-css sup {
+  font-size: 0.83em;
+}
+
+.default-css sub {
+  vertical-align: sub;
+}
+
+.default-css sup {
+  vertical-align: super;
+}
+
+.default-css table {
+  border-spacing: 2px;
+}
+
+.default-css thead,
+.default-css tbody,
+.default-css tfoot {
+  vertical-align: middle;
+}
+
+.default-css td,
+.default-css th,
+.default-css tr {
+  vertical-align: inherit;
+}
+
+.default-css s,
+.default-css strike,
+.default-css del {
+  text-decoration: line-through;
+}
+
+.default-css hr {
+  border: 1px inset;
+}
+
+.default-css ol,
+.default-css ul,
+.default-css dir,
+.default-css menu,
+.default-css dd {
+  margin-left: 40px;
+}
+
+.default-css ol {
+  list-style-type: decimal;
+}
+
+.default-css ol ul,
+.default-css ul ol,
+.default-css ul ul,
+.default-css ol ol {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.default-css u,
+.default-css ins {
+  text-decoration: underline;
+}
+
+.default-css br:before {
+  content: "\A";
+  white-space: pre-line;
+}
+
+.default-css center {
+  text-align: center;
+}
+
+.default-css :link,
+.default-css :visited {
+  text-decoration: underline;
+}
+
+.default-css :focus {
+  outline: thin dotted invert;
+}
+
+.default-css ul {
+  list-style: inherit;
+}
+
+.default-css BDO[DIR=ltr] {
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+
+.default-css BDO[DIR=rtl] {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+.default-css *[DIR=ltr] {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+.default-css *[DIR=rtl] {
+  direction: rtl;
+  unicode-bidi: embed;
+}
+
+@media print {
+  .default-css h1 {
+    page-break-before: always;
+  }
+
+  .default-css h1,
+  .default-css h2,
+  .default-css h3,
+  .default-css h4,
+  .default-css h5,
+  .default-css h6 {
+    page-break-after: avoid;
+  }
+
+  .default-css ul,
+  .default-css ol,
+  .default-css dl {
+    page-break-before: avoid;
+  }
+}
+

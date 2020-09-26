@@ -12,7 +12,7 @@
     <div>
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 w-100 px-4">
             <div class="grid md:grid-cols-2 gap-3">
-                <div class="bg-white p-5 shadow-sm box-border">
+                <div class="bg-white p-5 shadow-sm box-border default-css">
                     {!! $school->description !!}
                 </div>
                 <div>
