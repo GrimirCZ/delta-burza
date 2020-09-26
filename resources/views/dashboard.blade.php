@@ -39,9 +39,6 @@
                             <span class="inline-block align-middle">Upravit</span>
                         </a>
                     </h3>
-                    <a href="{{url("/skola/upravit")}}" class="btn btn-primary">
-                        Upravit informace
-                    </a>
                 </div>
                 <div>
                     <dl>
