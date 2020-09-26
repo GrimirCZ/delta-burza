@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Stevebauman\Purify\Purify;
 
 class EditSchool extends Component
 {
@@ -76,7 +77,7 @@ class EditSchool extends Component
                 'email' => $this->email,
                 'web' => $this->web,
                 'phone' => $this->phone,
-                'description' => $this->description,
+                'description' => Purify::clean($this->description),
                 'district_id' => $this->district_id,
             ]);
 

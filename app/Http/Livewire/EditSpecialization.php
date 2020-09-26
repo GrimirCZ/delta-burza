@@ -9,6 +9,7 @@ use App\Models\Specialization;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Stevebauman\Purify\Purify;
 
 class EditSpecialization extends Component
 {
@@ -41,7 +42,7 @@ class EditSpecialization extends Component
 
         $this->specialization->update([
             'name' => $this->name,
-            'description' => $this->description,
+            'description' => Purify::clean($this->description),
             'prescribed_specialization_id' => $this->prescribed_specialization_id,
         ]);
 

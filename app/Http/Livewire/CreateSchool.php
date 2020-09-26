@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\Livewire;
 use Livewire\WithFileUploads;
+use Stevebauman\Purify\Purify;
 
 class CreateSchool extends Component
 {
@@ -65,7 +66,7 @@ class CreateSchool extends Component
                 'email' => $this->email,
                 'web' => $this->web,
                 'phone' => $this->phone,
-                'description' => $this->description,
+                'description' => Purify::clean($this->description),
                 'district_id' => $this->district_id,
             ]);
 
