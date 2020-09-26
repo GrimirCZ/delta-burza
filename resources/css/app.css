@@ -59,3 +59,7 @@
 .rounded-full {
     border-radius: 9999px !important;
 }
+
+.btn-primary {
+    background-color: #004a6d;
+}

@@ -32,6 +32,12 @@
                 <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Informace o škole
+                        <a href="{{url("/skola/upravit")}}" class="text-header ml-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                            </svg>
+                            <span class="inline-block align-middle">Upravit</span>
+                        </a>
                     </h3>
                     <a href="{{url("/skola/upravit")}}" class="btn btn-primary">
                         Upravit informace
@@ -120,10 +126,13 @@
                 <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Obory
+                        <a href="{{url("/obor/vytvorit")}}" class="text-header ml-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="inline-block align-middle">Přidat obor</span>
+                        </a>
                     </h3>
-                    <a href="{{url("/obor/vytvorit")}}" class="btn btn-primary">
-                        Přidat obor
-                    </a>
                 </div>
                 <div>
                     <table class="table-fixed min-w-full text-gray-500">
@@ -137,13 +146,23 @@
                                 </td>
                                 <td class="px-8 py-5">{{substr(strip_tags($specialization->description), 0, 50)."..."}}</td>
                                 <td class="px-8 py-5 text-right">
-                                    <a href="/obor/{{$specialization->id}}/upravit"
-                                       class="btn bg-yellow-400 text-white">Upravit</a>
+                                    <a href="/obor/{{$specialization->id}}/upravit" class="text-header ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                        </svg>
+                                        <span class="inline-block align-middle">Upravit</span>
+                                    </a>
                                     <form action="/obor/{{$specialization->id}}/smazat" class="inline ml-4"
                                           method="post">
                                         @csrf
                                         @method("DELETE")
-                                        <button type="submit" class="btn bg-red-700 text-white">Smazat</button>
+                                        <button type="submit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline h-5">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                            </svg>
+                                            <span class="inline-block align-middle">Smazat</span>
+                                        </button>
+
                                     </form>
                                 </td>
                             </tr>
@@ -157,10 +176,13 @@
                 <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Výstavy
+                        <a href="{{url("/objednavka/vytvorit")}}" class="text-header ml-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="inline-block align-middle">Nová objednávka</span>
+                        </a>
                     </h3>
-                    <a href="{{url("/objednavka/vytvorit")}}" class="btn btn-primary">
-                        Zaregistovat se na další výstavy (nová objednávka)
-                    </a>
                 </div>
                 <div>
                     <table class="table-fixed min-w-full text-gray-500">
@@ -173,14 +195,18 @@
                                 </td>
                                 <td class="px-8 py-5">
                                     @if(!$registration->is_disabled)
-                                        <span class="text-green-700 font-semibold">Aktivní</span>
+                                        <span class="text-green-700 font-semibold">Zaplaceno</span>
                                     @else
-                                        <span class="text-red-700 font-semibold">Neaktivní</span>
+                                        <span class="text-red-700 font-semibold">Nezaplaceno</span>
                                     @endif
                                 </td>
                                 <td class="px-8 py-5 text-right">
-                                    <a href="/registrace/{{$registration->id}}/upravit"
-                                       class="btn bg-yellow-400 text-white">Upravit</a>
+                                    <a href="/registrace/{{$registration->id}}/upravit" class="text-header ml-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline h-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+                                        </svg>
+                                        <span class="inline-block align-middle">Upravit</span>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -193,10 +219,14 @@
                 <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Objednávky
+
+                        <a href="{{url("/objednavka/vytvorit")}}" class="text-header ml-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span class="inline-block align-middle">Nová objednávka</span>
+                        </a>
                     </h3>
-                    <a href="{{url("/objednavka/vytvorit")}}" class="btn btn-primary">
-                        nová objednávka
-                    </a>
                 </div>
                 <div>
                     <table class="table-fixed min-w-full text-gray-500">
@@ -204,10 +234,12 @@
                         @foreach(Auth::user()->school->orders as $order)
                             <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                 <td class="px-8 py-5">
-                                    Objednávka č. 2020{{fill_number_to_length($order->id, 4)}} ze
-                                    dne: {{format_date($order->created_at)}} datum
-                                    splatnosti: {{format_date($order->due_date)}}
-                                    ({{number_format($order->price(), 0,",",".")}},- Kč)
+                                    <a href="/objednavka/{{$order->id}}" class="link">
+                                        Objednávka č. 2020{{fill_number_to_length($order->id, 4)}} ze
+                                        dne: {{format_date($order->created_at)}} datum
+                                        splatnosti: {{format_date($order->due_date)}}
+                                        ({{number_format($order->price(), 0,",",".")}},- Kč)
+                                    </a>
                                 </td>
                                 <td class="px-8 py-5">
                                     @if($order->fulfilled())
@@ -217,7 +249,6 @@
                                     @endif
                                 </td>
                                 <td class="px-8 py-5 text-right">
-                                    <a href="/objednavka/{{$order->id}}" class="btn bg-yellow-400 text-white">Detail</a>
                                     @if(!$order->fulfilled())
                                         <a href="/objednavka/{{$order->id}}/zaplatit"
                                            class="btn bg-green-400 text-white">Zaplatit</a>

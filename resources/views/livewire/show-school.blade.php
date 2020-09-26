@@ -54,7 +54,7 @@
                                     <a href="{{fix_url($school->web)}}">{{$school->web}}</a>
                                 </dd>
                             </div>
-                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <!--<div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm leading-5 font-medium text-gray-500">
                                     Přílohy
                                 </dt>
@@ -62,7 +62,6 @@
                                     <ul class="border border-gray-200 rounded-md">
                                         <li class="pl-3 pr-4 py-3 flex items-center justify-between text-sm leading-5">
                                             <div class="w-0 flex-1 flex items-center">
-                                                <!-- Heroicon name: paper-clip -->
                                                 <svg class="flex-shrink-0 h-5 w-5 text-gray-400" viewBox="0 0 20 20"
                                                      fill="currentColor">
                                                     <path fill-rule="evenodd"
@@ -83,8 +82,14 @@
                                         </li>
                                     </ul>
                                 </dd>
-                            </div>
+                            </div>-->
                         </dl>
+
+                        @if($school->brojure())
+                            <div class="mt-10">
+                                <a href="{{asset('storage/' . $school->brojure())}}" class="btn bg-teal-400 text-white w-100 block text-center">Informační brožura</a>
+                            </div>
+                        @endif
                     </div>
                     <div class="bg-white p-5 shadow-sm box-border mt-3">
                         <h2 class="p-2">Obory</h2>
