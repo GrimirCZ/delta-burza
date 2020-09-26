@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Stevebauman\Purify\Purify;
+use Stevebauman\Purify\Facades\Purify;
 
 class CreateSpecialization extends Component
 {
