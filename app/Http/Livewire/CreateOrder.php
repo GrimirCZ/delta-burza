@@ -220,7 +220,7 @@ class CreateOrder extends Component
     private function price()
     {
         return $this->is_first_order() ?
-            (count($this->selected_exhibitions) - 1) * 1000 :
+            max((count($this->selected_exhibitions) - 1) * 1000, 0) :
             count($this->selected_exhibitions) * 1000;
     }
 
