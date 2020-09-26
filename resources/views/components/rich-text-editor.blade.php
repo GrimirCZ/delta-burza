@@ -11,9 +11,7 @@
     </div>
     @push('scripts')
         @once
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.4.2/tinymce.min.js"
-                integrity="sha512-SPCExIkjTrrcv8Jfu4dzvDJfMe7A9CKmKE8v1fd+Ku3Dq5B9w8rfmrAHfz2RKU+4zOyT1JlprGA1bC2o8Z1yZA=="
-                crossorigin="anonymous" defer></script>
+        <script src="{{asset("tinymce/tinymce.min.js")}}" defer></script>
         @endonce
         <script>
             document.addEventListener('livewire:load', function () {
@@ -30,6 +28,7 @@
                     advlist_bullet_styles: 'square',
                     advlist_number_styles: 'lower-alpha,lower-roman,upper-alpha,upper-roman',
                     enable_caption: true,
+                    language: 'cs',
                     images_upload_handler: function (blobInfo, success, failure, progress) {
                         var xhr, formData;
 
