@@ -10,14 +10,16 @@
                 <h1 class="font-light text-3xl text-gray-800">{{Auth::user()->school->name}}</h1>
             </div>
             <div class="inline-block">
-                <img src="{{asset('storage/' . Auth::user()->school->logo())}}" class="h-8" alt="Logo {{Auth::user()->school->name}}">
+                <img src="{{asset('storage/' . Auth::user()->school->logo())}}" class="h-8"
+                     alt="Logo {{Auth::user()->school->name}}">
             </div>
         </div>
     @endif
 
     <div class="max-w-7xl mx-auto">
         @if(Auth::user()->school_id == null)
-            <div class="grid justify-around items-center h-72 bg-white py-10 pb-0 px-2 sm:px-6 lg:px-8 w-100 my-7 mx-5 shadow-sm">
+            <div
+                class="grid justify-around items-center h-72 bg-white py-10 pb-0 px-2 sm:px-6 lg:px-8 w-100 my-7 mx-5 shadow-sm">
                 <div class="text-center">
                     <i>Zatím nebyly vloženy informace o škole</i>
                     <a href="/skola/vytvorit" class="text-xl btn btn-primary block mt-2">
@@ -98,7 +100,7 @@
                                 Informace o škole
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{substr(strip_tags( Auth::User()->school->description), 0, 50)."..."}}
+                                {!! substr(Auth::User()->school->description, 0, 50)."..." !!}
                             </dd>
                         </div>
                     </dl>
@@ -117,23 +119,26 @@
                 <div>
                     <table class="table-fixed min-w-full text-gray-500">
                         <tbody>
-                            @foreach(Auth::User()->school->ordered_specializations() as $specialization)
-                                <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
-                                    <td class="px-8 py-5">
-                                        {{$specialization->prescribed_specialization->code}} - {{$specialization->prescribed_specialization->name}}<br/>
-                                        (ŠVP: <i>{{$specialization->name}})</i>
-                                    </td>
-                                    <td class="px-8 py-5">{{substr(strip_tags($specialization->description), 0, 50)."..."}}</td>
-                                    <td class="px-8 py-5 text-right">
-                                        <a href="/obor/{{$specialization->id}}/upravit" class="btn bg-yellow-400 text-white">Upravit</a>
-                                        <form action="/obor/{{$specialization->id}}/smazat" class="inline ml-4" method="post">
-                                            @csrf
-                                            @method("DELETE")
-                                            <button type="submit" class="btn bg-red-700 text-white">Smazat</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
+                        @foreach(Auth::User()->school->ordered_specializations() as $specialization)
+                            <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
+                                <td class="px-8 py-5">
+                                    {{$specialization->prescribed_specialization->code}}
+                                    - {{$specialization->prescribed_specialization->name}}<br/>
+                                    (ŠVP: <i>{{$specialization->name}})</i>
+                                </td>
+                                <td class="px-8 py-5">{{substr(strip_tags($specialization->description), 0, 50)."..."}}</td>
+                                <td class="px-8 py-5 text-right">
+                                    <a href="/obor/{{$specialization->id}}/upravit"
+                                       class="btn bg-yellow-400 text-white">Upravit</a>
+                                    <form action="/obor/{{$specialization->id}}/smazat" class="inline ml-4"
+                                          method="post">
+                                        @csrf
+                                        @method("DELETE")
+                                        <button type="submit" class="btn bg-red-700 text-white">Smazat</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -165,7 +170,8 @@
                                     @endif
                                 </td>
                                 <td class="px-8 py-5 text-right">
-                                    <a href="/registrace/{{$registration->id}}/upravit" class="btn bg-yellow-400 text-white">Upravit</a>
+                                    <a href="/registrace/{{$registration->id}}/upravit"
+                                       class="btn bg-yellow-400 text-white">Upravit</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -191,7 +197,8 @@
                                 <td class="px-8 py-5">
                                     Objednávka č. 2020{{fill_number_to_length($order->id, 4)}} ze
                                     dne: {{format_date($order->created_at)}} datum
-                                    splatnosti: {{format_date($order->due_date)}} ({{number_format($order->price(), 0,",",".")}},- Kč)
+                                    splatnosti: {{format_date($order->due_date)}}
+                                    ({{number_format($order->price(), 0,",",".")}},- Kč)
                                 </td>
                                 <td class="px-8 py-5">
                                     @if($order->fulfilled())
@@ -203,7 +210,8 @@
                                 <td class="px-8 py-5 text-right">
                                     <a href="/objednavka/{{$order->id}}" class="btn bg-yellow-400 text-white">Detail</a>
                                     @if(!$order->fulfilled())
-                                        <a href="/objednavka/{{$order->id}}/zaplatit" class="btn bg-green-400 text-white">Zaplatit</a>
+                                        <a href="/objednavka/{{$order->id}}/zaplatit"
+                                           class="btn bg-green-400 text-white">Zaplatit</a>
                                     @endif
                                 </td>
                             </tr>
