@@ -52,7 +52,9 @@
                                 Email
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{Auth::User()->school->email}}
+                                <a href="mailto:{{Auth::User()->school->email}}">
+                                    {{Auth::User()->school->email}}
+                                </a>
                             </dd>
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -60,7 +62,9 @@
                                 Telefon
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{Auth::User()->school->phone}}
+                                <a href="tel:{{Auth::User()->school->phone}}">
+                                    {{Auth::User()->school->phone}}
+                                </a>
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -68,7 +72,9 @@
                                 Web
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{Auth::User()->school->web}}
+                                <a href="{{fix_url(Auth::User()->school->web)}}">
+                                    {{Auth::User()->school->web}}
+                                </a>
                             </dd>
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -92,7 +98,9 @@
                                 Adresa
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{Auth::User()->school->address}}
+                                <a href="http://maps.google.com/?q={{$school->address}}, {{$school->psc}} {{$school->city}}">
+                                    {{Auth::User()->school->address}}
+                                </a>
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
