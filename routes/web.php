@@ -11,6 +11,7 @@ use App\Http\Livewire\CreateSchool;
 use App\Http\Livewire\EditRegistration;
 use App\Http\Livewire\EditSchool;
 use App\Http\Livewire\EditSpecialization;
+use App\Http\Livewire\FilterSchools;
 use App\Http\Livewire\InfoProStredniSkoly;
 use App\Http\Livewire\InfoProZakyZS;
 use App\Http\Livewire\ListExhibitions;
@@ -45,6 +46,8 @@ Route::get('/vystavy', ListExhibitions::class)->name("vystavy");
 Route::get('/vystavy/{region}', ListExhibitionsRegion::class);
 Route::get('/vystava/{exhibition}', ShowExhibition::class);
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
+
+Route::get("/skola/filtrovat", FilterSchools::class);
 
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){

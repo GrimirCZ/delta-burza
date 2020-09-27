@@ -1,6 +1,6 @@
 #!/bin/env bash
-mkdir -P storage/purify
-mkdir -P storage/app/public/brojures
-mkdir -P storage/app/public/images
-mkdir -P storage/app/public/invoices
-mkdir -P storage/app/public/logos
+mkdir -p storage/purify
+mkdir -p storage/app/public/brojures
+mkdir -p storage/app/public/images
+mkdir -p storage/app/public/invoices
+mkdir -p storage/app/public/logos
