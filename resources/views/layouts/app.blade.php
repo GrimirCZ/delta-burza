@@ -27,7 +27,8 @@
 
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-white">
                     <div class="justify-between items-center flex">
-                        <a href="/" class="inline-flex font-weight-semibold text-2xl sm:text-3xl font-freude title-shadow">
+                        <a href="/"
+                           class="inline-flex font-weight-semibold text-2xl sm:text-3xl font-freude title-shadow">
                             {{ config('app.name', 'Laravel') }}
                         </a>
                         <div onClick="toggleMenu()" class="btn bg-white text-header sm:hidden cursor-pointer">
@@ -64,10 +65,13 @@
                                 </a>
                                 <form action="{{url("logout")}}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn bg-white text-header rounded-full font-freude">Odhlásit se</button>
+                                    <button type="submit" class="btn bg-white text-header rounded-full font-freude">
+                                        Odhlásit se
+                                    </button>
                                 </form>
                             @else
-                                <a href="{{url("/login")}}" class="btn bg-white text-header rounded-full font-freude">Vstup pro školy</a>
+                                <a href="{{url("/login")}}" class="btn bg-white text-header rounded-full font-freude">Vstup
+                                    pro školy</a>
                             @endif
                         </div>
                     </div>
@@ -107,7 +111,8 @@
                                         <a href="{{route("info_zs")}}"
                                            class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">Pro
                                             žáky ZŠ</a>
-                                        <a href="{{route("info_ss")}}" class="block hover:text-blue-400 py-3 font-freude">Pro
+                                        <a href="{{route("info_ss")}}"
+                                           class="block hover:text-blue-400 py-3 font-freude">Pro
                                             střední školy</a>
 
 
@@ -119,10 +124,15 @@
                                                 </a>
                                                 <form action="{{url("logout")}}" method="post" class="inline-block">
                                                     @csrf
-                                                    <button type="submit" class="btn bg-header text-white rounded-full font-freude inline-block">Odhlásit se</button>
+                                                    <button type="submit"
+                                                            class="btn bg-header text-white rounded-full font-freude inline-block">
+                                                        Odhlásit se
+                                                    </button>
                                                 </form>
                                             @else
-                                                <a href="{{url("/login")}}" class="btn bg-header text-white rounded-full font-freude">Vstup pro školy</a>
+                                                <a href="{{url("/login")}}"
+                                                   class="btn bg-header text-white rounded-full font-freude">Vstup pro
+                                                    školy</a>
                                             @endif
                                         </div>
                                     </div>
@@ -137,11 +147,11 @@
             <!-- Page Content -->
             <main class="h-full">
                 <div>
-                     @if (session()->has('message'))
-                            <div class="alert alert-success">
-                                {{ session('message') }}
-                            </div>
-                        @endif
+                    @if (session()->has('message'))
+                        <div class="alert alert-success">
+                            {{ session('message') }}
+                        </div>
+                    @endif
                 </div>
 
                 {{ $slot }}
@@ -152,7 +162,8 @@
                     <a href="{{route("obchodni_podminky")}}" class="link">Obchodní podmínky</a>
                 </p>
                 <p class="text-right text-gray-600 text-sm">
-                    Vytvořil Vít Falta a Matěj Půhoný, studenti <br class="inline sm:hidden" /> <a href="{{url("/skola/1")}}" class="link">DELTA - Střední škola informatiky a ekonomie, s.r.o.</a>
+                    Vytvořil Vít Falta a Matěj Půhoný, studenti <br class="inline sm:hidden"/> <a
+                        href="{{url("/skola/1")}}" class="link">DELTA - Střední škola informatiky a ekonomie, s.r.o.</a>
                     2020
                 </p>
             </footer>
@@ -165,4 +176,17 @@
         @livewireScripts
     </body>
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179066839-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-179066839-1');
+    </script>
 </html>
