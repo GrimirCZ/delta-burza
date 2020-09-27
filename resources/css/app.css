@@ -63,3 +63,7 @@
 .btn-primary {
     background-color: #004a6d;
 }
+
+.h-min-content {
+    height: min-content
+}

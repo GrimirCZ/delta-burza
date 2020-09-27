@@ -12,19 +12,29 @@
                 @else
                     <div class="grid md:grid-cols-2 gap-3">
                         @foreach($registrations as $registration)
-                            <div class="p-5 bg-white shadow-sm box-border">
+                            <div class="p-5 bg-white shadow-sm box-border h-min-content">
                                 <div class="leading-3 text-gray-400">{{$registration->school->district->name}}</div>
                                 <a href="/skola/{{$registration->school->id}}"><h3
                                         class="text-2xl font-light">{{$registration->school->name}}</h3></a>
-                                @foreach($registration->school->ordered_specializations() as $specialization)
-                                    <div class="text-left list-disc ml-5 mb-3">
-                                        <a href="/obor/{{$specialization->id}}">
-                                            {{$specialization->prescribed_specialization->code}}
-                                            - {{$specialization->prescribed_specialization->name}} <br/>
-                                            <i>(ŠVP: {{$specialization->name}})</i>
-                                        </a>
-                                    </div>
-                                @endforeach
+
+                                <table class="table w-full mt-5 text-sm text-gray-600">
+                                    <tbody class="divide-y divide-gray-200">
+                                        @foreach($registration->school->ordered_specializations() as $specialization)
+                                            <tr>
+                                                <td class="py-3">
+                                                    <a href="/obor/{{$specialization->id}}">
+                                                        {{$specialization->prescribed_specialization->code}}
+                                                        - {{$specialization->prescribed_specialization->name}} <br/>
+                                                        <i>(ŠVP: {{$specialization->name}})</i>
+                                                    </a>
+                                                </td>
+                                                <td class="py-3 text-right">
+                                                    <a href="/obor/{{$specialization->id}}" class="btn bg-teal-400 text-white text-sm inline-block">Více informací o oboru</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
 
                                 @if($registration->exhibition->date == current_date_str())
                                     <a href="/vstoupit/ranni/{{$registration->id}}"
