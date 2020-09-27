@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Exhibition;
 use App\Models\FieldOfStudy;
 use App\Models\PrescribedSpecialization;
 use App\Models\Region;
@@ -168,6 +169,13 @@ class FilterSchools extends Component
     {
         $q = School::query();
 
+        $q = $this->filtered_schools_restrictions($q);
+
+        return $q->select("schools.*");
+    }
+
+    private function filtered_schools_restrictions($q)
+    {
         if(count($this->selected_prescribed_specializations) > 0){
             $q = $q
                 ->join("specializations", "schools.id", "=", "specializations.school_id")
@@ -181,7 +189,32 @@ class FilterSchools extends Component
                 ->whereIn("regions.id", collect($this->selected_regions)->map(fn($sr) => $sr['id']));
         }
 
-        return $q->select("schools.*");
+        return $q;
+    }
+
+    private function filtered_exhibitions()
+    {
+        // nesahat
+        $q = DB::table("exhibitions")
+            ->join("registrations", "registrations.exhibition_id", "=", "exhibitions.id")
+            ->join("schools", "registrations.school_id", "=", "schools.id")
+            ->whereIn("schools.id", function($q){
+                $q->select("schools.id")
+                    ->from("schools");
+                $q = $this->filtered_schools_restrictions($q);
+            })
+            ->select(DB::raw("exhibitions.id as exhibition_id"), DB::raw("count(schools.id) as school_count"))
+            ->groupBy("exhibitions.id");
+
+
+        return Exhibition::joinSub($q, "exh_sch_count", function($join){
+            $join->on("exhibitions.id", "=", "exh_sch_count.exhibition_id");
+        })
+            ->orderByDesc("exh_sch_count.school_count")
+            ->orderBy("exhibitions.date")
+            ->orderBy("exhibitions.city")
+            ->orderBy("exhibitions.name")
+            ->select("exhibitions.*", DB::raw("exh_sch_count.school_count as school_count"));
     }
 
     /**
@@ -200,7 +233,8 @@ class FilterSchools extends Component
             ]);
         } else if($this->state == "SHOW"){
             return view('livewire.show-filtered-schools', [
-                'schools' => $this->filtered_schools()->get(),
+                'schools' => $this->filtered_schools()->distinct()->get(),
+                'exhibitions' => $this->filtered_exhibitions()->distinct()->get()
             ]);
         } else{
             return abort(500);
