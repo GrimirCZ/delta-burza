@@ -229,7 +229,7 @@ class FilterSchools extends Component
                 'regions' => $this->available_regions()->get(),
                 'prescribed_specializations' => $this->available_prescribed_specializations()->get(),
                 'field_of_studies' => FieldOfStudy::where("type_of_study_id", $this->type_of_study_id)->orderBy("name")->get(),
-                'type_of_studies' => TypeOfStudy::orderBy("name")->get()
+                'type_of_studies' => TypeOfStudy::all()
             ]);
         } else if($this->state == "SHOW"){
             return view('livewire.show-filtered-schools', [
