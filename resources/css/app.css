@@ -64,6 +64,14 @@
     background-color: #004a6d;
 }
 
+.btn-primary:hover {
+    background-color: #4fd1c5;
+}
+
 .h-min-content {
     height: min-content
+}
+
+.header-btn-border {
+    box-shadow: 0 0 0 5px #004a6d80;
 }

@@ -73,18 +73,18 @@
                         </div>
                         <div class="inline-flex">
                             @if(Auth::check())
-                                <a class="mr-6 btn bg-white text-header rounded-full font-freude"
+                                <a class="mr-6 btn bg-white text-header font-freude header-btn-border"
                                    href="/dashboard">
                                     Profil
                                 </a>
                                 <form action="{{url("logout")}}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn bg-white text-header rounded-full font-freude">
+                                    <button type="submit" class="btn bg-white text-header font-freude header-btn-border">
                                         Odhlásit se
                                     </button>
                                 </form>
                             @else
-                                <a href="{{url("/login")}}" class="btn bg-white text-header rounded-full font-freude">Vstup
+                                <a href="{{url("/login")}}" class="btn bg-white text-header font-freude header-btn-border">Vstup
                                     pro střední školy</a>
                             @endif
                         </div>
@@ -132,20 +132,20 @@
 
                                         <div class="mt-8">
                                             @if(Auth::check())
-                                                <a class="mr-6 btn bg-header text-white rounded-full font-freude"
+                                                <a class="mr-6 btn bg-header text-white font-freude inline-block"
                                                    href="/dashboard">
                                                     Profil
                                                 </a>
                                                 <form action="{{url("logout")}}" method="post" class="inline-block">
                                                     @csrf
                                                     <button type="submit"
-                                                            class="btn bg-header text-white rounded-full font-freude inline-block">
+                                                            class="btn bg-header text-white font-freude inline-block">
                                                         Odhlásit se
                                                     </button>
                                                 </form>
                                             @else
                                                 <a href="{{url("/login")}}"
-                                                   class="btn bg-header text-white rounded-full font-freude">Vstup pro střední
+                                                   class="btn bg-header text-white font-freude">Vstup pro střední
                                                     školy</a>
                                             @endif
                                         </div>
