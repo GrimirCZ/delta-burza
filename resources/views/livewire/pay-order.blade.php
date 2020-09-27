@@ -6,9 +6,12 @@
     <div class="py-12">
         <x-dashboard-card>
             <div class="pt-6">
-                Platba objednávky je možná pouze bankovním převodem. č. účtu: <b>101831946/0300</b>, V.S.:
-                <b>2020{{fill_number_to_length($order->id, 4)}}</b>, částka: <b>{{$order->price()}},- Kč</b>, datum
-                splatnosti: <b>{{format_date($order->due_date)}}</b>
+                Objednávku zaplaťte bankovním převodem.<br />
+                Číslo účtu: 101831946/0300<br />
+                Variabilní symbol: <b>2020{{fill_number_to_length($order->id, 4)}}</b><br />
+                Částka: <b>{{$order->price()}},- Kč</b><br />
+                Datum splatnosti: <b>{{format_date($order->due_date)}}</b>.<br />
+                Jinou formu úhrady náš systém nepodporuje.
             </div>
         </x-dashboard-card>
     </div>

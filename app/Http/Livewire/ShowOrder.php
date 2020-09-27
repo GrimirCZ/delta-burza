@@ -16,6 +16,15 @@ class ShowOrder extends Component
      */
     public function render()
     {
-        return view('livewire.show-order');
+        return view('livewire.show-order', [
+            'price' => number_format($this->order->price(), 0, ",", "."),
+            'order_registrations' => $this->order
+                ->ordered_registrations()
+                ->join("registrations", "registrations.id", "=", "order_registration.registration_id")
+                ->join("exhibitions", "exhibitions.id", "=", "registrations.exhibition_id")
+                ->orderBy("exhibitions.date")
+                ->select("order_registration.*")
+                ->get()
+        ]);
     }
 }
