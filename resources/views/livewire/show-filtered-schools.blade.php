@@ -20,6 +20,7 @@
                     </li>
                 @endforeach
             </ul>
+            <button wire:click="show_filter" class="btn btn-primary">Zpět k filtrování</button>
         </x-dashboard-card>
     </div>
 </div>
