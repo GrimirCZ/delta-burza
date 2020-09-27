@@ -17,9 +17,12 @@
                                 class="input @error('exhibition_id') input-error @enderror">
                             @if(!isset($exhibition_id))
                                 <option selected></option>
+                            @elseif(isset($selected_exhibition))
+                                <option value="{{$selected_exhibition['id']}}">{{format_date($selected_exhibition['date'])}} - {{$selected_exhibition['city']}} ({{$selected_exhibition['name']}})</option>
                             @endif
                             @foreach($exhibitions as $ue)
-                                <option value="{{$ue->id}}">{{format_date($ue->date)}} - {{$ue->city}} ({{$ue->name}})</option>
+                                <option value="{{$ue->id}}">{{format_date($ue->date)}} - {{$ue->city}} ({{$ue->name}})
+                                </option>
                             @endforeach
                         </select>
                         @error('exhibition_id') <span class="error">{{ $message }}</span> @enderror
@@ -27,7 +30,8 @@
                 </div>
                 <div class="form-row">
                     <div>
-                        <label for="morning_event" class="label">{{settings("morning_event_start")}} - {{settings("morning_event_end")}} - Odkaz na Microsoft Teams/Google Meets/Zoom/...</label>
+                        <label for="morning_event" class="label">{{settings("morning_event_start")}}
+                            - {{settings("morning_event_end")}} - Odkaz na Microsoft Teams/Google Meets/Zoom/...</label>
                         <input id="morning_event" type="text" wire:model="morning_event"
                                class="input input-full @error('morning_event') input-error @enderror">
                         @error('morning_event') <span class="error">{{ $message }}</span> @enderror
@@ -36,7 +40,8 @@
 
                 <div class="form-row">
                     <div>
-                        <label for="evening_event" class="label">{{settings("evening_event_start")}} - {{settings("evening_event_end")}} - Odkaz na Microsoft Teams/Google Meets/Zoom/...</label>
+                        <label for="evening_event" class="label">{{settings("evening_event_start")}}
+                            - {{settings("evening_event_end")}} - Odkaz na Microsoft Teams/Google Meets/Zoom/...</label>
                         <input id="evening_event" type="text" wire:model="evening_event"
                                class="input input-full @error('evening_event') input-error @enderror">
                         @error('evening_event') <span class="error">{{ $message }}</span> @enderror
