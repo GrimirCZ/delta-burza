@@ -7,6 +7,20 @@
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179066839-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+
+            gtag('js', new Date());
+
+            gtag('config', 'UA-179066839-1');
+        </script>
+
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:300,400,600,700" rel="stylesheet">
         <link rel="stylesheet" href="https://use.typekit.net/vxo6dnf.css">
@@ -175,18 +189,4 @@
 
         @livewireScripts
     </body>
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-179066839-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-
-        gtag('js', new Date());
-
-        gtag('config', 'UA-179066839-1');
-    </script>
 </html>
