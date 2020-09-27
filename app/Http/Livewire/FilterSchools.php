@@ -52,26 +52,16 @@ class FilterSchools extends Component
         $this->field_of_study_id = 'all';
         $this->prescribed_specialization_id = 'all';
 
-        $this->regions = collect($this->regions)->map(fn($reg) => [
-            [
-                'id' => $reg['id'],
-                'name' => $reg['name'],
-                'selected' => false
-            ]
-        ])->toArray();
-    }
-
-    public function mount()
-    {
-        $this->type_of_study_id = "all";
-        $this->field_of_study_id = "all";
-        $this->prescribed_specialization_id = "all";
-
         $this->regions = Region::orderBy("name")->get()->map(fn($reg) => [
             'id' => $reg->id,
             'name' => $reg->name,
             'selected' => false
         ])->toArray();
+    }
+
+    public function mount()
+    {
+        $this->clear_filter();
     }
 
     private function filtered_schools()
