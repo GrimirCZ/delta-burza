@@ -26,18 +26,33 @@
                                     </div>
                                 @endforeach
 
-                                <a href="/vstoupit/ranni/{{$registration->id}}"
-                                   target="_blank"
-                                   class="btn text-sm text-center btn-primary mt-13 block">
-                                    Připojit se online {{settings("morning_event_start")}}
-                                    - {{settings("morning_event_end")}}
-                                </a>
-                                <a href="/vstoupit/vecerni/{{$registration->id}}"
-                                   target="_blank"
-                                   class="btn text-sm text-center btn-primary mt-1 block">
-                                    Připojit se online {{settings("evening_event_start")}}
-                                    - {{settings("evening_event_end")}}
-                                </a>
+                                @if($registration->exhibition->date == current_date_str())
+                                    <a href="/vstoupit/ranni/{{$registration->id}}"
+                                       target="_blank"
+                                       class="btn text-sm text-center btn-primary mt-13 block">
+                                        Připojit se online {{settings("morning_event_start")}}
+                                        - {{settings("morning_event_end")}}
+                                    </a>
+                                    <a href="/vstoupit/vecerni/{{$registration->id}}"
+                                       target="_blank"
+                                       class="btn text-sm text-center btn-primary mt-1 block">
+                                        Připojit se online {{settings("evening_event_start")}}
+                                        - {{settings("evening_event_end")}}
+                                    </a>
+                                @else
+                                    <span
+                                       class="btn text-sm text-center mt-13 block bg-gray-200 text-gray-400">
+                                        Připojit se online {{settings("morning_event_start")}}
+                                        - {{settings("morning_event_end")}}
+                                    </span>
+                                    <span
+                                       class="btn text-sm text-center mt-1 block bg-gray-200 text-gray-400">
+                                        Připojit se online {{settings("evening_event_start")}}
+                                        - {{settings("evening_event_end")}}
+                                    </span>
+                                @endif
+
+
                                 <a href="/skola/{{$registration->school->id}}"
                                    class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
                                     Detail školy

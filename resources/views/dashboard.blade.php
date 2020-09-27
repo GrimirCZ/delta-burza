@@ -248,7 +248,7 @@
                                 <td class="px-8 py-5 text-right">
                                     @if(!$order->fulfilled())
                                         <a href="/objednavka/{{$order->id}}/zaplatit"
-                                           class="btn bg-green-400 text-white">Zaplatit</a>
+                                           class="btn bg-teal-400 text-white">Zaplatit</a>
                                     @endif
                                 </td>
                             </tr>

@@ -79,7 +79,7 @@
 
             <div class="mt-6 text-right mt-20">
                 <button wire:click="cancel" class="text-gray-400">Zrušit</button>
-                <button id="complete" class="btn bg-green-400 text-white ml-4">Dokončit</button>
+                <button id="complete" class="btn bg-teal-400 text-white ml-4">Dokončit</button>
             </div>
         </x-dashboard-card>
     </div>

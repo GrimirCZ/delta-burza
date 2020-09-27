@@ -74,7 +74,7 @@
                 @endif
 
                 @if(!$or->fulfilled_at != null)
-                    <a href="/objednavka/{{$order->id}}/zaplatit" class="btn bg-green-400 text-white">Zaplatit</a>
+                    <a href="/objednavka/{{$order->id}}/zaplatit" class="btn bg-teal-400 text-white">Zaplatit</a>
                 @endif
             </div>
 
