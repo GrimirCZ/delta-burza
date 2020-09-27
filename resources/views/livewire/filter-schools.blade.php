@@ -34,15 +34,36 @@
                     </div>
                     <div>
                         <div>
-                            <label for="region">Kraj</label>
-                            <select wire:model="prescribed_specialization_id" name="region" id="region"
-                                    class="block">
-                                @foreach($prescribed_specializations as $ps)
-                                    <option value="{{$ps->id}}">{{$ps->code}} - {{$ps->name}}</option>
-                                @endforeach
-                            </select>
-                            <button wire:click="add_prescribed_specialization" class="btn btn-primary mt-4">Přidat
-                            </button>
+                            <div>
+                                <label for="type_of_study">Typ studia</label>
+                                <select wire:model="type_of_study_id" name="type_of_study" id="type_of_study"
+                                        class="block">
+                                    @foreach($type_of_studies as $tos)
+                                        <option value="{{$tos->id}}">{{$tos->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div
+                                <label for="field_of_study">Typ studia</label>
+                                <select wire:model="field_of_study_id" name="field_of_study" id="field_of_study"
+                                        class="block">
+                                    @foreach($field_of_studies as $fos)
+                                        <option value="{{$fos->id}}">{{$fos->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div>
+                                <label for="region">Obor</label>
+                                <select wire:model="prescribed_specialization_id" name="region" id="region"
+                                        class="block">
+                                    @foreach($prescribed_specializations as $ps)
+                                        <option value="{{$ps->id}}">{{$ps->code}} - {{$ps->name}}</option>
+                                    @endforeach
+                                </select>
+                                <button wire:click="add_prescribed_specialization" class="btn btn-primary mt-4">
+                                    Přidat
+                                </button>
+                            </div>
                         </div>
                         <div>
                             <ul>

@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\FieldOfStudy;
 use App\Models\PrescribedSpecialization;
 use App\Models\Region;
 use App\Models\School;
 use App\Models\Specialization;
+use App\Models\TypeOfStudy;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class FilterSchools extends Component
@@ -23,6 +26,17 @@ class FilterSchools extends Component
     public ?array $selected_prescribed_specializations_ids = [];
     public ?array $selected_prescribed_specializations = [];
     public ?int $prescribed_specialization_id;
+
+    public ?int  $type_of_study_id;
+    public ?int  $field_of_study_id;
+
+
+    public function updated($name, $value)
+    {
+        if($name == "type_of_study_id"){
+            $this->refresh();
+        }
+    }
 
     public function add_region()
     {
@@ -69,6 +83,8 @@ class FilterSchools extends Component
 
     public function mount()
     {
+        $this->type_of_study_id = TypeOfStudy::first()->id;
+
         $this->refresh();
     }
 
@@ -93,6 +109,8 @@ class FilterSchools extends Component
 
     private function refresh()
     {
+        $this->field_of_study_id = FieldOfStudy::where("type_of_study_id", $this->type_of_study_id)->orderBy("name")->first()->id ?? null;
+
         $arc = $this->available_regions()->count();
         if($arc > 0)
             $this->region_id = $this->available_regions()->first()->id;
@@ -119,9 +137,21 @@ class FilterSchools extends Component
 
     private function available_prescribed_specializations()
     {
-        return PrescribedSpecialization::whereNotIn('id', collect($this->selected_prescribed_specializations)->map(fn($sr) => $sr['id']))
-            ->orderBy("code")
-            ->orderBy("name");
+        $q = PrescribedSpecialization::join("field_of_studies", "prescribed_specializations.field_of_study_id", "=", "field_of_studies.id")
+            ->whereNotIn("prescribed_specializations.id", collect($this->selected_prescribed_specializations)->map(fn($sr) => $sr['id']));
+
+        if($this->field_of_study_id == null){
+            $q = $q->where(DB::raw("0"), "=", DB::raw("1"));
+        } else{
+
+            $q = $q->where("field_of_studies.id", $this->field_of_study_id);
+        }
+
+        $q = $q->orderBy("prescribed_specializations.code")
+            ->orderBy("prescribed_specializations.name")
+            ->select("prescribed_specializations.*");
+
+        return $q;
     }
 
     private function filtered_schools()
@@ -154,7 +184,9 @@ class FilterSchools extends Component
         if($this->state == "FILTER"){
             return view('livewire.filter-schools', [
                 'regions' => $this->available_regions()->get(),
-                'prescribed_specializations' => $this->available_prescribed_specializations()->get()
+                'prescribed_specializations' => $this->available_prescribed_specializations()->get(),
+                'field_of_studies' => FieldOfStudy::where("type_of_study_id", $this->type_of_study_id)->orderBy("name")->get(),
+                'type_of_studies' => TypeOfStudy::orderBy("name")->get()
             ]);
         } else if($this->state == "SHOW"){
             return view('livewire.show-filtered-schools', [
