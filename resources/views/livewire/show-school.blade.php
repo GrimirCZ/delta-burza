@@ -138,6 +138,11 @@
                                 <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
                                    class="mt-4 text-sm sm:mt-0 sm:ml-2 text-center btn btn-primary">Online {{settings("evening_event_start")}}
                                     - {{settings("evening_event_end")}}</a>
+                            @else
+                                <span class="btn text-sm text-center bg-gray-200 text-gray-400">Online {{settings("morning_event_start")}}
+                                    - {{settings("morning_event_end")}}</span>
+                                <span class="mt-4 text-sm sm:mt-0 sm:ml-2 text-center btn bg-gray-200 text-gray-400">Online {{settings("evening_event_start")}}
+                                    - {{settings("evening_event_end")}}</span>
                             @endif
                         </div>
                     </div>
