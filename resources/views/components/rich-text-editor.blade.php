@@ -21,7 +21,7 @@
                 tinymce.init({
                     selector: 'textarea#{{$field}}',
                     menubar: false,
-                    toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code removeformat | image',
+                    toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code removeformat | image',
                     plugins: [
                         'image', 'imagetools', 'table', 'paste', 'wordcount', 'code', 'lists', 'advlist',
                     ],
