@@ -26,7 +26,14 @@
             <ul>
                 @foreach($exhibitions as $exhibition)
                     <li class="list-disc">
-                        {{$exhibition->date}} {{$exhibition->city}} ({{$exhibition->name}})
+                        {{$exhibition->date}} {{$exhibition->city}} ({{$exhibition->name}}) -
+                        @if($exhibition->school_count > 4)
+                        @elseif($exhibition->school_count > 1)
+                            {{$exhibition->school_count}} školy
+                        @else
+                            {{$exhibition->school_count}} škola
+                        @endif
+
                         <ul class="ml-4">
                             @foreach($exhibition->registrations as $reg)
                                 @php

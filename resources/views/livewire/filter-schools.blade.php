@@ -6,24 +6,13 @@
     <div class="py-12">
         <x-dashboard-card>
             <div class="grid grid-cols-1 sm:grid-cols-2">
-                <div class="mt-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2">
-                        @foreach($regions as $index => $region)
-                            <div>
-                                <input type="checkbox" wire:model="regions.{{$index}}.selected"
-                                       id="skola{{$region['id']}}">
-                                <label for="skola{{$region['id']}}">{{$region['name']}}</label>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
                 <div>
                     <div>
                         <div>
-                            <label for="type_of_study">Druh studia</label>
+                            <label for="type_of_study">Typ studia</label>
                             <select wire:model="type_of_study_id" name="type_of_study" id="type_of_study"
                                     class="block">
-                                <option value="all">Všechny zaměření</option>
+                                <option value="all">Všechny typy studia</option>
                                 @foreach($type_of_studies as $tos)
                                     <option value="{{$tos->id}}">{{$tos->name}}</option>
                                 @endforeach
@@ -34,7 +23,7 @@
                                 <label for="field_of_study">Zaměření</label>
                                 <select wire:model="field_of_study_id" name="field_of_study" id="field_of_study"
                                         class="block">
-                                    <option value="all">Všechny zaměření</option>
+                                    <option value="all">Všechna zaměření</option>
                                     @foreach($field_of_studies as $fos)
                                         <option value="{{$fos->id}}">{{$fos->name}}</option>
                                     @endforeach
@@ -53,6 +42,17 @@
                                 </select>
                             </div>
                         @endif
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2">
+                        @foreach($regions as $index => $region)
+                            <div>
+                                <input type="checkbox" wire:model="regions.{{$index}}.selected"
+                                       id="skola{{$region['id']}}">
+                                <label for="skola{{$region['id']}}">{{$region['name']}}</label>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
