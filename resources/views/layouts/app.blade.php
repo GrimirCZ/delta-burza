@@ -131,7 +131,7 @@
                                                 </form>
                                             @else
                                                 <a href="{{url("/login")}}"
-                                                   class="btn bg-header text-white rounded-full font-freude">Vstup pro
+                                                   class="btn bg-header text-white rounded-full font-freude">Vstup pro střední
                                                     školy</a>
                                             @endif
                                         </div>
