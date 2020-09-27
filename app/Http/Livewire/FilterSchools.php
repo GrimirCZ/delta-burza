@@ -120,6 +120,7 @@ class FilterSchools extends Component
     private function available_prescribed_specializations()
     {
         return PrescribedSpecialization::whereNotIn('id', collect($this->selected_prescribed_specializations)->map(fn($sr) => $sr['id']))
+            ->orderBy("code")
             ->orderBy("name");
     }
 
