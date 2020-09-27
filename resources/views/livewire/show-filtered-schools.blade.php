@@ -10,13 +10,18 @@
             <ul class="ml-4">
                 @foreach($schools as $school)
                     <li class="list-disc">
-                        {{$school->name}}
+                        <a href="{{url("/skola/$school->id")}}" class="link">{{$school->name}}</a>
                         <ul class="ml-4">
                             <li class="list-disc">{{$school->district->region->name}}</li>
                             @foreach($school->specializations as $sp)
-                                <li class="list-disc">{{$sp->prescribed_specialization->code}}
-                                    - {{$sp->prescribed_specialization->name}}
-                                    <br/>ŠVP: {{$sp->name}}</li>
+                                <li class="list-disc">
+                                    <a href="{{url("/obor/$sp->id")}}"
+                                       class="link">
+                                        {{$sp->prescribed_specialization->code}}
+                                        - {{$sp->prescribed_specialization->name}}
+                                        <br/>ŠVP: {{$sp->name}}
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
                     </li>
@@ -26,13 +31,16 @@
             <ul>
                 @foreach($exhibitions as $exhibition)
                     <li class="list-disc">
-                        {{$exhibition->date}} {{$exhibition->city}} ({{$exhibition->name}}) -
-                        @if($exhibition->school_count > 4)
-                        @elseif($exhibition->school_count > 1)
-                            {{$exhibition->school_count}} školy
-                        @else
-                            {{$exhibition->school_count}} škola
-                        @endif
+                        <a href="{{url("/vystava/$exhibition->id")}}" class="link">
+                            {{$exhibition->date}} {{$exhibition->city}}
+                            ({{$exhibition->name}}) -
+                            @if($exhibition->school_count > 4)
+                            @elseif($exhibition->school_count > 1)
+                                {{$exhibition->school_count}} školy
+                            @else
+                                {{$exhibition->school_count}} škola
+                            @endif
+                        </a>
 
                         <ul class="ml-4">
                             @foreach($exhibition->registrations as $reg)
