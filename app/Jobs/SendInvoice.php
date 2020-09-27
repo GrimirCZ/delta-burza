@@ -35,7 +35,7 @@ class SendInvoice implements ShouldQueue
             'school' => $order->school
         ]);
 
-        $pdf->save('storage/invoices/' . $pdf_name);
+        $pdf->save(public_path() . '/storage/invoices/' . $pdf_name);
 
         $order->invoice = $pdf_name;
         $order->push();
