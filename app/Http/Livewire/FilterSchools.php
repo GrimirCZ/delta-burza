@@ -25,8 +25,6 @@ class FilterSchools extends Component
     public ?string  $type_of_study_id = "all";
     public ?string  $field_of_study_id = "all";
 
-    protected $queryString = ['type_of_study_id', 'field_of_study_id', 'prescribed_specialization_id', 'regions'];
-
     public function updated($name, $value)
     {
         if($name == "type_of_study_id"){
