@@ -18,61 +18,22 @@ class FilterSchools extends Component
     //SHOW => show filtered schools
     public string $state = "FILTER";
 
-    public ?array $selected_regions_ids = [];
-    public ?array $selected_regions = [];
-    public ?int $region_id = null;
+    public ?array $regions = [];
 
-    public ?array $selected_prescribed_specializations_ids = [];
-    public ?array $selected_prescribed_specializations = [];
-    public ?int $prescribed_specialization_id;
+    public ?string $prescribed_specialization_id = "all";
 
-    public ?int  $type_of_study_id;
-    public ?int  $field_of_study_id;
+    public ?string  $type_of_study_id = "all";
+    public ?string  $field_of_study_id = "all";
 
+    protected $queryString = ['type_of_study_id', 'field_of_study_id', 'prescribed_specialization_id', 'regions'];
 
     public function updated($name, $value)
     {
         if($name == "type_of_study_id"){
-            $this->field_of_study_id = FieldOfStudy::where("type_of_study_id", $this->type_of_study_id)->orderBy("name")->first()->id ?? null;
-
-            $this->refresh();
+            $this->field_of_study_id = "all";
         } else if($name == "field_of_study_id"){
-            $this->refresh();
+            $this->prescribed_specialization_id = "all";
         }
-    }
-
-    public function add_region()
-    {
-        if($this->region_id == null){
-            return;
-        }
-
-        $region = Region::find($this->region_id);
-
-        array_push($this->selected_regions, [
-            'id' => $this->region_id,
-            'name' => $region->name
-        ]);
-
-        $this->refresh();
-    }
-
-    public function add_prescribed_specialization()
-    {
-        if($this->prescribed_specialization_id == null){
-            return;
-        }
-
-        $ps = PrescribedSpecialization::find($this->prescribed_specialization_id);
-
-
-        array_push($this->selected_prescribed_specializations, [
-            'id' => $ps->id,
-            'code' => $ps->code,
-            'name' => $ps->name
-        ]);
-
-        $this->refresh();
     }
 
     public function show_filtered_schools()
@@ -87,82 +48,30 @@ class FilterSchools extends Component
 
     public function clear_filter()
     {
-        $this->selected_prescribed_specializations = [];
-        $this->selected_regions = [];
+        $this->type_of_study_id = 'all';
+        $this->field_of_study_id = 'all';
+        $this->prescribed_specialization_id = 'all';
 
-        $this->refresh();
+        $this->regions = collect($this->regions)->map(fn($reg) => [
+            [
+                'id' => $reg['id'],
+                'name' => $reg['name'],
+                'selected' => false
+            ]
+        ])->toArray();
     }
 
     public function mount()
     {
-        $this->type_of_study_id = TypeOfStudy::first()->id;
-        $this->field_of_study_id = FieldOfStudy::where("type_of_study_id", $this->type_of_study_id)->orderBy("name")->first()->id ?? null;
+        $this->type_of_study_id = "all";
+        $this->field_of_study_id = "all";
+        $this->prescribed_specialization_id = "all";
 
-        $this->refresh();
-    }
-
-
-    public function remove_region(int $region_id)
-    {
-        $this->selected_regions = collect($this->selected_regions)
-            ->filter(fn($sr) => $sr['id'] != $region_id)
-            ->toArray();
-
-        $this->refresh();
-    }
-
-    public function remove_prescribed_specialization(int $prescribed_specialization_id)
-    {
-        $this->selected_prescribed_specializations = collect($this->selected_prescribed_specializations)
-            ->filter(fn($sps) => $sps['id'] != $prescribed_specialization_id)
-            ->toArray();
-
-        $this->refresh();
-    }
-
-    private function refresh()
-    {
-        $arc = $this->available_regions()->count();
-        if($arc > 0)
-            $this->region_id = $this->available_regions()->first()->id;
-        else{
-            $this->region_id = null;
-        }
-
-        $psc = $this->available_prescribed_specializations()->count();
-        if($psc > 0)
-            $this->prescribed_specialization_id = $this->available_prescribed_specializations()->first()->id;
-        else{
-            $this->prescribed_specialization_id = null;
-        }
-
-        $this->selected_regions_ids = collect($this->selected_prescribed_specializations)->map(fn($sr) => $sr['id'])->toArray();
-        $this->selected_prescribed_specializations_ids = collect($this->selected_prescribed_specializations)->map(fn($sr) => $sr['id'])->toArray();
-    }
-
-    private function available_regions()
-    {
-        return Region::whereNotIn('id', collect($this->selected_regions)->map(fn($sr) => $sr['id']))
-            ->orderBy("name");
-    }
-
-    private function available_prescribed_specializations()
-    {
-        $q = PrescribedSpecialization::join("field_of_studies", "prescribed_specializations.field_of_study_id", "=", "field_of_studies.id")
-            ->whereNotIn("prescribed_specializations.id", collect($this->selected_prescribed_specializations)->map(fn($sr) => $sr['id']));
-
-        if($this->field_of_study_id == null){
-            $q = $q->where(DB::raw("0"), "=", DB::raw("1"));
-        } else{
-
-            $q = $q->where("field_of_studies.id", $this->field_of_study_id);
-        }
-
-        $q = $q->orderBy("prescribed_specializations.code")
-            ->orderBy("prescribed_specializations.name")
-            ->select("prescribed_specializations.*");
-
-        return $q;
+        $this->regions = Region::orderBy("name")->get()->map(fn($reg) => [
+            'id' => $reg->id,
+            'name' => $reg->name,
+            'selected' => false
+        ])->toArray();
     }
 
     private function filtered_schools()
@@ -176,18 +85,34 @@ class FilterSchools extends Component
 
     private function filtered_schools_restrictions($q)
     {
-        if(count($this->selected_prescribed_specializations) > 0){
-            $q = $q
-                ->join("specializations", "schools.id", "=", "specializations.school_id")
+        if($this->type_of_study_id != "all" && $this->field_of_study_id == "all"){
+            $q = $q->join("specializations", "schools.id", "=", "specializations.school_id")
                 ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
-                ->whereIn("prescribed_specializations.id", collect($this->selected_prescribed_specializations)->map(fn($sr) => $sr['id']));
+                ->join("field_of_studies", "field_of_studies.id", "=", "prescribed_specializations.field_of_study_id")
+                ->join("type_of_studies", "type_of_studies.id", "=", "field_of_studies.type_of_study_id")
+                ->where("type_of_studies.id", $this->type_of_study_id);
+
+        } else if($this->type_of_study_id != "all" && $this->field_of_study_id != "all" && $this->prescribed_specialization_id == "all"){
+            $q = $q->join("specializations", "schools.id", "=", "specializations.school_id")
+                ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
+                ->join("field_of_studies", "field_of_studies.id", "=", "prescribed_specializations.field_of_study_id")
+                ->where("field_of_studies.id", $this->field_of_study_id);
+        } else if($this->prescribed_specialization_id != "all"){
+            $q = $q->join("specializations", "schools.id", "=", "specializations.school_id")
+                ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
+                ->where("prescribed_specializations.id", $this->prescribed_specialization_id);
         }
-        if(count($this->selected_regions) > 0){
-            $q = $q
-                ->join("districts", "schools.district_id", "=", "districts.id")
-                ->join("regions", "districts.region_id", "=", "regions.id")
-                ->whereIn("regions.id", collect($this->selected_regions)->map(fn($sr) => $sr['id']));
-        }
+
+        $selected_region_ids = collect($this->regions)
+            ->filter(fn($reg) => $reg['selected'])
+            ->map(fn($reg) => $reg['id'])
+            ->toArray();
+
+
+        $q = $q
+            ->join("districts", "schools.district_id", "=", "districts.id")
+            ->join("regions", "districts.region_id", "=", "regions.id")
+            ->whereIn("regions.id", $selected_region_ids);
 
         return $q;
     }
@@ -226,8 +151,10 @@ class FilterSchools extends Component
     {
         if($this->state == "FILTER"){
             return view('livewire.filter-schools', [
-                'regions' => $this->available_regions()->get(),
-                'prescribed_specializations' => $this->available_prescribed_specializations()->get(),
+                'prescribed_specializations' => PrescribedSpecialization::where("field_of_study_id", $this->field_of_study_id)
+                    ->orderBy("code")
+                    ->orderBy("name")
+                    ->get(),
                 'field_of_studies' => FieldOfStudy::where("type_of_study_id", $this->type_of_study_id)->get(),
                 'type_of_studies' => TypeOfStudy::all()
             ]);
