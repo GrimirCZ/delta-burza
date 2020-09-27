@@ -28,11 +28,11 @@
                 @endforeach
             </ul>
             <h1>Výstavy</h1>
-            <ul>
+            <ul class="ml-4">
                 @foreach($exhibitions as $exhibition)
                     <li class="list-disc">
                         <a href="{{url("/vystava/$exhibition->id")}}" class="link">
-                            {{$exhibition->date}} {{$exhibition->city}}
+                            {{format_date($exhibition->date)}} {{$exhibition->city}}
                             ({{$exhibition->name}}) -
                             @if($exhibition->school_count > 4)
                             @elseif($exhibition->school_count > 1)
@@ -41,30 +41,10 @@
                                 {{$exhibition->school_count}} škola
                             @endif
                         </a>
-
-                        <ul class="ml-4">
-                            @foreach($exhibition->registrations as $reg)
-                                @php
-                                    if(isset($reg)){
-                                        $sch = $reg->school;
-                                    }
-                                @endphp
-                                <li class="list-disc">
-                                    {{$sch->name}}
-                                    <ul>
-                                        @foreach($sch->specializations as $sp)
-                                            <li class="list-disc">{{$sp->prescribed_specialization->code}}
-                                                - {{$sp->prescribed_specialization->name}}
-                                                <br/>ŠVP: {{$sp->name}}</li>
-                                        @endforeach
-                                    </ul>
-                                </li>
-                            @endforeach
-                        </ul>
                     </li>
                 @endforeach
             </ul>
-            <button wire:click="show_filter" class="btn btn-primary">Zpět k filtrování</button>
+            <button wire:click="show_filter" class="btn btn-primary mt-6">Zpět k filtrování</button>
         </x-dashboard-card>
     </div>
 </div>
