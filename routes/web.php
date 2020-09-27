@@ -45,27 +45,33 @@ Route::get('/vystavy', ListExhibitions::class)->name("vystavy");
 Route::get('/vystavy/{region}', ListExhibitionsRegion::class);
 Route::get('/vystava/{exhibition}', ShowExhibition::class);
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
-Route::get('/obor/vytvorit', CreateSpecialization::class);
-Route::get('/obor/{specialization}/upravit', EditSpecialization::class);
-Route::delete('/obor/{specialization}/smazat', DeleteSpecialization::class);
-Route::get('/obor/{specialization}', ShowSpecialization::class);
 
-Route::get('/objednavka/vytvorit', CreateOrder::class);
 
-Route::get('/registrace/vytvorit', CreateRegistration::class);
-Route::get('/registrace/{registration}/upravit', EditRegistration::class);
+Route::middleware(['auth:sanctum', 'verified'])->group(function(){
+    Route::get('/obor/vytvorit', CreateSpecialization::class);
+    Route::get('/obor/{specialization}/upravit', EditSpecialization::class);
+    Route::delete('/obor/{specialization}/smazat', DeleteSpecialization::class);
 
-Route::get("/objednavka/{order}/zaplatit", PayOrder::class);
-Route::get("/objednavka/{order}", ShowOrder::class);
-Route::get("/faktura/{order}", InvoiceController::class);
+    Route::get('/objednavka/vytvorit', CreateOrder::class);
 
-Route::get('/skola/vytvorit', CreateSchool::class);
+    Route::get('/registrace/vytvorit', CreateRegistration::class);
+    Route::get('/registrace/{registration}/upravit', EditRegistration::class);
 
-Route::get('/skola/upravit', EditSchool::class);
+    Route::get("/objednavka/{order}/zaplatit", PayOrder::class);
+    Route::get("/objednavka/{order}", ShowOrder::class);
+    Route::get("/faktura/{order}", InvoiceController::class);
+
+    Route::get('/skola/vytvorit', CreateSchool::class);
+
+    Route::get('/skola/upravit', EditSchool::class);
+
+
+    Route::post("/obrazek/nahrat", "App\Http\Controllers\ImageController@nahrat");
+    Route::delete("/obrazek/{file}/smazat", "App\Http\Controllers\ImageController@smazat");
+});
+
 Route::get('/skola/{school}', ShowSchool::class);
-
-Route::post("/obrazek/nahrat", "App\Http\Controllers\ImageController@nahrat");
-Route::delete("/obrazek/{file}/smazat", "App\Http\Controllers\ImageController@smazat");
+Route::get('/obor/{specialization}', ShowSpecialization::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', DashboardController::class)->name('dashboard');
 

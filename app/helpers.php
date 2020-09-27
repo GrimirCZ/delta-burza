@@ -85,3 +85,10 @@ if(!function_exists('fill_number_to_length')){
         return str_pad($str, $length, "0", STR_PAD_LEFT);
     }
 }
+
+if(!function_exists("current_date_str")){
+    function current_date_str()
+    {
+        return (new Carbon())->toDateString();
+    }
+}

@@ -33,9 +33,14 @@
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Informace o škole
                     </h3>
-                    <a href="{{url("/skola/upravit")}}" class="btn btn-primary">
-                        Upravit informace
-                    </a>
+                    <div>
+                        <a href="{{url("/skola/".Auth::user()->school->id)}}" class="btn btn-primary mb-4 sm:mb-0 mr-0 sm:mr-4 inline-block">
+                            Zobrazaní pro žáky
+                        </a>
+                        <a href="{{url("/skola/upravit")}}" class="btn btn-primary">
+                            Upravit informace
+                        </a>
+                    </div>
                 </div>
                 <div>
                     <dl>
@@ -72,7 +77,7 @@
                                 Web
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                <a href="{{fix_url(Auth::User()->school->web)}}">
+                                <a href="{{fix_url(Auth::User()->school->web)}}" target="_blank">
                                     {{Auth::User()->school->web}}
                                 </a>
                             </dd>
@@ -97,10 +102,11 @@
                             <dt class="text-sm leading-5 font-medium text-gray-500">
                                 Adresa
                             </dt>
-                            s
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                <a href="http://maps.google.com/?q={{Auth::User()->school->address}}, {{Auth::User()->school->psc}} {{Auth::User()->school->city}}">
-                                    {{Auth::User()->school->address}}
+                                <a href="http://maps.google.com/?q={{Auth::user()->school->address}}, {{Auth::user()->school->psc}} {{Auth::user()->school->city}}"
+                                   target="_blank">
+                                    {{Auth::user()->school->address}}
+                                    , {{Auth::user()->school->psc}} {{Auth::user()->school->city}}
                                 </a>
                             </dd>
                         </div>
@@ -168,7 +174,7 @@
                         @foreach(Auth::user()->school->ordered_registrations()->get() as $registration)
                             <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                 <td class="px-8 py-5">
-                                    {{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
+                                    {{format_date($registration->exhibition->date)}} {{$registration->exhibition->city}}
                                     ({{$registration->exhibition->name}})
                                 </td>
                                 <td class="px-8 py-5">

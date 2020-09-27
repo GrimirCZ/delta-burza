@@ -126,12 +126,14 @@
                         </div>
                         <div class="mt-5 text-sm leading-5 text-gray-900 sm:mt-3">
                             {{--                                zobrazit jen pokud se kona dnes--}}
-                            <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
-                               class="btn text-sm text-center btn-primary">Online {{settings("morning_event_start")}}
-                                - {{settings("morning_event_end")}}</a>
-                            <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
-                               class="mt-4 text-sm sm:mt-0 sm:ml-2 text-center btn btn-primary">Online {{settings("evening_event_start")}}
-                                - {{settings("evening_event_end")}}</a>
+                            @if($registration->exhibition->date == current_date_str())
+                                <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
+                                   class="btn text-sm text-center btn-primary">Online {{settings("morning_event_start")}}
+                                    - {{settings("morning_event_end")}}</a>
+                                <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
+                                   class="mt-4 text-sm sm:mt-0 sm:ml-2 text-center btn btn-primary">Online {{settings("evening_event_start")}}
+                                    - {{settings("evening_event_end")}}</a>
+                            @endif
                         </div>
                     </div>
                 @endforeach
