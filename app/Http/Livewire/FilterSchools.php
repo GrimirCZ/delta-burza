@@ -34,6 +34,10 @@ class FilterSchools extends Component
     public function updated($name, $value)
     {
         if($name == "type_of_study_id"){
+            $this->field_of_study_id = FieldOfStudy::where("type_of_study_id", $this->type_of_study_id)->orderBy("name")->first()->id ?? null;
+
+            $this->refresh();
+        } else if($name == "field_of_study_id"){
             $this->refresh();
         }
     }
@@ -62,6 +66,7 @@ class FilterSchools extends Component
 
         $ps = PrescribedSpecialization::find($this->prescribed_specialization_id);
 
+
         array_push($this->selected_prescribed_specializations, [
             'id' => $ps->id,
             'code' => $ps->code,
@@ -81,9 +86,18 @@ class FilterSchools extends Component
         $this->state = "FILTER";
     }
 
+    public function clear_filter()
+    {
+        $this->selected_prescribed_specializations = [];
+        $this->selected_regions = [];
+
+        $this->refresh();
+    }
+
     public function mount()
     {
         $this->type_of_study_id = TypeOfStudy::first()->id;
+        $this->field_of_study_id = FieldOfStudy::where("type_of_study_id", $this->type_of_study_id)->orderBy("name")->first()->id ?? null;
 
         $this->refresh();
     }
@@ -109,8 +123,6 @@ class FilterSchools extends Component
 
     private function refresh()
     {
-        $this->field_of_study_id = FieldOfStudy::where("type_of_study_id", $this->type_of_study_id)->orderBy("name")->first()->id ?? null;
-
         $arc = $this->available_regions()->count();
         if($arc > 0)
             $this->region_id = $this->available_regions()->first()->id;

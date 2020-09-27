@@ -43,7 +43,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div
+                            <div>
                                 <label for="field_of_study">Typ studia</label>
                                 <select wire:model="field_of_study_id" name="field_of_study" id="field_of_study"
                                         class="block">
@@ -85,7 +85,10 @@
                 </div>
             </div>
             <div class="flex justify-around">
-                <button class="btn btn-primary" wire:click="show_filtered_schools">Zobraz školy</button>
+                <div>
+                    <button class="btn btn-primary" wire:click="clear_filter">Zrušit filtr</button>
+                    <button class="btn btn-primary" wire:click="show_filtered_schools">Zobraz školy</button>
+                </div>
             </div>
         </x-dashboard-card>
     </div>
