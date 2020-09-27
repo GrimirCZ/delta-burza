@@ -85,7 +85,7 @@
                                 </form>
                             @else
                                 <a href="{{url("/login")}}" class="btn bg-white text-header rounded-full font-freude">Vstup
-                                    střední pro školy</a>
+                                    pro střední školy</a>
                             @endif
                         </div>
                     </div>
