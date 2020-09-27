@@ -58,7 +58,7 @@ class CreateSpecialization extends Component
     function render()
     {
         return view('livewire.create-specialization', [
-            'prescribed_specializations' => PrescribedSpecialization::orderBy('code')->get()
+            'prescribed_specializations' => PrescribedSpecialization::orderBy('code')->orderBy('name')->get()
         ]);
     }
 }
