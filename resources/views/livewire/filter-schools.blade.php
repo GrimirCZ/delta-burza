@@ -58,8 +58,8 @@
             </div>
             <div class="flex justify-around mt-16">
                 <div>
-                    <button class="btn btn-primary" wire:click="clear_filter">Zrušit filtr</button>
-                    <button class="btn btn-primary" wire:click="show_filtered_schools">Zobraz školy</button>
+                    <button class="btn btn-primary" wire:click="clear_filter">Vyčistit filtr</button>
+                    <button class="btn btn-primary" wire:click="show_filtered_schools">Filtrovat</button>
                 </div>
             </div>
         </x-dashboard-card>
