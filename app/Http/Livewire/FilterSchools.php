@@ -17,8 +17,6 @@ class FilterSchools extends Component
     //SHOW => show filtered schools
     public string $state = "FILTER";
 
-    protected $queryString = ['selected_regions', 'selected_prescribed_specializations'];
-
     public ?array $selected_regions_ids = [];
     public ?array $selected_regions = [];
     public ?int $region_id = null;
