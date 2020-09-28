@@ -5,6 +5,10 @@
         </h2>
     </x-slot>
 
+    <x-own-header>
+        Informace pro střední školy
+    </x-own-header>
+
     <div class="py-12">
         <x-dashboard-card>
             <p>Tak se nám ten nábor na střední školy letos "malinko" komplikuje. Vypadá to,
