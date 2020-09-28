@@ -76,7 +76,7 @@
                                 </td>
                                 <td class="py-3 text-right">
                                     <a href="/obor/{{$specialization->id}}"
-                                       class="btn bg-teal-400 text-white text-sm inline-block">Více informací o
+                                       class="btn btn-primary text-white text-sm inline-block">Více informací o
                                         oboru</a>
                                 </td>
                             </tr>
