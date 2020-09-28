@@ -134,7 +134,7 @@
                 <div>
                     <table class="table-fixed min-w-full text-gray-500">
                         <tbody>
-                        @foreach(Auth::User()->school->ordered_specializations() as $specialization)
+                        @foreach(Auth::User()->school->ordered_specializations()->get() as $specialization)
                             <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                 <td class="px-8 py-5">
                                     {{$specialization->prescribed_specialization->code}}

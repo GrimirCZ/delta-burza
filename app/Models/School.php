@@ -63,8 +63,7 @@ class School extends Model
             ->orderBy("prescribed_specializations.code")
             ->orderBy("prescribed_specializations.name")
             ->orderBy("specializations.name")
-            ->select("specializations.*")
-            ->get();
+            ->select("specializations.*");
     }
 
 

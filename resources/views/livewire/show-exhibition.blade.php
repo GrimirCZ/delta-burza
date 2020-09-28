@@ -19,7 +19,7 @@
 
                                 <table class="table w-full mt-5 text-sm text-gray-600">
                                     <tbody class="divide-y divide-gray-200">
-                                        @foreach($registration->school->ordered_specializations() as $specialization)
+                                        @foreach($registration->school->ordered_specializations()->get() as $specialization)
                                             <tr>
                                                 <td class="py-3">
                                                     <a href="/obor/{{$specialization->id}}">

@@ -5,8 +5,10 @@
             wire:click="show_filter"
             class="inline-block text-header hover:text-teal-400 transition duration-1000 py-4 mx-5"
         >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 inline-block">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                 class="h-5 inline-block">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
             </svg>
             <span class="align-middle">
                 Upravit filtr škol
@@ -25,7 +27,14 @@
 
                     <table class="table w-full mt-5 text-sm text-gray-600">
                         <tbody class="divide-y divide-gray-200">
-                        @foreach($school->ordered_specializations() as $specialization)
+                        @php
+                            if($prescribed_specialization_id == "all"){
+                                $specializations = $school->ordered_specializations()->get();
+                            }else{
+                                $specializations = $school->ordered_specializations()->where("prescribed_specialization_id", $prescribed_specialization_id)->get();
+                            }
+                        @endphp
+                        @foreach($specializations as $specialization)
                             <tr>
                                 <td class="py-3">
                                     <a href="/obor/{{$specialization->id}}">
@@ -35,7 +44,9 @@
                                     </a>
                                 </td>
                                 <td class="py-3 text-right">
-                                    <a href="/obor/{{$specialization->id}}" class="btn bg-teal-400 text-white text-sm inline-block">Více informací o oboru</a>
+                                    <a href="/obor/{{$specialization->id}}"
+                                       class="btn bg-teal-400 text-white text-sm inline-block">Více informací o
+                                        oboru</a>
                                 </td>
                             </tr>
                         @endforeach

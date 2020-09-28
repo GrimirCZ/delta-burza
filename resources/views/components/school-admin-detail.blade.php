@@ -61,7 +61,7 @@
         <div>
             <h2 class="text-2xl">Obory <a href="/obor/vytvorit" class="link text-base">přidat obor</a></h2>
             <ul class="mt-4 ml-4 sm:ml-8">
-                @foreach($school->ordered_specializations() as $specialization)
+                @foreach($school->ordered_specializations()->get() as $specialization)
                     <li class="list-disc">
                         <a href="/obor/{{$specialization->id}}">{{$specialization->prescribed_specialization->code}}
                             - {{$specialization->prescribed_specialization->name}}</a><br/>
