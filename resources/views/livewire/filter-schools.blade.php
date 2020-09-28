@@ -118,15 +118,18 @@
                         </div>
                     @endforeach
                 </div>
-                @if($is_no_region_selected)<span class="no-school-eligible-error mt-4">Vašemu vyhledávání neodpovídá žádná škola. Vyberte prosím některý z krajů.</span>@endif
+
+                @if($is_no_region_selected)
+                    <div class="text-red-500 mt-10"> Vyberte prosím některý z krajů.</div>
+                @endif
             </div>
         </x-dashboard-card>
 
         <div class="max-w-7xl mx-auto pt-5 sm:px-6 lg:px-8 w-100">
             <button class="btn btn-primary" wire:click="show_filtered_schools">Filtrovat</button>
-            <button wire:click="clear_filter" class="inline-block text-header hover:text-teal-400 transition duration-1000 py-4 mx-5">
+            <button wire:click="clear_filter" class="inline-block text-header hover:text-teal-400 transition duration-1000 py-4 mx-5 focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 inline-block">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
                 <span class="align-middle">
                     Vyčistit filtr
