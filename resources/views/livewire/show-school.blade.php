@@ -124,7 +124,7 @@
                                     {{format_date($registration->exhibition->date)}}
                                 </div>
                                 <div class="text-lg font-light">
-                                    <span class="font-black">{{$registration->exhibition->district->name}}</span>
+                                    <span class="font-black">{{$registration->exhibition->city}}</span>
                                     ({{$registration->exhibition->name}})
                                 </div>
                             </a>
