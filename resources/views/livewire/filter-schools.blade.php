@@ -3,9 +3,9 @@
         Fitlrovat školy
     </x-own-header>
 
-    <div class="pb-12 pt-3">
-        <div class="max-w-7xl mx-auto pt-0 pb-10 sm:px-6 lg:px-8 w-100 flex  text-gray-700">
-            <div class="mr-5">
+    <div class="pb-12 pt-3 mx-3">
+        <div class="max-w-7xl mx-auto pt-0 pb-10 sm:px-6 lg:px-8 w-100 text-gray-700">
+            <div class="mr-5 mb-3 inline-block">
                 <div>Typ studia</div>
                 <div class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#aeaeae" class="h-7 inline-block ml-2">
@@ -35,7 +35,7 @@
                 </div>
             </div>
             @if($type_of_study_id != "all")
-                <div class="mr-5">
+                <div class="mr-5 mb-3 inline-block">
                     <div>Zaměření</div>
                     <div class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#aeaeae" class="h-6 inline-block ml-2">
@@ -65,7 +65,7 @@
                 </div>
             @endif
             @if($field_of_study_id != "all")
-                <div class="mr-5">
+                <div class="mr-5 mb-3 inline-block">
                     <div>Obor</div>
                     <div class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#aeaeae" class="h-6 inline-block ml-2">
