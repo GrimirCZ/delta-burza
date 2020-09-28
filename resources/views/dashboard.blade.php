@@ -191,7 +191,7 @@
                                     ({{$registration->exhibition->name}})
                                 </td>
                                 <td class="px-8 py-5">
-                                    @if(!$registration->is_disabled)
+                                    @if($registration->order_registration->fulfilled_at != null)
                                         <span class="text-green-700 font-semibold">Zaplaceno</span>
                                     @else
                                         <span class="text-red-700 font-semibold">Nezaplaceno</span>

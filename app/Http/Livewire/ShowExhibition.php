@@ -21,6 +21,11 @@ class ShowExhibition extends Component
             'registrations' => $this->exhibition
                 ->registrations()
                 ->join("schools", "registrations.school_id", "=", "schools.id")
+                ->join("order_registration", "order_registration.registration_id", "=", "registrations.id")
+                ->where(function($q){
+                    $q->whereNotNull("order_registration.fulfilled_at")
+                        ->orWhere("schools.is_trustworthy", true);
+                })
                 ->orderBy("schools.name")
                 ->select("registrations.*")
                 ->get()

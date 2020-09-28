@@ -86,7 +86,7 @@
                             <a href="/vystava/{{$registration->exhibition->id}}">{{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
                                 ({{$registration->exhibition->name}})</a>
 
-                            @if(!$registration->is_disabled)
+                            @if($registration->order_registration->fulfilled_at != null)
                                 <span class="text-green-700 font-semibold">Zaplaceno</span>
                             @else
                                 <span class="text-red-700 font-semibold">Nezaplaceno</span>

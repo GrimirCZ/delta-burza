@@ -124,10 +124,15 @@ class FilterSchools extends Component
         $q = DB::table("exhibitions")
             ->join("registrations", "registrations.exhibition_id", "=", "exhibitions.id")
             ->join("schools", "registrations.school_id", "=", "schools.id")
+            ->join("order_registration", "order_registration.registration_id", "=", "registrations.id")
             ->whereIn("schools.id", function($q){
                 $q->select("schools.id")
                     ->from("schools");
                 $q = $this->filtered_schools_restrictions($q);
+            })
+            ->where(function($q){
+                $q->whereNotNull("order_registration.fulfilled_at")
+                    ->orWhere("schools.is_trustworthy", true);
             })
             ->select(DB::raw("exhibitions.id as exhibition_id"), DB::raw("count(schools.id) as school_count"))
             ->groupBy("exhibitions.id");

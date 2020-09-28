@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class School extends Model
 {
-    protected $fillable = ['address', 'city', 'psc', 'ico', 'izo', 'name', 'email', 'web', 'phone', 'description', 'district_id'];
+    protected $fillable = ['address', 'city', 'psc', 'ico', 'izo', 'name', 'email', 'web', 'phone', 'description', 'is_trustworthy', 'district_id'];
 
     public function users()
     {
@@ -54,6 +54,18 @@ class School extends Model
             ->join("exhibitions", "exhibitions.id", "=", "registrations.exhibition_id")
             ->orderBy("exhibitions.date")
             ->select("registrations.*");
+    }
+
+
+    public function enabled_registrations()
+    {
+        return $this->ordered_registrations()
+            ->join("schools", "registrations.school_id", "=", "schools.id")
+            ->join("order_registration", "order_registration.registration_id", "=", "registrations.id")
+            ->where(function($q){
+                $q->whereNotNull("order_registration.fulfilled_at")
+                    ->orWhere("schools.is_trustworthy", true);
+            });
     }
 
     public function ordered_specializations()

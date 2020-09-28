@@ -10,8 +10,7 @@ class Registration extends Model
         'school_id',
         'exhibition_id',
         'morning_event',
-        'evening_event',
-        'is_disabled'];
+        'evening_event'];
 
     public function exhibition()
     {
@@ -31,5 +30,10 @@ class Registration extends Model
     public function order_registration()
     {
         return $this->hasOne(OrderRegistration::class);
+    }
+
+    public function is_enabled()
+    {
+        return $this->order_registration->fulfilled_at != null || $this->school->is_trustworthy;
     }
 }
