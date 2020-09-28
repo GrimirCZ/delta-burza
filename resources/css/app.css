@@ -75,3 +75,30 @@
 .header-btn-border {
     box-shadow: 0 0 0 5px #004a6d80;
 }
+
+.fix-icons {
+    margin: 5px 0 5px 10px;
+}
+
+.ms-choice {
+    background-color: transparent !important;
+    border: none !important;
+    outline: none;
+    height: 20px;
+}
+
+.ms-choice > span {
+    padding: 9px 10px;
+}
+
+.ms-choice:focus {
+    outline: none;
+}
+
+.max-w-200px {
+    max-width: 200px;
+}
+
+.w-256px {
+    width: 256px;
+}
