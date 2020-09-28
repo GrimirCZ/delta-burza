@@ -1,10 +1,4 @@
 <div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Informace pro žáky ZŠ
-        </h2>
-    </x-slot>
-
     <x-own-header>
         Informace pro žáky ZŠ
     </x-own-header>

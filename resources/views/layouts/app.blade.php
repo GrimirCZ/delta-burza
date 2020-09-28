@@ -66,9 +66,13 @@
                                href="{{route("info_zs")}}">
                                 Pro žáky ZŠ
                             </a>
-                            <a class="items-center px-1 pt-1 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("info_ss")}}">
                                 Pro střední školy
+                            </a>
+                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                               href="{{route("o_nas")}}">
+                                O nás
                             </a>
                         </div>
                         <div class="inline-flex">
@@ -121,13 +125,21 @@
                                 <div class="relative flex-1 px-4 sm:px-6 text-gray-700">
                                     <div class="absolute inset-0 px-4 sm:px-6">
                                         <a href="{{route("vystavy")}}"
-                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">Výstavy</a>
+                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
+                                            Výstavy
+                                        </a>
                                         <a href="{{route("info_zs")}}"
-                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">Pro
-                                            žáky ZŠ</a>
+                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
+                                            Pro žáky ZŠ
+                                        </a>
                                         <a href="{{route("info_ss")}}"
-                                           class="block hover:text-blue-400 py-3 font-freude">Pro
-                                            střední školy</a>
+                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
+                                            Pro střední školy
+                                        </a>
+                                        <a href="{{route("o_nas")}}"
+                                           class="block hover:text-blue-400 py-3 font-freude">
+                                            O nás
+                                        </a>
 
 
                                         <div class="mt-8">

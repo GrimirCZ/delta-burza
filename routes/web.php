@@ -23,6 +23,7 @@ use App\Http\Livewire\ShowSchool;
 use App\Http\Livewire\ShowSpecialization;
 use App\Http\Livewire\CreateSpecialization;
 use App\Http\Livewire\TermsOfUse;
+use App\Http\Livewire\InfoAbout;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -67,6 +68,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/skola/vytvorit', CreateSchool::class);
 
     Route::get('/skola/upravit', EditSchool::class);
+
+    Route::get('/o-nas', InfoAbout::class)->name("o_nas");
 
 
     Route::post("/obrazek/nahrat", "App\Http\Controllers\ImageController@nahrat");
