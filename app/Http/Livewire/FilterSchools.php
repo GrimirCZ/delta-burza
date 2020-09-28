@@ -27,7 +27,7 @@ class FilterSchools extends Component
     public ?string  $type_of_study_id = "all";
     public ?string  $field_of_study_id = "all";
 
-    public bool $is_no_region_selected = true;
+    public bool $is_no_region_selected = false;
 
     public function updated($name, $value)
     {
@@ -36,13 +36,15 @@ class FilterSchools extends Component
         } else if($name == "field_of_study_id"){
             $this->prescribed_specialization_id = "all";
         } else if(str_starts_with($name, "regions")){
-            $this->is_no_region_selected = collect($this->regions)
-                ->every(fn($reg) => !$reg['selected']);
+            $this->is_no_region_selected = false;
         }
     }
 
     public function show_filtered_schools()
     {
+        $this->is_no_region_selected = collect($this->regions)
+            ->every(fn($reg) => !$reg['selected']);
+
         if($this->is_no_region_selected){
             return;
         }
