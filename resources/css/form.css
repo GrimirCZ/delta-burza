@@ -49,3 +49,7 @@
 .error {
     @apply text-red-500 text-xs italic block;
 }
+
+.no-school-eligible-error {
+    @apply text-red-500 text-lg font-bold italic block;
+}

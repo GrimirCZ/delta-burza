@@ -7,7 +7,7 @@
         <x-dashboard-card>
             <div class="pt-6">
                 Objednávku zaplaťte bankovním převodem.<br />
-                Číslo účtu: 101831946/0300<br />
+                Číslo účtu: <b>101831946/0300</b><br />
                 Variabilní symbol: <b>2020{{fill_number_to_length($order->id, 4)}}</b><br />
                 Částka: <b>{{$order->price()}},- Kč</b><br />
                 Datum splatnosti: <b>{{format_date($order->due_date)}}</b>.<br />

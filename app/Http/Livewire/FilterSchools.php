@@ -10,6 +10,8 @@ use App\Models\School;
 use App\Models\Specialization;
 use App\Models\TypeOfStudy;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
 use Livewire\Component;
 
 class FilterSchools extends Component
@@ -25,17 +27,26 @@ class FilterSchools extends Component
     public ?string  $type_of_study_id = "all";
     public ?string  $field_of_study_id = "all";
 
+    public bool $is_no_region_selected = true;
+
     public function updated($name, $value)
     {
         if($name == "type_of_study_id"){
             $this->field_of_study_id = "all";
         } else if($name == "field_of_study_id"){
             $this->prescribed_specialization_id = "all";
+        } else if(str_starts_with($name, "regions")){
+            $this->is_no_region_selected = collect($this->regions)
+                ->every(fn($reg) => !$reg['selected']);
         }
     }
 
     public function show_filtered_schools()
     {
+        if($this->is_no_region_selected){
+            return;
+        }
+
         $this->state = "SHOW";
     }
 

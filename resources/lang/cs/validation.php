@@ -118,7 +118,9 @@ return [
     'url' => 'Toto pole musí obsahovat platnou url, tj. začínat na http:// nebo https://.',
     'uuid' => 'The :attribute must be a valid UUID.',
 
-    /*
+    'no_eligible_school' => "",
+
+   /*
     |--------------------------------------------------------------------------
     | Custom Validation Language Lines
     |--------------------------------------------------------------------------

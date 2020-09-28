@@ -118,6 +118,7 @@
                         </div>
                     @endforeach
                 </div>
+                @if($is_no_region_selected)<span class="no-school-eligible-error mt-4">Vašemu vyhledávání neodpovídá žádná škola. Vyberte prosím některý z krajů.</span>@endif
             </div>
         </x-dashboard-card>
 
