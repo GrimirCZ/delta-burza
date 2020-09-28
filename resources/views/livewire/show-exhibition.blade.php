@@ -8,7 +8,7 @@
         <div class="max-w-7xl mx-auto py-10 px-2 sm:px-6 lg:px-8 w-100">
             <div>
                 @if($exhibition->registrations->isEmpty())
-                    Této výstavy se neúčastní žádné školy
+                    Do této výstavy se zatím žádná škola nepřihlásila. Vaše škola může být první.
                 @else
                     <div class="grid md:grid-cols-2 gap-3">
                         @foreach($registrations as $registration)
@@ -19,20 +19,22 @@
 
                                 <table class="table w-full mt-5 text-sm text-gray-600">
                                     <tbody class="divide-y divide-gray-200">
-                                        @foreach($registration->school->ordered_specializations()->get() as $specialization)
-                                            <tr>
-                                                <td class="py-3">
-                                                    <a href="/obor/{{$specialization->id}}">
-                                                        {{$specialization->prescribed_specialization->code}}
-                                                        - {{$specialization->prescribed_specialization->name}} <br/>
-                                                        <i>(ŠVP: {{$specialization->name}})</i>
-                                                    </a>
-                                                </td>
-                                                <td class="py-3 text-right">
-                                                    <a href="/obor/{{$specialization->id}}" class="btn bg-teal-400 text-white text-sm inline-block">Více informací o oboru</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
+                                    @foreach($registration->school->ordered_specializations()->get() as $specialization)
+                                        <tr>
+                                            <td class="py-3">
+                                                <a href="/obor/{{$specialization->id}}">
+                                                    {{$specialization->prescribed_specialization->code}}
+                                                    - {{$specialization->prescribed_specialization->name}} <br/>
+                                                    <i>(ŠVP: {{$specialization->name}})</i>
+                                                </a>
+                                            </td>
+                                            <td class="py-3 text-right">
+                                                <a href="/obor/{{$specialization->id}}"
+                                                   class="btn bg-teal-400 text-white text-sm inline-block">Více
+                                                    informací o oboru</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
 
@@ -51,12 +53,12 @@
                                     </a>
                                 @else
                                     <span
-                                       class="btn text-sm text-center mt-13 block bg-gray-200 text-gray-400">
+                                        class="btn text-sm text-center mt-13 block bg-gray-200 text-gray-400">
                                         Připojit se online {{settings("morning_event_start")}}
                                         - {{settings("morning_event_end")}}
                                     </span>
                                     <span
-                                       class="btn text-sm text-center mt-1 block bg-gray-200 text-gray-400">
+                                        class="btn text-sm text-center mt-1 block bg-gray-200 text-gray-400">
                                         Připojit se online {{settings("evening_event_start")}}
                                         - {{settings("evening_event_end")}}
                                     </span>
