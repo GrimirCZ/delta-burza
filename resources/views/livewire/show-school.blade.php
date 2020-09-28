@@ -87,7 +87,7 @@
 
                         @if($school->brojure())
                             <div class="mt-10">
-                                <a href="{{asset('storage/' . $school->brojure())}}" class="btn bg-teal-400 text-white w-100 block text-center">Informační brožura</a>
+                                <a href="{{asset('storage/' . $school->brojure())}}" class="btn bg-teal-400 text-white w-100 block text-center">Informační brožura - ke stažení</a>
                             </div>
                         @endif
                     </div>

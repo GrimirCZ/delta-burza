@@ -191,9 +191,7 @@
                                     ({{$registration->exhibition->name}})
                                 </td>
                                 <td class="px-8 py-5">
-                                    @if($registration->order_registration->fulfilled_at != null)
-                                        <span class="text-green-700 font-semibold">Zaplaceno</span>
-                                    @else
+                                    @if(!$registration->order_registration->fulfilled_at != null)
                                         <span class="text-red-700 font-semibold">Nezaplaceno</span>
                                     @endif
                                 </td>
@@ -239,9 +237,7 @@
                                     </a>
                                 </td>
                                 <td class="px-8 py-5">
-                                    @if($order->fulfilled())
-                                        <span class="text-green-700 font-semibold">Zaplaceno</span>
-                                    @else
+                                    @if(!$order->fulfilled())
                                         <span class="text-red-700 font-semibold">Nezaplaceno</span>
                                     @endif
                                 </td>
