@@ -36,7 +36,7 @@
     <body>
         <div class="min-h-screen bg-gray-100">
             <nav wire:id="ZiuiHGx76v8LUg3bcjyP" x-data="{ open: false }"
-                 class="bg-header border-b border-gray-100 p-7 pb-5 header-image">
+                 class="bg-header border-b border-gray-100 py-7 px-3 md:px-7 pb-5 header-image">
                 <!-- Primary Navigation Menu -->
 
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-white">
@@ -57,20 +57,20 @@
 
                     <div class="justify-between items-center hidden sm:flex">
                         <div class="inline-flex">
-                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("vystavy")}}">
                                 Výstavy
                             </a>
 
-                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("info_zs")}}">
                                 Pro žáky ZŠ
                             </a>
-                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("info_ss")}}">
                                 Pro střední školy
                             </a>
-                            <a class="items-center px-1 pt-1 mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("o_nas")}}">
                                 O nás
                             </a>
