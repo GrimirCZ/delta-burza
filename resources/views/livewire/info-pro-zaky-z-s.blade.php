@@ -5,6 +5,10 @@
         </h2>
     </x-slot>
 
+    <x-own-header>
+        Informace pro žáky ZŠ
+    </x-own-header>
+
     <div class="py-12">
         <x-dashboard-card>
             <p>Tak to vypadá, že kvůli COVIDu budou letos prezenční výstavy středních škol

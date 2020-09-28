@@ -1,6 +1,9 @@
 {{-- You can change this template using File > Settings > Editor > File and Code Templates > Code > Laravel Ideal View --}}
 <div>
-    <div class="max-w-7xl mx-auto pt-5 pb-3 px-2 sm:px-6 lg:px-8 w-100 text-right">
+    <header class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-100 pt-8 flex justify-between">
+        <div class="inline-block text-1xl font-light text-2xl md:text-3xl text-gray-800">
+            Fitlrovat školy
+        </div>
         <button
             wire:click="show_filter"
             class="inline-block text-header hover:text-teal-400 transition duration-1000 py-4 mx-5"
@@ -14,7 +17,8 @@
                 Upravit filtr škol
             </span>
         </button>
-    </div>
+    </header>
+
 
     <div class="max-w-7xl mx-auto pb-10 px-2 sm:px-6 lg:px-8 w-100">
         <h1 class="text-2xl ml-3 mb-3">Školy</h1>
