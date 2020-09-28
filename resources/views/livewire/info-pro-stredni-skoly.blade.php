@@ -83,7 +83,7 @@
                 nebude odkaz na vaše on-line schůzky veřejně aktivní. (Doporučujeme platit s
                 předstihem aspoň 3 pracovní dny před konáním první výstavy.)</p>
 
-            <h2 class="header">Kontakty & technická podpora:</h2>
+            <h2 class="header">Kontakty & technická podpora</h2>
             <p>
             Email: <a href="mailto:jiri.formanek@delta-skola.cz" class="link">jiri.formanek@delta-skola.cz</a> (v předmětu, prosím, úvádějte "BurzaŠkol.Online") <br>
             Telefon: <a href="tel:466611106" class="link">466 611 106</a><br>
