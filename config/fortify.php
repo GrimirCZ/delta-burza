@@ -72,6 +72,8 @@ return [
         'login' => null,
     ],
 
+    'email' => env("FORTIFY_EMAIL", "info@burzaskol.online"),
+
     /*
     |--------------------------------------------------------------------------
     | Features
