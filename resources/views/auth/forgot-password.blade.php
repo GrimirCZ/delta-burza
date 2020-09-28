@@ -5,7 +5,7 @@
         </x-slot>
 
         <div class="mb-4 text-sm text-gray-600">
-            Zapomenuli jste heslo? Nevadí. Napište nám prosím vaší emailovou adresu a my vám zašleme odkaz na resetování hesla.
+            Zapomenuli jste heslo? Nevadí. Napište nám prosím vaší emailovou adresu a my vám zašleme odkaz na změnu hesla.
         </div>
 
         @if (session('status'))
