@@ -107,3 +107,9 @@
     max-width: 700px;
     max-height: 700px;
 }
+
+.btn-disabled {
+    background-color: #e5e7eb;
+    color: #9fa6b2;
+    cursor: default;
+}

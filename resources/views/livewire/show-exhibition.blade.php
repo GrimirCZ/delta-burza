@@ -58,12 +58,12 @@
                                     </a>
                                 @else
                                     <span
-                                        class="btn text-sm text-center mt-13 block bg-gray-200 text-gray-400">
+                                        class="btn text-sm text-center mt-13 block btn-disabled">
                                         Připojit se online {{settings("morning_event_start")}}
                                         - {{settings("morning_event_end")}}
                                     </span>
                                     <span
-                                        class="btn text-sm text-center mt-1 block bg-gray-200 text-gray-400">
+                                        class="btn text-sm text-center mt-1 block btn-disabled">
                                         Připojit se online {{settings("evening_event_start")}}
                                         - {{settings("evening_event_end")}}
                                     </span>
