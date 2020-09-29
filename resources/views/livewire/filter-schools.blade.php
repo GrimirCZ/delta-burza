@@ -126,7 +126,7 @@
         </x-dashboard-card>
 
         <div class="max-w-7xl mx-auto pt-5 sm:px-6 lg:px-8 w-100">
-            <button class="btn btn-primary" wire:click="show_filtered_schools">Filtrovat</button>
+            <button class="btn btn-primary" wire:click="show_filtered_schools">Zobrazit školy</button>
             <button wire:click="clear_filter" class="inline-block text-header hover:text-teal-400 transition duration-1000 py-4 mx-5 focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 inline-block">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
