@@ -108,6 +108,10 @@
     max-height: 700px;
 }
 
+.btn {
+    display: inline-block;
+}
+
 .btn-disabled {
     background-color: #e5e7eb;
     color: #9fa6b2;
