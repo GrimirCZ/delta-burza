@@ -42,6 +42,7 @@ Route::get('/', 'App\Http\Controllers\WelcomeController');
 Route::get("/info_pro_stredni_skoly", InfoProStredniSkoly::class)->name("info_ss");
 Route::get("/info_pro_zaky_zs", InfoProZakyZS::class)->name("info_zs");
 Route::get("/obchodni_podminky", TermsOfUse::class)->name("obchodni_podminky");
+Route::get('/o-nas', InfoAbout::class)->name("o_nas");
 
 Route::get('/vystavy', ListExhibitions::class)->name("vystavy");
 Route::get('/vystavy/{region}', ListExhibitionsRegion::class);
@@ -68,9 +69,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/skola/vytvorit', CreateSchool::class);
 
     Route::get('/skola/upravit', EditSchool::class);
-
-    Route::get('/o-nas', InfoAbout::class)->name("o_nas");
-
 
     Route::post("/obrazek/nahrat", "App\Http\Controllers\ImageController@nahrat");
     Route::delete("/obrazek/{file}/smazat", "App\Http\Controllers\ImageController@smazat");
