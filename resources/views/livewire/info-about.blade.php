@@ -34,11 +34,11 @@
 
             <div class="mt-5"></div>
 
-            <h3 class="subheader">Kontakty & technická podpora:</h3>
+            <h3 class="subheader">Kontakty & technická podpora</h3>
             <p>
-                mail: jiri.formanek@delta-skola.cz (v předmětu, prosím, úvádějte "BurzaŠkol.Online")<br>
-                tel.: 466 611 106<br>
-                on-line schůzka: https://bit.ly/36eksH3
+                Email: <a href="mailto:jiri.formanek@delta-skola.cz" class="link">jiri.formanek@delta-skola.cz</a> (v předmětu, prosím, úvádějte "BurzaŠkol.Online") <br>
+                Telefon: <a href="tel:466611106" class="link">466 611 106</a><br>
+                On-line schůzka: <a href="https://bit.ly/36eksH3" class="link">https://bit.ly/36eksH3</a> <br>
             </p>
         </x-dashboard-card>
     </div>
