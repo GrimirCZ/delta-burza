@@ -5,7 +5,7 @@
     </x-own-header>
 
     <div>
-        <div class="max-w-7xl mx-auto py-10 px-2 sm:px-6 lg:px-8 w-100">
+        <div class="max-w-7xl mx-auto pt-0 pb-10 px-2 sm:px-6 lg:px-8 w-100">
             <div class="py-10">
                 @if($exhibition->registrations->isEmpty())
                     <div class="text-center text-gray-400">
