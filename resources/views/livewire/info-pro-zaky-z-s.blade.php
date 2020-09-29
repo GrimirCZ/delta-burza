@@ -10,7 +10,7 @@
                 asi zrušené. Chceme vám pomoci s výběrem střední
                 školy aspoň pomocí technologií a výstavy udělat online. Velká většina z vás
                 zažila letos na jaře nějakou formu on-line výuky ať už pomocí Microsoft Teamsů,
-                Google Sheetsů nebo třeba technologií Zoom. Pojďte si pomocí stejných
+                Google Meetsů nebo třeba technologií Zoom. Pojďte si pomocí stejných
                 technologií prohlédnout své budoucí školy a on-line si popovídat s jejich
                 zástupci.
             </p>

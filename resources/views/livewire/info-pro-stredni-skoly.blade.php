@@ -10,7 +10,7 @@
                 moc nadějně to nevypadá ani s klasickými dny otevřených dveří.</p>
             <p>Naši studenti však opět překvapili a naprogramovali portál pro burzy škol online.</p>
             <p>Využili toho, že v podstatě všechny školy byly na jaře donuceny k zavedení
-                nějaké formy dálkové výuky a vyzkoušely si buď Microsoft Teams, Google Sheets,
+                nějaké formy dálkové výuky a vyzkoušely si buď Microsoft Teams, Google Meets,
                 Zoom nebo něco podobného. No a proč to samé nevyužít pro on-line výstavy?</p>
             <p>Žáci základních škol a jejich rodiče jsou připraveni, že budou v určité termíny
                 vybírat, co dále po základce. Střední školy byly připraveny, že budou v ty samé
