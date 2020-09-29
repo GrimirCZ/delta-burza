@@ -30,9 +30,9 @@
             </p>
 
             <div class="text-center my-10">
-                <img src="/images/students.jpg" alt="Fotka studentů" class="about-us-img inline-block">
+                <img src="/images/students.jpg" alt="Fotka studentů" class="w-full about-us-img inline-block">
             </div>
-            
+
             <h3 class="text-xl mt-5 text-black pt-5 pb-2">Kontakty & technická podpora</h3>
             <p class="">
                 Email: <a href="mailto:jiri.formanek@delta-skola.cz" class="link">jiri.formanek@delta-skola.cz</a> (v předmětu, prosím, úvádějte "BurzaŠkol.Online") <br>
