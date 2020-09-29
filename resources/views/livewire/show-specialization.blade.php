@@ -1,5 +1,5 @@
 <div>
-    <header class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-100 pt-8">
+    <header class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-100 pt-8 mx-3">
         <div class="top text-gray-600">
             {{$specialization->prescribed_specialization->code}} {{$specialization->prescribed_specialization->name}}
         </div>
@@ -12,7 +12,7 @@
     </header>
 
 
-    <div class="mt-10">
+    <div class="mt-10 mx-3">
         <x-dashboard-card>
             <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 w-100 default-css">
                 {!! $specialization->description !!}
