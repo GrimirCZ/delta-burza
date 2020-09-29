@@ -1,13 +1,11 @@
 <div>
     <div class="flex flex-col md:flex-row justify-between max-w-7xl mx-auto py-10 pb-0 px-2 sm:px-6 lg:px-8 w-100 items-center">
-        <div class="inline-block order-1">
+        <div class="inline-block order-1 w-full md:w-auto">
             <div class="top text-gray-600">{{$school->district->name}}</div>
             <h1 class="font-light text-3xl text-gray-800">{{$school->name}}</h1>
         </div>
-        <div class="inline-block md:order-2 text-left w-full mb-10 md:mb-0 md:w-auto">
-            <img src="https://burzaskol.online/storage//logos/p34JuDG7Ehip7CRqqpChXU4w3u7LmQYUXfKPI7PF.png" class="h-8" alt="Logo {{$school->name}}">
-
-            <!--  <img src="{{asset('storage/' . $school->logo())}}" class="h-8" alt="Logo {{$school->name}}"> -->
+        <div class="inline-block md:order-2 text-left w-full md:w-auto mb-10 md:mb-0">
+            <img src="{{asset('storage/' . $school->logo())}}" class="h-8" alt="Logo {{$school->name}}">
         </div>
     </div>
 
