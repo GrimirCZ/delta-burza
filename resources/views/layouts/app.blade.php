@@ -57,38 +57,38 @@
 
                     <div class="justify-between items-center hidden sm:flex">
                         <div class="inline-flex">
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-black"
                                href="{{route("vystavy")}}">
                                 Výstavy
                             </a>
 
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-black"
                                href="{{route("info_zs")}}">
                                 Pro žáky ZŠ
                             </a>
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-black"
                                href="{{route("info_ss")}}">
                                 Pro střední školy
                             </a>
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-black"
                                href="{{route("o_nas")}}">
                                 O nás
                             </a>
                         </div>
                         <div class="inline-flex">
                             @if(Auth::check())
-                                <a class="mr-6 btn bg-white text-header font-freude header-btn-border"
+                                <a class="mr-6 btn bg-white text-header font-black header-btn-border"
                                    href="/dashboard">
                                     Profil
                                 </a>
                                 <form action="{{url("logout")}}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn bg-white text-header font-freude header-btn-border">
+                                    <button type="submit" class="btn bg-white text-header font-black header-btn-border">
                                         Odhlásit se
                                     </button>
                                 </form>
                             @else
-                                <a href="{{url("/login")}}" class="btn bg-white text-header font-freude header-btn-border">Vstup
+                                <a href="{{url("/login")}}" class="btn bg-white text-header font-black header-btn-border">Vstup
                                     pro střední školy</a>
                             @endif
                         </div>
@@ -125,15 +125,15 @@
                                 <div class="relative flex-1 px-4 sm:px-6 text-gray-700">
                                     <div class="absolute inset-0 px-4 sm:px-6">
                                         <a href="{{route("vystavy")}}"
-                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
+                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-black">
                                             Výstavy
                                         </a>
                                         <a href="{{route("info_zs")}}"
-                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
+                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-black">
                                             Pro žáky ZŠ
                                         </a>
                                         <a href="{{route("info_ss")}}"
-                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
+                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-black">
                                             Pro střední školy
                                         </a>
                                         <a href="{{route("o_nas")}}"
@@ -144,20 +144,20 @@
 
                                         <div class="mt-8">
                                             @if(Auth::check())
-                                                <a class="mr-6 btn bg-header text-white font-freude inline-block"
+                                                <a class="mr-6 btn bg-header text-white font-black inline-block"
                                                    href="/dashboard">
                                                     Profil
                                                 </a>
                                                 <form action="{{url("logout")}}" method="post" class="inline-block">
                                                     @csrf
                                                     <button type="submit"
-                                                            class="btn bg-header text-white font-freude inline-block">
+                                                            class="btn bg-header text-white font-black inline-block">
                                                         Odhlásit se
                                                     </button>
                                                 </form>
                                             @else
                                                 <a href="{{url("/login")}}"
-                                                   class="btn bg-header text-white font-freude">Vstup pro střední
+                                                   class="btn bg-header text-white font-black">Vstup pro střední
                                                     školy</a>
                                             @endif
                                         </div>
