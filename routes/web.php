@@ -17,6 +17,7 @@ use App\Http\Livewire\InfoProZakyZS;
 use App\Http\Livewire\ListExhibitions;
 use App\Http\Livewire\ListExhibitionsRegion;
 use App\Http\Livewire\PayOrder;
+use App\Http\Livewire\ProcessPayments;
 use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowOrder;
 use App\Http\Livewire\ShowSchool;
@@ -69,6 +70,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/skola/vytvorit', CreateSchool::class);
 
     Route::get('/skola/upravit', EditSchool::class);
+
+    Route::get("/platby/import", ProcessPayments::class);
 
     Route::post("/obrazek/nahrat", "App\Http\Controllers\ImageController@nahrat");
     Route::delete("/obrazek/{file}/smazat", "App\Http\Controllers\ImageController@smazat");

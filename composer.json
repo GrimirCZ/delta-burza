@@ -22,8 +22,10 @@
         "laravel/telescope": "^4.0",
         "laravel/tinker": "^2.0",
         "livewire/livewire": "^2.0",
+        "maatwebsite/excel": "^3.1",
         "spatie/valuestore": "^1.2",
-        "stevebauman/purify": "^3.0"
+        "stevebauman/purify": "^3.0",
+      "ext-intl": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

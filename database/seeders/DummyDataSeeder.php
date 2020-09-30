@@ -57,7 +57,8 @@ class DummyDataSeeder extends Seeder
 //            'email' => "jiri.formanek@delta-skola.cz",
             'password' => Hash::make("admin"),
             'school_id' => $sch->id,
-            'is_main_contact' => true
+            'is_main_contact' => true,
+            'is_admin' => true
         ]);
     }
 }
