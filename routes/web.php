@@ -5,6 +5,7 @@ use App\Http\Controllers\DeleteSpecialization;
 use App\Http\Controllers\EnterEventController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Livewire\AddSchool;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\CreateRegistration;
 use App\Http\Livewire\CreateSchool;
@@ -70,6 +71,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/skola/vytvorit', CreateSchool::class);
 
     Route::get('/skola/upravit', EditSchool::class);
+
+    Route::get('/spolecnost/skola/pridat', AddSchool::class);
 
     Route::get("/platby/import", ProcessPayments::class);
 

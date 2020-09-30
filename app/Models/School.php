@@ -100,4 +100,14 @@ class School extends Model
     {
         return $this->belongsToMany(School::class, 'company_school', 'company_id', 'school_id');
     }
+
+    public function eligible_schools()
+    {
+        return $this->whereNotIn('id', function($q){
+            $q->select('company_schools.school_id')
+                ->from("company_schools")
+                ->where("company_schools.company_id", "!=", $this->id);
+        })
+            ->where("is_school", true);
+    }
 }
