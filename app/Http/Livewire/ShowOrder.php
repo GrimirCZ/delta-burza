@@ -3,11 +3,22 @@
 namespace App\Http\Livewire;
 
 use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class ShowOrder extends Component
 {
     public Order $order;
+
+    public function mount(Order $order)
+    {
+        if(Auth::user()->id != $order->school->main_contact()->id){
+            $this->redirect("/vystavy");
+            return;
+        }
+
+        $this->order = $order;
+    }
 
     /**
      * Get the view / contents that represent the component.

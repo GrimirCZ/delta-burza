@@ -65,7 +65,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 
     Route::get("/objednavka/{order}/zaplatit", PayOrder::class);
     Route::get("/objednavka/{order}", ShowOrder::class);
-    Route::get("/faktura/{order}", InvoiceController::class);
+//    Route::get("/faktura/{order}", InvoiceController::class);
 
     Route::get('/skola/vytvorit', CreateSchool::class);
 

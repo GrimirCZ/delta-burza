@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Registration;
 use App\Models\School;
 use App\Models\Exhibition;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
 class EditRegistration extends Component
@@ -22,6 +23,11 @@ class EditRegistration extends Component
 
     public function mount(Registration $registration)
     {
+        if(Auth::user()->id != $registration->school->main_contact()->id){
+            $this->redirect("/vystavy");
+            return;
+        }
+
         $this->registration = $registration;
         $this->morning_event = $registration->morning_event;
         $this->evening_event = $registration->evening_event;
@@ -39,6 +45,7 @@ class EditRegistration extends Component
 
         $this->redirect("/dashboard");
     }
+
     /**
      * Get the view / contents that represent the component.
      *

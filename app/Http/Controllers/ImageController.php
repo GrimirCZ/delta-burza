@@ -67,6 +67,12 @@ class ImageController extends Controller
         if(!Auth::check()){
             return abort(401);
         }
+        if($file->user_id != null && $file->user_id != Auth::user()->id){
+            return abort(401);
+        }
+        if($file->school_id != null && $file->school->id != Auth::user()->school->id){
+            return abort(401);
+        }
 
         DB::transaction(function() use ($file){
             unlink(public_path() . "/storage/" . $file->name);
