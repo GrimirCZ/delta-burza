@@ -24,7 +24,7 @@ class DummyDataSeeder extends Seeder
         $this->call(DatabaseSeeder::class);
         //
 
-        $sch = School::create([
+        $sch1 = School::create([
             'address' => 'Ke Kamenci 151',
             'psc' => '530 03',
             'city' => 'Pardubice',
@@ -35,11 +35,12 @@ class DummyDataSeeder extends Seeder
             'web' => 'http://www.delta-skola.cz',
             'phone' => '+420 466 611 106',
             'description' => 'School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.',
+            'is_school' => true,
             'district_id' => '45',
         ]);
 
         File::create([
-            'school_id' => $sch->id,
+            'school_id' => $sch1->id,
             'type' => 'logo',
             'name' => 'logos/delta-logo.png'
         ]);
@@ -48,7 +49,22 @@ class DummyDataSeeder extends Seeder
             'name' => 'Informační technologie',
             'description' => '<b>Bozi</b> obor',
             'prescribed_specialization_id' => PrescribedSpecialization::where('code', '18-20-m/01')->first()->id,
-            'school_id' => $sch->id
+            'school_id' => $sch1->id
+        ]);
+
+        $sch = School::create([
+            'address' => 'Ke Kamenci 151',
+            'psc' => '530 03',
+            'city' => 'Pardubice',
+            'ico' => '62061177',
+            'izo' => '044 434 32d',
+            'name' => 'eDelta s.r.o',
+            'email' => 'a@delta-skola.cz',
+            'web' => 'http://www.delta-skola.cz',
+            'phone' => '+420 466 611 106',
+            'description' => 'School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.',
+            'is_school' => false,
+            'district_id' => '45',
         ]);
 
         User::create([

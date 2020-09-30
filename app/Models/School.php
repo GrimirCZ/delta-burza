@@ -106,7 +106,7 @@ class School extends Model
         return $this->whereNotIn('id', function($q){
             $q->select('company_school.school_id')
                 ->from("company_school")
-                ->where("company_school.company_id", "!=", $this->id);
+                ->where("company_school.company_id", "=", $this->id);
         })
             ->where("is_school", true);
     }

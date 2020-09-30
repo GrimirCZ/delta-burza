@@ -8,9 +8,13 @@ use Livewire\Component;
 
 class AddSchool extends Component
 {
-    private School $company;
+    public School $company;
 
-    private ?string $selected_school_id;
+    public ?string $selected_school_id;
+
+    protected $rules = [
+        'selected_school_id' => 'required|exists:schools,id'
+    ];
 
     public function mount()
     {
@@ -24,7 +28,13 @@ class AddSchool extends Component
 
     public function complete()
     {
+        $this->validate();
 
+        $this->company->related_schools()->attach(
+            School::find($this->selected_school_id)
+        );
+
+        $this->redirect(route("dashboard"));
     }
 
     /**

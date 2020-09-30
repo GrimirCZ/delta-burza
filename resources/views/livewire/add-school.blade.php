@@ -12,7 +12,7 @@
                             wire:model="selected_school_id"
                             class="input @error('selected_school_id') input-error @enderror">
                         @if(!isset($selected_school_id))
-                            <option selected></option>
+                            <option selected>Vyberte školu</option>
                         @endif
                         @foreach($schools as $sch)
                             <option value="{{$sch->id}}" @if($selected_school_id == $sch->id) selected @endif>
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="mt-6 text-right mt-20">
-                <button id="complete" class="btn bg-teal-400 text-white ml-4">Dokončit</button>
+                <button wire:click="complete" class="btn bg-teal-400 text-white ml-4">Dokončit</button>
             </div>
         </x-dashboard-card>
     </div>
