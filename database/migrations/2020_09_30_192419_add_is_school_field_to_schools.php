@@ -10,6 +10,7 @@ class AddIsSchoolFieldToSchools extends Migration
     {
         Schema::table('schools', function(Blueprint $table){
             $table->boolean("is_school")->default(true);
+            $table->string("izo", 60)->unique()->nullable()->change();
             //
         });
     }
