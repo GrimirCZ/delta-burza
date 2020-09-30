@@ -6,7 +6,7 @@
     <div class="pb-12 pt-3 mx-3">
         <div class="max-w-7xl mx-auto pt-0 pb-10 sm:px-6 lg:px-8 w-100 text-gray-700">
             <div class="mr-5 mb-3 inline-block">
-                <div>Typ vystavitele</div>
+                <div>Typ vystavovatele</div>
                 <div
                     class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700">
                     <div class="relative inline-block">
