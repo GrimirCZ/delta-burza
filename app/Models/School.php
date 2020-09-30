@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class School extends Model
 {
-    protected $fillable = ['address', 'city', 'psc', 'ico', 'izo', 'name', 'email', 'web', 'phone', 'description', 'is_trustworthy', 'district_id'];
+    protected $fillable = ['address', 'city', 'psc', 'ico', 'izo', 'name', 'email', 'web', 'phone', 'description', 'is_trustworthy', 'is_school', 'district_id'];
 
     public function users()
     {
@@ -89,5 +89,15 @@ class School extends Model
     public function images()
     {
         return $this->files()->where("type", "image");
+    }
+
+    public function related_companies()
+    {
+        return $this->belongsToMany(School::class, 'company_school', 'school_id', 'company_id');
+    }
+
+    public function related_schools()
+    {
+        return $this->belongsToMany(School::class, 'company_school', 'company_id', 'school_id');
     }
 }
