@@ -22,6 +22,8 @@ class FilterSchools extends Component
 
     public ?array $regions = [];
 
+    public string $type = "all";
+
     public ?string $prescribed_specialization_id = "all";
 
     public ?string  $type_of_study_id = "all";
@@ -31,7 +33,9 @@ class FilterSchools extends Component
 
     public function updated($name, $value)
     {
-        if($name == "type_of_study_id"){
+        if($name == "type"){
+            $this->type_of_study_id = "all";
+        } else if($name == "type_of_study_id"){
             $this->field_of_study_id = "all";
         } else if($name == "field_of_study_id"){
             $this->prescribed_specialization_id = "all";
@@ -59,6 +63,7 @@ class FilterSchools extends Component
 
     public function clear_filter()
     {
+        $this->type = "all";
         $this->type_of_study_id = 'all';
         $this->field_of_study_id = 'all';
         $this->prescribed_specialization_id = 'all';
@@ -86,22 +91,28 @@ class FilterSchools extends Component
 
     private function filtered_schools_restrictions($q)
     {
-        if($this->type_of_study_id != "all" && $this->field_of_study_id == "all"){
-            $q = $q->join("specializations", "schools.id", "=", "specializations.school_id")
-                ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
-                ->join("field_of_studies", "field_of_studies.id", "=", "prescribed_specializations.field_of_study_id")
-                ->join("type_of_studies", "type_of_studies.id", "=", "field_of_studies.type_of_study_id")
-                ->where("type_of_studies.id", $this->type_of_study_id);
+        if($this->type == "skoly"){
+            if($this->type_of_study_id != "all" && $this->field_of_study_id == "all"){
+                $q = $q->join("specializations", "schools.id", "=", "specializations.school_id")
+                    ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
+                    ->join("field_of_studies", "field_of_studies.id", "=", "prescribed_specializations.field_of_study_id")
+                    ->join("type_of_studies", "type_of_studies.id", "=", "field_of_studies.type_of_study_id")
+                    ->where("type_of_studies.id", $this->type_of_study_id);
 
-        } else if($this->type_of_study_id != "all" && $this->field_of_study_id != "all" && $this->prescribed_specialization_id == "all"){
-            $q = $q->join("specializations", "schools.id", "=", "specializations.school_id")
-                ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
-                ->join("field_of_studies", "field_of_studies.id", "=", "prescribed_specializations.field_of_study_id")
-                ->where("field_of_studies.id", $this->field_of_study_id);
-        } else if($this->prescribed_specialization_id != "all"){
-            $q = $q->join("specializations", "schools.id", "=", "specializations.school_id")
-                ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
-                ->where("prescribed_specializations.id", $this->prescribed_specialization_id);
+            } else if($this->type_of_study_id != "all" && $this->field_of_study_id != "all" && $this->prescribed_specialization_id == "all"){
+                $q = $q->join("specializations", "schools.id", "=", "specializations.school_id")
+                    ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
+                    ->join("field_of_studies", "field_of_studies.id", "=", "prescribed_specializations.field_of_study_id")
+                    ->where("field_of_studies.id", $this->field_of_study_id);
+            } else if($this->prescribed_specialization_id != "all"){
+                $q = $q->join("specializations", "schools.id", "=", "specializations.school_id")
+                    ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
+                    ->where("prescribed_specializations.id", $this->prescribed_specialization_id);
+            }
+
+            $q = $q->where("schools.is_school", true);
+        } else if($this->type == "firmy"){
+            $q = $q->where("schools.is_school", false);
         }
 
         $selected_region_ids = collect($this->regions)
