@@ -113,7 +113,7 @@
                                     </div>
                                     <div class="mt-5 text-sm leading-5 text-gray-900 md:mt-3">
                                         <a class="btn btn-primary truncate" href="/skola/{{$related_schools->id}}">
-                                            Zobrazit detail firmy
+                                            Zobrazit detail školy
                                         </a>
                                     </div>
                                 </div>
