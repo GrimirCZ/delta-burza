@@ -2,7 +2,7 @@
 <div>
     <header class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-100 pt-8 flex justify-between">
         <div class="inline-block text-1xl font-light text-2xl md:text-3xl text-gray-800">
-            Fitlrovat školy
+            Vybraní vystavovatelé
         </div>
         <button
             wire:click="show_filter"
@@ -14,21 +14,23 @@
                       d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
             </svg>
             <span class="align-middle">
-                Upravit filtr škol
+                Upravit filtr
             </span>
         </button>
     </header>
 
 
     <div class="max-w-7xl mx-auto pb-10 px-2 sm:px-6 lg:px-8 w-100">
-        <h1 class="text-2xl ml-3 mb-3">Školy</h1>
+        <h1 class="text-2xl ml-3 mb-3">Vystavovatelé</h1>
 
         @if(count($schools) === 0)
             <div class="text-center text-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-12 inline-block align-middle">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                     class="h-12 inline-block align-middle">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                <h3 class="ml-3 inline-block text-3xl align-middle">Nebyli nalezeny žádné školy, které odpovídají požadavkům</h3>
+                <h3 class="ml-3 inline-block text-3xl align-middle">Nebyli nalezeni žádní vystavovatelé, kteří by odpovídali podmínkám</h3>
 
                 <div class="align-center">
                     <button
@@ -41,7 +43,7 @@
                                   d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
                         </svg>
                         <span class="align-middle">
-                            Upravit filtr škol
+                            Upravit filtr
                         </span>
                     </button>
                 </div>
@@ -88,7 +90,7 @@
 
                     <a href="/skola/{{$school->id}}"
                        class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
-                        Detail školy
+                        Detail @if($school->is_school) školy @else firmy @endif
                     </a>
 
                     <div class="mt-4 text-gray-400 text-sm hover:underline">
@@ -111,10 +113,13 @@
         <h1 class="text-2xl ml-3 mb-3">Výstavy</h1>
         @if(count($exhibitions) === 0)
             <div class="text-center text-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-12 inline-block align-middle">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                     class="h-12 inline-block align-middle">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                <h3 class="ml-3 inline-block text-3xl align-middle">Nebyli nalezeny žádné výstavy se školy, které odpovídají požadavkům</h3>
+                <h3 class="ml-3 inline-block text-3xl align-middle">Nebyly nalezeny žádné výstavy s vystavovateli, kteří
+                    by odpovídali podmínkám</h3>
             </div>
         @endif
         <div class="grid md:grid-cols-2 gap-3">

@@ -39,7 +39,7 @@
             </p>
 
             <ul class="marked-list mt-5">
-                <li>Stisknu tlačítko s trychtýřkem "Filtrovat školy",</li>
+                <li>Stisknu tlačítko s trychtýřkem "Filtrovat vystavovatele",</li>
                 <li>zvolím typ studia „Střední odborné školy (s maturitou),</li>
                 <li>zvolím zaměření „SOŠ technické a IT“,</li>
                 <li>a nakonec vyberu obor, který chci studovat např.: 18-20-M/01 - Informační technologie (případně skupinu oborů).</li>

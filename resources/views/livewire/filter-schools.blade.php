@@ -1,6 +1,6 @@
 <div>
     <x-own-header>
-        Fitlrovat školy
+        Fitlrovat vystravovatele
     </x-own-header>
 
     <div class="pb-12 pt-3 mx-3">
@@ -162,7 +162,7 @@
         </x-dashboard-card>
 
         <div class="max-w-7xl mx-auto pt-5 sm:px-6 lg:px-8 w-100">
-            <button class="btn btn-primary" wire:click="show_filtered_schools">Zobrazit školy</button>
+            <button class="btn btn-primary" wire:click="show_filtered_schools">Zobrazit vystavovatele</button>
             <button wire:click="clear_filter"
                     class="inline-block text-header hover:text-teal-400 transition duration-1000 py-4 mx-5 focus:outline-none">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"

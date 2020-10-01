@@ -68,7 +68,7 @@
                             </a>
                             <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("info_ss")}}">
-                                Pro střední školy
+                                Pro vystavovatele
                             </a>
                             <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("o_nas")}}">
@@ -89,7 +89,7 @@
                                 </form>
                             @else
                                 <a href="{{url("/login")}}" class="btn bg-white text-header font-freude header-btn-border">Vstup
-                                    pro střední školy</a>
+                                    pro vystavovatele</a>
                             @endif
                         </div>
                     </div>
@@ -134,7 +134,7 @@
                                         </a>
                                         <a href="{{route("info_ss")}}"
                                            class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
-                                            Pro střední školy
+                                            Pro vystavovatele
                                         </a>
                                         <a href="{{route("o_nas")}}"
                                            class="block hover:text-blue-400 py-3 font-freude">
