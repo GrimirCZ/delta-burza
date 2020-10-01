@@ -56,7 +56,7 @@ class FileMigrateToS3 extends Command
 
             DB::transaction(function() use ($url, $db_name){
                 File::where("type", "=", "image")
-                    ->whereLike("name", 'like', "%" . $db_name . "%")
+                    ->where("name", 'like', "%" . $db_name . "%")
                     ->update([
                         'name' => $url
                     ]);
