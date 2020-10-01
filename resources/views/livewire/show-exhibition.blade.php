@@ -9,17 +9,22 @@
             <div class="py-10">
                 @if($exhibition->registrations->isEmpty())
                     <div class="text-center text-gray-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-12 inline-block align-middle">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                             class="h-12 inline-block align-middle">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M5 19a2 2 0 01-2-2V7a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1M5 19h14a2 2 0 002-2v-5a2 2 0 00-2-2H9a2 2 0 00-2 2v5a2 2 0 01-2 2z"/>
                         </svg>
-                        <h3 class="ml-3 inline-block text-3xl align-middle">Do této výstavy se zatím žádná škola nepřihlásila. Vaše škola může být první.</h3>
+                        <h3 class="ml-3 inline-block text-3xl align-middle">Do této výstavy se zatím žádný vystavovatel
+                            nepřihlásil. Buďte být první!</h3>
                     </div>
                 @else
                     <div class="grid md:grid-cols-2 gap-3">
                         @foreach($registrations as $registration)
-                            <div class="p-5 shadow-sm box-border h-min-content bg-white {{$registration->school->is_school ?  "border-2 border-teal-400" : ""}} ">
+                            <div
+                                class="p-5 shadow-sm box-border h-min-content bg-white {{$registration->school->is_school ?  "border-2 border-teal-400" : ""}} ">
                                 <div class="leading-3 text-gray-400">
-                                    {{$registration->school->is_school ? "škola" : "firma"}} | {{$registration->school->district->name}}
+                                    {{$registration->school->is_school ? "škola" : "firma"}}
+                                    | {{$registration->school->district->name}}
                                 </div>
                                 <a href="/skola/{{$registration->school->id}}">
                                     <h3 class="text-2xl font-light">
@@ -76,7 +81,7 @@
 
                                 <a href="/skola/{{$registration->school->id}}"
                                    class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
-                                    Detail školy
+                                    Detail @if($registration->school->is_school) školy @else firmy @endif
                                 </a>
 
                                 <div class="mt-4 text-sm hover:underline text-gray-400">

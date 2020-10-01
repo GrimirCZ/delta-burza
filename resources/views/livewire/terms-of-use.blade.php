@@ -7,7 +7,7 @@
 
     <div class="py-12">
         <x-dashboard-card>
-            <h2 class="header">Obchodní podmínky školy</h2 class="header">
+            <h2 class="header">Obchodní podmínky školy</h2>
 
             <p>DELTA - Střední škola informatiky a ekonomie, s. r.o.<br/>
                 se sídlem Ke Kamenci 151, 530 03 Pardubice<br/>

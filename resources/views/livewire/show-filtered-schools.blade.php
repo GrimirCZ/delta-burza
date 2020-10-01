@@ -132,14 +132,14 @@
                                 class="font-black">{{$exhibition->city}}</span> {{$exhibition->name}}</h3>
                         <div class="text-sm text-gray-600">
                             @if($exhibition->school_count > 4)
-                                {{$exhibition->school_count}} škol
+                                {{$exhibition->school_count}} vystavovatelů
                             @elseif($exhibition->school_count > 1)
-                                {{$exhibition->school_count}} školy
+                                {{$exhibition->school_count}} vystavovatelé
                             @else
-                                {{$exhibition->school_count}} škola
+                                {{$exhibition->school_count}} vystavovatel
                             @endif
 
-                            z vyfiltrovaných škol
+                            z vyfiltrovaných vystavovatelů
                         </div>
                     </div>
                 </a>

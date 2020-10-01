@@ -34,7 +34,7 @@
             <div class="bg-white shadow overflow-hidden sm:rounded-lg mx-5 mt-10">
                 <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        Informace o škole
+                        Informace o vystavovateli
                         <a href="{{Auth::user()->school->is_school ? url("/skola/upravit") : url("/spolecnost/upravit")}}"
                            class="text-header ml-4">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
