@@ -184,7 +184,11 @@ class CreateOrder extends Component
 
             }
 
-            SendInvoice::dispatch($ord->id);
+            $ord->push();
+
+            if($ord->price() > 0){
+                SendInvoice::dispatch($ord->id);
+            }
         });
 
         $this->redirect(route("dashboard"));
