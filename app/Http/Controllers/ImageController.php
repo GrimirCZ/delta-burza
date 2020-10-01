@@ -79,11 +79,7 @@ class ImageController extends Controller
             return abort(401);
         }
 
-        DB::transaction(function() use ($file){
-            unlink(public_path() . "/storage/" . $file->name);
-
-            $file->delete();
-        });
+        $file->delete();
 
         return redirect("/dashboard");
     }
