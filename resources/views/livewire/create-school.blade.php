@@ -12,6 +12,23 @@
     <div class="py-12">
         <x-dashboard-card>
             <form wire:submit.prevent="submit">
+                @if(isset($create))
+                    <div class="form-row-2">
+                        <div>
+                            <label for="type_of_exhibitioner" class="label">Typ vystavovatele</label>
+                            <select wire:model="type_of_exhibitioner" name="type_of_exhibitioner"
+                                    id="type_of_exhibitioner" class="input">
+                                <option value="school">
+                                    Škola
+                                </option>
+                                <option value="company">
+                                    Firma
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="form-row-2">
                     <div class="form-field">
                         <label for="name" class="label">Název školy</label>
@@ -137,22 +154,6 @@
                     </div>
                 </div>
 
-                @if(isset($create))
-                    <div class="form-row-2">
-                        <div>
-                            <label for="type_of_exhibitioner" class="label">Typ vystavovatele</label>
-                            <select wire:model="type_of_exhibitioner" name="type_of_exhibitioner"
-                                    id="type_of_exhibitioner" class="input">
-                                <option value="school">
-                                    Škola
-                                </option>
-                                <option value="company">
-                                    Firma
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                @endif
 
                 <div class="form-row">
                     <x-rich-text-editor label="Text o škole" field="description"/>
