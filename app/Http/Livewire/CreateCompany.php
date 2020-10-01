@@ -66,6 +66,7 @@ class CreateCompany extends Component
                 'web' => $this->web,
                 'phone' => $this->phone,
                 'description' => Purify::clean($this->description),
+                'is_school' => false,
                 'district_id' => $this->district_id,
             ]);
 
