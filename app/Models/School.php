@@ -72,6 +72,10 @@ class School extends Model
     {
         return $this->specializations()
             ->join("prescribed_specializations", "specializations.prescribed_specialization_id", "=", "prescribed_specializations.id")
+            ->join("field_of_studies", "field_of_studies.id", "=", "prescribed_specializations.field_of_study_id")
+            ->join("type_of_studies", "type_of_studies.id", "=", "field_of_studies.type_of_study_id")
+            ->orderBy("type_of_studies.name")
+            ->orderBy("field_of_studies.name")
             ->orderBy("prescribed_specializations.code")
             ->orderBy("prescribed_specializations.name")
             ->orderBy("specializations.name")

@@ -67,7 +67,7 @@
                     </div>
                     <div class="bg-white p-5 shadow-sm box-border mt-3">
                         <h2 class="p-2">Obory</h2>
-                        @foreach ($school->specializations as $specialization)
+                        @foreach ($school->ordered_specializations()->get() as $specialization)
                             <div
                                 class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">
                                 <div class="text-sm leading-5 font-medium text-gray-500">
