@@ -2,9 +2,9 @@
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             @if(isset($edit))
-                Upravit školu
+                Upravit vystavovatele
             @else
-                Vytvořit školu
+                Vytvořit vystavovatele
             @endif
         </h2>
     </x-slot>
@@ -31,7 +31,7 @@
 
                 <div class="form-row-2">
                     <div class="form-field">
-                        <label for="name" class="label">Název školy</label>
+                        <label for="name" class="label">Název vystavovatele</label>
                         <input id="name" type="text" wire:model="name"
                                class="input @error('name') input-error @enderror">
                         @error('name') <span class="error">{{ $message }}</span> @enderror
