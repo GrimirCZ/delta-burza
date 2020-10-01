@@ -17,10 +17,15 @@
                 @else
                     <div class="grid md:grid-cols-2 gap-3">
                         @foreach($registrations as $registration)
-                            <div class="p-5 bg-white shadow-sm box-border h-min-content">
-                                <div class="leading-3 text-gray-400">{{$registration->school->district->name}}</div>
-                                <a href="/skola/{{$registration->school->id}}"><h3
-                                        class="text-2xl font-light">{{$registration->school->name}}</h3></a>
+                            <div class="p-5 shadow-sm box-border h-min-content bg-white {{$registration->school->is_school ?  "border-2 border-teal-400" : ""}} ">
+                                <div class="leading-3 text-gray-400">
+                                    {{$registration->school->is_school ? "škola" : "firma"}} | {{$registration->school->district->name}}
+                                </div>
+                                <a href="/skola/{{$registration->school->id}}">
+                                    <h3 class="text-2xl font-light">
+                                        {{$registration->school->name}}
+                                    </h3>
+                                </a>
 
                                 <table class="table w-full mt-5 text-sm text-gray-600">
                                     <tbody class="divide-y divide-gray-200">
@@ -59,23 +64,22 @@
                                 @else
                                     <span
                                         class="btn text-sm text-center mt-13 block btn-disabled">
-                                        Připojit se online {{settings("morning_event_start")}}
-                                        - {{settings("morning_event_end")}}
-                                    </span>
+                                    Připojit se online {{settings("morning_event_start")}}
+                                    - {{settings("morning_event_end")}}
+                                </span>
                                     <span
                                         class="btn text-sm text-center mt-1 block btn-disabled">
-                                        Připojit se online {{settings("evening_event_start")}}
-                                        - {{settings("evening_event_end")}}
-                                    </span>
+                                    Připojit se online {{settings("evening_event_start")}}
+                                    - {{settings("evening_event_end")}}
+                                </span>
                                 @endif
-
 
                                 <a href="/skola/{{$registration->school->id}}"
                                    class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
                                     Detail školy
                                 </a>
 
-                                <div class="mt-4 text-gray-400 text-sm hover:underline">
+                                <div class="mt-4 text-sm hover:underline text-gray-400">
                                     <div class="display-inline-block">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke="currentColor" class="inline-block h-4 align-middle">

@@ -31,7 +31,7 @@
             <div class="bg-white shadow overflow-hidden sm:rounded-lg mx-5 mt-10">
                 <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        Informace o škole
+                        Informace o {{Auth::user()->school->is_school ? "škole" : "firmě"}}
                         <a href="{{url("/skola/upravit")}}" class="text-header ml-4">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="inline h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -193,8 +193,10 @@
                         @foreach(Auth::user()->school->ordered_registrations()->get() as $registration)
                             <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                 <td class="px-8 py-5">
-                                    {{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
-                                    ({{$registration->exhibition->name}})
+                                    <a href="{{url('/vystava/'.$registration->exhibition->id)}}">
+                                        {{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
+                                        ({{$registration->exhibition->name}})
+                                    </a>
                                 </td>
                                 <td class="px-8 py-5">
                                     @if(!$registration->order_registration->fulfilled_at != null)
