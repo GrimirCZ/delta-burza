@@ -128,4 +128,12 @@
 .footer-img {
     max-height: 75px;
     display: inline-block;
+    filter: grayscale(100%);
+    transition: .6s;
+    opacity: .6;
+}
+
+.footer-img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
 }
