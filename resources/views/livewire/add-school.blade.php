@@ -11,9 +11,7 @@
                     <select name="selected_school_id" id="selected_school_id"
                             wire:model="selected_school_id"
                             class="input @error('selected_school_id') input-error @enderror">
-                        @if(!isset($selected_school_id))
-                            <option selected>Vyberte školu</option>
-                        @endif
+                        <option selected value="all">Vyberte školu</option>
                         @foreach($schools as $sch)
                             <option value="{{$sch->id}}">
                                 {{$sch->name}}
