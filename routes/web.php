@@ -77,7 +77,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/spolecnost/upravit', EditCompany::class);
 
     Route::get('/spolecnost/skola/pridat', AddSchool::class);
-    Route::delete('/spolecnost/skola/{school}/odstranit', UnlinkSchoolFromCompany::class);
+    Route::delete('/spolecnost/skola/{school}/smazat', UnlinkSchoolFromCompany::class);
 
     Route::get("/platby/import", ProcessPayments::class);
 
