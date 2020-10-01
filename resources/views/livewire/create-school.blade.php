@@ -83,13 +83,49 @@
                 <div class="form-row-2">
                     <div>
                         <label for="logo" class="label">Logo</label>
-                        <input type="file" wire:model="logo" id="logo" class="input">
-                        @error('logo') <span class="error">{{ $message }}</span> @enderror
+                        <input type="file" wire:model="logo" id="logo" class="input" onchange="checkFileSizeLogo(this)">
+                        @error('logo') <span class="error" id="logo-error-laravel">{{ $message }}</span> @enderror
+
+                        <div class="error" id="logo-error" wire:ignore="always"></div>
+
+                        <script>
+                            function checkFileSizeLogo(el) {
+                                if(el.files.length > 0) {
+                                    const size = Math.round(el.files[0].size /1024/1024 * 100) / 100;
+
+                                    if(size > 1) {
+                                        document.getElementById('logo-error').innerHTML = "maximální povolená velikost souboru je 1MB. (velikost vašeho souboru: "+size+"MB)"
+                                        return false;
+                                    }
+                                }
+
+                                document.getElementById('logo-error').innerHTML = "";
+                                return true;
+                            }
+                        </script>
                     </div>
                     <div>
                         <label for="brojure" class="label">Brožura</label>
-                        <input type="file" wire:model="brojure" id="brojure" class="input">
+                        <input type="file" wire:model="brojure" id="brojure" class="input" onchange="checkFileSizeBrojure(this)">
                         @error('brojure') <span class="error">{{ $message }}</span> @enderror
+
+                        <div class="error" id="brojure-error" wire:ignore="always"></div>
+
+                        <script>
+                            function checkFileSizeBrojure(el) {
+                                if(el.files.length > 0) {
+                                    const size = Math.round(el.files[0].size /1024/1024 * 100) / 100;
+
+                                    if(size > 5) {
+                                        document.getElementById('brojure-error').innerHTML = "maximální povolená velikost souboru je 5MB. (velikost vašeho souboru: "+size+"MB)"
+                                        return false;
+                                    }
+                                }
+
+                                document.getElementById('brojure-error').innerHTML = "";
+                                return true;
+                            }
+                        </script>
                     </div>
                 </div>
 
