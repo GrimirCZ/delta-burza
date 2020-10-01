@@ -45,7 +45,7 @@ class AddSchool extends Component
     public function render()
     {
         return view('livewire.add-school', [
-            'schools' => $this->company->eligible_schools()->get()
+            'schools' => $this->company->eligible_schools()->orderBy("schools.name")->get()
         ]);
     }
 }

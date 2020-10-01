@@ -5,6 +5,7 @@ use App\Http\Controllers\DeleteSpecialization;
 use App\Http\Controllers\EnterEventController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\UnlinkSchoolFromCompany;
 use App\Http\Livewire\AddSchool;
 use App\Http\Livewire\CreateCompany;
 use App\Http\Livewire\CreateOrder;
@@ -76,8 +77,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/spolecnost/upravit', EditCompany::class);
 
     Route::get('/spolecnost/skola/pridat', AddSchool::class);
-    // TODO: implement this
-    Route::delete('/spolecnost/skola/{school}/odstranit', AddSchool::class);
+    Route::delete('/spolecnost/skola/{school}/odstranit', UnlinkSchoolFromCompany::class);
 
     Route::get("/platby/import", ProcessPayments::class);
 
