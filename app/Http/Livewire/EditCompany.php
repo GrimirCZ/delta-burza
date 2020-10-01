@@ -13,7 +13,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Stevebauman\Purify\Facades\Purify;
 
-class EditSchool extends Component
+class EditCompany extends Component
 {
     use WithFileUploads;
 
@@ -23,7 +23,6 @@ class EditSchool extends Component
     public ?string $psc;
     public ?string $city;
     public ?string $ico;
-    public ?string $izo;
     public ?string $name;
     public ?string $email;
     public ?string $web;
@@ -43,11 +42,6 @@ class EditSchool extends Component
                 'required',
                 'max:10',
                 Rule::unique("schools", "ico")->ignore($this->school->id),
-            ],
-            'izo' => [
-                'required',
-                'max:11',
-                Rule::unique("schools", "izo")->ignore($this->school->id),
             ],
             'name' => 'required|max:200',
             'email' =>
@@ -73,7 +67,6 @@ class EditSchool extends Component
                 'psc' => $this->psc,
                 'city' => $this->city,
                 'ico' => $this->ico,
-                'izo' => $this->izo,
                 'name' => $this->name,
                 'email' => $this->email,
                 'web' => $this->web,
@@ -121,7 +114,6 @@ class EditSchool extends Component
         $this->psc = $school->psc;
         $this->city = $school->city;
         $this->ico = $school->ico;
-        $this->izo = $school->izo;
         $this->name = $school->name;
         $this->email = $school->email;
         $this->web = $school->web;
@@ -137,7 +129,7 @@ class EditSchool extends Component
      */
     public function render()
     {
-        return view('livewire.create-school', [
+        return view('livewire.create-company', [
             'districts' => District::orderBy("name")->get(),
             'edit' => true
         ]);

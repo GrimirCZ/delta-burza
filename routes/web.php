@@ -6,9 +6,11 @@ use App\Http\Controllers\EnterEventController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Livewire\AddSchool;
+use App\Http\Livewire\CreateCompany;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\CreateRegistration;
 use App\Http\Livewire\CreateSchool;
+use App\Http\Livewire\EditCompany;
 use App\Http\Livewire\EditRegistration;
 use App\Http\Livewire\EditSchool;
 use App\Http\Livewire\EditSpecialization;
@@ -69,8 +71,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 //    Route::get("/faktura/{order}", InvoiceController::class);
 
     Route::get('/skola/vytvorit', CreateSchool::class);
+    Route::get('/spolecnost/vytvorit', CreateCompany::class);
 
     Route::get('/skola/upravit', EditSchool::class);
+    Route::get('/spolecnost/upravit', EditCompany::class);
 
     Route::get('/spolecnost/skola/pridat', AddSchool::class);
 

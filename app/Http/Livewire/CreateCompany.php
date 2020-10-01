@@ -107,7 +107,7 @@ class CreateCompany extends Component
      */
     public function render()
     {
-        return view('livewire.create-school', [
+        return view('livewire.create-company', [
             'districts' => District::orderBy("name")->get(),
         ]);
     }
