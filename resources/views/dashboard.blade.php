@@ -315,7 +315,7 @@
                     <div>
                         <table class="table-fixed min-w-full text-gray-500">
                             <tbody>
-                            @foreach(Auth::user()->school->related_schools as $related_school)
+                            @foreach(Auth::user()->school->related_schools()->orderBy("name")->get() as $related_school)
                                 <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                     <td class="px-8 py-5">
                                         <a href="/school/{{$related_school->id}}" class="link">

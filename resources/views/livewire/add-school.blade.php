@@ -15,7 +15,7 @@
                             <option selected>Vyberte školu</option>
                         @endif
                         @foreach($schools as $sch)
-                            <option value="{{$sch->id}}" @if($selected_school_id == $sch->id) selected @endif>
+                            <option value="{{$sch->id}}">
                                 {{$sch->name}}
                             </option>
                         @endforeach
