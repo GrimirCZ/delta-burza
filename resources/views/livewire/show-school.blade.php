@@ -6,7 +6,7 @@
             <h1 class="font-light text-3xl text-gray-800">{{$school->name}}</h1>
         </div>
         <div class="inline-block md:order-2 text-left w-full md:w-auto mb-10 md:mb-0">
-            <img src="{{$school->logo()}}" class="h-8" alt="Logo {{$school->name}}">
+            <img src="{{$school->logo()}}" class="school-logo" alt="Logo {{$school->name}}">
         </div>
     </div>
 
@@ -65,23 +65,25 @@
                             </div>
                         @endif
                     </div>
-                    <div class="bg-white p-5 shadow-sm box-border mt-3">
-                        <h2 class="p-2">Obory</h2>
-                        @foreach ($school->ordered_specializations()->get() as $specialization)
-                            <div
-                                class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">
-                                <div class="text-sm leading-5 font-medium text-gray-500">
-                                    {{$specialization->prescribed_specialization->code}}
-                                    - {{$specialization->prescribed_specialization->name}} <br>
-                                    (ŠVP: <i>{{$specialization->name}}</i>)
+                    @if($school->is_school)
+                        <div class="bg-white p-5 shadow-sm box-border mt-3">
+                            <h2 class="p-2">Obory</h2>
+                            @foreach ($school->ordered_specializations()->get() as $specialization)
+                                <div
+                                    class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">
+                                    <div class="text-sm leading-5 font-medium text-gray-500">
+                                        {{$specialization->prescribed_specialization->code}}
+                                        - {{$specialization->prescribed_specialization->name}} <br>
+                                        (ŠVP: <i>{{$specialization->name}}</i>)
+                                    </div>
+                                    <div class="mt-5 text-sm leading-5 text-gray-900 md:mt-3">
+                                        <a class="btn btn-primary truncate" href="/obor/{{$specialization->id}}">Více
+                                            informací o oboru</a>
+                                    </div>
                                 </div>
-                                <div class="mt-5 text-sm leading-5 text-gray-900 md:mt-3">
-                                    <a class="btn btn-primary truncate" href="/obor/{{$specialization->id}}">Více
-                                        informací o oboru</a>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
+                            @endforeach
+                        </div>
+                    @endif
                 </div>
             </div>
 

@@ -113,3 +113,8 @@
     color: #9fa6b2;
     cursor: default;
 }
+
+.school-logo {
+    max-width: 250px;
+    max-height: 120px;
+}
