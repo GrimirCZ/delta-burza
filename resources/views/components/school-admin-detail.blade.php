@@ -2,7 +2,7 @@
 <div class="mt-8">
     <div class="flex justify-between align-center">
         <div>
-            <img src="{{asset('storage/' . $school->logo())}}" alt="Logo {{$school->name}}" class="block h-8">
+            <img src="{{$school->logo()}}" alt="Logo {{$school->name}}" class="block h-8">
         </div>
         <div class="flex items-center">
             <a href="{{url("/skola/upravit")}}" class="btn btn-primary">Upravit</a>
@@ -129,7 +129,7 @@
                     <li class="list-disc w-1/4 pl-3 pr-4 py-3 flex items-center justify-between text-sm leading-5">
                         <span class="w-0 flex-1 flex items-center">
                             <!-- Heroicon name: paper-clip -->
-                            <a href="{{asset('storage/' . $school->brojure())}}"
+                            <a href="{{$school->brojure()}}"
                                class="font-medium inline text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out"
                                target="_blank">
                             <svg class="ie flex-shrink-0 h-5 w-5 text-gray-400" viewBox="0 0 20 20"

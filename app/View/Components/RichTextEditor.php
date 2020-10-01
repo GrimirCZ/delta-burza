@@ -2,7 +2,10 @@
 
 namespace App\View\Components;
 
+use App\Models\File;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
+use const http\Client\Curl\AUTH_ANY;
 
 class RichTextEditor extends Component
 {
@@ -22,9 +25,17 @@ class RichTextEditor extends Component
      */
     public function render()
     {
+        $q = File::where("type", "image");
+        if(Auth::user()->school_id == null){
+            $q = $q->where("user_id", "=", Auth::user()->id);
+        } else{
+            $q = $q->where("school_id", "=", Auth::user()->school_id);
+        }
+
         return view('components.rich-text-editor', [
             'label' => $this->label,
-            'field' => $this->field
+            'field' => $this->field,
+            'images' => $q->get()
         ]);
     }
 }

@@ -1,11 +1,12 @@
 <div>
-    <div class="flex flex-col md:flex-row justify-between max-w-7xl mx-auto py-10 pb-0 px-2 sm:px-6 lg:px-8 w-100 items-center">
+    <div
+        class="flex flex-col md:flex-row justify-between max-w-7xl mx-auto py-10 pb-0 px-2 sm:px-6 lg:px-8 w-100 items-center">
         <div class="inline-block order-1 w-full md:w-auto">
             <div class="top text-gray-600">{{$school->district->name}}</div>
             <h1 class="font-light text-3xl text-gray-800">{{$school->name}}</h1>
         </div>
         <div class="inline-block md:order-2 text-left w-full md:w-auto mb-10 md:mb-0">
-            <img src="{{asset('storage/' . $school->logo())}}" class="h-8" alt="Logo {{$school->name}}">
+            <img src="{{$school->logo()}}" class="h-8" alt="Logo {{$school->name}}">
         </div>
     </div>
 
@@ -54,7 +55,7 @@
                                     <a href="{{fix_url($school->web)}}">{{$school->web}}</a>
                                 </dd>
                             </div>
-                            <!--<div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <!--<div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm leading-5 font-medium text-gray-500">
                                     Přílohy
                                 </dt>
@@ -73,7 +74,7 @@
                                                 </span>
                                             </div>
                                             <div class="ml-4 flex-shrink-0">
-                                                <a href="{{asset('storage/' . $school->brojure())}}"
+                                                <a href="{{$school->brojure()}}"
                                                    class="font-medium text-indigo-600 hover:text-indigo-500 transition duration-150 ease-in-out"
                                                    target="_blank">
                                                     Stáhnout
@@ -87,7 +88,9 @@
 
                         @if($school->brojure())
                             <div class="mt-10">
-                                <a href="{{asset('storage/' . $school->brojure())}}" class="btn bg-teal-400 text-white w-100 block text-center">Informační brožura - ke stažení</a>
+                                <a href="{{$school->brojure()}}"
+                                   class="btn bg-teal-400 text-white w-100 block text-center">Informační brožura - ke
+                                    stažení</a>
                             </div>
                         @endif
                     </div>

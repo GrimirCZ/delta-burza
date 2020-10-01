@@ -67,10 +67,10 @@
                         xhr.send(formData);
                     },
                     image_list: [
-                            @foreach(Auth::user()->images()->get() as $image)
+                            @foreach($images as $image)
                         {
                             title: "Nahraný obrázek č. {{$loop->index}}",
-                            value: "/storage/{{$image->name}}"
+                            value: "{{$image->name}}"
                         },
                         @endforeach
                     ],

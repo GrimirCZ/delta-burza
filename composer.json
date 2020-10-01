@@ -9,8 +9,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
+        "ext-intl": "*",
         "aws/aws-sdk-php": "~3.0",
         "barryvdh/laravel-dompdf": "^0.8.7",
+        "biscolab/laravel-recaptcha": "^4.4",
         "doctrine/dbal": "^2.11",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^2.0",
@@ -21,11 +23,12 @@
         "laravel/sanctum": "^2.6",
         "laravel/telescope": "^4.0",
         "laravel/tinker": "^2.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "league/flysystem-cached-adapter": "^1.1",
         "livewire/livewire": "^2.0",
         "maatwebsite/excel": "^3.1",
         "spatie/valuestore": "^1.2",
-        "stevebauman/purify": "^3.0",
-      "ext-intl": "*"
+        "stevebauman/purify": "^3.0"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

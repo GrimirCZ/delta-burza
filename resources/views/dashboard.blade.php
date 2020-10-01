@@ -10,7 +10,7 @@
                 <h1 class="font-light text-3xl text-gray-800">{{Auth::user()->school->name}}</h1>
             </div>
             <div class="inline-block">
-                <img src="{{asset('storage/' . Auth::user()->school->logo())}}" class="h-8"
+                <img src="{{Auth::user()->school->logo()}}" class="h-8"
                      alt="Logo {{Auth::user()->school->name}}">
             </div>
         </div>
