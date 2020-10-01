@@ -183,15 +183,26 @@
                 {{ $slot }}
             </main>
 
-            <footer class="px-3 sm:px-0 py-6 flex justify-between align-center max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <p>
+            <div class="backers px-3 sm:px-0 py-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="backers-title text-gray-400 mb-3">Partneři portálu</div>
+                <div class="mx-5">
+                    <a target="_blank" href="https://www.khkpce.cz/">
+                        <img src="/images/khk-pk.png" alt="Krajská hospodářská komora" class="footer-img"/>
+                    </a>
+                </div>
+            </div>
+
+            <footer class="px-3 sm:px-0 py-6 md:flex justify-between align-center max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <p class="text-right md:text-left mb-2 md:mb-0">
                     <a href="{{route("obchodni_podminky")}}" class="link">Obchodní podmínky</a>
                 </p>
-                <p class="text-right text-gray-600 text-sm">
-                    Vytvořil Vít Falta a Matěj Půhoný, studenti <br class="inline sm:hidden"/> <a
-                        href="{{url("/skola/1")}}" class="link">DELTA - Střední škola informatiky a ekonomie, s.r.o.</a>
-                    2020
-                </p>
+                <div class="text-right">
+                    <p class="text-right text-gray-600 text-sm">
+                        Vytvořil Vít Falta a Matěj Půhoný, studenti <br class="inline sm:hidden"/> <a
+                            href="{{url("/skola/1")}}" class="link">DELTA - Střední škola informatiky a ekonomie, s.r.o.</a>
+                        2020
+                    </p>
+                </div>
             </footer>
         </div>
 
