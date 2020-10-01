@@ -36,7 +36,7 @@ class SendInvoice implements ShouldQueue
         ]);
 
         $s3 = Storage::disk("s3");
-        $filepath = $s3->put('invoices/', $pdf->stream(), 'public');
+        $filepath = $s3->put('invoices/' . $order->id . "_" . uniqid() . ".pdf", $pdf->stream(), 'public');
         $url = $s3->url($filepath);
 
 
