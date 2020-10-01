@@ -211,7 +211,7 @@
                             <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                 <td class="px-8 py-5">
                                     <a href="{{url('/vystava/'.$registration->exhibition->id)}}">
-                                        {{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
+                                        {{format_date($registration->exhibition->date)}} {{$registration->exhibition->city}}
                                         ({{$registration->exhibition->name}})
                                     </a>
                                 </td>
