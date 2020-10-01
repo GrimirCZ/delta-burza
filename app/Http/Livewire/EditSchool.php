@@ -7,6 +7,7 @@ use App\Models\File;
 use App\Models\School;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -82,25 +83,28 @@ class EditSchool extends Component
             ]);
 
             if($this->logo){
-                $logo_path = $this->logo->store("public/logos");
+                $filename = $this->logo->storePublicly("logos", 's3');
+                $logo_path = Storage::disk("s3")->url($filename);
+
 
                 File::where("school_id", $this->school->id)->where("type", "logo")->delete();
 
                 File::create([
                     'type' => 'logo',
-                    'name' => substr($logo_path, 6), // strip the public part
+                    'name' => $logo_path, // strip the public part
                     'school_id' => $this->school->id
                 ]);
             }
 
             if($this->brojure){
-                $brojure_path = $this->brojure->store("public/brojures");
+                $filename = $this->logo->storePublicly("brojures", 's3');
+                $brojure_path = Storage::disk("s3")->url($filename);
 
                 File::where("school_id", $this->school->id)->where("type", "brojure")->delete();
 
                 File::create([
                     'type' => 'brojure',
-                    'name' => substr($brojure_path, 7), // strip the public part, wtf
+                    'name' => $brojure_path, // strip the public part, wtf
                     'school_id' => $this->school->id
                 ]);
             }

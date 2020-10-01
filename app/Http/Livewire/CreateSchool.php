@@ -7,6 +7,7 @@ use App\Models\File;
 use App\Models\School;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\Livewire;
 use Livewire\WithFileUploads;
@@ -52,7 +53,8 @@ class CreateSchool extends Component
 
 
         DB::transaction(function(){
-            $logo_path = $this->logo->store("public/logos");
+            $filename = $this->logo->storePublicly("logos", 's3');
+            $logo_path = Storage::disk("s3")->url($filename);
 
             $user = Auth::user();
 
@@ -77,7 +79,8 @@ class CreateSchool extends Component
             ]);
 
             if($this->brojure){
-                $brojure_path = $this->brojure->store("public/brojures");
+                $filename = $this->brojure->storePublicly("brojures", "s3");
+                $brojure_path = Storage::disk("s3")->url($filename);
 
                 File::create([
                     'type' => 'brojure',

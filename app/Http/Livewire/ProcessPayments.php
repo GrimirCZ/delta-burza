@@ -30,7 +30,7 @@ class ProcessPayments extends Component
     {
         $this->validate();
 
-        $file_path = $this->platby->store("imports");
+        $file_path = $this->platby->storePublicly("imports");
 
         (new PaymentImport())->import($file_path, "local", Excel::CSV);
     }

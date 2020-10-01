@@ -6,8 +6,10 @@ namespace App\Http\Controllers;
 use App\Models\File;
 use Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
+use function Symfony\Component\String\u;
 
 
 class ImageController extends Controller
@@ -39,25 +41,28 @@ class ImageController extends Controller
 
         $filepath = "images/" . uniqid() . ".jpg";
 
-        $img->save(public_path() . "/storage/" . $filepath, 100, "jpg");
+
+        $s3 = Storage::disk("s3");
+        $s3->put($filepath, $img->stream('jpg', 100), 'public');
+        $url = $s3->url($filepath);
 
         // if school does not exist use user for the ownership
         if($user->school_id != null){
             File::create([
                 'school_id' => $user->school->id,
                 'type' => 'image',
-                'name' => $filepath
+                'name' => $url
             ]);
         } else{
             File::create([
                 'user_id' => $user->id,
                 'type' => 'image',
-                'name' => $filepath
+                'name' => $url
             ]);
         }
 
         return [
-            'location' => url('/storage/' . $filepath)
+            'location' => $url
         ];
         //
     }
