@@ -39,7 +39,7 @@
                         @error('city') <span class="error">{{ $message }}</span> @enderror
                     </div>
                 </div>
-                <div>
+                <div class="form-row-2">
                     <div class="form-field">
                         <label for="ico" class="label">IČ</label>
                         <input id="ico" type="text" wire:model="ico" class="input @error('ico') input-error @enderror">
