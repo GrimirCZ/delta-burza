@@ -210,8 +210,10 @@
                         @foreach(Auth::user()->school->ordered_registrations()->get() as $registration)
                             <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                 <td class="px-8 py-5">
-                                    {{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
-                                    ({{$registration->exhibition->name}})
+                                    <a href="{{url('/vystava/'.$registration->exhibition->id)}}">
+                                        {{format_date($registration->exhibition->date)}} {{$registration->exhibition->district->name}}
+                                        ({{$registration->exhibition->name}})
+                                    </a>
                                 </td>
                                 <td class="px-8 py-5">
                                     @if(!$registration->order_registration->fulfilled_at != null)
