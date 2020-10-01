@@ -184,9 +184,11 @@
             </main>
 
             <div class="backers px-3 sm:px-0 py-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="backers-title text-gray-400 mb-3">Partneři</div>
+                <div class="backers-title text-gray-400 mb-3">Partneři portálu</div>
                 <div class="mx-5">
-                    <img src="/images/khk-pk.png" alt="Krajská hospodářská komora" class="footer-img"/>
+                    <a target="_blank" href="https://www.khkpce.cz/">
+                        <img src="/images/khk-pk.png" alt="Krajská hospodářská komora" class="footer-img"/>
+                    </a>
                 </div>
             </div>
 
