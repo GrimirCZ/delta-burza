@@ -13,15 +13,13 @@ class InvoiceMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    protected string $pdf_name;
     protected User $user;
     protected Order $order;
 
-    public function __construct(User $user, Order $order, string $pdf_name)
+    public function __construct(User $user, Order $order)
     {
         $this->user = $user;
         $this->order = $order;
-        $this->pdf_name = $pdf_name;
         //
     }
 
@@ -34,7 +32,7 @@ class InvoiceMail extends Mailable implements ShouldQueue
                 'user' => $this->user,
                 'order' => $this->order
             ])
-            ->attach(base_path("storage/app/public/invoices/" . $this->pdf_name), [
+            ->attach($this->order->invoice, [
                 'as' => 'faktura.pdf',
                 'mime' => 'application/pdf',
             ]);

@@ -11,6 +11,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 
 class SendInvoice implements ShouldQueue
 {
@@ -26,7 +27,6 @@ class SendInvoice implements ShouldQueue
     public function handle()
     {
         $order = Order::find($this->order_id);
-        $pdf_name = str_replace(" ", "_", $order->school->name) . "_objednavka_" . $this->order_id . ".pdf";
         $user = $order->school->main_contact();
 
         $pdf = App::make('dompdf.wrapper');
@@ -35,12 +35,15 @@ class SendInvoice implements ShouldQueue
             'school' => $order->school
         ]);
 
-        $pdf->save(public_path() . '/storage/invoices/' . $pdf_name);
+        $s3 = Storage::disk("s3");
+        $filepath = $s3->put('invoices/', $pdf->stream(), 'public');
+        $url = $s3->url($filepath);
 
-        $order->invoice = $pdf_name;
+
+        $order->invoice = $url;
         $order->push();
 
-        Mail::to($user)->queue(new InvoiceMail($user, $order, $pdf_name));
+        Mail::to($user)->queue(new InvoiceMail($user, $order));
         //
     }
 }
