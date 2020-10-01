@@ -139,7 +139,8 @@ class EditSchool extends Component
     {
         return view('livewire.create-school', [
             'districts' => District::orderBy("name")->get(),
-            'edit' => true
+            'edit' => true,
+            'type_of_exhibitioner' => 'school'
         ]);
     }
 }

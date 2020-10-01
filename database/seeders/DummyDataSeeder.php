@@ -72,7 +72,7 @@ class DummyDataSeeder extends Seeder
             'email' => "falta.vit@zsbcuo.cz",
 //            'email' => "jiri.formanek@delta-skola.cz",
             'password' => Hash::make("admin"),
-            'school_id' => $sch->id,
+//            'school_id' => $sch->id,
             'is_main_contact' => true,
             'is_admin' => true
         ]);

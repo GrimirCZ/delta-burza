@@ -71,12 +71,13 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 //    Route::get("/faktura/{order}", InvoiceController::class);
 
     Route::get('/skola/vytvorit', CreateSchool::class);
-    Route::get('/spolecnost/vytvorit', CreateCompany::class);
 
     Route::get('/skola/upravit', EditSchool::class);
     Route::get('/spolecnost/upravit', EditCompany::class);
 
     Route::get('/spolecnost/skola/pridat', AddSchool::class);
+    // TODO: implement this
+    Route::delete('/spolecnost/skola/{school}/odstranit', AddSchool::class);
 
     Route::get("/platby/import", ProcessPayments::class);
 

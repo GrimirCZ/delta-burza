@@ -21,12 +21,9 @@
             <div
                 class="grid justify-around items-center h-72 bg-white py-10 pb-0 px-2 sm:px-6 lg:px-8 w-100 my-7 mx-5 shadow-sm">
                 <div class="text-center">
-                    <i>Zatím nebyly vloženy informace o škole</i>
+                    <i>Zatím nebyly vloženy informace o vystavovateli.</i>
                     <a href="/skola/vytvorit" class="text-xl btn btn-primary block mt-2">
-                        Vložte informace o škole.
-                    </a>
-                    <a href="/spolecnost/vytvorit" class="text-xl btn btn-primary block mt-2">
-                        Vložte informace o firmě.
+                        Vložte informace o vystavovateli.
                     </a>
                 </div>
             </div>

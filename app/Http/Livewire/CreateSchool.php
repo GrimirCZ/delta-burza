@@ -6,6 +6,7 @@ use App\Models\District;
 use App\Models\File;
 use App\Models\School;
 use Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
@@ -31,25 +32,29 @@ class CreateSchool extends Component
     public $logo; // school logo file
     public $brojure; // school pdf brojure
 
-    protected $rules = [
-        'address' => 'required|max:255',
-        'psc' => 'required|max:6',
-        'city' => 'required|max:255',
-        'ico' => 'required|unique:schools,ico|max:10',
-        'izo' => 'required|unique:schools,izo|max:11',
-        'name' => 'required|max:200',
-        'email' => 'required|unique:schools,email|max:255|email',
-        'web' => 'required|max:255|url',
-        'phone' => 'required|max:255',
-        'description' => 'required',
-        'district_id' => 'exists:districts,id',
-        'logo' => 'image|max:1024', // 1MB Max
-        'brojure' => 'nullable|file|max:5120', // 5MB Max
-    ];
+    public $type_of_exhibitioner = "school";
 
     public function submit()
     {
-        $this->validate();
+        $this->validate([
+            'address' => 'required|max:255',
+            'psc' => 'required|max:6',
+            'city' => 'required|max:255',
+            'ico' => 'required|unique:schools,ico|max:10',
+            'izo' => [
+                Rule::requiredIf($this->type_of_exhibitioner == "school"),
+                'unique:schools,izo',
+                'max:11'
+            ],
+            'name' => 'required|max:200',
+            'email' => 'required|unique:schools,email|max:255|email',
+            'web' => 'required|max:255|url',
+            'phone' => 'required|max:255',
+            'description' => 'required',
+            'district_id' => 'exists:districts,id',
+            'logo' => 'image|max:1024', // 1MB Max
+            'brojure' => 'nullable|file|max:5120', // 5MB Max
+        ]);
 
 
         DB::transaction(function(){
@@ -69,6 +74,7 @@ class CreateSchool extends Component
                 'web' => $this->web,
                 'phone' => $this->phone,
                 'description' => Purify::clean($this->description),
+                'is_school' => $this->type_of_exhibitioner == "school",
                 'district_id' => $this->district_id,
             ]);
 
@@ -112,6 +118,7 @@ class CreateSchool extends Component
     {
         return view('livewire.create-school', [
             'districts' => District::orderBy("name")->get(),
+            'create' => true
         ]);
     }
 }

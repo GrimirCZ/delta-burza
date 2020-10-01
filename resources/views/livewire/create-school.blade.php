@@ -45,11 +45,14 @@
                         <input id="ico" type="text" wire:model="ico" class="input @error('ico') input-error @enderror">
                         @error('ico') <span class="error">{{ $message }}</span> @enderror
                     </div>
-                    <div class="form-field">
-                        <label for="izo" class="label">IZO</label>
-                        <input id="izo" type="text" wire:model="izo" class="input @error('izo') input-error @enderror">
-                        @error('izo') <span class="error">{{ $message }}</span> @enderror
-                    </div>
+                    @if($type_of_exhibitioner == "school")
+                        <div class="form-field">
+                            <label for="izo" class="label">IZO</label>
+                            <input id="izo" type="text" wire:model="izo"
+                                   class="input @error('izo') input-error @enderror">
+                            @error('izo') <span class="error">{{ $message }}</span> @enderror
+                        </div>
+                    @endif
                 </div>
                 <div class="form-row-2">
                     <div class="form-field">
@@ -133,6 +136,23 @@
                         </script>
                     </div>
                 </div>
+
+                @if(isset($create))
+                    <div class="form-row-2">
+                        <div>
+                            <label for="type_of_exhibitioner" class="label">Typ vystavovatele</label>
+                            <select wire:model="type_of_exhibitioner" name="type_of_exhibitioner"
+                                    id="type_of_exhibitioner" class="input">
+                                <option value="school">
+                                    Škola
+                                </option>
+                                <option value="company">
+                                    Firma
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                @endif
 
                 <div class="form-row">
                     <x-rich-text-editor label="Text o škole" field="description"/>
