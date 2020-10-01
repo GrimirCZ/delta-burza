@@ -156,7 +156,7 @@
 
 
                 <div class="form-row">
-                    <x-rich-text-editor label="Text o vystavovateli" field="description"/>
+                    <x-rich-text-editor label="O vystavovateli" field="description"/>
                 </div>
 
 

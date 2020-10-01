@@ -2,7 +2,7 @@
 <div>
     <div>
         <div wire:ignore>
-            <label for="{{$field}}" class="mb-2 inline-block">{{$label}}</label>
+            <label for="{{$field}}" class="mb-2 label inline-block">{{$label}}</label>
 
             <textarea name="{{$field}}" id="{{$field}}" cols="30" rows="10"
                       class="input @error('address') input-error @enderror"></textarea>
