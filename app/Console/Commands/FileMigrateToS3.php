@@ -56,7 +56,7 @@ class FileMigrateToS3 extends Command
 
             DB::transaction(function() use ($url, $db_name){
                 File::where("type", "=", "image")
-                    ->whereLike("name", "%" . $db_name . "%")
+                    ->whereLike("name", 'like', "%" . $db_name . "%")
                     ->update([
                         'name' => $url
                     ]);
@@ -69,20 +69,20 @@ class FileMigrateToS3 extends Command
         });
         $this->upload_files($s3, $brojures, "brojures", function($original_filename, $url){
             File::where("type", "=", "brojure")
-                ->whereLike("name", "%" . substr($original_filename, 7) . "%")
+                ->where("name", 'like', "%" . substr($original_filename, 7) . "%")
                 ->update([
                     'name' => $url
                 ]);
         });
         $this->upload_files($s3, $logos, "logos", function($original_filename, $url){
             File::where("type", "=", "logo")
-                ->whereLike("name", "%" . substr($original_filename, 7) . "%")
+                ->where("name", 'like', "%" . substr($original_filename, 7) . "%")
                 ->update([
                     'name' => $url
                 ]);
         });
         $this->upload_files($s3, $invoices, "invoices", function($original_filename, $url){
-            Order::whereLike("invoice", "%" . basename($original_filename) . "%")
+            Order::where("invoice", 'like', "%" . basename($original_filename) . "%")
                 ->update([
                     'invoice' => $url
                 ]);
