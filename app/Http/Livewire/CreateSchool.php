@@ -43,6 +43,7 @@ class CreateSchool extends Component
             'ico' => 'required|unique:schools,ico|max:10',
             'izo' => [
                 Rule::requiredIf($this->type_of_exhibitioner == "school"),
+                'nullable',
                 'unique:schools,izo',
                 'max:11'
             ],
