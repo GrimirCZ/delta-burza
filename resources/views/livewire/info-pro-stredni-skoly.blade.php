@@ -83,16 +83,20 @@
             </p>
 
             <h2 class="header">Cena</h2>
-            <p><b>První on-line burzu bude mít každá škola zdarma. Bude si moci vyzkoušet,
-                    zda to technicky funguje</b>, zda se deváťáci a jejich rodiče skutečně budou
-                připojovat, zkrátka zda to má pro školu skutečně přínos.</p>
-            <p>Teprve za každou další burzu zaplatí každá škola 1.000,- Kč.</p>
-            <p>Finančně to vychází ve srovnání s prezenčními burzami více než přijatelně. 🙂
-                A my aspoň zaplatíme našim studentům za naprogramování portálu a když se to jó
-                podaří, tak třeba vyměníme v naší škole okna. :-)</p>
-            <p>Fakturu je třeba zaplatit před termínem objednaných výstav - až do zaplacení
-                nebude odkaz na vaše on-line schůzky veřejně aktivní. (Doporučujeme platit s
-                předstihem aspoň 3 pracovní dny před konáním první výstavy.)</p>
+            <p>
+                <b>První on-line burzu bude mít každý vystavovatel zdarma. Bude si moci vyzkoušet,
+                zda to technicky funguje</b>, zda se deváťáci a jejich rodiče skutečně budou připojovat,
+                zkrátka zda to má pro vystavovatele skutečně přínos.
+            </p>
+            <p>
+                <b>Teprve za každou další burzu zaplatí vystavovatel 1.000,- Kč.</b>
+            </p>
+            <p>
+                Finančně to vychází ve srovnání s prezenčními burzami více než přijatelně. 🙂 A my aspoň zaplatíme našim studentům za naprogramování portálu a když se to jó podaří, tak třeba vyměníme v naší škole okna. :-)
+            </p>
+            <p>
+                Fakturu je třeba zaplatit před termínem objednaných výstav, jinak nebude odkaz na on-line schůzku aktivní. (Doporučujeme platit s předstihem aspoň 3 pracovní dny před konáním první výstavy.) Odkaz na on-line schůzku se „zaktivní“ vždy až v den konání výstavy, aby se žáci zbytečně nepřipojovali k „neobsazeným“ schůzkám.
+            </p>
 
             <h2 class="header">Kontakty & technická podpora</h2>
             <p>
