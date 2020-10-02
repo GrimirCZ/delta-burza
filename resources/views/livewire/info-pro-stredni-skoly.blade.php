@@ -1,6 +1,6 @@
 <div>
     <x-own-header>
-        Informace pro střední školy
+        Informace pro střední školy, firmy a úřady
     </x-own-header>
 
     <div class="py-12">
@@ -62,10 +62,27 @@
                 <li>Pokud je vaše nabídka skutečně jedinečná, můžete se účastnit i výstav, kam
                     normálně nejezdíte. <b>Oslovíte zájemce i ze vzdálenějších regionů.</b></li>
             </ul>
+
+
+            <h2 class="header">Jak to funguje pro firmy?</h2>
+            <p>
+                Firma může vyplnit úplně stejně svůj profil, jako škola. Navíc si však může vybrat
+                střední školy a učiliště, se kterými spolupracuje. (Seznam spolupracujících škol se
+                bude zobrazovat v jejím profilu.)
+            </p>
+            <p>
+                Odkaz na firmu se bude navíc zobrazovat i v profilu jednotlivých škol.
+            </p>
+            <p>
+                Firma si může objednat výstavu stejně jako škola. Pro každou výstavu vloží odkaz na svoji on-line schůzku, kde může komunikovat. Firmy mohou využít svůj komunikační kanál i pro domluvení budoucí spolupráce s dalšími školami, případně je mohou přes něj oslovit zájemci o zaměstnání.
+            </p>
+
+            <h2 class="header">Jak to funguje pro úřady?</h2>
+            <p>
+                Úřady (Úřady práce, Hospodářské komory a další) se prozatím registrují jako firmy. Nevyplňují žádné spolupracující školy. Přes víkend jim doděláme samostatnou kategorii.
+            </p>
+
             <h2 class="header">Cena</h2>
-            <p>Jelikož vše děláme jako studentský projekt a i když by to technicky fungovat
-                mělo, tak netušíme, jestli to zafunguje organizačně, rozhodli jsme se pro následující
-                cenovou politiku.</p>
             <p><b>První on-line burzu bude mít každá škola zdarma. Bude si moci vyzkoušet,
                     zda to technicky funguje</b>, zda se deváťáci a jejich rodiče skutečně budou
                 připojovat, zkrátka zda to má pro školu skutečně přínos.</p>
