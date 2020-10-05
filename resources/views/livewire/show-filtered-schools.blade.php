@@ -30,8 +30,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                <h3 class="ml-3 inline-block text-3xl align-middle">Nebyli nalezeni žádní vystavovatelé, kteří by
-                    odpovídali podmínkám.</h3>
+                <h3 class="ml-3 inline-block text-3xl align-middle">Nebyli nalezeni žádní vystavovatelé, kteří by odpovídali podmínkám.</h3>
 
                 <div class="align-center">
                     <button
@@ -54,8 +53,7 @@
 
         <div class="gap-3" id="macyJS">
             @foreach($schools as $school)
-                <div
-                    class="p-5 bg-white shadow-sm box-border h-min-content {{$school->is_school ?  "border-2 border-teal-400" : ""}}">
+                <div class="p-5 bg-white shadow-sm box-border h-min-content {{$school->is_school ?  "": "border-2 border-teal-400"}}">
                     <div class="leading-3 text-gray-400">{!! $school->pipe_text() !!}</div>
                     <a href="/skola/{{$school->id}}"><h3
                             class="text-2xl font-light">{{$school->name}}</h3></a>
