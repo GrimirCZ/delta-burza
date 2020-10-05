@@ -47,7 +47,7 @@ class CreateSchool extends Component
                 'unique:schools,izo',
                 'max:11'
             ],
-            'name' => 'required|max:200',
+            'name' => 'required|max:500',
             'email' => 'required|unique:schools,email|max:255|email',
             'web' => 'required|max:255|url',
             'phone' => 'required|max:255',

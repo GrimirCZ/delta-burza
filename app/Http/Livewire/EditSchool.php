@@ -49,7 +49,7 @@ class EditSchool extends Component
                 'max:11',
                 Rule::unique("schools", "izo")->ignore($this->school->id),
             ],
-            'name' => 'required|max:200',
+            'name' => 'required|max:500',
             'email' =>
                 [
                     'required',

@@ -22,7 +22,7 @@ class EditSpecialization extends Component
     public ?int $prescribed_specialization_id;
 
     protected $rules = [
-        'name' => 'required|max:255',
+        'name' => 'required|max:500',
         'description' => 'required',
         'prescribed_specialization_id' => 'exists:prescribed_specializations,id',
     ];
