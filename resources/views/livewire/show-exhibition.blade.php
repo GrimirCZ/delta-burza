@@ -18,7 +18,7 @@
                             nepřihlásil. Buďte první!</h3>
                     </div>
                 @else
-                    <div class="grid md:grid-cols-2 gap-3">
+                    <div id="macyJS">
                         @foreach($registrations as $registration)
                             <div class="p-5 shadow-sm box-border h-min-content bg-white {{$registration->school->is_school ?  "border-2 border-teal-400" : ""}}">
                                 <div class="leading-3 text-gray-400">
@@ -67,14 +67,14 @@
                                 @else
                                     <span
                                         class="btn text-sm text-center mt-13 block btn-disabled">
-                                    Připojit se online {{settings("morning_event_start")}}
-                                    - {{settings("morning_event_end")}}
-                                </span>
+                                        Připojit se online {{settings("morning_event_start")}}
+                                        - {{settings("morning_event_end")}}
+                                    </span>
                                     <span
                                         class="btn text-sm text-center mt-1 block btn-disabled">
-                                    Připojit se online {{settings("evening_event_start")}}
-                                    - {{settings("evening_event_end")}}
-                                </span>
+                                        Připojit se online {{settings("evening_event_start")}}
+                                        - {{settings("evening_event_end")}}
+                                    </span>
                                 @endif
 
                                 <a href="/skola/{{$registration->school->id}}"
@@ -96,6 +96,22 @@
                             </div>
                         @endforeach
                     </div>
+                    <script>
+                        let macyInstance = Macy({
+                            container: '#macyJS',
+                            columns: 1,
+                            margin: {
+                                x: 10,
+                                y: 10
+                            },
+                            mobileFirst: true,
+                            breakAt: {
+                                870: {
+                                    columns: 2
+                                }
+                            }
+                        });
+                    </script>
                 @endif
             </div>
         </div>

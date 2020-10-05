@@ -32,6 +32,8 @@
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.2.1/dist/alpine.js" defer></script>
         <script src="{{asset("js/app.js")}}" defer></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
     </head>
     <body>
         <div class="min-h-screen bg-gray-100">
@@ -184,10 +186,25 @@
             </main>
 
             <div class="backers px-3 sm:px-0 py-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="backers-title text-gray-400 mb-3">Partneři portálu</div>
-                <div class="mx-5">
-                    <a target="_blank" href="https://www.khkpce.cz/">
-                        <img src="/images/khk-pk.png" alt="Krajská hospodářská komora" class="footer-img"/>
+                <div class="backers-title text-gray-400 mb-3 text-center">Projekt vznikl za podpory:</div>
+                <div class="mx-5 text-center">
+                    <a target="_blank" href="https://www.khkpce.cz/" class="m-3 mb-10">
+                        <img src="/images/khk-pk.png" alt="Krajská hospodářská komora pardubického kraje" class="footer-img"/>
+                    </a>
+                    <a target="_blank" href="https://www.pardubickykraj.cz/" class="mx-3 mb-10">
+                        <img src="/images/pardubickykraj.png" alt="Pardubický kraj" class="footer-img k-pce"/>
+                    </a>
+                    <a target="_blank" href="https://www.uradprace.cz/" class="mx-3 mb-10">
+                        <img src="/images/up.png" alt="Úřad práce" class="footer-img urad-prace"/>
+                    </a>
+                </div>
+            </div>
+
+            <div class="backers px-3 sm:px-0 py-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div class="backers-title text-gray-400 mb-3 text-center">Partneři:</div>
+                <div class="mx-5 text-center">
+                    <a target="_blank" href="https://www.komora-khk.cz/" class="mx-3 mb-10">
+                        <img src="/images/khk-hk.png" alt="Krajská hospodářská komora královehradeckého kraje" class="footer-img khk-hk"/>
                     </a>
                 </div>
             </div>

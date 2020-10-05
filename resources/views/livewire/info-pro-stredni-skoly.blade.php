@@ -1,6 +1,6 @@
 <div>
     <x-own-header>
-        Informace pro střední školy
+        Informace pro střední školy, firmy a úřady
     </x-own-header>
 
     <div class="py-12">
@@ -62,20 +62,41 @@
                 <li>Pokud je vaše nabídka skutečně jedinečná, můžete se účastnit i výstav, kam
                     normálně nejezdíte. <b>Oslovíte zájemce i ze vzdálenějších regionů.</b></li>
             </ul>
+
+
+            <h2 class="header">Jak to funguje pro firmy?</h2>
+            <p>
+                Firma může vyplnit úplně stejně svůj profil, jako škola. Navíc si však může vybrat
+                střední školy a učiliště, se kterými spolupracuje. (Seznam spolupracujících škol se
+                bude zobrazovat v jejím profilu.)
+            </p>
+            <p>
+                Odkaz na firmu se bude navíc zobrazovat i v profilu jednotlivých škol.
+            </p>
+            <p>
+                Firma si může objednat výstavu stejně jako škola. Pro každou výstavu vloží odkaz na svoji on-line schůzku, kde může komunikovat. Firmy mohou využít svůj komunikační kanál i pro domluvení budoucí spolupráce s dalšími školami, případně je mohou přes něj oslovit zájemci o zaměstnání.
+            </p>
+
+            <h2 class="header">Jak to funguje pro úřady?</h2>
+            <p>
+                Úřady (Úřady práce, Hospodářské komory a další) se prozatím registrují jako firmy. Nevyplňují žádné spolupracující školy. Přes víkend jim doděláme samostatnou kategorii.
+            </p>
+
             <h2 class="header">Cena</h2>
-            <p>Jelikož vše děláme jako studentský projekt a i když by to technicky fungovat
-                mělo, tak netušíme, jestli to zafunguje organizačně, rozhodli jsme se pro následující
-                cenovou politiku.</p>
-            <p><b>První on-line burzu bude mít každá škola zdarma. Bude si moci vyzkoušet,
-                    zda to technicky funguje</b>, zda se deváťáci a jejich rodiče skutečně budou
-                připojovat, zkrátka zda to má pro školu skutečně přínos.</p>
-            <p>Teprve za každou další burzu zaplatí každá škola 1.000,- Kč.</p>
-            <p>Finančně to vychází ve srovnání s prezenčními burzami více než přijatelně. 🙂
-                A my aspoň zaplatíme našim studentům za naprogramování portálu a když se to jó
-                podaří, tak třeba vyměníme v naší škole okna. :-)</p>
-            <p>Fakturu je třeba zaplatit před termínem objednaných výstav - až do zaplacení
-                nebude odkaz na vaše on-line schůzky veřejně aktivní. (Doporučujeme platit s
-                předstihem aspoň 3 pracovní dny před konáním první výstavy.)</p>
+            <p>
+                <b>První on-line burzu bude mít každý vystavovatel zdarma. Bude si moci vyzkoušet,
+                zda to technicky funguje</b>, zda se deváťáci a jejich rodiče skutečně budou připojovat,
+                zkrátka zda to má pro vystavovatele skutečně přínos.
+            </p>
+            <p>
+                <b>Teprve za každou další burzu zaplatí vystavovatel 1.000,- Kč.</b>
+            </p>
+            <p>
+                Finančně to vychází ve srovnání s prezenčními burzami více než přijatelně. 🙂 A my aspoň zaplatíme našim studentům za naprogramování portálu a když se to jó podaří, tak třeba vyměníme v naší škole okna. :-)
+            </p>
+            <p>
+                Fakturu je třeba zaplatit před termínem objednaných výstav, jinak nebude odkaz na on-line schůzku aktivní. (Doporučujeme platit s předstihem aspoň 3 pracovní dny před konáním první výstavy.) Odkaz na on-line schůzku se „zaktivní“ vždy až v den konání výstavy, aby se žáci zbytečně nepřipojovali k „neobsazeným“ schůzkám.
+            </p>
 
             <h2 class="header">Kontakty & technická podpora</h2>
             <p>
