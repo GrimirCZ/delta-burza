@@ -142,7 +142,7 @@
                                     const size = Math.round(el.files[0].size / 1024 / 1024 * 100) / 100;
 
                                     if (size > 5) {
-                                        document.getElementById('brojure-error').innerHTML = "maximální povolená velikost souboru je 5MB. (velikost vašeho souboru: " + size + "MB)"
+                                        document.getElementById('brojure-error').innerHTML = "Maximální povolená velikost souboru je 5MB. (velikost vašeho souboru: " + size + "MB)"
                                         return false;
                                     }
                                 }
