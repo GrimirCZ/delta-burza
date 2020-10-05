@@ -97,7 +97,7 @@ class EditSchool extends Component
             }
 
             if($this->brojure){
-                $filename = $this->logo->storePublicly("brojures", 's3');
+                $filename = $this->brojure->storePublicly("brojures", 's3');
                 $brojure_path = Storage::disk("s3")->url($filename);
 
                 File::where("school_id", $this->school->id)->where("type", "brojure")->delete();
