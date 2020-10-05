@@ -104,6 +104,14 @@ class School extends Model
         return $this->belongsToMany(School::class, 'company_school', 'company_id', 'school_id');
     }
 
+    public function pipe_text() {
+        $pipe_text = $this->is_school ? 'škola' : 'firma';
+        $pipe_text .= ' | ';
+        $pipe_text .= $this->city . '<i>(okres '.$this->district->name.')</i>';
+
+        return $pipe_text;
+    }
+
     public function eligible_schools()
     {
         return $this->whereNotIn('id', function($q){
