@@ -208,6 +208,7 @@
                 </div>
             </div>
 
+            {<!--
             <div class="backers px-3 sm:px-0 py-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="backers-title text-gray-400 mb-3 text-center">Partneři:</div>
                 <div class="mx-5 text-center">
@@ -215,7 +216,7 @@
                         <img src="/images/khk-hk.png" alt="Krajská hospodářská komora královehradeckého kraje" class="footer-img khk-hk"/>
                     </a>
                 </div>
-            </div>
+            </div>-->}
 
             <footer class="px-3 sm:px-0 py-6 md:flex justify-between align-center max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <p class="text-right md:text-left mb-2 md:mb-0">
