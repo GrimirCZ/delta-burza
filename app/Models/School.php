@@ -107,7 +107,7 @@ class School extends Model
     public function pipe_text() {
         $pipe_text = $this->is_school ? 'škola' : 'firma';
         $pipe_text .= ' | ';
-        $pipe_text .= $this->city . '<i>(okres '.$this->district->name.')</i>';
+        $pipe_text .= $this->city . ' <i>(okres '.$this->district->name.')</i>';
 
         return $pipe_text;
     }
