@@ -22,7 +22,7 @@
                         @foreach($registrations as $registration)
                             <div class="p-5 shadow-sm box-border h-min-content bg-white {{$registration->school->is_school ?  "border-2 border-teal-400" : ""}}">
                                 <div class="leading-3 text-gray-400">
-                                    {{$registration->school->is_school ? "škola" : "firma"}} | okres {{$registration->school->district->name}}
+                                    {!! $registration->school->pipe_text() !!}
                                 </div>
                                 <a href="/skola/{{$registration->school->id}}">
                                     <h3 class="text-2xl font-light">
