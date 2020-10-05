@@ -47,7 +47,7 @@
                            class="inline-flex font-weight-semibold text-2xl sm:text-3xl font-freude title-shadow">
                             {{ config('app.name', 'Laravel') }}
                         </a>
-                        <div onClick="toggleMenu()" class="btn bg-white text-header sm:hidden cursor-pointer">
+                        <div onClick="toggleMenu()" class="btn bg-white text-header lg:hidden cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" class="inline-block h-5 align-middle">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -57,7 +57,7 @@
                         </div>
                     </div>
 
-                    <div class="justify-between items-center hidden sm:flex">
+                    <div class="justify-between items-center hidden lg:flex">
                         <div class="inline-flex">
                             <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("vystavy")}}">
@@ -71,6 +71,10 @@
                             <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("info_ss")}}">
                                 Pro vystavovatele
+                            </a>
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                               href="{{route("skoly")}}">
+                                Registrované školy
                             </a>
                             <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("o_nas")}}">
@@ -137,6 +141,10 @@
                                         <a href="{{route("info_ss")}}"
                                            class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
                                             Pro vystavovatele
+                                        </a>
+                                        <a href="{{route("skoly")}}"
+                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
+                                            Registrované školy
                                         </a>
                                         <a href="{{route("o_nas")}}"
                                            class="block hover:text-blue-400 py-3 font-freude">

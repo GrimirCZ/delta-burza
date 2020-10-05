@@ -170,3 +170,8 @@
         display: block;
     }
 }
+
+.list-schools-logo {
+    max-height: 150px;
+    max-width: 300px;
+}

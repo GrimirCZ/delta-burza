@@ -29,6 +29,7 @@ use App\Http\Livewire\ShowSpecialization;
 use App\Http\Livewire\CreateSpecialization;
 use App\Http\Livewire\TermsOfUse;
 use App\Http\Livewire\InfoAbout;
+use App\Http\Livewire\ListSchools;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,6 +87,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 });
 
 Route::get('/skola/{school}', ShowSchool::class);
+Route::get('/skoly', ListSchools::class)->name('skoly');
 Route::get('/obor/{specialization}', ShowSpecialization::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', DashboardController::class)->name('dashboard');
