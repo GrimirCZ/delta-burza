@@ -28,7 +28,7 @@
                 <a href="/skola/{{$school->id}}">
                 <div class="p-5 bg-white shadow-sm box-border text-gray-900 text-center">
                     @if($school->logo())
-                        <img src="{{$school->logo()}}" alt="{{$school->name . ' logo'}}" loading="lazy" class="inline-block mb-5 list-schools-logo">
+                        <img src="{{$school->logo()}}" alt="{{$school->name . ' logo'}}" class="inline-block mb-5 list-schools-logo">
                     @endif
 
                     <div class="text-1xl font-black">
