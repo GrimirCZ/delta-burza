@@ -96,7 +96,6 @@
                             </div>
                         @endforeach
                     </div>
-                    <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
                     <script>
                         let macyInstance = Macy({
                             container: '#macyJS',

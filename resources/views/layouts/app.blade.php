@@ -32,6 +32,8 @@
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.2.1/dist/alpine.js" defer></script>
         <script src="{{asset("js/app.js")}}" defer></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
     </head>
     <body>
         <div class="min-h-screen bg-gray-100">

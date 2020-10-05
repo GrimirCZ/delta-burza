@@ -51,7 +51,7 @@
             </div>
         @endif
 
-        <div class="grid md:grid-cols-2 gap-3">
+        <div class="gap-3" id="macyJS">
             @foreach($schools as $school)
                 <div class="p-5 bg-white shadow-sm box-border h-min-content {{$school->is_school ?  "border-2 border-teal-400" : ""}}">
                     <div class="leading-3 text-gray-400">{{$school->is_school ?  "škola" : "firma"}} | okres {{$school->district->name}}</div>
@@ -107,6 +107,22 @@
                 </div>
             @endforeach
         </div>
+        <script>
+            let macyInstance = Macy({
+                container: '#macyJS',
+                columns: 1,
+                margin: {
+                    x: 10,
+                    y: 10
+                },
+                mobileFirst: true,
+                breakAt: {
+                    870: {
+                        columns: 2
+                    }
+                }
+            });
+        </script>
     </div>
 
     <div class="max-w-7xl mx-auto py-10 px-2 sm:px-6 lg:px-8 w-100">
