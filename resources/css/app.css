@@ -143,3 +143,30 @@
 .khk-hk {
     max-height: 92px !important;
 }
+
+.manson-columns .col-1 {
+    display: content;
+}
+
+.manson-columns .col-2 {
+    display: content;
+}
+
+@media (min-width: 850px) {
+    .manson-columns {
+        width: 100%;
+        display: flex;
+    }
+
+    .manson-columns .col-1 {
+        width: 50%;
+        min-height: 50px;
+        display: block;
+    }
+
+    .manson-columns .col-2 {
+        width: 50%;
+        min-height: 50px;
+        display: block;
+    }
+}
