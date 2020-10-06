@@ -22,13 +22,13 @@ class ImageController extends Controller
 
         $user = Auth::user();
 
-        $num_of_images = $user->school_id != null ?
-            $user->school->images()->count() :
-            $user->images()->count();
-
-        if($num_of_images > settings("school_image_limit")){
-            return response("Překročen maximální počet obrázků.<br /> Pokud chcete uvolnit místo pro nový obrázek, můžete tak učinit v profilu školy.", 400);
-        }
+//        $num_of_images = $user->school_id != null ?
+//            $user->school->images()->count() :
+//            $user->images()->count();
+//
+//        if($num_of_images > settings("school_image_limit")){
+//            return response("Překročen maximální počet obrázků.<br /> Pokud chcete uvolnit místo pro nový obrázek, můžete tak učinit v profilu školy.", 400);
+//        }
 
         $request->validate([
             'file' => 'required|image|max:1024'
