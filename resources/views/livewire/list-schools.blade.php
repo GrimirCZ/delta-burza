@@ -19,7 +19,7 @@
                 </div>
             </div>
             <div class="mt-10">
-                <a href="/register" class="btn btn-primary">Přidejte se k vystavetelům</a>
+                <a href="/register" class="btn btn-primary">Přidejte se k vystavovatelům</a>
             </div>
         </div>
 
