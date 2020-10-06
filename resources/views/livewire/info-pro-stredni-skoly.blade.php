@@ -107,17 +107,16 @@
 
             <h2 class="header">Kontakty & technická podpora</h2>
             <p>
-                Tutoriál: Jak správně vygenerovat odkaz na schůzku v Teamsech a jak ho vložit k výstavě <br>
-                <a href="https://youtu.be/ozKRBovjLvQ">https://youtu.be/ozKRBovjLvQ</a> <br>
+                <span class="font-bold">Tutoriál: Jak správně vygenerovat odkaz na schůzku v Teamsech a jak ho vložit k výstavě </span><br>
+                <a href="https://youtu.be/ozKRBovjLvQ" class="link">https://youtu.be/ozKRBovjLvQ</a> <br>
                 5:52 min
-            </p>
+            </p><br>
             <p>
-                Tutoriál: Jak založit účet, naplnit informace o škole, naplnit obory, přihlásit se k výstavám a
-                hlavně<br>
-                vložit správně odkaz na schůzku v Teamsech (ostatní prostředí jsou obdobná) <br>
-                <a href="https://youtu.be/fBh_YPm8NJU">https://youtu.be/fBh_YPm8NJU</a> <br>
+               <span class="font-bold">Tutoriál: Jak založit účet, naplnit informace o škole, naplnit obory, přihlásit se k výstavám a
+                hlavně vložit správně odkaz na schůzku v Teamsech (ostatní prostředí jsou obdobná)</span><br>
+                <a href="https://youtu.be/fBh_YPm8NJU" class="link">https://youtu.be/fBh_YPm8NJU</a> <br>
                 24:08 min
-            </p>
+            </p><br>
             <p>
                 Email: <a href="mailto:jiri.formanek@delta-skola.cz" class="link">jiri.formanek@delta-skola.cz</a> (v
                 předmětu, prosím, úvádějte "BurzaŠkol.Online") <br>
