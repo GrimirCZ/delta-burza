@@ -74,35 +74,55 @@
                 Odkaz na firmu se bude navíc zobrazovat i v profilu jednotlivých škol.
             </p>
             <p>
-                Firma si může objednat výstavu stejně jako škola. Pro každou výstavu vloží odkaz na svoji on-line schůzku, kde může komunikovat. Firmy mohou využít svůj komunikační kanál i pro domluvení budoucí spolupráce s dalšími školami, případně je mohou přes něj oslovit zájemci o zaměstnání.
+                Firma si může objednat výstavu stejně jako škola. Pro každou výstavu vloží odkaz na svoji on-line
+                schůzku, kde může komunikovat. Firmy mohou využít svůj komunikační kanál i pro domluvení budoucí
+                spolupráce s dalšími školami, případně je mohou přes něj oslovit zájemci o zaměstnání.
             </p>
 
             <h2 class="header">Jak to funguje pro úřady?</h2>
             <p>
-                Úřady (Úřady práce, Hospodářské komory a další) se prozatím registrují jako firmy. Nevyplňují žádné spolupracující školy. Přes víkend jim doděláme samostatnou kategorii.
+                Úřady (Úřady práce, Hospodářské komory a další) se prozatím registrují jako firmy. Nevyplňují žádné
+                spolupracující školy. Přes víkend jim doděláme samostatnou kategorii.
             </p>
 
             <h2 class="header">Cena</h2>
             <p>
                 <b>První on-line burzu bude mít každý vystavovatel zdarma. Bude si moci vyzkoušet,
-                zda to technicky funguje</b>, zda se deváťáci a jejich rodiče skutečně budou připojovat,
+                    zda to technicky funguje</b>, zda se deváťáci a jejich rodiče skutečně budou připojovat,
                 zkrátka zda to má pro vystavovatele skutečně přínos.
             </p>
             <p>
                 <b>Teprve za každou další burzu zaplatí vystavovatel 1.000,- Kč.</b>
             </p>
             <p>
-                Finančně to vychází ve srovnání s prezenčními burzami více než přijatelně. 🙂 A my aspoň zaplatíme našim studentům za naprogramování portálu a když se to jó podaří, tak třeba vyměníme v naší škole okna. :-)
+                Finančně to vychází ve srovnání s prezenčními burzami více než přijatelně. 🙂 A my aspoň zaplatíme našim
+                studentům za naprogramování portálu a když se to jó podaří, tak třeba vyměníme v naší škole okna. :-)
             </p>
             <p>
-                Fakturu je třeba zaplatit před termínem objednaných výstav, jinak nebude odkaz na on-line schůzku aktivní. (Doporučujeme platit s předstihem aspoň 3 pracovní dny před konáním první výstavy.) Odkaz na on-line schůzku se „zaktivní“ vždy až v den konání výstavy, aby se žáci zbytečně nepřipojovali k „neobsazeným“ schůzkám.
+                Fakturu je třeba zaplatit před termínem objednaných výstav, jinak nebude odkaz na on-line schůzku
+                aktivní. (Doporučujeme platit s předstihem aspoň 3 pracovní dny před konáním první výstavy.) Odkaz na
+                on-line schůzku se „zaktivní“ vždy až v den konání výstavy, aby se žáci zbytečně nepřipojovali k
+                „neobsazeným“ schůzkám.
             </p>
 
             <h2 class="header">Kontakty & technická podpora</h2>
             <p>
-            Email: <a href="mailto:jiri.formanek@delta-skola.cz" class="link">jiri.formanek@delta-skola.cz</a> (v předmětu, prosím, úvádějte "BurzaŠkol.Online") <br>
-            Telefon: <a href="tel:466611106" class="link">466 611 106</a><br>
-            On-line schůzka: <a href="https://bit.ly/36eksH3" class="link">https://bit.ly/36eksH3</a> <br>
+                Tutoriál: Jak správně vygenerovat odkaz na schůzku v Teamsech a jak ho vložit k výstavě <br>
+                <a href="https://youtu.be/ozKRBovjLvQ">https://youtu.be/ozKRBovjLvQ</a> <br>
+                5:52 min
+            </p>
+            <p>
+                Tutoriál: Jak založit účet, naplnit informace o škole, naplnit obory, přihlásit se k výstavám a
+                hlavně<br>
+                vložit správně odkaz na schůzku v Teamsech (ostatní prostředí jsou obdobná) <br>
+                <a href="https://youtu.be/fBh_YPm8NJU">https://youtu.be/fBh_YPm8NJU</a> <br>
+                24:08 min
+            </p>
+            <p>
+                Email: <a href="mailto:jiri.formanek@delta-skola.cz" class="link">jiri.formanek@delta-skola.cz</a> (v
+                předmětu, prosím, úvádějte "BurzaŠkol.Online") <br>
+                Telefon: <a href="tel:466611106" class="link">466 611 106</a><br>
+                On-line schůzka: <a href="https://bit.ly/36eksH3" class="link">https://bit.ly/36eksH3</a> <br>
             </p>
         </x-dashboard-card>
     </div>
