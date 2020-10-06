@@ -61,9 +61,21 @@
                     <table class="table w-full mt-5 text-sm text-gray-600">
                         <tbody class="divide-y divide-gray-200">
                         @php
-                            if($prescribed_specialization_id == "all"){
+                            if($type_of_study_id == "all" && $field_of_study_id == "all" && $prescribed_specialization_id == "all"){
                                 $specializations = $school->ordered_specializations()->get();
-                            }else{
+                            } else if($field_of_study_id == "all" && $prescribed_specialization_id == "all"){
+                                $specializations = $school
+                                                    ->ordered_specializations()
+                                                    ->where("type_of_studies.id", "=", $type_of_study_id)
+                                                    ->select("specializations.*")
+                                                    ->get();
+                            } else if($prescribed_specialization_id == "all"){
+                                $specializations = $school
+                                                    ->ordered_specializations()
+                                                    ->where("field_of_studies.id", "=", $field_of_study_id)
+                                                    ->select("specializations.*")
+                                                    ->get();
+                            } else{
                                 $specializations = $school->ordered_specializations()->where("prescribed_specialization_id", $prescribed_specialization_id)->get();
                             }
                         @endphp
