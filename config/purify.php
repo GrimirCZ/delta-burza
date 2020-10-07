@@ -67,10 +67,9 @@ return [
         |
         */
 
-        'HTML.Allowed' => 'h1,h2,h3,h4,h5,h6,b,strong,i,em,a[href|title|target],ul,ol,li,p[style],br,span,img[width|height|alt|src],iframe[height|width|src|title]',
+        'HTML.Allowed' => 'h1,h2,h3,h4,h5,h6,b,strong,i,em,a[href|title|target],ul,ol,li,p[style],br,span,img[width|height|alt|src]',
 
         'HTML.TargetBlank' => true,
-        'HTML.SafeIframe' => false,
 
         /*
         |--------------------------------------------------------------------------
