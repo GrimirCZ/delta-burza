@@ -161,7 +161,11 @@
 
 
                 <div class="form-row">
-                    <button type="submit" class="btn btn-primary">Uložit</button>
+                    <span class="btn btn-primary cursor-pointer select-none hidden" wire:target="brojure,logo"
+                          wire:loading.class="force-inline-block">Nahrávám vaše soubory</span>
+                    <button type="submit" class="btn btn-primary" wire:loading.class="hidden"
+                            wire:target="brojure,logo">Uložit
+                    </button>
                 </div>
             </form>
         </x-dashboard-card>
