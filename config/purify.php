@@ -54,7 +54,7 @@ return [
         |
         */
 
-        'HTML.Doctype' => 'XHTML 1.0 Strict',
+        'HTML.Doctype' => 'HTML 4.01 Transitional',
 
         /*
         |--------------------------------------------------------------------------
