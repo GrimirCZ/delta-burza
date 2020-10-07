@@ -161,8 +161,8 @@
 
 
                 <div class="form-row">
-                    <span class="btn btn-primary cursor-pointer select-none hidden" wire:target="brojure,logo"
-                          wire:loading.class="force-inline-block">Nahrávám vaše soubory</span>
+                    <span class="btn cursor-pointer select-none hidden" wire:target="brojure,logo"
+                          wire:loading.class="force-inline-block">Počkejte, nahrávám vaše soubory...</span>
                     <button type="submit" class="btn btn-primary" wire:loading.class="hidden"
                             wire:target="brojure,logo">Uložit
                     </button>
