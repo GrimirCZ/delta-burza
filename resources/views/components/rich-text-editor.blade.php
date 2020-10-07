@@ -29,6 +29,7 @@
                     advlist_number_styles: 'lower-alpha,lower-roman,upper-alpha,upper-roman',
                     enable_caption: true,
                     language: 'cs',
+                    extended_valid_elements: 'a[href|target|target=_blank]',
                     images_upload_handler: function (blobInfo, success, failure, progress) {
                         var xhr, formData;
 
