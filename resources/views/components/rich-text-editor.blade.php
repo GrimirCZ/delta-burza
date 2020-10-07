@@ -21,9 +21,9 @@
                 tinymce.init({
                     selector: 'textarea#{{$field}}',
                     menubar: false,
-                    toolbar: 'undo redo | formatselect | bold italic underline link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code removeformat | image',
+                    toolbar: 'undo redo | formatselect | bold italic underline link | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | code removeformat | image pageembed',
                     plugins: [
-                        'image', 'imagetools', 'table', 'paste', 'wordcount', 'code', 'lists', 'advlist', 'link'
+                        'image', 'imagetools', 'table', 'paste', 'wordcount', 'code', 'lists', 'advlist', 'link', 'pageembed'
                     ],
                     advlist_bullet_styles: 'square',
                     advlist_number_styles: 'lower-alpha,lower-roman,upper-alpha,upper-roman',
