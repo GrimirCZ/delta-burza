@@ -1,7 +1,8 @@
 <div>
     <x-own-header
         top="{{$exhibition->district->region->name}} {{format_date($exhibition->date)}}">
-        <span class="font-bold">{{$exhibition->city}}</span> ({{$exhibition->name}})
+        <span class="font-bold">{{$exhibition->city}}</span> ({{$exhibition->name}})<br>
+        <span class="italic text-lg">Pořadatel: {{$exhibition->organizer->short_name}}</span>
     </x-own-header>
 
     <div>
@@ -20,7 +21,8 @@
                 @else
                     <div id="macyJS">
                         @foreach($registrations as $registration)
-                            <div class="p-5 shadow-sm box-border h-min-content bg-white {{$registration->school->is_school ? "" : "border-2 border-teal-400"}}">
+                            <div
+                                class="p-5 shadow-sm box-border h-min-content bg-white {{$registration->school->is_school ? "" : "border-2 border-teal-400"}}">
                                 <div class="leading-3 text-gray-400">
                                     {!! $registration->school->pipe_text() !!}
                                 </div>
