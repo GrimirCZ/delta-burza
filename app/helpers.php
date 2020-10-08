@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Exhibition;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 if(!function_exists('format_date')){
     function format_date(string $str) : string
@@ -90,5 +92,32 @@ if(!function_exists("current_date_str")){
     function current_date_str()
     {
         return (new Carbon())->toDateString();
+    }
+}
+
+
+if(!function_exists("calc_price")){
+    function calc_price(int $school_id, int $exhibition_id, $nth = 0)
+    {
+        $exhibition = Exhibition::find($exhibition_id);
+        $is_first_order = DB::table('schools')
+                ->join("orders", "schools.id", "=", "orders.school_id")
+                ->join("order_registration", "orders.id", "=", "order_registration.order_id")
+                ->join("registrations", "registrations.id", "=", "order_registration.registration_id")
+                ->join("exhibitions", "exhibitions.id", "=", "registrations.exhibition_id")
+                ->where("exhibitions.organizer_id", "=", "1")
+                ->where("schools.id", "=", $school_id)
+                ->count("order_registration.id") == 0;
+
+        // if not
+        if($exhibition->organizer_id != 1){
+            return 0;
+        }
+
+        if($nth == 0 && $is_first_order){
+            return 0;
+        }
+
+        return settings("exhibition_price");
     }
 }
