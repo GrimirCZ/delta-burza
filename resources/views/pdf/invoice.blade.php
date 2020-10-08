@@ -79,17 +79,15 @@
             <table>
                 <tbody>
                 @foreach($order->ordered_registrations as $or)
-                    <tr>
-                        <td>{{$or->registration->exhibition->city}} ({{$or->registration->exhibition->name}})
-                            {{format_date($or->registration->exhibition->date)}}</td>
-                        <td class="text-right">
-                            @if($or->price == 0)
-                                zdarma
-                            @else
+                    @if($or->price > 0)
+                        <tr>
+                            <td>{{$or->registration->exhibition->city}} ({{$or->registration->exhibition->name}})
+                                {{format_date($or->registration->exhibition->date)}}</td>
+                            <td class="text-right">
                                 {{$or->price}},- Kč
-                            @endif
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
+                    @endif
                 @endforeach
                 <tr>
                     <td colspan="2">

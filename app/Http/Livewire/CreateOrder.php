@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Helpers\ExhibitionSelection;
 use App\Jobs\SendInvoice;
 use App\Models\Exhibition;
 use App\Models\Order;
@@ -144,14 +143,13 @@ class CreateOrder extends Component
             $due_date = Carbon::today();
         }
 
-        $is_first_order = $this->is_first_order();
-
-        DB::transaction(function() use ($due_date, $is_first_order){
+        DB::transaction(function() use ($due_date){
             $ord = Order::create([
                 'due_date' => $due_date,
                 'school_id' => $this->school->id,
             ]);
 
+            $nth = 0;
             foreach($this->selected_exhibitions as $se){
 //                TODO: add check for already having the exhibition
                 $reg = Registration::create([
@@ -162,26 +160,14 @@ class CreateOrder extends Component
                     'evening_event' => $se['evening_event'],
                 ]);
 
+                $price = calc_price($this->school->id, $se['exhibition_id'], $nth++);
 
-                if($is_first_order){
-                    $is_first_order = false;
-
-
-                    OrderRegistration::create([
-                        'order_id' => $ord->id,
-                        'registration_id' => $reg->id,
-                        'fulfilled_at' => DB::raw("CURRENT_DATE"),
-                        'price' => 0,
-                    ]);
-                } else{
-                    OrderRegistration::create([
-                        'order_id' => $ord->id,
-                        'registration_id' => $reg->id,
-                        'price' => 1000,
-                    ]);
-
-                }
-
+                OrderRegistration::create([
+                    'order_id' => $ord->id,
+                    'registration_id' => $reg->id,
+                    'price' => $price,
+                    'fulfilled_at' => $price == 0 ? DB::raw("CURRENT_DATE") : null
+                ]);
             }
 
             $ord->push();
@@ -212,19 +198,15 @@ class CreateOrder extends Component
             ->orderBy("date");
     }
 
-    private function is_first_order()
-    {
-        return $this->school
-                ->orders()
-                ->join("order_registration", "orders.id", "=", "order_registration.order_id")
-                ->count() == 0;
-    }
-
     private function price()
     {
-        return $this->is_first_order() ?
-            max((count($this->selected_exhibitions) - 1) * 1000, 0) :
-            count($this->selected_exhibitions) * 1000;
+        $price = 0;
+
+        for($i = 0; $i < count($this->selected_exhibitions); $i++){
+            $price += calc_price($this->school->id, $this->selected_exhibitions[$i]["exhibition_id"], $i);
+        }
+
+        return $price;
     }
 
     /**
@@ -237,8 +219,8 @@ class CreateOrder extends Component
         if($this->state == "ALL")
             return view('livewire.create-order', [
                 'selected_exhibitions' => $this->selected_exhibitions,
-                'is_first_order' => $this->is_first_order(),
-                'price' => $this->price()
+                'price' => $this->price(),
+                'school_id' => $this->school->id
             ]);
         else if($this->state == "EDIT" || $this->state == "NEW")
             return view("order.create", [
