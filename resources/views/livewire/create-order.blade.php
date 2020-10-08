@@ -28,6 +28,12 @@
                         <tr>
                             <td class="px-4 py-2">{{format_date($se['date'])}} - {{$se['city']}}
                                 ({{$se['name']}})
+                                @if($se['organizer_id'] != 1)
+                                    <br> <i>Pořadatel: {{\App\Organizer::find($se['organizer_id'])->short_name}}</i>
+                                    (fakturační podmínky řeší
+                                    organizátor
+                                    výstavy)
+                                @endif
                             </td>
                             <td class="px-4 py-2">
                                 {{number_format(calc_price($school_id, $se['exhibition_id'], $loop->index), 0,",",".")}}

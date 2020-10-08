@@ -40,6 +40,9 @@
                             <td class="px-4 py-2">
                                 <a href="{{url("/vystava/$exhibition->id")}}" class="">
                                     {{format_date($exhibition->date)}} - {{$exhibition->city}} ({{$exhibition->name}})
+                                    @if($or->registration->exhibition->organizer_id != 1)
+                                        <br><i>Pořadatel: {{$or->registration->exhibition->organizer->short_name}}</i>
+                                    @endif
                                 </a>
                             </td>
                             <td class="px-4 py-2">
@@ -49,6 +52,8 @@
                                 @if($or->fulfilled_at != null)
                                     @if($or->registration->exhibition->organizer_id == 1)
                                         <span class="text-green-700 font-semibold">Zaplaceno</span>
+                                    @else
+                                        Fakturační podmínky řeší organizátor výstavy
                                     @endif
                                 @else
                                     <span class="text-red-700 font-semibold">Nezaplaceno</span>
