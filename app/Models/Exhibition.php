@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class Exhibition extends Model
 {
-    protected $fillable = ['name', 'city', 'date', 'district_id'];
+    protected $fillable = ['name', 'city', 'date', 'organizer_id', 'district_id'];
 
     public function district()
     {

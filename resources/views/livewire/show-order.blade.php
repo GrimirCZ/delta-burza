@@ -45,7 +45,15 @@
                             <td class="px-4 py-2">
                                 {{number_format($or->price, 0,",",".")}},- Kč
                             </td>
-                            <td colspan="2"></td>
+                            <td class="text-right" colspan="2">
+                                @if($or->fulfilled_at != null)
+                                    @if($or->registration->exhibition->organizer_id == 1)
+                                        <span class="text-green-700 font-semibold">Zaplaceno</span>
+                                    @endif
+                                @else
+                                    <span class="text-red-700 font-semibold">Nezaplaceno</span>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
@@ -55,14 +63,7 @@
                         <td class="px-4 py-2">
                             {{$price}},- Kč
                         </td>
-                        <td></td>
-                        <td class="text-right">
-                            @if($or->fulfilled_at != null)
-                                <span class="text-green-700 font-semibold">Zaplaceno</span>
-                            @else
-                                <span class="text-red-700 font-semibold">Nezaplaceno</span>
-                            @endif
-                        </td>
+                        <td colspan="2"></td>
                     </tr>
                     </tfoot>
                 </table>
