@@ -2,7 +2,9 @@
     <x-own-header
         top="{{$exhibition->district->region->name}} {{format_date($exhibition->date)}}">
         <span class="font-bold">{{$exhibition->city}}</span> ({{$exhibition->name}})<br>
-        <span class="italic text-lg">Pořadatel: {{$exhibition->organizer->short_name}}</span>
+        @if($exhibition->organizer_id != 1)
+            <span class="italic text-lg">Pořadatel: {{$exhibition->organizer->short_name}}</span>
+        @endif
     </x-own-header>
 
     <div>
