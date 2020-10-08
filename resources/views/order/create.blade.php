@@ -18,10 +18,18 @@
                             @if(!isset($exhibition_id))
                                 <option selected></option>
                             @elseif(isset($selected_exhibition))
-                                <option value="{{$selected_exhibition['id']}}">{{format_date($selected_exhibition['date'])}} - {{$selected_exhibition['city']}} ({{$selected_exhibition['name']}})</option>
+                                <option
+                                    value="{{$selected_exhibition['id']}}">{{format_date($selected_exhibition['date'])}}
+                                    - {{$selected_exhibition['city']}} ({{$selected_exhibition['name']}})
+                                </option>
                             @endif
                             @foreach($exhibitions as $ue)
                                 <option value="{{$ue->id}}">{{format_date($ue->date)}} - {{$ue->city}} ({{$ue->name}})
+                                    @if($ue->organizer_id != 1)
+                                        - Pořadatel: {{$ue->organizer->short_name}} (fakturační podmínky řeší
+                                        organizátor
+                                        výstavy)
+                                    @endif
                                 </option>
                             @endforeach
                         </select>

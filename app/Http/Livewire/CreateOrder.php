@@ -99,12 +99,15 @@ class CreateOrder extends Component
                     'city' => $ex->city,
                     'exhibition_id' => $this->exhibition_id,
                     'morning_event' => $this->morning_event,
-                    'evening_event' => $this->evening_event]
+                    'evening_event' => $this->evening_event,
+                    'organizer_id' => $ex->organizer_id,
+                ]
             );
         } else if($this->state == 'EDIT'){
             $this->selected_exhibitions[$this->selected_exhibition['id']]['name'] = $ex->name;
             $this->selected_exhibitions[$this->selected_exhibition['id']]['date'] = $ex->date;
             $this->selected_exhibitions[$this->selected_exhibition['id']]['city'] = $ex->city;
+            $this->selected_exhibitions[$this->selected_exhibition['id']]['organizer_id'] = $ex->organizer_id;
             $this->selected_exhibitions[$this->selected_exhibition['id']]['exhibition_id'] = $this->exhibition_id;
             $this->selected_exhibitions[$this->selected_exhibition['id']]['morning_event'] = $this->morning_event;
             $this->selected_exhibitions[$this->selected_exhibition['id']]['evening_event'] = $this->evening_event;
@@ -203,7 +206,9 @@ class CreateOrder extends Component
         $price = 0;
 
         for($i = 0; $i < count($this->selected_exhibitions); $i++){
-            $price += calc_price($this->school->id, $this->selected_exhibitions[$i]["exhibition_id"], $i);
+            if(isset($this->selected_exhibitions[$i])){
+                $price += calc_price($this->school->id, $this->selected_exhibitions[$i]["exhibition_id"], $i);
+            }
         }
 
         return $price;
