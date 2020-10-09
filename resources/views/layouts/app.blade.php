@@ -59,24 +59,28 @@
 
                     <div class="justify-between items-center hidden lg:flex">
                         <div class="inline-flex">
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("vystavy")}}">
                                 Výstavy
                             </a>
 
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("info_zs")}}">
                                 Pro žáky ZŠ
                             </a>
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("info_ss")}}">
                                 Pro vystavovatele
                             </a>
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                               href="{{route("info_poradatele")}}">
+                                Pro pořadatele
+                            </a>
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("skoly")}}">
                                 Registrované školy
                             </a>
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("o_nas")}}">
                                 O nás
                             </a>
@@ -141,6 +145,10 @@
                                         <a href="{{route("info_ss")}}"
                                            class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
                                             Pro vystavovatele
+                                        </a>
+                                        <a href="{{route("info_poradatele")}}"
+                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
+                                            Pro pořadatele
                                         </a>
                                         <a href="{{route("skoly")}}"
                                            class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">

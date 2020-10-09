@@ -18,6 +18,7 @@ use App\Http\Livewire\EditSpecialization;
 use App\Http\Livewire\FilterSchools;
 use App\Http\Livewire\InfoProStredniSkoly;
 use App\Http\Livewire\InfoProZakyZS;
+use App\Http\Livewire\InfoProPoradatele;
 use App\Http\Livewire\ListExhibitions;
 use App\Http\Livewire\ListExhibitionsRegion;
 use App\Http\Livewire\PayOrder;
@@ -47,6 +48,7 @@ Route::get('/', 'App\Http\Controllers\WelcomeController');
 
 Route::get("/info_pro_stredni_skoly", InfoProStredniSkoly::class)->name("info_ss");
 Route::get("/info_pro_zaky_zs", InfoProZakyZS::class)->name("info_zs");
+Route::get("/info_pro_poradatele", InfoProPoradatele::class)->name("info_poradatele");
 Route::get("/obchodni_podminky", TermsOfUse::class)->name("obchodni_podminky");
 Route::get('/o-nas', InfoAbout::class)->name("o_nas");
 
