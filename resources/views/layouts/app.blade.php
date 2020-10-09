@@ -57,8 +57,8 @@
                         </div>
                     </div>
 
-                    <div class="justify-between items-center hidden lg:flex text-shadow">
-                        <div class="inline-flex">
+                    <div class="justify-between items-center hidden lg:flex">
+                        <div class="inline-flex text-shadow">
                             <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("vystavy")}}">
                                 Výstavy
