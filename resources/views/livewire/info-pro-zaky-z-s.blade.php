@@ -5,22 +5,31 @@
 
     <div class="py-12">
         <x-dashboard-card>
+            <div class="max-w-xl mx-auto mt-3">
             <p>
-                Tak to vypadá, že kvůli COVIDu budou letos prezenční výstavy středních škol
-                asi zrušené. Chceme vám pomoci s výběrem střední
-                školy aspoň pomocí technologií a výstavy udělat online. Velká většina z vás
-                zažila letos na jaře nějakou formu on-line výuky ať už pomocí Microsoft Teamsů,
-                Google Meetsů nebo třeba technologií Zoom. Pojďte si pomocí stejných
-                technologií prohlédnout své budoucí školy a on-line si popovídat s jejich
-                zástupci.
+               <span class="font-bold">Videotutoriál vyhledávání na BurzaŠkol.Online – pro výchovné poradce</span><br>
+                <a href="https://www.youtube.com/watch?v=erejbfqoOXM" class="link">https://www.youtube.com/watch?v=erejbfqoOXM</a> <br>
+                7:22 min
             </p>
 
-            <h2 class="text-xl text-black pt-5 pb-2">Jak na to?</h2>
-            <h3 class="text-lg text-black pt-5 pb-2">Výběr podle místa výstavy a termínu</h3>
+            <p class="mt-5">
+                Tak to letos vypadá, že kvůli COVIDu nebude možné uspořádat výstavy středních škol v klasické prezenční podobě. S velkou
+                pravděpodobností na školách neproběhnou prezenční formou ani dny otevřených dveří. Myslíme si však, <b>že přímá komunikace žáka
+                    a rodičů se zástupci škol je pro dobrou volbu školy nepostradatelná.</b>
+            </p>
+
+            <p class="mt-5">
+                Chceme vám pomoci s výběrem střední školy aspoň pomocí technologií a <b>výstavy udělat online</b>. Velká většina z vás
+                zažila letos na jaře nějakou formu on-line výuky ať už pomocí <b>Microsoft Teams, Google Meet nebo třeba technologií
+                    Zoom</b>. Pojďte si pomocí stejných technologií prohlédnout své budoucí školy a <b>on-line si popovídat s jejich zástupci.</b>
+            </p>
+
+            <h2 class="text-xl text-black pt-10 pb-2">Jak na to?</h2>
+            <h3 class="text-lg text-black pt-0 pb-2">Výběr podle místa výstavy a termínu</h3>
             <p>
                 Nejjednodušší volba, která nejvíce odpovídá klasickým výstavám. Vyberte si kraj a potom zvolte výstavu, na kterou byste chtěli "jít".
-                Například, když chcete studovat na nějaké škole z Pardubic a okolí, vyberete si prostě výstavu "Pardubice (Schola Bohemia)", podíváte se,
-                kdy se koná - např.: 6.11.2020 a už dopředu si můžete prohlédnout školy (a jejich obory), které se výstavy zúčastní.
+                Například, když chcete studovat na nějaké škole z Pardubic a okolí, vyberete si prostě výstavu "Pardubice", podíváte se, kdy se
+                koná - např.: 6.11.2020 a už dopředu si můžete prohlédnout školy (a jejich obory), které se výstavy zúčastní.
             </p>
             <p class="mt-4">
                 6. 11. 2020 potom přijdete k počítači, rozkliknete si výstavu "v Pardubicích" a u škol, které vás zaujaly, se postupně připojíte
@@ -58,6 +67,7 @@
             <p class="mt-5">
                 Můžete si tak vybrat termíny, kdy si na BurzaŠkol.Online přijdete s vybranými školami on-line popovídat.
             </p>
+            </div>
         </x-dashboard-card>
     </div>
 </div>
