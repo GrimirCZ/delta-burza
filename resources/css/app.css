@@ -188,3 +188,8 @@
 .bg-light-green {
     background-color: #71bf18;
 }
+
+.card-logo {
+    max-width: 100px;
+    max-height: 150px;
+}

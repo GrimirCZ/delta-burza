@@ -35,9 +35,16 @@
                                         {!! $registration->school->pipe_text() !!}
                                     </div>
                                     <a href="/skola/{{$registration->school->id}}">
-                                        <h3 class="text-2xl font-light">
-                                            {{$registration->school->name}}
-                                        </h3>
+                                        <div class="flex mt-3">
+                                            @if($registration->school->logo())
+                                                <div class="mr-5 py-3">
+                                                <img src="{{$registration->school->logo()}}" alt="{{$registration->school->name}} logo" class="card-logo">
+                                                </div>
+                                            @endif
+                                            <h3 class="text-2xl font-light">
+                                                {{$registration->school->name}}
+                                            </h3>
+                                        </div>
                                     </a>
 
                                     <table class="table w-full mt-5 text-sm text-gray-600">
@@ -51,7 +58,7 @@
                                                         <i>(ŠVP: {{$specialization->name}})</i>
                                                     </a>
                                                 </td>
-                                                <td class="py-3 text-right">
+                                                <td class="py-3 text-right w-48">
                                                     <a href="/obor/{{$specialization->id}}"
                                                        class="btn btn-primary text-sm inline-block">Více
                                                         informací o oboru</a>

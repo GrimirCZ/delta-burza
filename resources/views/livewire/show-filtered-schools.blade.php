@@ -62,8 +62,19 @@
                     @endif
                     <div class="p-5">
                         <div class="leading-3 text-gray-400">{!! $school->pipe_text() !!}</div>
-                        <a href="/skola/{{$school->id}}"><h3
-                                class="text-2xl font-light">{{$school->name}}</h3></a>
+
+                        <a href="/skola/{{$school->id}}">
+                            <div class="flex mt-3">
+                                @if($school->logo())
+                                    <div class="mr-5 py-3">
+                                        <img src="{{$school->logo()}}" alt="{{$school->name}} logo" class="card-logo">
+                                    </div>
+                                @endif
+                                <h3 class="text-2xl font-light">
+                                    {{$school->name}}
+                                </h3>
+                            </div>
+                        </a>
 
                         <table class="table w-full mt-5 text-sm text-gray-600">
                             <tbody class="divide-y divide-gray-200">
@@ -95,7 +106,7 @@
                                             <i>(ŠVP: {{$specialization->name}})</i>
                                         </a>
                                     </td>
-                                    <td class="py-3 text-right">
+                                    <td class="py-3 text-right w-48">
                                         <a href="/obor/{{$specialization->id}}"
                                            class="btn btn-primary text-white text-sm inline-block">Více informací o
                                             oboru</a>
