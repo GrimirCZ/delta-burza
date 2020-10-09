@@ -184,3 +184,7 @@
     transform: rotate(45deg);
     width: 200px;
 }
+
+.bg-light-green {
+    background-color: #71bf18;
+}
