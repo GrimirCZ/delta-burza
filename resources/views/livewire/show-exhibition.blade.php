@@ -25,10 +25,10 @@
                         @foreach($registrations as $registration)
                             <div class="relative overflow-hidden shadow-sm box-border h-min-content bg-white {{$registration->school->is_school ? "" : "border-2 border-teal-400"}}">
                                 @if($registration->school->id === 1)
-                                <div class="flag bg-teal-400 text-sm text-center text-white shadow-md">
-                                    tvůrci portálu<br>
-                                    <b>burzaskol.online</b>
-                                </div>
+                                    <div class="flag bg-teal-400 text-sm text-center text-white shadow-md">
+                                        tvůrci portálu<br>
+                                        <b>burzaskol.online</b>
+                                    </div>
                                 @endif
                                 <div class="p-5">
                                     <div class="leading-3 text-gray-400">
