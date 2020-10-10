@@ -87,18 +87,26 @@
                         </div>
                         <div class="inline-flex">
                             @if(Auth::check())
+                                @if(Auth::user()->is_admin)
+                                    <a class="mr-6 btn bg-white text-header font-freude header-btn-border"
+                                       href="{{route('admin-dashboard')}}">
+                                        Administrace
+                                    </a>
+                                @endif
                                 <a class="mr-6 btn bg-white text-header font-freude header-btn-border"
-                                   href="/dashboard">
+                                   href="{{route("dashboard")}}">
                                     Profil
                                 </a>
                                 <form action="{{url("logout")}}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn bg-white text-header font-freude header-btn-border">
+                                    <button type="submit"
+                                            class="btn bg-white text-header font-freude header-btn-border">
                                         Odhlásit se
                                     </button>
                                 </form>
                             @else
-                                <a href="{{url("/login")}}" class="btn bg-white text-header font-freude header-btn-border">Vstup
+                                <a href="{{url("/login")}}"
+                                   class="btn bg-white text-header font-freude header-btn-border">Vstup
                                     pro vystavovatele</a>
                             @endif
                         </div>
@@ -162,6 +170,12 @@
 
                                         <div class="mt-8">
                                             @if(Auth::check())
+                                                @if(Auth::user()->is_admin)
+                                                    <a class="mr-6 btn bg-header text-white font-freude inline-block"
+                                                       href="{{route('admin-dashboard')}}">
+                                                        Administrace
+                                                    </a>
+                                                @endif
                                                 <a class="mr-6 btn bg-header text-white font-freude inline-block"
                                                    href="/dashboard">
                                                     Profil
@@ -205,7 +219,8 @@
                 <div class="backers-title text-gray-400 mb-3 text-center">Projekt vznikl za podpory:</div>
                 <div class="mx-5 text-center">
                     <a target="_blank" href="https://www.khkpce.cz/" class="m-3 mb-10">
-                        <img src="/images/khk-pk.png" alt="Krajská hospodářská komora pardubického kraje" class="footer-img"/>
+                        <img src="/images/khk-pk.png" alt="Krajská hospodářská komora pardubického kraje"
+                             class="footer-img"/>
                     </a>
                     <a target="_blank" href="https://www.pardubickykraj.cz/" class="mx-3 mb-10">
                         <img src="/images/pardubickykraj.png" alt="Pardubický kraj" class="footer-img k-pce"/>
@@ -233,7 +248,8 @@
                 <div class="text-right">
                     <p class="text-right text-gray-600 text-sm">
                         Vytvořil Vít Falta a Matěj Půhoný, studenti <br class="inline sm:hidden"/> <a
-                            href="{{url("/skola/1")}}" class="link">DELTA - Střední škola informatiky a ekonomie, s.r.o.</a>
+                            href="{{url("/skola/1")}}" class="link">DELTA - Střední škola informatiky a ekonomie,
+                            s.r.o.</a>
                         2020
                     </p>
                 </div>

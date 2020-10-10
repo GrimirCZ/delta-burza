@@ -7,6 +7,10 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\UnlinkSchoolFromCompany;
 use App\Http\Livewire\AddSchool;
+use App\Http\Livewire\AdminArticleCreate;
+use App\Http\Livewire\AdminArticleEdit;
+use App\Http\Livewire\AdminDashboard;
+use App\Http\Livewire\AdminListArticles;
 use App\Http\Livewire\CreateCompany;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\CreateRegistration;
@@ -16,6 +20,7 @@ use App\Http\Livewire\EditRegistration;
 use App\Http\Livewire\EditSchool;
 use App\Http\Livewire\EditSpecialization;
 use App\Http\Livewire\FilterSchools;
+use App\Http\Livewire\Index;
 use App\Http\Livewire\InfoProStredniSkoly;
 use App\Http\Livewire\InfoProZakyZS;
 use App\Http\Livewire\InfoProPoradatele;
@@ -23,6 +28,7 @@ use App\Http\Livewire\ListExhibitions;
 use App\Http\Livewire\ListExhibitionsRegion;
 use App\Http\Livewire\PayOrder;
 use App\Http\Livewire\ProcessPayments;
+use App\Http\Livewire\ShowArticle;
 use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowOrder;
 use App\Http\Livewire\ShowSchool;
@@ -31,6 +37,7 @@ use App\Http\Livewire\CreateSpecialization;
 use App\Http\Livewire\TermsOfUse;
 use App\Http\Livewire\InfoAbout;
 use App\Http\Livewire\ListSchools;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,7 +51,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\WelcomeController');
+Route::get('/', Index::class);
 
 Route::get("/info_pro_stredni_skoly", InfoProStredniSkoly::class)->name("info_ss");
 Route::get("/info_pro_zaky_zs", InfoProZakyZS::class)->name("info_zs");
@@ -59,6 +66,7 @@ Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
 
 Route::get("/skola/filtrovat", FilterSchools::class);
 
+Route::get("/clanek/{article}", ShowArticle::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/obor/vytvorit', CreateSpecialization::class);
@@ -86,6 +94,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 
     Route::post("/obrazek/nahrat", "App\Http\Controllers\ImageController@nahrat");
     Route::delete("/obrazek/{file}/smazat", "App\Http\Controllers\ImageController@smazat");
+});
+
+Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->group(function(){
+    Route::get("/admin/clanek/vytvorit", AdminArticleCreate::class);
+    Route::get("/admin/clanek/{article}/upravit", AdminArticleEdit::class);
+
+    Route::get("/admin", AdminDashboard::class)->name("admin-dashboard");
+
 });
 
 Route::get('/skola/{school}', ShowSchool::class);
