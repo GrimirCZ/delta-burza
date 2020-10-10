@@ -4,7 +4,7 @@
             <div class="bg-white shadow-sm text-center p-5 mx-5">
                 <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
-                       Novinky
+                        Novinky
                     </h3>
                 </div>
                 <div class="grid md:grid-cols-4 gap-3">
@@ -18,7 +18,7 @@
                                     <h3 class="text-2xl font-light text-left">{{$article->title}}</h3>
                                     <span
                                         class="text-gray-600 text-black text-sm">{{format_date($article->date)}}</span>
-                                    <p>{!! substr(strip_tags($article->content), 0, 50)."..." !!}</p>
+                                    <p>{!! html_cut($article->content, 50)."..." !!}</p>
                                 </div>
                             </a>
                         </div>
