@@ -27,7 +27,7 @@
                         @error('date') <span class="error">{{ $message }}</span> @enderror
                     </div>
                     <div>
-                        <label for="cover" class="label">Nadpis</label>
+                        <label for="cover" class="label">Obrázek</label>
                         <input id="cover" type="file" wire:model="cover"
                                class="input @error('cover') input-error @enderror">
                         @error('cover') <span class="error">{{ $message }}</span> @enderror
