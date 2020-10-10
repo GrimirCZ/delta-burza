@@ -8,7 +8,7 @@ if(!function_exists('format_date')){
     function format_date(string $str) : string
     {
         try{
-            return (new  Carbon($str))->isoFormat("D. MM. YYYY");
+            return (new  Carbon($str))->isoFormat("D. M. YYYY");
         } catch(Exception $e){
             return "chyba";
         }
