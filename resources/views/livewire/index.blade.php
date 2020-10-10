@@ -1,13 +1,13 @@
 <div>
     @if(count($articles) > 0)
         <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
-            <div class="bg-white shadow-sm text-center p-5 mx-5">
+            <div class="bg-white shadow-sm text-center p-5 mx-5 mb-4">
                 <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Novinky
                     </h3>
                 </div>
-                <div class="grid md:grid-cols-2 gap-6 mt-6">
+                <div class="grid md:grid-cols-2 gap-6">
                     @foreach($articles as $article)
                         <div>
                             <a href="/clanek/{{$article->id}}">
