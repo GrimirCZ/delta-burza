@@ -7,6 +7,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\UnlinkSchoolFromCompany;
 use App\Http\Livewire\AddSchool;
+use App\Http\Livewire\AdminDashboard;
 use App\Http\Livewire\CreateCompany;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\CreateRegistration;
@@ -31,6 +32,7 @@ use App\Http\Livewire\CreateSpecialization;
 use App\Http\Livewire\TermsOfUse;
 use App\Http\Livewire\InfoAbout;
 use App\Http\Livewire\ListSchools;
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -86,6 +88,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 
     Route::post("/obrazek/nahrat", "App\Http\Controllers\ImageController@nahrat");
     Route::delete("/obrazek/{file}/smazat", "App\Http\Controllers\ImageController@smazat");
+});
+
+Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->group(function(){
+    Route::get("/admin", AdminDashboard::class);
 });
 
 Route::get('/skola/{school}', ShowSchool::class);
