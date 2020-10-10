@@ -17,7 +17,7 @@ class AdminArticleEdit extends Component
     public ?string $title;
     public ?string $content;
     public ?string $date;
-    public ?string $cover;
+    public $cover;
 
     protected $rules = [
         'title' => 'required|max:512',
