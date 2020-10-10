@@ -129,6 +129,11 @@ if(!function_exists("html_cut")){
 
         $short_str = strrpos(substr($str, 0, $len), " ");
 
-        return substr($str, 0, $short_str) . "...";
+        if($short_str){
+            return substr($str, 0, $short_str) . "...";
+        } else{
+            return $str;
+        }
+
     }
 }
