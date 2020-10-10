@@ -39,7 +39,7 @@ class AdminDashboard extends Component
     public function render()
     {
         return view('livewire.admin-dashboard', [
-            'articles' => Article::orderBy("date")->get()
+            'articles' => Article::orderByDesc("date")->get()
         ]);
     }
 }
