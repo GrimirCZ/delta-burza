@@ -176,3 +176,24 @@
     max-height: 150px;
     max-width: 300px;
 }
+
+.flag {
+    position: absolute;
+    top: 32px;
+    right: -47px;
+    transform: rotate(45deg);
+    width: 200px;
+}
+
+.bg-light-green {
+    background-color: #71bf18;
+}
+
+.card-logo {
+    max-width: 100px;
+    max-height: 150px;
+}
+
+.text-shadow {
+    text-shadow: -1px 1px 13px black
+}

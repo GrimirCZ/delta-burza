@@ -58,43 +58,55 @@
                     </div>
 
                     <div class="justify-between items-center hidden lg:flex">
-                        <div class="inline-flex">
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                        <div class="inline-flex text-shadow">
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("vystavy")}}">
                                 Výstavy
                             </a>
 
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("info_zs")}}">
                                 Pro žáky ZŠ
                             </a>
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("info_ss")}}">
                                 Pro vystavovatele
                             </a>
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                               href="{{route("info_poradatele")}}">
+                                Pro pořadatele
+                            </a>
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("skoly")}}">
                                 Registrované školy
                             </a>
-                            <a class="items-center px-1 pt-1 mr-3 md:mr-8 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
+                            <a class="items-center px-1 pt-1 mr-3 md:mr-6 text-sm font-medium leading-5 focus:outline-none hover:text-blue-400 transition duration-150 ease-in-out font-freude"
                                href="{{route("o_nas")}}">
                                 O nás
                             </a>
                         </div>
                         <div class="inline-flex">
                             @if(Auth::check())
+                                @if(Auth::user()->is_admin)
+                                    <a class="mr-6 btn bg-white text-header font-freude header-btn-border"
+                                       href="{{route('admin-dashboard')}}">
+                                        Administrace
+                                    </a>
+                                @endif
                                 <a class="mr-6 btn bg-white text-header font-freude header-btn-border"
-                                   href="/dashboard">
+                                   href="{{route("dashboard")}}">
                                     Profil
                                 </a>
                                 <form action="{{url("logout")}}" method="post">
                                     @csrf
-                                    <button type="submit" class="btn bg-white text-header font-freude header-btn-border">
+                                    <button type="submit"
+                                            class="btn bg-white text-header font-freude header-btn-border">
                                         Odhlásit se
                                     </button>
                                 </form>
                             @else
-                                <a href="{{url("/login")}}" class="btn bg-white text-header font-freude header-btn-border">Vstup
+                                <a href="{{url("/login")}}"
+                                   class="btn bg-white text-header font-freude header-btn-border">Vstup
                                     pro vystavovatele</a>
                             @endif
                         </div>
@@ -142,6 +154,10 @@
                                            class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
                                             Pro vystavovatele
                                         </a>
+                                        <a href="{{route("info_poradatele")}}"
+                                           class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
+                                            Pro pořadatele
+                                        </a>
                                         <a href="{{route("skoly")}}"
                                            class="block hover:text-blue-400 border-solid border-b-2 py-3 border-gray-200 font-freude">
                                             Registrované školy
@@ -154,6 +170,12 @@
 
                                         <div class="mt-8">
                                             @if(Auth::check())
+                                                @if(Auth::user()->is_admin)
+                                                    <a class="mr-6 btn bg-header text-white font-freude inline-block"
+                                                       href="{{route('admin-dashboard')}}">
+                                                        Administrace
+                                                    </a>
+                                                @endif
                                                 <a class="mr-6 btn bg-header text-white font-freude inline-block"
                                                    href="/dashboard">
                                                     Profil
@@ -197,7 +219,8 @@
                 <div class="backers-title text-gray-400 mb-3 text-center">Projekt vznikl za podpory:</div>
                 <div class="mx-5 text-center">
                     <a target="_blank" href="https://www.khkpce.cz/" class="m-3 mb-10">
-                        <img src="/images/khk-pk.png" alt="Krajská hospodářská komora pardubického kraje" class="footer-img"/>
+                        <img src="/images/khk-pk.png" alt="Krajská hospodářská komora pardubického kraje"
+                             class="footer-img"/>
                     </a>
                     <a target="_blank" href="https://www.pardubickykraj.cz/" class="mx-3 mb-10">
                         <img src="/images/pardubickykraj.png" alt="Pardubický kraj" class="footer-img k-pce"/>
@@ -225,7 +248,8 @@
                 <div class="text-right">
                     <p class="text-right text-gray-600 text-sm">
                         Vytvořil Vít Falta a Matěj Půhoný, studenti <br class="inline sm:hidden"/> <a
-                            href="{{url("/skola/1")}}" class="link">DELTA - Střední škola informatiky a ekonomie, s.r.o.</a>
+                            href="{{url("/skola/1")}}" class="link">DELTA - Střední škola informatiky a ekonomie,
+                            s.r.o.</a>
                         2020
                     </p>
                 </div>

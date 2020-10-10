@@ -53,67 +53,86 @@
 
         <div class="gap-3" id="macyJS">
             @foreach($schools as $school)
-                <div class="p-5 bg-white shadow-sm box-border h-min-content {{$school->is_school ?  "": "border-2 border-teal-400"}}">
-                    <div class="leading-3 text-gray-400">{!! $school->pipe_text() !!}</div>
-                    <a href="/skola/{{$school->id}}"><h3
-                            class="text-2xl font-light">{{$school->name}}</h3></a>
+                <div class="relative overflow-hidden bg-white shadow-sm box-border h-min-content {{$school->is_school ?  "": "border-2 border-teal-400"}}">
+                    @if($school->id === 1)
+                        <div class="flag bg-light-green text-sm text-center text-white shadow-md">
+                            <span class="font-light">tvůrci portálu</span><br>
+                            <span class="font-black">burzaŠkol.online</span>
+                        </div>
+                    @endif
+                    <div class="p-5">
+                        <div class="leading-3 text-gray-400">{!! $school->pipe_text() !!}</div>
 
-                    <table class="table w-full mt-5 text-sm text-gray-600">
-                        <tbody class="divide-y divide-gray-200">
-                        @php
-                            if($type_of_study_id == "all" && $field_of_study_id == "all" && $prescribed_specialization_id == "all"){
-                                $specializations = $school->ordered_specializations()->get();
-                            } else if($field_of_study_id == "all" && $prescribed_specialization_id == "all"){
-                                $specializations = $school
-                                                    ->ordered_specializations()
-                                                    ->where("type_of_studies.id", "=", $type_of_study_id)
-                                                    ->select("specializations.*")
-                                                    ->get();
-                            } else if($prescribed_specialization_id == "all"){
-                                $specializations = $school
-                                                    ->ordered_specializations()
-                                                    ->where("field_of_studies.id", "=", $field_of_study_id)
-                                                    ->select("specializations.*")
-                                                    ->get();
-                            } else{
-                                $specializations = $school->ordered_specializations()->where("prescribed_specialization_id", $prescribed_specialization_id)->get();
-                            }
-                        @endphp
-                        @foreach($specializations as $specialization)
-                            <tr>
-                                <td class="py-3">
-                                    <a href="/obor/{{$specialization->id}}">
-                                        {{$specialization->prescribed_specialization->code}}
-                                        - {{$specialization->prescribed_specialization->name}} <br/>
-                                        <i>(ŠVP: {{$specialization->name}})</i>
-                                    </a>
-                                </td>
-                                <td class="py-3 text-right">
-                                    <a href="/obor/{{$specialization->id}}"
-                                       class="btn btn-primary text-white text-sm inline-block">Více informací o
-                                        oboru</a>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+                        <a href="/skola/{{$school->id}}">
+                            <div class="flex mt-3">
+                                @if($school->logo())
+                                    <div class="mr-5 py-3">
+                                        <img src="{{$school->logo()}}" alt="{{$school->name}} logo" class="card-logo">
+                                    </div>
+                                @endif
+                                <h3 class="text-2xl font-light">
+                                    {{$school->name}}
+                                </h3>
+                            </div>
+                        </a>
 
-                    <div class="h-20"></div>
+                        <table class="table w-full mt-5 text-sm text-gray-600">
+                            <tbody class="divide-y divide-gray-200">
+                            @php
+                                if($type_of_study_id == "all" && $field_of_study_id == "all" && $prescribed_specialization_id == "all"){
+                                    $specializations = $school->ordered_specializations()->get();
+                                } else if($field_of_study_id == "all" && $prescribed_specialization_id == "all"){
+                                    $specializations = $school
+                                                        ->ordered_specializations()
+                                                        ->where("type_of_studies.id", "=", $type_of_study_id)
+                                                        ->select("specializations.*")
+                                                        ->get();
+                                } else if($prescribed_specialization_id == "all"){
+                                    $specializations = $school
+                                                        ->ordered_specializations()
+                                                        ->where("field_of_studies.id", "=", $field_of_study_id)
+                                                        ->select("specializations.*")
+                                                        ->get();
+                                } else{
+                                    $specializations = $school->ordered_specializations()->where("prescribed_specialization_id", $prescribed_specialization_id)->get();
+                                }
+                            @endphp
+                            @foreach($specializations as $specialization)
+                                <tr>
+                                    <td class="py-3">
+                                        <a href="/obor/{{$specialization->id}}">
+                                            {{$specialization->prescribed_specialization->code}}
+                                            - {{$specialization->prescribed_specialization->name}} <br/>
+                                            <i>(ŠVP: {{$specialization->name}})</i>
+                                        </a>
+                                    </td>
+                                    <td class="py-3 text-right w-48">
+                                        <a href="/obor/{{$specialization->id}}"
+                                           class="btn btn-primary text-white text-sm inline-block">Více informací o
+                                            oboru</a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
 
-                    <a href="/skola/{{$school->id}}"
-                       class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
-                        Detail @if($school->is_school) školy @else firmy @endif
-                    </a>
+                        <div class="h-20"></div>
 
-                    <div class="mt-4 text-gray-400 text-sm hover:underline">
-                        <div class="display-inline-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                 stroke="currentColor" class="inline-block h-4 align-middle">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                            </svg>
-                            <a href="{{fix_url($school->web)}}" target="_blank"
-                               class="align-middle">{{$school->web}}</a>
+                        <a href="/skola/{{$school->id}}"
+                           class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
+                            Detail @if($school->is_school) školy @else firmy @endif
+                        </a>
+
+                        <div class="mt-4 text-gray-400 text-sm hover:underline">
+                            <div class="display-inline-block">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke="currentColor" class="inline-block h-4 align-middle">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                </svg>
+                                <a href="{{fix_url($school->web)}}" target="_blank"
+                                   class="align-middle">{{$school->web}}</a>
+                            </div>
                         </div>
                     </div>
                 </div>

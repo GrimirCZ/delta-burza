@@ -5,9 +5,9 @@
             <label for="{{$field}}" class="mb-2 label inline-block">{{$label}}</label>
 
             <textarea name="{{$field}}" id="{{$field}}" cols="30" rows="10"
-                      class="input @error('address') input-error @enderror"></textarea>
+                      class="input @error($field) input-error @enderror"></textarea>
         </div>
-        @error('description') <span class="error">{{ $message }}</span> @enderror
+        @error($field) <span class="error">{{ $message }}</span> @enderror
     </div>
     @push('scripts')
         @once
