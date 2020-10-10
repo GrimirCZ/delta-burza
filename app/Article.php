@@ -9,6 +9,8 @@ class Article extends Model
     protected $fillable = [
         'title',
         'content',
+        'date',
+        'cover_image',
         'show'
     ];
 }
