@@ -61,7 +61,8 @@ class AdminArticleEdit extends Component
         $this->article = $article;
         $this->title = $this->article->title;
         $this->content = $this->article->content;
-        $this->date = $this->article->date;
+        $this->date = explode(" ",$this->article->date)[ 0];
+//        dd($this);
     }
 
     /**

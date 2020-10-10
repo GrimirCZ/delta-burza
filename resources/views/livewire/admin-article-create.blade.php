@@ -22,7 +22,7 @@
                 <div class="form-row-2">
                     <div>
                         <label for="date" class="label">Datum</label>
-                        <input id="date" type="date" wire:model="date"
+                        <input id="date" type="date" wire:model="date" required
                                class="input @error('date') input-error @enderror">
                         @error('date') <span class="error">{{ $message }}</span> @enderror
                     </div>
