@@ -25,20 +25,25 @@
                     Nadcházející výstavy
                 </h3>
             </div>
-            <div class="grid md:grid-cols-2 gap-3">
-                @foreach($upcoming_exhibitions as $ue)
-                    <a href="/vystava/{{$ue->id}}">
-                        <div class="exhibitions-card p-5 bg-white shadow-md box-border text-gray-900">
-                            <div
-                                class="date">{{$ue->district->region->name}} {{format_date($ue->date)}}</div>
-                            <h3 class="text-2xl font-light"><span
-                                    class="font-black">{{$ue->city}}</span> {{$ue->name}}</h3>
-                            @if($ue->organizer_id != 1)
-                                <span class="italic">Pořadatel: {{$exhibition->organizer->short_name}}</span>
-                            @endif
-                        </div>
-                    </a>
-                @endforeach
+            <div>
+                <div class="grid md:grid-cols-2 gap-3">
+                    @foreach($upcoming_exhibitions as $ue)
+                        <a href="/vystava/{{$ue->id}}">
+                            <div class="exhibitions-card p-5 bg-white shadow-md box-border text-gray-900">
+                                <div
+                                    class="date">{{$ue->district->region->name}} {{format_date($ue->date)}}</div>
+                                <h3 class="text-2xl font-light"><span
+                                        class="font-black">{{$ue->city}}</span> {{$ue->name}}</h3>
+                                @if($ue->organizer_id != 1)
+                                    <span class="italic">Pořadatel: {{$exhibition->organizer->short_name}}</span>
+                                @endif
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+                <div class="text-center pt-12 pb-3">
+                    <a href="{{url("/vystavy")}}" class="link text-lg">Všechny výstavy</a>
+                </div>
             </div>
         </div>
     </div>
