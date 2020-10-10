@@ -20,7 +20,7 @@ class Index extends Component
             "schoolsCount" => School::where('is_school', 1)->count(),
             "companiesCount" => School::where('is_school', 0)->count(),
             'exibitionsCount' => Exhibition::count(),
-            'articles' => Article::where("show", true)->get(),
+            'articles' => Article::where("show", true)->orderByDesc("date")->get(),
             'upcoming_exhibitions' => Exhibition::orderBy("date")->limit(4)->get()
         ]);
     }
