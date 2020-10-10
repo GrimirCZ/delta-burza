@@ -7,7 +7,7 @@
                         Novinky
                     </h3>
                 </div>
-                <div class="grid md:grid-cols-2 gap-6">
+                <div class="grid md:grid-cols-2 gap-6 mt-6">
                     @foreach($articles as $article)
                         <div>
                             <a href="/clanek/{{$article->id}}">
