@@ -56,8 +56,8 @@
                 <div class="relative overflow-hidden bg-white shadow-sm box-border h-min-content {{$school->is_school ?  "": "border-2 border-teal-400"}}">
                     @if($school->id === 1)
                         <div class="flag bg-light-green text-sm text-center text-white shadow-md">
-                            <span class="font-light">tvůrci portálu</span><br>
-                            <span class="font-black">burzaŠkol.online</span>
+                            <span class="font-light">autoři portálu</span><br>
+                            <span class="font-black">BurzaŠkol.Online</span>
                         </div>
                     @endif
                     <div class="p-5">
