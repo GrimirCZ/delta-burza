@@ -29,7 +29,7 @@ class AdminArticleCreate extends Component
     {
         $this->validate();
 
-        if($this->cover){
+        if($this->cover != null){
             $img = Image::make($this->cover)
                 ->resize(800, null, function($constraint){
                     $constraint->aspectRatio();
