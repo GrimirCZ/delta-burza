@@ -46,7 +46,7 @@
                                     <h3 class="text-2xl font-light"><span
                                             class="font-black">{{$ue->city}}</span> {{$ue->name}}</h3>
                                     @if($ue->organizer_id != 1)
-                                        <span class="italic">Pořadatel: {{$exhibition->organizer->short_name}}</span>
+                                        <span class="italic">Pořadatel: {{$ue->organizer->short_name}}</span>
                                     @endif
                                 </div>
                             </a>
