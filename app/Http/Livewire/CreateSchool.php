@@ -54,7 +54,7 @@ class CreateSchool extends Component
             'description' => 'required',
             'district_id' => 'exists:districts,id',
             'logo' => 'image|max:1024', // 1MB Max
-            'brojure' => 'nullable|file|max:5120', // 5MB Max
+            'brojure' => 'nullable|sometimes|file|max:5120', // 5MB Max
         ]);
 
 

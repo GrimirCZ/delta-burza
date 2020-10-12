@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Article;
 use App\Models\Exhibition;
 use App\Models\School;
+use League\Flysystem\FileNotFoundException;
 use Livewire\Component;
 
 class Index extends Component

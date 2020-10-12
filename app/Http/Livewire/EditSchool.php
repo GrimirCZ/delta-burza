@@ -61,8 +61,8 @@ class EditSchool extends Component
             'phone' => 'required|max:255',
             'description' => 'required',
             'district_id' => 'exists:districts,id',
-            'logo' => 'nullable|image|max:1024', // 1MB Max
-            'brojure' => 'nullable|file|max:5120', // 5MB Max
+            'logo' => 'nullable|sometimes|image|max:1024', // 1MB Max
+            'brojure' => 'nullable|sometimes|file|max:5120', // 5MB Max
         ]);
 
 

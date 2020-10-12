@@ -3,6 +3,11 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Support\ViewErrorBag;
+use League\Flysystem\FileNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
+use Throwable;
 
 class Handler extends ExceptionHandler
 {
@@ -33,5 +38,22 @@ class Handler extends ExceptionHandler
     public function register()
     {
         //
+    }
+
+    public function render($request, Throwable $e)
+    {
+        // Render well-known exceptions here
+
+        // Otherwise display internal error message
+        if($e instanceof FileNotFoundException){
+            return response()->view('errors.500');
+        } else{
+            return parent::render($request, $e);
+        }
+    }
+
+    protected function renderHttpException(HttpExceptionInterface $e)
+    {
+
     }
 }
