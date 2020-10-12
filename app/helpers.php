@@ -5,7 +5,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 if(!function_exists('format_date')){
-    function format_date(string $str) : string
+    function format_date(?string $str) : string
     {
         if($str == null){
             return "chyba";
