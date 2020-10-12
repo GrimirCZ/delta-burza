@@ -22,7 +22,7 @@ class AdminArticleCreate extends Component
         'title' => 'required|max:512',
         'content' => 'required',
         'date' => 'required',
-        'cover' => 'nullable|file|max:1024', // 1MB Max
+        'cover' => 'nullable|sometimes|file|max:1024', // 1MB Max
     ];
 
     public function submit()
