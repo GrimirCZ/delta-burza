@@ -46,6 +46,7 @@ class Handler extends ExceptionHandler
 
 //         Otherwise display internal error message
         if($e instanceof FileNotFoundException){
+            $this->report($e);
             return response()->view('errors.500');
         } else{
             return parent::render($request, $e);
