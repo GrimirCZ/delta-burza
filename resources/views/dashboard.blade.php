@@ -290,11 +290,8 @@
                                     </a>
                                 </td>
                                 <td class="px-8 py-5">
-{{--                                    TODO: examin--}}
-                                    @if($registration->order_registration != null)
-                                        @if(!$registration->order_registration->fulfilled_at != null)
-                                            <span class="text-red-700 font-semibold">Nezaplaceno</span>
-                                        @endif
+                                    @if(!$registration->order_registration->fulfilled_at != null)
+                                        <span class="text-red-700 font-semibold">Nezaplaceno</span>
                                     @endif
                                 </td>
                                 <td class="px-8 py-5 text-right">

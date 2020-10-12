@@ -40,15 +40,15 @@ class Handler extends ExceptionHandler
         //
     }
 
-//    public function render($request, Throwable $e)
-//    {
+    public function render($request, Throwable $e)
+    {
 //         Render well-known exceptions here
-//
+
 //         Otherwise display internal error message
-//        if($e instanceof FileNotFoundException){
-//            return response()->view('errors.500');
-//        } else{
-//            return parent::render($request, $e);
-//        }
-//    }
+        if($e instanceof FileNotFoundException){
+            return response()->view('errors.500');
+        } else{
+            return parent::render($request, $e);
+        }
+    }
 }
