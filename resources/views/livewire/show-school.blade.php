@@ -145,7 +145,7 @@
                         </div>
                         <div class="mt-5 text-sm leading-5 text-gray-900 sm:mt-3">
                             {{--                                zobrazit jen pokud se kona dnes--}}
-                            @if($registration->exhibition->date == current_date_str())
+                            @if($registration->exhibition->show_join_buttons())
                                 <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
                                    class="btn text-sm text-center mr-2 btn-primary inline-block">Online {{settings("morning_event_start")}}
                                     - {{settings("morning_event_end")}}</a>
