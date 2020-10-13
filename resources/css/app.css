@@ -197,3 +197,7 @@
 .text-shadow {
     text-shadow: -1px 1px 13px black
 }
+
+.flash-container .flash-message.flash-error::after {
+    content: '' !important;
+}

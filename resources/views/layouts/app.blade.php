@@ -34,6 +34,8 @@
         <script src="{{asset("js/app.js")}}" defer></script>
 
         <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
+
+        <link rel="stylesheet" href="{{asset("/flash/flash.min.css")}}">
     </head>
     <body>
         <div class="min-h-screen bg-gray-100">
@@ -261,5 +263,16 @@
         @stack('scripts')
 
         @livewireScripts
+
+
+        <script src="{{asset("/flash/flash.min.js")}}"></script>
+
+        {{--        TODO: REMOVE ME--}}
+        <script>
+            window.FlashMessage.error('Dnes bude od 22:00 do 22:30 server vypnut z důvodu nutné údržby!', {
+                interactive: true,
+                timeout: 10000
+            });
+        </script>
     </body>
 </html>
