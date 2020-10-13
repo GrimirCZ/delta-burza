@@ -10,6 +10,7 @@ use Livewire\Component;
 class AdminImpersonate extends Component
 {
     public ?int $user_id;
+    public array $schools;
 
     function submit()
     {
@@ -18,14 +19,9 @@ class AdminImpersonate extends Component
         $this->redirect(route("dashboard"));
     }
 
-    /**
-     * Get the view / contents that represent the component.
-     *
-     * @return \Illuminate\View\View|string
-     */
-    public function render()
+    public function mount()
     {
-        $schools = School::whereIn('schools.id', function($q){
+        $this->schools = School::whereIn('schools.id', function($q){
             $q->select("school_id")
                 ->from("users")
                 ->where("is_main_contact", true)
@@ -39,9 +35,18 @@ class AdminImpersonate extends Component
         if(count($schools) > 0){
             $this->user_id = $schools->first()->user_id;
         }
+    }
+
+    /**
+     * Get the view / contents that represent the component.
+     *
+     * @return \Illuminate\View\View|string
+     */
+    public function render()
+    {
 
         return view('livewire.admin-impersonate', [
-            'schools' => $schools
+            'schools' => $this->schools
         ]);
     }
 }
