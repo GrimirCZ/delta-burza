@@ -10,31 +10,15 @@ use Livewire\Component;
 class AdminImpersonate extends Component
 {
     public ?int $user_id;
-    public array $schools;
 
     function submit()
     {
+        if($this->user_id == null)
+            return;
+
         Auth::login(User::findOrFail($this->user_id));
 
         $this->redirect(route("dashboard"));
-    }
-
-    public function mount()
-    {
-        $this->schools = School::whereIn('schools.id', function($q){
-            $q->select("school_id")
-                ->from("users")
-                ->where("is_main_contact", true)
-                ->where("id", "!=", Auth::user()->id);
-        })->join("users", "users.school_id", "=", "schools.id")
-            ->orderBy("schools.name")
-            ->select("schools.name as name", "users.id as user_id")
-            ->distinct()
-            ->get();
-
-        if(count($this->schools) > 0){
-            $this->user_id = $this->schools->first()->user_id;
-        }
     }
 
     /**
@@ -44,9 +28,17 @@ class AdminImpersonate extends Component
      */
     public function render()
     {
-
         return view('livewire.admin-impersonate', [
-            'schools' => $this->schools
+            'schools' => School::whereIn('schools.id', function($q){
+                $q->select("school_id")
+                    ->from("users")
+                    ->where("is_main_contact", true)
+                    ->where("id", "!=", Auth::user()->id);
+            })->join("users", "users.school_id", "=", "schools.id")
+                ->orderBy("schools.name")
+                ->select("schools.name as name", "users.id as user_id")
+                ->distinct()
+                ->get()
         ]);
     }
 }
