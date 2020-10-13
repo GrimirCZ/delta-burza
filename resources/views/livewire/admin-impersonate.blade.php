@@ -19,7 +19,7 @@
             </div>
 
             <div class="form-row">
-                <button class="btn btn-primary">Přihlásit</button>
+                <button wire:click="submit" class="btn btn-primary">Přihlásit</button>
             </div>
         </x-dashboard-card>
     </div>
