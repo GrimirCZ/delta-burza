@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
             return Settings::make(storage_path('app/settings.json'));
         });
 
-        if(config('app.env') === 'production'){
+        if(config('app.env') !== 'development'){
             $this->app['request']->server->set('HTTPS', true);
         }
         //
