@@ -33,7 +33,7 @@ class AdminImpersonate extends Component
             ->get();
 
         if(count($this->schools) > 0){
-            $this->user_id = $schools->first()->user_id;
+            $this->user_id = $this->schools->first()->user_id;
         }
     }
 
