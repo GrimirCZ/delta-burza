@@ -10,6 +10,7 @@
                     <label for="exhibitioner" class="label">Vystavovatel</label>
                     <select id="exhibitioner" type="text" wire:model="user_id"
                             class="input input-full @error('user_id') input-error @enderror">
+                        <option>Vyberte školu</option>
                         @foreach($schools as $school)
                             <option value="{{$school->user_id}}">{{$school->name}}</option>
                         @endforeach
