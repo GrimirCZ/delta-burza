@@ -83,6 +83,22 @@
             </div>
         </div>
     </div>
+    <div class="max-w-7xl mx-auto">
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg mx-5 mt-10">
+            <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
+                <h3 class="text-lg leading-6 font-medium text-gray-900">
+                    <a href="{{url("/admin/impersonate")}}" class="text-header ml-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                             stroke="currentColor" class="inline h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                        <span class="inline-block align-middle">Přihlásit jako</span>
+                    </a>
+                </h3>
+            </div>
+        </div>
+    </div>
     @push("scripts")
         @once
         <script>

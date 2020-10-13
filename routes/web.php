@@ -10,6 +10,7 @@ use App\Http\Livewire\AddSchool;
 use App\Http\Livewire\AdminArticleCreate;
 use App\Http\Livewire\AdminArticleEdit;
 use App\Http\Livewire\AdminDashboard;
+use App\Http\Livewire\AdminImpersonate;
 use App\Http\Livewire\AdminListArticles;
 use App\Http\Livewire\CreateCompany;
 use App\Http\Livewire\CreateOrder;
@@ -97,6 +98,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 });
 
 Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->group(function(){
+    Route::get("/admin/impersonate", AdminImpersonate::class);
     Route::get("/admin/clanek/vytvorit", AdminArticleCreate::class);
     Route::get("/admin/clanek/{article}/upravit", AdminArticleEdit::class);
 
