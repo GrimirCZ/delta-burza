@@ -25,17 +25,23 @@ class AdminImpersonate extends Component
      */
     public function render()
     {
+        $schools = School::whereIn('schools.id', function($q){
+            $q->select("school_id")
+                ->from("users")
+                ->where("is_main_contact", true)
+                ->where("id", "!=", Auth::user()->id);
+        })->join("users", "users.school_id", "=", "schools.id")
+            ->orderBy("schools.name")
+            ->select("schools.name as name", "users.id as user_id")
+            ->distinct()
+            ->get();
+
+        if(count($schools) > 0){
+            $this->user_id = $schools->first()->user_id;
+        }
+
         return view('livewire.admin-impersonate', [
-            'schools' => School::whereIn('schools.id', function($q){
-                $q->select("school_id")
-                    ->from("users")
-                    ->where("is_main_contact", true)
-                    ->where("id", "!=", Auth::user()->id);
-            })->join("users", "users.school_id", "=", "schools.id")
-                ->orderBy("schools.name")
-                ->select("schools.name as name", "users.id as user_id")
-                ->distinct()
-                ->get()
+            'schools' => $schools
         ]);
     }
 }
