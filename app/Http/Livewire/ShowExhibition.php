@@ -28,7 +28,8 @@ class ShowExhibition extends Component
                 })
                 ->orderBy("schools.name")
                 ->select("registrations.*")
-                ->get()
+                ->get(),
+            'enable_join_buttons' => $this->exhibition->show_join_buttons()
         ]);
     }
 }

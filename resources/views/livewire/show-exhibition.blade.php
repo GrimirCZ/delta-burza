@@ -68,7 +68,7 @@
                                         </tbody>
                                     </table>
 
-                                    @if($registration->exhibition->date == current_date_str())
+                                    @if($enable_join_buttons)
                                         <a href="/vstoupit/ranni/{{$registration->id}}"
                                            target="_blank"
                                            class="btn text-sm text-center btn-primary mt-13 block">
