@@ -68,7 +68,7 @@
                         <a href="/vystava/{{$exhibition->id}}">
                             <div class="exhibitions-card p-5 bg-white shadow-sm box-border text-gray-900">
                                 <div
-                                    class="date">{{$exhibition->district->region->name}} {{format_date($exhibition->date)}}</div>
+                                    class="date">{{$exhibition->region_name}} {{format_date($exhibition->date)}}</div>
                                 <h3 class="text-2xl font-light"><span
                                         class="font-black">{{$exhibition->city}}</span> {{$exhibition->name}}</h3>
                                 @if($exhibition->organizer_id != 1)
