@@ -45,7 +45,7 @@ class SendInvoice implements ShouldQueue
         $order->invoice = $url;
         $order->push();
 
-        Mail::to($user)->queue(new InvoiceMail($user, $order));
+        // Mail::to($user)->queue(new InvoiceMail($user, $order));
         //
     }
 }
