@@ -1,4 +1,36 @@
 <div>
+    @if(count($current_exhibitions) > 0)
+        <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
+            <div class="bg-white shadow-sm text-center p-5 mx-5">
+                <div class="px-4 py-5 border-b border-gray-200 mb-4 sm:px-6 flex justify-between">
+                    <h3 class="text-lg font-semibold leading-6 font-medium text-gray-900">
+                        Právě probíhá
+                    </h3>
+                </div>
+                <div>
+                    <div class="grid md:grid-cols-2 gap-3">
+                        @foreach($current_exhibitions as $ce)
+                            <a href="/vystava/{{$ce->id}}">
+                                <div class="exhibitions-card p-5 bg-white shadow-md box-border text-gray-900">
+                                    <div
+                                        class="date">{{$ce->district->region->name}} {{format_date($ce->date)}}</div>
+                                    <h3 class="text-2xl font-light"><span
+                                            class="font-black">{{$ce->city}}</span> {{$ce->name}}</h3>
+                                    @if($ce->organizer_id != 1)
+                                        <span class="italic">Pořadatel: {{$ce->organizer->short_name}}</span>
+                                    @endif
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
+                    <div class="text-center pt-12 pb-3">
+                        <a href="{{url("/vystavy")}}" class="link text-lg">Všechny výstavy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
+
     @if(count($articles) > 0)
         <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
             <div class="bg-white shadow-sm text-center p-5 mx-5 mb-4">
