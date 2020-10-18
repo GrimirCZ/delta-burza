@@ -66,7 +66,7 @@
                 <div class="grid md:grid-cols-2 gap-3">
                     @foreach($exhibitions as $exhibition)
                         <a href="/vystava/{{$exhibition->id}}">
-                            <div class="exhibitions-card p-5 bg-white shadow-sm box-border text-gray-900">
+                            <div class="exhibitions-card p-5 bg-white shadow-sm hover:shadow-lg box-border text-gray-900">
                                 <div
                                     class="date">{{$exhibition->region_name}} {{format_date($exhibition->date)}}</div>
                                 <h3 class="text-2xl font-light"><span

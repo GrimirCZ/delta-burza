@@ -1,17 +1,23 @@
 <div>
-    @if(count($current_exhibitions) > 0)
-        <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
-            <div class="bg-white shadow-sm text-center p-5 mx-5">
-                <div class="px-4 py-5 border-b border-gray-200 mb-4 sm:px-6 flex justify-between">
-                    <h3 class="text-lg font-semibold leading-6 font-medium text-gray-900">
-                        Právě probíhá
-                    </h3>
+    <div class="bg-teal-200">
+        <div class="max-w-7xl mx-auto pt-5 pb-10 px-6 lg:px-8 w-100">
+            <div class="md:flex text-header py-20">
+                <div class="w-full mr-20">
+                    <h1 class="text-3xl font-bold">BurzaŠkol.Online</h1>
+                    <p>Připoj se k hovoru, nebo chatuj se školami na výstavách!</p>
+
+                    <div class="mt-10">
+                    <a href="/vystavy" class="btn text-sm inline-block text-center bg-teal-400 hover:bg-teal-500 text-white mr-5 mt-3">Zobrazit všechny výstavy</a>
+                    <a href="/jak-se-pripojit" class="btn  inline-block text-sm text-center bg-teal-300 hover:bg-teal-400 hover:text-white mr-5 mt-1">Jak se připojit k hovoru?</a>
+                    </div>
                 </div>
-                <div>
-                    <div class="grid md:grid-cols-2 gap-3">
+                @if(count($current_exhibitions) > 0)
+                    <div class="w-full  mt-20 md:mt-0">
+                        <h1 class="text-1xl font-bold mb-2">Právě probíhá</h1>
+
                         @foreach($current_exhibitions as $ce)
                             <a href="/vystava/{{$ce->id}}">
-                                <div class="exhibitions-card p-5 bg-white shadow-md box-border text-gray-900">
+                                <div class="exhibitions-card p-5 bg-white shadow-md hover:shadow-lg box-border text-gray-900 mb-3">
                                     <div
                                         class="date">{{$ce->district->region->name}} {{format_date($ce->date)}}</div>
                                     <h3 class="text-2xl font-light"><span
@@ -23,39 +29,30 @@
                             </a>
                         @endforeach
                     </div>
-                    <div class="text-center pt-12 pb-3">
-                        <a href="{{url("/vystavy")}}" class="link text-lg">Všechny výstavy</a>
-                    </div>
-                </div>
+                @endif
             </div>
         </div>
-    @endif
+    </div>
 
     @if(count($articles) > 0)
-        <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
-            <div class="bg-white shadow-sm text-center p-5 mx-5 mb-4">
-                <div class="px-4 py-5 border-b border-gray-200 mb-4 sm:px-6 flex justify-between">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        Novinky
-                    </h3>
-                </div>
-                <div class="grid md:grid-cols-2 gap-6">
-                    @foreach($articles as $article)
-                        <div>
-                            <a href="/clanek/{{$article->id}}">
-                                @if(isset($article->cover_image))
-                                    <img src="{{$article->cover_image}}" alt="{{$article->title}}">
-                                @endif
-                                <div class="exhibitions-card p-5 bg-white shadow-md box-border text-gray-900 text-left">
-                                    <h3 class="text-2xl font-light text-left">{{$article->title}}</h3>
-                                    <span
-                                        class="text-gray-600 text-black text-sm">{{format_date($article->date)}}</span>
-                                    <p>{!! html_cut($article->content, 50)."..." !!}</p>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
+        <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 100">
+            <h3 class="text-2xl mt-10 mb-5 font-bold">Novinky z burzy škol</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                @foreach($articles as $article)
+                    <div>
+                        <a href="/clanek/{{$article->id}}">
+                            @if(isset($article->cover_image))
+                                <img src="{{$article->cover_image}}" alt="{{$article->title}}">
+                            @endif
+                            <div class="exhibitions-card p-5 bg-white shadow-md box-border text-gray-900 text-left">
+                                <h3 class="text-2xl font-light text-left">{{$article->title}}</h3>
+                                <span
+                                    class="text-gray-600 text-black text-sm">{{format_date($article->date)}}</span>
+                                <p>{!! html_cut($article->content, 50)."..." !!}</p>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     @endif
@@ -64,9 +61,7 @@
         <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
             <div class="bg-white shadow-sm text-center p-5 mx-5">
                 <div class="px-4 py-5 border-b border-gray-200 mb-4 sm:px-6 flex justify-between">
-                    <h3 class="text-lg leading-6 font-medium text-gray-900">
-                        Nadcházející výstavy
-                    </h3>
+                    <h3 class="text-2xl font-bold">Nadcházející výstavy</h3>
                 </div>
                 <div>
                     <div class="grid md:grid-cols-2 gap-3">
@@ -85,7 +80,7 @@
                         @endforeach
                     </div>
                     <div class="text-center pt-12 pb-3">
-                        <a href="{{url("/vystavy")}}" class="link text-lg">Všechny výstavy</a>
+                        <a href="{{url("/vystavy")}}" class="btn text-lg inline-block text-center bg-teal-400 hover:bg-teal-500 text-white">Všechny výstavy</a>
                     </div>
                 </div>
             </div>
