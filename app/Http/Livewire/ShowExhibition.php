@@ -53,7 +53,7 @@ class ShowExhibition extends Component
                 })
                 ->orderBy("schools.name")
         )
-            ->select("registrations.*");
+            ->select("registrations.*", "schools.name");
     }
 
     private function filtered_schools_restrictions($q)
@@ -92,7 +92,7 @@ class ShowExhibition extends Component
     {
         return view('livewire.show-exhibition', [
             'is_empty' => $this->exhibition->registrations()->count() == 0,
-            'registrations' => $this->get_registrations()->get(),
+            'registrations' => $this->get_registrations()->distinct()->get(),
             'enable_join_buttons' => $this->exhibition->show_join_buttons(),
             'prescribed_specializations' => PrescribedSpecialization::where("field_of_study_id", $this->field_of_study_id)
                 ->orderBy("code")
