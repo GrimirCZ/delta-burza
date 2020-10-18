@@ -5,12 +5,175 @@
         @if($exhibition->organizer_id != 1)
             <span class="italic text-lg">Pořadatel: {{$exhibition->organizer->short_name}}</span>
         @endif
+
     </x-own-header>
 
     <div>
         <div class="max-w-7xl mx-auto pt-0 pb-10 px-2 sm:px-6 lg:px-8 w-100">
-            <div class="py-10">
-                @if($exhibition->registrations->isEmpty())
+            <div x-data="{ open: false }" class="py-6">
+                <div class="text-gray-900 text-lg  transition duration-1000">
+                    <button @click="open = !open" class="inline-block hover:text-teal-400 py-4 mx-5 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                             class="h-8 inline-block align-middle">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+                        </svg>
+                        <span x-show="open">
+                        Skrýt filtr
+                    </span>
+                        <span x-show="!open">
+                        Zobrazit filtr
+                    </span>
+                    </button>
+                    @if($type != "all")
+                        <button wire:click="clear_filter"
+                                class="inline-block text-header hover:text-teal-400 py-4 mx-5 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor"
+                                 class="h-5 inline-block">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M9 13h6m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <span class="align-middle">Vyčistit filtr</span>
+                        </button>
+                    @endif
+                </div>
+
+                <div x-show="open"
+                     class="py-6 text-base min-w-full max-w-7xl mx-auto sm:px-6 lg:px-8 w-100 text-gray-700"
+                     id="filter-component">
+                    <div class="mr-5 mb-3 inline-block">
+                        <div>Typ vystavovatele</div>
+                        <div
+                            class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700">
+                            <div class="relative inline-block">
+                                <select
+                                    class="block appearance-none py-3 pr-8 pl-2 leading-tight bg-transparent outline-none max-w-200px"
+                                    wire:model="type" name="type" id="type"
+                                >
+                                    <option value="all">Všechny</option>
+                                    <option value="skoly">Školy</option>
+                                    <option value="firmy">Firmy</option>
+                                </select>
+                                <div
+                                    class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20">
+                                        <path
+                                            d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @if($type == "skoly")
+                        <div class="mr-5 mb-3 inline-block">
+                            <div>Typ studia</div>
+                            <div
+                                class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                     stroke="#aeaeae"
+                                     class="h-7 inline-block ml-2">
+                                    <path fill="#fff" d="M12 14l9-5-9-5-9 5 9 5z"/>
+                                    <path fill="#fff"
+                                          d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"/>
+                                </svg>
+                                <div class="relative inline-block">
+                                    <select
+                                        class="block appearance-none py-3 pr-8 pl-2 leading-tight bg-transparent outline-none max-w-200px"
+                                        wire:model="type_of_study_id" name="type_of_study" id="type_of_study"
+                                    >
+                                        <option value="all">Všechny typy studia</option>
+                                        @foreach($type_of_studies as $tos)
+                                            <option value="{{$tos->id}}">{{$tos->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    <div
+                                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                             viewBox="0 0 20 20">
+                                            <path
+                                                d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @if($type_of_study_id != "all")
+                            <div class="mr-5 mb-3 inline-block">
+                                <div>Zaměření</div>
+                                <div
+                                    class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke="#aeaeae"
+                                         class="h-6 inline-block ml-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                    </svg>
+                                    <div class="relative inline-block">
+                                        <select
+                                            class="block appearance-none py-3 pr-8 pl-2 leading-tight bg-transparent outline-none max-w-200px"
+                                            wire:model="field_of_study_id" name="field_of_study" id="field_of_study"
+                                        >
+                                            <option value="all">Všechna zaměření</option>
+                                            @foreach($field_of_studies as $fos)
+                                                <option value="{{$fos->id}}">{{$fos->name}}</option>
+                                            @endforeach
+                                        </select>
+
+                                        <div
+                                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                 viewBox="0 0 20 20">
+                                                <path
+                                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @if($field_of_study_id != "all")
+                                <div class="mr-5 mb-3 inline-block">
+                                    <div>Obor</div>
+                                    <div
+                                        class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                             stroke="#aeaeae"
+                                             class="h-6 inline-block ml-2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                  d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+                                        </svg>
+                                        <div class="relative inline-block">
+                                            <select
+                                                class="block appearance-none py-3 pr-8 pl-2 leading-tight bg-transparent outline-none max-w-200px"
+                                                wire:model="prescribed_specialization_id" name="region" id="region"
+                                            >
+                                                <option value="all">Všechny obory</option>
+                                                @foreach($prescribed_specializations as $ps)
+                                                    <option value="{{$ps->id}}">{{$ps->code}} - {{$ps->name}}</option>
+                                                @endforeach
+                                            </select>
+
+                                            <div
+                                                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                     viewBox="0 0 20 20">
+                                                    <path
+                                                        d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                        @endif
+                    @endif
+                </div>
+            </div>
+            <div class="py-4">
+                @if($is_empty)
                     <div class="text-center text-gray-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                              class="h-12 inline-block align-middle">
@@ -23,7 +186,8 @@
                 @else
                     <div id="macyJS">
                         @foreach($registrations as $registration)
-                            <div class="relative overflow-hidden shadow-sm box-border h-min-content bg-white {{$registration->school->is_school ? "" : "border-2 border-teal-400"}}">
+                            <div
+                                class="relative overflow-hidden shadow-sm box-border h-min-content bg-white {{$registration->school->is_school ? "" : "border-2 border-teal-400"}}">
                                 @if($registration->school->id === 1)
                                     <div class="flag bg-light-green text-sm text-center text-white shadow-md">
                                         <span class="font-light">autoři portálu</span><br>
@@ -38,7 +202,8 @@
                                         <div class="flex mt-3">
                                             @if($registration->school->logo())
                                                 <div class="mr-5 py-3">
-                                                <img src="{{$registration->school->logo()}}" alt="{{$registration->school->name}} logo" class="card-logo">
+                                                    <img src="{{$registration->school->logo()}}"
+                                                         alt="{{$registration->school->name}} logo" class="card-logo">
                                                 </div>
                                             @endif
                                             <h3 class="text-2xl font-light">
@@ -49,7 +214,26 @@
 
                                     <table class="table w-full mt-5 text-sm text-gray-600">
                                         <tbody class="divide-y divide-gray-200">
-                                        @foreach($registration->school->ordered_specializations()->get() as $specialization)
+                                        @php
+                                            if($type_of_study_id == "all" && $field_of_study_id == "all" && $prescribed_specialization_id == "all"){
+                                                $specializations = $registration->school->ordered_specializations()->get();
+                                            } else if($field_of_study_id == "all" && $prescribed_specialization_id == "all"){
+                                                $specializations = $registration->school
+                                                                    ->ordered_specializations()
+                                                                    ->where("type_of_studies.id", "=", $type_of_study_id)
+                                                                    ->select("specializations.*")
+                                                                    ->get();
+                                            } else if($prescribed_specialization_id == "all"){
+                                                $specializations = $registration->school
+                                                                    ->ordered_specializations()
+                                                                    ->where("field_of_studies.id", "=", $field_of_study_id)
+                                                                    ->select("specializations.*")
+                                                                    ->get();
+                                            } else{
+                                                $specializations = $registration->school->ordered_specializations()->where("prescribed_specialization_id", $prescribed_specialization_id)->get();
+                                            }
+                                        @endphp
+                                        @foreach($specializations as $specialization)
                                             <tr>
                                                 <td class="py-3">
                                                     <a href="/obor/{{$specialization->id}}">
@@ -111,23 +295,32 @@
                                     <div class="mt-4 text-sm hover:underline text-gray-400">
                                         <div>
                                             <a href="{{route("try-connect")}}" class="hover:text-teal-400">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 inline-block">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                     stroke="currentColor" class="h-5 inline-block">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                                                 </svg>
                                                 Vyzkoušej si spojení "nanečisto"
                                             </a>
                                             {{" "}}
                                             <a href="{{route("jak-se-pripojit")}}" class="hover:text-teal-400">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 inline-block">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                     stroke="currentColor" class="h-5 inline-block">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                                 </svg>
                                                 Návod: Jak se připojit k hovoru
                                             </a> <br>
-                                            <a href="{{fix_url($registration->school->web)}}" target="_blank" class="hover:text-teal-400">
+                                            <a href="{{fix_url($registration->school->web)}}" target="_blank"
+                                               class="hover:text-teal-400">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                      stroke="currentColor" class="inline-block h-4 align-middle">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
                                                           d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                                                 </svg>
                                                 {{$registration->school->web}}
@@ -152,6 +345,27 @@
                                     columns: 2
                                 }
                             }
+                        });
+
+                        const debounce = (func, wait) => {
+                            let timeout;
+
+                            return function executedFunction(...args) {
+                                const later = () => {
+                                    timeout = null;
+                                    func(...args);
+                                };
+                                clearTimeout(timeout);
+
+                                timeout = setTimeout(later, wait);
+                            };
+                        };
+
+                        document.addEventListener("DOMContentLoaded", () => {
+                            Livewire.hook('element.updated', debounce(() => {
+                                console.log("re");
+                                macyInstance.reInit()
+                            }, 5))
                         });
                     </script>
                 @endif
