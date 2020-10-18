@@ -268,17 +268,17 @@
         <script src="{{asset("/flash/flash.min.js")}}"></script>
 
         {{--        TODO: REMOVE ME--}}
-        <script>
-            const start = 21 * 60 + 30;
-            const end = 22 * 60 + 10;
-            const date = new Date();
-            const now = date.getHours() * 60 + date.getMinutes();
-
-            if (start <= now && now <= end)
-                window.FlashMessage.error('Od 22:00 do 22:30 bude server vypnut z důvodu nutné údržby!', {
-                    interactive: true,
-                    timeout: 10000
-                });
-        </script>
+{{--        <script>--}}
+{{--            const start = 21 * 60 + 30;--}}
+{{--            const end = 22 * 60 + 10;--}}
+{{--            const date = new Date();--}}
+{{--            const now = date.getHours() * 60 + date.getMinutes();--}}
+{{----}}
+{{--            if (start <= now && now <= end)--}}
+{{--                window.FlashMessage.error('Od 22:00 do 22:30 bude server vypnut z důvodu nutné údržby!', {--}}
+{{--                    interactive: true,--}}
+{{--                    timeout: 10000--}}
+{{--                });--}}
+{{--//         </script>--}}
     </body>
 </html>
