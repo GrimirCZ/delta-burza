@@ -167,11 +167,14 @@
                                 <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
                                    class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Online {{settings("evening_event_start")}}
                                     - {{settings("evening_event_end")}}</a>
+                                <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"
+                                   class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>
                             @else
                                 <span class="btn text-sm text-center mr-2 btn-disabled inline-block">Online {{settings("morning_event_start")}}
                                     - {{settings("morning_event_end")}}</span>
                                 <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Online {{settings("evening_event_start")}}
                                     - {{settings("evening_event_end")}}</span>
+                                <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Chat</span>
                             @endif
                         </div>
                     </div>

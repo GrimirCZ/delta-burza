@@ -81,6 +81,11 @@
                                             Připojit se online {{settings("evening_event_start")}}
                                             - {{settings("evening_event_end")}}
                                         </a>
+                                        <a href="/vstoupit/chat/{{$registration->id}}"
+                                           target="_blank"
+                                           class="btn text-sm text-center btn-primary mt-1 block">
+                                            Chat
+                                        </a>
                                     @else
                                         <span
                                             class="btn text-sm text-center mt-13 block btn-disabled">
@@ -91,6 +96,10 @@
                                             class="btn text-sm text-center mt-1 block btn-disabled">
                                             Připojit se online {{settings("evening_event_start")}}
                                             - {{settings("evening_event_end")}}
+                                        </span>
+                                        <span
+                                            class="btn text-sm text-center mt-1 block btn-disabled">
+                                            Chat
                                         </span>
                                     @endif
 
@@ -114,9 +123,7 @@
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
                                                 Návod: Jak se připojit k hovoru
-                                            </a>
-                                        </div>
-                                        <div>
+                                            </a> <br>
                                             <a href="{{fix_url($registration->school->web)}}" target="_blank" class="hover:text-teal-400">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                      stroke="currentColor" class="inline-block h-4 align-middle">
