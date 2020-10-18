@@ -38,6 +38,7 @@ use App\Http\Livewire\CreateSpecialization;
 use App\Http\Livewire\TermsOfUse;
 use App\Http\Livewire\InfoAbout;
 use App\Http\Livewire\ListSchools;
+use App\Http\Livewire\HowToConnect;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -68,6 +69,14 @@ Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
 Route::get("/skola/filtrovat", FilterSchools::class);
 
 Route::get("/clanek/{article}", ShowArticle::class);
+
+Route::get("/jak-se-pripojit", function() {
+    return redirect('/clanek/4');
+})->name('jak-se-pripojit');
+
+Route::get("/spojeni-na-necisto", function() {
+    return redirect('/clanek/4');
+})->name('try-connect');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/obor/vytvorit', CreateSpecialization::class);
