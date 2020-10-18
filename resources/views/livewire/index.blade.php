@@ -3,12 +3,12 @@
         <div class="max-w-7xl mx-auto pt-5 pb-10 px-6 lg:px-8 w-100">
             <div class="md:flex text-header py-20">
                 <div class="w-full mr-20">
-                    <h1 class="text-3xl font-bold">BurzaŠkol.Online</h1>
-                    <p>Připoj se k hovoru, nebo chatuj se školami na výstavách!</p>
+                    <h1 class="text-4xl font-bold">BurzaŠkol.Online</h1>
+                    <p></p>
 
                     <div class="mt-10">
-                    <a href="/vystavy" class="btn text-sm inline-block text-center bg-teal-400 hover:bg-teal-500 text-white mr-5 mt-3">Zobrazit všechny výstavy</a>
-                    <a href="/jak-se-pripojit" class="btn  inline-block text-sm text-center bg-teal-300 hover:bg-teal-400 hover:text-white mr-5 mt-1">Jak se připojit k hovoru?</a>
+                    <a href="{{route("vystavy")}}" class="btn text-sm inline-block text-center bg-teal-400 hover:bg-teal-500 text-white mr-5 mt-3">Zobrazit všechny výstavy</a>
+                    <a href="{{route("jak-se-pripojit")}}" class="btn  inline-block text-sm text-center bg-teal-300 hover:bg-teal-400 hover:text-white mr-5 mt-1">Jak se připojit k hovoru?</a>
                     </div>
                 </div>
                 @if(count($current_exhibitions) > 0)

@@ -126,7 +126,22 @@
             </div>
 
             <div class="bg-white p-5 shadow-sm box-border mt-3">
-                <h2 class="text-2xl">Výstavy</h2>
+                <h2 class="text-2xl mb-3">
+                    Výstavy
+                    <a href="{{route("try-connect")}}" class="text-header ml-4 text-lg hover:text-teal-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 inline-block">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                        Vyzkoušej si spojení "nanečisto"
+                    </a>
+                    <a href="{{route("jak-se-pripojit")}}" class="text-header ml-4 text-lg hover:text-teal-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 inline-block">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        Návod: Jak se připojit k hovoru
+                    </a>
+                </h2>
                 @foreach ($school->enabled_registrations()->get() as $registration)
                     <div
                         class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 md:gap-4 md:px-6">
@@ -143,7 +158,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="mt-5 text-sm leading-5 text-gray-900 sm:mt-3">
+                        <div class="mt-5 text-sm leading-5 text-gray-900 sm:mt-3 text-right">
                             {{--                                zobrazit jen pokud se kona dnes--}}
                             @if($registration->exhibition->show_join_buttons())
                                 <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
