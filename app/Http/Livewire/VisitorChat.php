@@ -46,7 +46,7 @@ class VisitorChat extends Component
                 $this->session_key => $this->me->id
             ]);
 
-            broadcast(new NewMessenger($this->school));
+            broadcast(new NewMessenger($this->school, $this->me->id));
         } else{
             $this->me = Messenger::findOrFail(session($this->session_key));
         }

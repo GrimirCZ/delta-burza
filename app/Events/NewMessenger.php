@@ -14,10 +14,12 @@ class NewMessenger implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public Messenger $messenger;
+    public int $new_messenger_id;
 
-    public function __construct(Messenger $messenger)
+    public function __construct(Messenger $messenger, int $new_messenger_id)
     {
         $this->messenger = $messenger;
+        $this->new_messenger_id = $new_messenger_id;
         //
     }
 
