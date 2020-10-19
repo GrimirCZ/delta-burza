@@ -70,9 +70,9 @@ class Registration extends Model
         $match = [];
 
         if(preg_match("/\w{3}-\w{4}-\w{3}/", $src, $match)){
-            return $match[0];
+            return '(' . $match[0] . ')';
         }
 
-        return 'chyba';
+        return '';
     }
 }
