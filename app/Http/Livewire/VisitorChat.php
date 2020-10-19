@@ -17,6 +17,8 @@ class VisitorChat extends Component
 
     public ?string $message;
 
+    private string $session_key;
+
     protected $rules = [
         'message' => 'required|max:500'
     ];
@@ -25,13 +27,15 @@ class VisitorChat extends Component
 
     public function mount()
     {
+        $this->session_key = "messenger_id_" . $this->registration->id;
+
         $this->school = Messenger::firstOrCreate([
             'type' => 'school',
             'data->school_id' => $this->registration->school_id,
             'data->registration_id' => $this->registration->id,
         ]);
 
-        if(session("messenger_id") == null){
+        if(session($this->session_key) == null){
             $this->me = Messenger::create([
                 'type' => 'anonymous',
                 'data->ip' => get_ip(),
@@ -39,12 +43,12 @@ class VisitorChat extends Component
             ]);
 
             session([
-                'messenger_id' => $this->me->id
+                $this->session_key => $this->me->id
             ]);
 
             broadcast(new NewMessenger($this->school));
         } else{
-            $this->me = Messenger::findOrFail(session('messenger_id'));
+            $this->me = Messenger::findOrFail(session($this->session_key));
         }
     }
 
