@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class Registration extends Model
@@ -74,5 +75,10 @@ class Registration extends Model
         }
 
         return '';
+    }
+
+    public function get_try_link()
+    {
+        return Carbon::now()->hour > 12 ? $this->evening_event : $this->morning_event;
     }
 }

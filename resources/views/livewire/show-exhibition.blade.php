@@ -238,7 +238,7 @@
                                     </table>
 
                                     <div class="flex justify-between mt-10 text-gray-900">
-                                        <a href="{{route("try-connect")}}" class="hover:text-teal-400">
+                                        <a href="{{$registration->get_try_link()}}" class="hover:text-teal-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke="currentColor" class="h-5 inline-block">
                                                 <path stroke-linecap="round" stroke-linejoin="round"
