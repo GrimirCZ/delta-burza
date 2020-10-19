@@ -8,7 +8,7 @@
             <div class="px-4 py-5 border-b border-gray-200 mb-4 sm:px-6 flex justify-between">
                 <h3 class="text-2xl font-bold">Chat</h3>
             </div>
-            <div class="flex flex-col gap-y-6 px-4 h-1/2 overflow-y-scroll">
+            <div class="flex flex-col gap-y-6 px-4 chat-window overflow-y-scroll">
                 @foreach($messages as $message)
                     @if($message->sender->id == $school->id)
                         <div class="text-left">

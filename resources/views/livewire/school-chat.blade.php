@@ -1,6 +1,6 @@
 <div>
     <x-own-header>
-        Chat s {{$registration->school->name}}
+        Chat k výstavě {{$registration->exhibition->name}}
     </x-own-header>
 
     <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
@@ -29,28 +29,28 @@
                     </div>
                 </div>
             </div>
-            @if($selected_messenger_id != null && $selected_messenger_id != '')
-                <div class="flex flex-col gap-y-6 px-4 h-1/2 overflow-y-scroll">
-                    @foreach($messages as $message)
-                        @if($message->sender->id == $selected_messenger_id)
-                            <div class="text-left">
-                                {{$message->body}}
-                                <div class="text-gray-500 text-base">Zájemce</div>
-                            </div>
-                        @else
-                            <div class="w-full text-right text-lg">
-                                {{$message->body}}
-                                <div class="text-gray-500 text-base">Vy</div>
-                            </div>
-                        @endif
-                    @endforeach
-                </div>
-                <div class="send mt-6">
-                    <input type="text" wire:model="message"
-                           class="h-full mb-4 md:mb-0 h-4 sm:h-12 text-xl py-2 px-4 bg-gray-200 outline-none">
-                    <button wire:click="send" class="btn btn-primary h-full">Odeslat</button>
-                </div>
-            @endif
+                @if($selected_messenger_id != null && $selected_messenger_id != '')
+                    <div class="flex flex-col chat-window gap-y-6 px-4 overflow-y-scroll">
+                        @foreach($messages as $message)
+                            @if($message->sender->id == $selected_messenger_id)
+                                <div class="text-left">
+                                    {{$message->body}}
+                                    <div class="text-gray-500 text-base">Zájemce</div>
+                                </div>
+                            @else
+                                <div class="w-full text-right text-lg">
+                                    {{$message->body}}
+                                    <div class="text-gray-500 text-base">Vy</div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="send mt-6">
+                        <input type="text" wire:model="message"
+                               class="h-full mb-4 md:mb-0 h-4 sm:h-12 text-xl py-2 px-4 bg-gray-200 outline-none">
+                        <button wire:click="send" class="btn btn-primary h-full">Odeslat</button>
+                    </div>
+                @endif
         </div>
     </div>
     @push('scripts')

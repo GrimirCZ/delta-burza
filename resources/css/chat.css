@@ -10,3 +10,8 @@
         grid-template-columns: 1fr 8em;
     }
 }
+
+.chat-window {
+    min-height: 25vh;
+    max-height: 50vh;
+}
