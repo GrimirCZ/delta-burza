@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Messenger extends Model
 {
-    protected $fillable = ['type', 'data', 'data->ip', 'data->school_id'];
+    protected $fillable = ['type', 'data', 'data->ip', 'data->school_id', 'data->registration_id'];
+
+    protected $casts = [
+        'data' => 'array'
+    ];
 
     public function received_messages()
     {

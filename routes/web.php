@@ -27,6 +27,7 @@ use App\Http\Livewire\ListExhibitions;
 use App\Http\Livewire\ListExhibitionsRegion;
 use App\Http\Livewire\PayOrder;
 use App\Http\Livewire\ProcessPayments;
+use App\Http\Livewire\SchoolChat;
 use App\Http\Livewire\ShowArticle;
 use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowOrder;
@@ -68,7 +69,6 @@ Route::get("/vstoupit/chat/{registration}", VisitorChat::class);
 
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
 
-
 Route::get("/skola/filtrovat", FilterSchools::class);
 
 Route::get("/clanek/{article}", ShowArticle::class);
@@ -89,6 +89,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/objednavka/vytvorit', CreateOrder::class);
 
     Route::get('/registrace/vytvorit', CreateRegistration::class);
+    Route::get('/registrace/{registration}/chat', SchoolChat::class);
     Route::get('/registrace/{registration}/upravit', EditRegistration::class);
 
     Route::get("/objednavka/{order}/zaplatit", PayOrder::class);
