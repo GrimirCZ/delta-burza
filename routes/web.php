@@ -11,8 +11,6 @@ use App\Http\Livewire\AdminArticleCreate;
 use App\Http\Livewire\AdminArticleEdit;
 use App\Http\Livewire\AdminDashboard;
 use App\Http\Livewire\AdminImpersonate;
-use App\Http\Livewire\AdminListArticles;
-use App\Http\Livewire\CreateCompany;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\CreateRegistration;
 use App\Http\Livewire\CreateSchool;
@@ -39,6 +37,7 @@ use App\Http\Livewire\TermsOfUse;
 use App\Http\Livewire\InfoAbout;
 use App\Http\Livewire\ListSchools;
 use App\Http\Livewire\HowToConnect;
+use App\Http\Livewire\VisitorChat;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -64,17 +63,21 @@ Route::get('/o-nas', InfoAbout::class)->name("o_nas");
 Route::get('/vystavy', ListExhibitions::class)->name("vystavy");
 Route::get('/vystavy/{region}', ListExhibitionsRegion::class);
 Route::get('/vystava/{exhibition}', ShowExhibition::class);
+
+Route::get("/vstoupit/chat/{registration}", VisitorChat::class);
+
 Route::get('/vstoupit/{time}/{registration}', EnterEventController::class);
+
 
 Route::get("/skola/filtrovat", FilterSchools::class);
 
 Route::get("/clanek/{article}", ShowArticle::class);
 
-Route::get("/jak-se-pripojit", function() {
+Route::get("/jak-se-pripojit", function(){
     return redirect('/clanek/4');
 })->name('jak-se-pripojit');
 
-Route::get("/spojeni-na-necisto", function() {
+Route::get("/spojeni-na-necisto", function(){
     return redirect('/clanek/4');
 })->name('try-connect');
 
