@@ -30,4 +30,18 @@
             </div>
         </div>
     </div>
+    @push('scripts')
+        @once
+        <script>
+            document.addEventListener('livewire:load', function () {
+                // sorry just livewire fuckery
+                const lw = @this;
+
+                Echo.channel("chat.{{$school->id}}.{{$me->id}}").listen("NewMessage", () => {
+                    lw.emit("refresh")
+                })
+            })
+        </script>
+        @endonce
+    @endpush
 </div>
