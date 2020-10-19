@@ -176,7 +176,7 @@
                                 if($morning_provider == 'ms'){
                                     $morning_message .= 'k Teams';
                                 }else if($morning_provider == 'google'){
-                                    $morning_message .= 'k Meets '. $registration->google_get_code('morning');
+                                    $morning_message .= 'k Meets';
                                 }else{
                                     $morning_message .= 'online';
                                 }
@@ -184,7 +184,7 @@
                                 if($evening_provider == 'ms'){
                                     $evening_message .= 'k Teams';
                                 }else if($evening_provider == 'google'){
-                                    $evening_message .= 'k Meets '. $registration->google_get_code('evening');
+                                    $evening_message .= 'k Meets';
                                 }else{
                                     $evening_message .= 'online';
                                 }
