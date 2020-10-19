@@ -186,10 +186,10 @@
 
                             @if($registration->exhibition->show_join_buttons())
                                 <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
-                                   class="btn text-sm text-center mr-2 btn-primary inline-block">{{$morning_message}}{{settings("morning_event_start")}}
+                                   class="btn text-sm text-center mr-2 btn-primary inline-block">{{$morning_message}} {{settings("morning_event_start")}}
                                     - {{settings("morning_event_end")}}</a>
                                 <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
-                                   class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">{{$evening_message}}{{settings("evening_event_start")}}
+                                   class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">{{$evening_message}} {{settings("evening_event_start")}}
                                     - {{settings("evening_event_end")}}</a>
                                 <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"
                                    class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>
