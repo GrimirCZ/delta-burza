@@ -64,7 +64,7 @@ class VisitorChat extends Component
 
         $this->message = "";
 
-        broadcast(new NewMessage($this->me, $this->school));
+        broadcast(new NewMessage($this->me->id, $this->school->id));
     }
 
     public function refresh()

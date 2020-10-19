@@ -35,7 +35,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
 
-        <link rel="stylesheet" href="{{asset("/flash/flash.min.css")}}">
+        <link rel="stylesheet" href="{{asset("/notyf/notyf.min.css")}}">
     </head>
     <body>
         <div class="min-h-screen bg-gray-100">
@@ -243,20 +243,48 @@
                 </div>
             </div>-->
 
-            <footer class="px-3 sm:px-0 py-6 md:flex justify-between align-center max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <p class="text-right md:text-left mb-2 md:mb-0">
-                    <a href="{{route("obchodni_podminky")}}" class="link">Obchodní podmínky</a>
-                </p>
-                <div class="text-right">
-                    <p class="text-right text-gray-600 text-sm">
-                        Vytvořil Vít Falta a Matěj Půhoný, studenti <br class="inline sm:hidden"/> <a
-                            href="{{url("/skola/1")}}" class="link">DELTA - Střední škola informatiky a ekonomie,
-                            s.r.o.</a>
-                        2020
+            <footer>
+                <div class="px-3 sm:px-0 pt-6 md:flex justify-between align-center max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <div class="text-left">
+                        <a href="{{route("osobni-udaje")}}" class="link">Ochrana osobních údajů a Podmínky
+                            užití</a>
+                    </div>
+                    <div></div>
+                </div>
+                <div class="px-3 sm:px-0 py-6 md:flex justify-between align-center max-w-7xl mx-auto sm:px-6 lg:px-8">
+                    <p class="text-right md:text-left mb-2 md:mb-0">
+                        <a href="{{route("obchodni_podminky")}}" class="link">Obchodní podmínky</a>
                     </p>
+                    <div class="text-right">
+                        <p class="text-right text-gray-600 text-sm">
+                            Vytvořil Vít Falta a Matěj Půhoný, studenti <br class="inline sm:hidden"/> <a
+                                href="{{url("/skola/1")}}" class="link">DELTA - Střední škola informatiky a ekonomie,
+                                s.r.o.</a>
+                            2020
+                        </p>
+                    </div>
                 </div>
             </footer>
         </div>
+
+        <script src="{{asset("/notyf/notyf.min.js")}}"></script>
+
+        <script>
+            const notyf = new Notyf({
+                duration: 5000,
+                position: {
+                    x: 'right',
+                    y: 'top',
+                },
+                types: [
+                    {
+                        type: 'info',
+                        background: 'blue',
+                        icon: true
+                    }
+                ]
+            });
+        </script>
 
         @stack('modals')
 
@@ -264,21 +292,5 @@
 
         @livewireScripts
 
-
-        <script src="{{asset("/flash/flash.min.js")}}"></script>
-
-        {{--        TODO: REMOVE ME--}}
-{{--        <script>--}}
-{{--            const start = 21 * 60 + 30;--}}
-{{--            const end = 22 * 60 + 10;--}}
-{{--            const date = new Date();--}}
-{{--            const now = date.getHours() * 60 + date.getMinutes();--}}
-{{----}}
-{{--            if (start <= now && now <= end)--}}
-{{--                window.FlashMessage.error('Od 22:00 do 22:30 bude server vypnut z důvodu nutné údržby!', {--}}
-{{--                    interactive: true,--}}
-{{--                    timeout: 10000--}}
-{{--                });--}}
-{{--//         </script>--}}
     </body>
 </html>

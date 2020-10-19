@@ -50,7 +50,7 @@ class SchoolChat extends Component
 
         $this->message = "";
 
-        broadcast(new NewMessage($this->me, Messenger::find($this->selected_messenger_id)));
+        broadcast(new NewMessage($this->me->id, $this->selected_messenger_id));
     }
 
     public function get_messengers()

@@ -1,6 +1,6 @@
 <div>
     <x-own-header>
-        Chat s {{$registration->school->name}}
+        Chat k výstavě {{$registration->exhibition->name}}
     </x-own-header>
 
     <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             @if($selected_messenger_id != null && $selected_messenger_id != '')
-                <div class="flex flex-col gap-y-6 px-4 h-1/2 overflow-y-scroll">
+                <div class="flex flex-col chat-window gap-y-6 px-4 overflow-y-scroll">
                     @foreach($messages as $message)
                         @if($message->sender->id == $selected_messenger_id)
                             <div class="text-left">
@@ -54,29 +54,52 @@
         </div>
     </div>
     @push('scripts')
-        <script>
-            document.addEventListener('livewire:load', function () {
-                @foreach($messengers as $messenger)
-                Echo.channel("chat.{{$messenger->id}}.{{$me->id}}").listen("NewMessage", () => {
-                @this.call('render')
-                })
-                @endforeach
-            })
-        </script>
-
         @once
         <script>
+            const selected_messenger_id = "{{$selected_messenger_id}}";
+
             document.addEventListener('livewire:load', function () {
                 Echo.private("new_messenger.{{$me->id}}").listen("NewMessenger", e => {
                     if (e && e.new_messenger_id !== undefined && e.new_messenger_id !== null) {
-                        Echo.channel(`chat.${e.new_messenger_id}.{{$me->id}}`).listen("NewMessage", () => {
+                        Echo.channel(`chat.${e.new_messenger_id}.{{$me->id}}`).listen("NewMessage", e => {
+                            if (e.sender_id != selected_messenger_id) {
+                                notyf.open({
+                                    type: 'info',
+                                    message: '<h1>Nová zpráva</h1>Přišla vám nová zpráva.<br/>Kliknutím zobrazíte.'
+                                }).on("click", () => @this.set("selected_messenger_id", e.sender_id))
+                            }
+
                         @this.call('render')
                         })
+
+                        notyf.open({
+                            type: 'info',
+                            message: '<h1>Nový chat</h1>Připojil se nový zájemce. <br/>Kliknutím přejdete na chat.'
+                        }).on("click", () => @this.set("selected_messenger_id", e.new_messenger_id))
                     }
+
                 @this.call('render')
                 })
             })
         </script>
         @endonce
+
+        <script>
+            document.addEventListener('livewire:load', function () {
+                @foreach($messengers as $messenger)
+                Echo.channel("chat.{{$messenger->id}}.{{$me->id}}").listen("NewMessage", e => {
+                    console.log(e, selected_messenger_id)
+                    if (e.sender_id != selected_messenger_id) {
+                        notyf.open({
+                            type: 'info',
+                            message: '<h1>Nová zpráva</h1>Přišla vám nová zpráva.<br/>Kliknutím zobrazíte.'
+                        }).on("click", () => @this.set("selected_messenger_id", e.sender_id))
+                    }
+
+                @this.call('render')
+                })
+                @endforeach
+            })
+        </script>
     @endpush
 </div>

@@ -14,13 +14,13 @@ class NewMessage implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private Messenger $sender;
-    private Messenger $receiver;
+    public int $sender_id;
+    public int $receiver_id;
 
-    public function __construct(Messenger $sender, Messenger $receiver)
+    public function __construct(int $sender_id, int $receiver_id)
     {
-        $this->sender = $sender;
-        $this->receiver = $receiver;
+        $this->sender_id = $sender_id;
+        $this->receiver_id = $receiver_id;
     }
 
     /**
@@ -30,6 +30,6 @@ class NewMessage implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel('chat.' . $this->sender->id . "." . $this->receiver->id);
+        return new Channel('chat.' . $this->sender_id . "." . $this->receiver_id);
     }
 }
