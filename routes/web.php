@@ -57,11 +57,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Index::class);
 
-Route::get("/info_pro_stredni_skoly", InfoProStredniSkoly::class)->name("info_ss");
-Route::get("/info_pro_zaky_zs", InfoProZakyZS::class)->name("info_zs");
-Route::get("/info_pro_poradatele", InfoProPoradatele::class)->name("info_poradatele");
+
 Route::get("/obchodni_podminky", TermsOfUse::class)->name("obchodni_podminky");
-Route::get('/o-nas', InfoAbout::class)->name("o_nas");
 
 Route::get('/vystavy', ListExhibitions::class)->name("vystavy");
 Route::get('/vystavy/{region}', ListExhibitionsRegion::class);
@@ -86,6 +83,19 @@ Route::get("/spojeni-na-necisto", function(){
 Route::get("/ochrana-osobnich-udaju-a-podminky-uziti", function(){
     return redirect('/clanek/5');
 })->name('osobni-udaje');
+
+Route::get("/info_pro_zaky_zs", function(){
+    return redirect('/clanek/6');
+})->name("info_zs");
+Route::get("/info_pro_stredni_skoly", function(){
+    return redirect('/clanek/7');
+})->name("info_ss");
+Route::get("/info_pro_poradatele", function(){
+    return redirect('/clanek/8');
+})->name("info_poradatele");
+Route::get('/o-nas', function(){
+    return redirect('/clanek/9');
+})->name("o_nas");
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/obor/vytvorit', CreateSpecialization::class);
