@@ -129,15 +129,21 @@
                 <h2 class="text-2xl mb-3">
                     Výstavy
                     <a href="{{route("try-connect")}}" class="text-header ml-4 text-lg hover:text-teal-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 inline-block">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                             class="h-5 inline-block">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                         </svg>
                         Vyzkoušej si spojení "nanečisto"
                     </a>
-                    <a href="{{route("jak-se-pripojit")}}" target="_blank" class="text-header ml-4 text-lg hover:text-teal-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 inline-block">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <a href="https://youtu.be/u9on9jIpQ6Y" target="_blank"
+                       class="text-header ml-4 text-lg hover:text-teal-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                             class="h-5 inline-block">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                         Návod: Jak se připojit k hovoru
                     </a>
@@ -194,9 +200,11 @@
                                 <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"
                                    class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>
                             @else
-                                <span class="btn text-sm text-center mr-2 btn-disabled inline-block">{{$morning_message}} {{settings("morning_event_start")}}
+                                <span
+                                    class="btn text-sm text-center mr-2 btn-disabled inline-block">{{$morning_message}} {{settings("morning_event_start")}}
                                     - {{settings("morning_event_end")}}</span>
-                                <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">{{$evening_message}} {{settings("evening_event_start")}}
+                                <span
+                                    class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">{{$evening_message}} {{settings("evening_event_start")}}
                                     - {{settings("evening_event_end")}}</span>
                                 <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Chat</span>
                             @endif
