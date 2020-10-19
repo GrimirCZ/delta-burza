@@ -38,7 +38,7 @@
                 const lw = @this;
 
                 Echo.channel("chat.{{$school->id}}.{{$me->id}}").listen("NewMessage", () => {
-                    lw.emit("refresh")
+                @this.call('render')
                 })
             })
         </script>
