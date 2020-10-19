@@ -36,4 +36,15 @@ class Registration extends Model
     {
         return $this->order_registration->fulfilled_at != null || $this->school->is_trustworthy;
     }
+
+    public function get_provider()
+    {
+        if(preg_match("/teams\.microsoft/", $this->morning_event)){
+            return 'ms';
+        } else if(preg_match('/meet\.google/',$this->morning_event)){
+            return 'google';
+        }
+
+        return 'other';
+    }
 }
