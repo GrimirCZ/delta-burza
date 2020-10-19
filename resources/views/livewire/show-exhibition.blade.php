@@ -10,37 +10,8 @@
 
     <div>
         <div class="max-w-7xl mx-auto pt-0 pb-10 px-2 sm:px-6 lg:px-8 w-100">
-            <div x-data="{ open: false }" class="py-6">
-                <div class="text-gray-900 text-lg  transition duration-1000">
-                    <button @click="open = !open" class="inline-block hover:text-teal-400 py-4 mx-5 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                             class="h-8 inline-block align-middle">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
-                        </svg>
-                        <span x-show="open">
-                        Skrýt filtr
-                    </span>
-                        <span x-show="!open">
-                        Zobrazit filtr
-                    </span>
-                    </button>
-                    @if($type != "all")
-                        <button wire:click="clear_filter"
-                                class="inline-block text-header hover:text-teal-400 py-4 mx-5 focus:outline-none">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                 stroke="currentColor"
-                                 class="h-5 inline-block">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                      d="M9 13h6m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                            </svg>
-                            <span class="align-middle">Vyčistit filtr</span>
-                        </button>
-                    @endif
-                </div>
-
-                <div x-show="open"
-                     class="py-6 text-base min-w-full max-w-7xl mx-auto sm:px-6 lg:px-8 w-100 text-gray-700"
+            <div class="py-6 bg-teal-400 mt-6">
+                <div class="py-6 text-base min-w-full max-w-7xl mx-auto sm:px-6 lg:px-8 w-100 text-gray-700"
                      id="filter-component">
                     <div class="mr-5 mb-3 inline-block">
                         <div>Typ vystavovatele</div>
@@ -52,7 +23,7 @@
                                     wire:model="type" name="type" id="type"
                                 >
                                     <option value="all">Všechny</option>
-                                    <option value="skoly">Školy</option>
+                                    <option value="skoly" selected>Školy</option>
                                     <option value="firmy">Firmy</option>
                                 </select>
                                 <div
@@ -68,7 +39,7 @@
                     </div>
                     @if($type == "skoly")
                         <div class="mr-5 mb-3 inline-block">
-                            <div>Typ studia</div>
+                            <div>Typ školy</div>
                             <div
                                 class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -171,6 +142,20 @@
                         @endif
                     @endif
                 </div>
+                @if($type != "all")
+                    <div class="text-gray-900 text-lg ml-4 transition duration-1000">
+                        <button wire:click="clear_filter"
+                                class="inline-block text-header py-4 mx-5 focus:outline-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor"
+                                 class="h-5 inline-block">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M9 13h6m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                            <span class="align-middle">Vyčistit filtr</span>
+                        </button>
+                    </div>
+                @endif
             </div>
             <div class="py-4">
                 @if($is_empty)
