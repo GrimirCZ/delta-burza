@@ -252,10 +252,37 @@
                                         </tbody>
                                     </table>
 
+                                    <div class="flex justify-between mt-10 text-gray-900">
+                                        <a href="{{route("try-connect")}}" class="hover:text-teal-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke="currentColor" class="h-5 inline-block">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="2"
+                                                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                            </svg>
+                                            <span class="underline">Vyzkoušej si spojení "nanečisto"</span>
+                                        </a>
+                                        @php
+                                            $provider = $registration->get_provider();
+                                        @endphp
+                                        <a href="@if($provider == 'ms') https://microsoft.com @elseif($provider == 'google') https://google.com @else {{route('jak-se-pripojit')}} @endif"
+                                           class="hover:text-teal-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                 stroke="currentColor" class="h-5 inline-block">
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="2"
+                                                      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                                                <path stroke-linecap="round" stroke-linejoin="round"
+                                                      stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                            </svg>
+                                            <span class="underline">Návod: Jak se připojit k hovoru</span>
+                                        </a>
+                                    </div>
+
                                     @if($enable_join_buttons)
                                         <a href="/vstoupit/ranni/{{$registration->id}}"
                                            target="_blank"
-                                           class="btn text-sm text-center btn-primary mt-13 block">
+                                           class="btn text-sm text-center mt-2 btn-primary block">
                                             Připojit se online {{settings("morning_event_start")}}
                                             - {{settings("morning_event_end")}}
                                         </a>
@@ -272,7 +299,7 @@
                                         </a>
                                     @else
                                         <span
-                                            class="btn text-sm text-center mt-13 block btn-disabled">
+                                            class="btn text-sm text-center mt-2 block btn-disabled">
                                             Připojit se online {{settings("morning_event_start")}}
                                             - {{settings("morning_event_end")}}
                                         </span>
@@ -294,27 +321,7 @@
 
                                     <div class="mt-4 text-sm hover:underline text-gray-400">
                                         <div>
-                                            <a href="{{route("try-connect")}}" class="hover:text-teal-400">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                     stroke="currentColor" class="h-5 inline-block">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="2"
-                                                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                                </svg>
-                                                Vyzkoušej si spojení "nanečisto"
-                                            </a>
-                                            {{" "}}
-                                            <a href="{{route("jak-se-pripojit")}}" class="hover:text-teal-400">
-                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                     stroke="currentColor" class="h-5 inline-block">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="2"
-                                                          d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                          stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                                </svg>
-                                                Návod: Jak se připojit k hovoru
-                                            </a> <br>
+
                                             <a href="{{fix_url($registration->school->web)}}" target="_blank"
                                                class="hover:text-teal-400">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
