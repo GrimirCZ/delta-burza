@@ -57,18 +57,14 @@
         @once
         <script>
             document.addEventListener('livewire:load', function () {
-                // sorry just livewire fuckery
-                const lw = @this;
-
                 @foreach($messengers as $messenger)
                 Echo.channel("chat.{{$messenger->id}}.{{$me->id}}").listen("NewMessage", () => {
-
-                    lw.emit("refresh")
+                @this.call('render')
                 })
                 @endforeach
 
                 Echo.private("new_messenger.{{$me->id}}").listen("NewMessenger", () => {
-                    lw.emit("refresh")
+                @this.call('render')
                 })
             })
         </script>
