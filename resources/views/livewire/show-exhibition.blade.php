@@ -9,15 +9,14 @@
     </x-own-header>
 
     <div>
-        <div class="max-w-7xl mx-auto pt-0 pb-10 px-2 sm:px-6 lg:px-8 w-100">
-            <div class="py-6 bg-teal-200 mt-6">
-                <div class="pb-6 pt-2 text-base min-w-full max-w-7xl mx-auto sm:px-6 lg:px-8 w-100 text-gray-700"
-                     id="filter-component">
-                    <h2 class="text-gray-900 font-semibold text-xl pb-4">Vyber si školu, co tě opravdu zajímá</h2>
+        <div class="max-w-7xl mx-auto pt-0 pb-10 px-2 px-6 lg:px-8 w-100">
+            <div class="py-6 bg-teal-200 mt-6 mb-5">
+                <div class="pb-6 pt-2 text-base min-w-full max-w-7xl mx-auto px-6 lg:px-8 w-100 text-header" id="filter-component">
+                    <h2 class="text-header font-bold text-2xl pb-4">Vyber si školu, co tě opravdu zajímá</h2>
                     <div class="mr-5 mb-3 inline-block">
                         <div>Typ vystavovatele</div>
                         <div
-                            class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700">
+                            class="region-input bg-white border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700">
                             <div class="relative inline-block">
                                 <select
                                     class="block appearance-none py-3 pr-8 pl-2 leading-tight bg-transparent outline-none max-w-200px"
@@ -42,7 +41,7 @@
                         <div class="mr-5 mb-3 inline-block">
                             <div>Typ školy</div>
                             <div
-                                class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
+                                class="region-input bg-white border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      stroke="#aeaeae"
                                      class="h-7 inline-block ml-2">
@@ -77,7 +76,7 @@
                             <div class="mr-5 mb-3 inline-block">
                                 <div>Zaměření</div>
                                 <div
-                                    class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
+                                    class="region-input bg-white border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                          stroke="#aeaeae"
                                          class="h-6 inline-block ml-2">
@@ -110,7 +109,7 @@
                                 <div class="mr-5 mb-3 inline-block">
                                     <div>Obor</div>
                                     <div
-                                        class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
+                                        class="region-input bg-white border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700 w-256px">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                              stroke="#aeaeae"
                                              class="h-6 inline-block ml-2">
@@ -146,14 +145,14 @@
                 @if($type != "all")
                     <div class="text-gray-900 text-lg ml-4 transition duration-1000">
                         <button wire:click="clear_filter"
-                                class="inline-block text-header py-4 mx-5 focus:outline-none">
+                                class="inline-block py-4 mx-5 focus:outline-none btn bg-teal-400 text-white font-light hover:bg-teal-500">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor"
                                  class="h-5 inline-block">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                       d="M9 13h6m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
                             </svg>
-                            <span class="align-middle">Vyčistit filtr</span>
+                            <span class="align-middle font-normal">Vyčistit filtr</span>
                         </button>
                     </div>
                 @endif
