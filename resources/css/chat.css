@@ -1,0 +1,12 @@
+.send {
+    display: grid;
+    grid-template-rows: 1fr 2.5em;
+}
+
+@media (min-width: theme('screens.sm')) {
+    .send {
+        grid-template-rows: initial;
+
+        grid-template-columns: 1fr 8em;
+    }
+}

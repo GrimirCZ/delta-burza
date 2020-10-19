@@ -32,7 +32,7 @@ class ListExhibitions extends Component
             ->leftJoinSub($exh_exhibitioners, 'exh_sch_cnt', function($join){
                 $join->on("exhibitions.id", "=", "exh_sch_cnt.exhibition_id");
             })
-            ->where("exhibitions.date", ">=", DB::raw("CURRENT_TIMESTAMP"))
+            ->where("exhibitions.date", ">=", DB::raw("DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -1 DAY)"))
             ->select('exhibitions.*',
                 DB::raw(" exh_sch_cnt.school_count as school_count"),
                 DB::raw("0 as u"),
@@ -41,7 +41,7 @@ class ListExhibitions extends Component
 
         $expired = Exhibition::join('districts', 'exhibitions.district_id', '=', 'districts.id')
             ->join('regions', 'districts.region_id', '=', 'regions.id')
-            ->where("exhibitions.date", "<", DB::raw("CURRENT_TIMESTAMP"))
+            ->where("exhibitions.date", "<", DB::raw("DATE_ADD(CURRENT_TIMESTAMP, INTERVAL -1 DAY)"))
             ->orderBy('regions.name')
             ->orderBy('exhibitions.date')
             ->select('exhibitions.*',
