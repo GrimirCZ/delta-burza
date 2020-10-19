@@ -265,7 +265,7 @@
                                         @php
                                             $provider = $registration->get_provider();
                                         @endphp
-                                        <a href="@if($provider == 'ms') https://microsoft.com @elseif($provider == 'google') https://google.com @else {{route('jak-se-pripojit')}} @endif"
+                                        <a href="@if($provider == 'ms') https://microsoft.com @else {{route('jak-se-pripojit')}} @endif"
                                            class="hover:text-teal-400">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke="currentColor" class="h-5 inline-block">
@@ -279,17 +279,41 @@
                                         </a>
                                     </div>
 
+                                    @php
+                                        $morning_provider = $provider;
+                                        $evening_provider = $registration->get_provider('evening');
+
+                                        $morning_message = "Připojit se ";
+                                        $evening_message = "Připojit se ";
+
+                                        if($morning_provider == 'ms'){
+                                            $morning_message .= 'k Teams';
+                                        }else if($morning_provider == 'google'){
+                                            $morning_message .= 'k Meets';
+                                        }else{
+                                            $morning_message .= 'online';
+                                        }
+
+                                        if($evening_provider == 'ms'){
+                                            $evening_message .= 'k Teams';
+                                        }else if($evening_provider == 'google'){
+                                            $evening_message .= 'k Meets';
+                                        }else{
+                                            $evening_message .= 'online';
+                                        }
+                                    @endphp
+
                                     @if($enable_join_buttons)
                                         <a href="/vstoupit/ranni/{{$registration->id}}"
                                            target="_blank"
                                            class="btn text-sm text-center mt-2 btn-primary block">
-                                            Připojit se online {{settings("morning_event_start")}}
+                                            {{$morning_message}} {{settings("morning_event_start")}}
                                             - {{settings("morning_event_end")}}
                                         </a>
                                         <a href="/vstoupit/vecerni/{{$registration->id}}"
                                            target="_blank"
                                            class="btn text-sm text-center btn-primary mt-1 block">
-                                            Připojit se online {{settings("evening_event_start")}}
+                                            {{$evening_message}} {{settings("evening_event_start")}}
                                             - {{settings("evening_event_end")}}
                                         </a>
                                         <a href="/vstoupit/chat/{{$registration->id}}"
@@ -300,12 +324,12 @@
                                     @else
                                         <span
                                             class="btn text-sm text-center mt-2 block btn-disabled">
-                                            Připojit se online {{settings("morning_event_start")}}
+                                              {{$morning_message}} {{settings("morning_event_start")}}
                                             - {{settings("morning_event_end")}}
                                         </span>
                                         <span
                                             class="btn text-sm text-center mt-1 block btn-disabled">
-                                            Připojit se online {{settings("evening_event_start")}}
+                                           {{$evening_message}} {{settings("evening_event_start")}}
                                             - {{settings("evening_event_end")}}
                                         </span>
                                         <span
