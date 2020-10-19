@@ -28,6 +28,7 @@ use App\Http\Livewire\ListExhibitionsRegion;
 use App\Http\Livewire\PayOrder;
 use App\Http\Livewire\ProcessPayments;
 use App\Http\Livewire\SchoolChat;
+use App\Http\Livewire\SchoolInterest;
 use App\Http\Livewire\ShowArticle;
 use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowOrder;
@@ -81,6 +82,10 @@ Route::get("/spojeni-na-necisto", function(){
     return redirect('/clanek/4');
 })->name('try-connect');
 
+Route::get("/ochrana-osobnich-udaju-a-podminky-uziti", function(){
+    return redirect('/clanek/5');
+})->name('osobni-udaje');
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/obor/vytvorit', CreateSpecialization::class);
     Route::get('/obor/{specialization}/upravit', EditSpecialization::class);
@@ -121,6 +126,7 @@ Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->group(function(
 
 Route::get('/skola/{school}', ShowSchool::class);
 Route::get('/skoly', ListSchools::class)->name('skoly');
+Route::get("/skola/{school}/zajem", SchoolInterest::class);
 Route::get('/obor/{specialization}', ShowSpecialization::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', DashboardController::class)->name('dashboard');

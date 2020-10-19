@@ -324,8 +324,13 @@
                                         </span>
                                     @endif
 
+{{--                                    <a href="/skola/{{$registration->school->id}}/zajem"--}}
+{{--                                       class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">--}}
+{{--                                        Mám zájem!--}}
+{{--                                    </a>--}}
+
                                     <a href="/skola/{{$registration->school->id}}"
-                                       class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
+                                       class="btn text-sm text-center btn-primary mt-1 block">
                                         Detail @if($registration->school->is_school) školy @else firmy @endif
                                     </a>
 
