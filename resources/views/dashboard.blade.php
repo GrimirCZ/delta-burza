@@ -294,9 +294,9 @@
                                         <span class="text-red-700 font-semibold">Nezaplaceno</span>
                                     @endif
                                 </td>
-                                <td>
-                                    <a href="/registrace/{{$registration->id}}/chat" class="underline">Chat</a>
-                                </td>
+{{--                                <td>--}}
+{{--                                    <a href="/registrace/{{$registration->id}}/chat" class="underline">Chat</a>--}}
+{{--                                </td>--}}
                                 <td class="px-8 py-5 text-right">
                                     <a href="/registrace/{{$registration->id}}/upravit" class="text-header ml-4">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"

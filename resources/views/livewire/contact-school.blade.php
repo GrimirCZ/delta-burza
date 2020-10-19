@@ -29,15 +29,9 @@
                 </div>
                 <div class="mt-6">
                     <label for="body">Zpráva</label>
-                    <textarea name="body" id="body" cols="30" rows="10"
+                    <textarea name="body" id="body" cols="30" rows="10" wire:model="body"
                               class="input input-full @error('body') input-error @enderror"></textarea>
                     @error('body') <span class="error">{{ $message }}</span> @enderror
-                </div>
-
-                <div class="mt-6">
-                    <input type="checkbox" id="gdpr" wire:model="gdpr" name="gdpr">
-                    <label for="gdpr">Souhlasím s GDPR.</label><br>
-                    @error('gdpr') <span class="error">{{ $message }}</span> @enderror
                 </div>
 
                 <div class="mt-6">

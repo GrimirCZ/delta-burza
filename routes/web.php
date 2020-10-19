@@ -11,6 +11,7 @@ use App\Http\Livewire\AdminArticleCreate;
 use App\Http\Livewire\AdminArticleEdit;
 use App\Http\Livewire\AdminDashboard;
 use App\Http\Livewire\AdminImpersonate;
+use App\Http\Livewire\ContactSchool;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\CreateRegistration;
 use App\Http\Livewire\CreateSchool;
@@ -28,7 +29,6 @@ use App\Http\Livewire\ListExhibitionsRegion;
 use App\Http\Livewire\PayOrder;
 use App\Http\Livewire\ProcessPayments;
 use App\Http\Livewire\SchoolChat;
-use App\Http\Livewire\SchoolInterest;
 use App\Http\Livewire\ShowArticle;
 use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowOrder;
@@ -126,7 +126,7 @@ Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->group(function(
 
 Route::get('/skola/{school}', ShowSchool::class);
 Route::get('/skoly', ListSchools::class)->name('skoly');
-Route::get("/skola/{school}/zajem", SchoolInterest::class);
+Route::get("/skola/{school}/zajem", ContactSchool::class);
 Route::get('/obor/{specialization}', ShowSpecialization::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', DashboardController::class)->name('dashboard');
