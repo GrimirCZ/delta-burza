@@ -57,7 +57,7 @@
                                         class="block appearance-none py-3 pr-8 pl-2 leading-tight bg-transparent outline-none max-w-200px"
                                         wire:model="type_of_study_id" name="type_of_study" id="type_of_study"
                                     >
-                                        <option value="all">Všechny typy studia</option>
+                                        <option value="all">Všechny typy škol</option>
                                         @foreach($type_of_studies as $tos)
                                             <option value="{{$tos->id}}">{{$tos->name}}</option>
                                         @endforeach
