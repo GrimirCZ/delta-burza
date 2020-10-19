@@ -54,7 +54,6 @@
         </div>
     </div>
     @push('scripts')
-        @once
         <script>
             document.addEventListener('livewire:load', function () {
                 @foreach($messengers as $messenger)
@@ -62,8 +61,18 @@
                 @this.call('render')
                 })
                 @endforeach
+            })
+        </script>
 
-                Echo.private("new_messenger.{{$me->id}}").listen("NewMessenger", () => {
+        @once
+        <script>
+            document.addEventListener('livewire:load', function () {
+                Echo.private("new_messenger.{{$me->id}}").listen("NewMessenger", e => {
+                    if (e && e.new_messenger_id !== undefined && e.new_messenger_id !== null) {
+                        Echo.channel(`chat.${e.new_messenger_id}.{{$me->id}}`).listen("NewMessage", () => {
+                        @this.call('render')
+                        })
+                    }
                 @this.call('render')
                 })
             })
