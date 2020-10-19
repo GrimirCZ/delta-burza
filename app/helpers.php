@@ -26,6 +26,7 @@ if(!function_exists('format_datetime')){
             return "chyba";
         }
         try{
+//            TODO: fix time
             return (new  Carbon($str))->addHours(2)->isoFormat("D. M. YYYY HH:mm:ss");
         } catch(Exception $e){
             return "chyba";
