@@ -63,13 +63,6 @@ class VisitorChat extends Component
         broadcast(new NewMessage($this->me, $this->school));
     }
 
-    public function getListeners()
-    {
-        return [
-            "echo:chat.{$this->school->id}.{$this->me->id},NewMessage" => 'refresh'
-        ];
-    }
-
     public function refresh()
     {
         $this->emit("refresh");
@@ -87,7 +80,10 @@ class VisitorChat extends Component
         $us = [$this->me->id, $this->school->id];
 
         return view('livewire.visitor-chat', [
-            'messages' => Message::whereIn("sender_id", $us)->whereIn('receiver_id', $us)->get()
+            'messages' => Message::whereIn("sender_id", $us)
+                ->whereIn('receiver_id', $us)
+                ->orderBy("created_at")
+                ->get()
         ]);
     }
 }

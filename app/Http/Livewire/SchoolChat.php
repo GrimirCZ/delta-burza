@@ -53,24 +53,6 @@ class SchoolChat extends Component
         broadcast(new NewMessage($this->me, Messenger::find($this->selected_messenger_id)));
     }
 
-    public function getListeners()
-    {
-        $res = [
-            "echo-private:new_messenger.{$this->me->id},NewMessenger" => "refresh"
-        ];
-
-        foreach($this->get_messengers()->get() as $messenger){
-            $res["echo:chat.{$messenger->id}.{$this->me->id},NewMessage"] = "refresh";
-        }
-
-        return $res;
-    }
-
-    public function refresh()
-    {
-        $this->emit("refresh");
-    }
-
     public function get_messengers()
     {
         return Messenger::where("type", "=", "anonymous")
@@ -89,7 +71,10 @@ class SchoolChat extends Component
         return view('livewire.school-chat', [
             'messengers' => $this->get_messengers()->get(),
             "selected_messenger" => Messenger::find($this->selected_messenger_id),
-            "messages" => Message::whereIn("sender_id", $us)->whereIn('receiver_id', $us)->get()
+            "messages" => Message::whereIn("sender_id", $us)
+                ->whereIn('receiver_id', $us)
+                ->orderBy("created_at")
+                ->get()
         ]);
     }
 }

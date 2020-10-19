@@ -52,5 +52,26 @@
                 </div>
             @endif
         </div>
-    </div>h
+    </div>
+    @push('scripts')
+        @once
+        <script>
+            document.addEventListener('livewire:load', function () {
+                // sorry just livewire fuckery
+                const lw = @this;
+
+                @foreach($messengers as $messenger)
+                Echo.channel("chat.{{$school->id}}.{{$messenger->id}}").listen("NewMessage", () => {
+
+                    lw.emit("refresh")
+                })
+                @endforeach
+
+                Echo.private("new_messenger.{{$me->id}}").listen("NewMessenger", () => {
+                    lw.emit("refresh")
+                })
+            })
+        </script>
+        @endonce
+    @endpush
 </div>
