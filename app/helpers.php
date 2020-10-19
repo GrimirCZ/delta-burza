@@ -18,6 +18,21 @@ if(!function_exists('format_date')){
     }
 }
 
+
+if(!function_exists('format_datetime')){
+    function format_datetime(?string $str) : string
+    {
+        if($str == null){
+            return "chyba";
+        }
+        try{
+            return (new  Carbon($str))->isoFormat("D. M. YYYY HH:mm:ss");
+        } catch(Exception $e){
+            return "chyba";
+        }
+    }
+}
+
 if(!function_exists('format_date_now')){
     function format_date_now() : string
     {

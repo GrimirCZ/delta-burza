@@ -323,7 +323,7 @@
                                         </span>
                                     @endif
 
-                                    <a href="/skola/{{$registration->school->id}}/zajem"
+                                    <a href="/skola/{{$registration->school->id}}/zajem/{{$registration->id}}"
                                        class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
                                         Mám zájem!
                                     </a>

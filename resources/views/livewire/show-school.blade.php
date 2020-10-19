@@ -212,7 +212,7 @@
                                 <span
                                     class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">{{$evening_message}} {{settings("evening_event_start")}}
                                     - {{settings("evening_event_end")}}</span>
-                                <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Chat</span>
+{{--                                <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Chat</span>--}}
                             @endif
                         </div>
                     </div>

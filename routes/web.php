@@ -129,7 +129,7 @@ Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->group(function(
 
 Route::get('/skola/{school}', ShowSchool::class);
 Route::get('/skoly', ListSchools::class)->name('skoly');
-Route::get("/skola/{school}/zajem", ContactSchool::class);
+Route::get("/skola/{school}/zajem/{registration?}", ContactSchool::class);
 Route::get('/obor/{specialization}', ShowSpecialization::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', DashboardController::class)->name('dashboard');

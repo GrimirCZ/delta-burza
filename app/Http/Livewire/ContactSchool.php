@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Registration;
 use App\Models\School;
 use App\Models\SchoolContact;
 use Livewire\Component;
@@ -9,6 +10,7 @@ use Livewire\Component;
 class ContactSchool extends Component
 {
     public School $school;
+    public ?Registration $registration;
 
     public ?string $name;
     public ?string $email;
@@ -28,13 +30,19 @@ class ContactSchool extends Component
     {
         $this->validate();
 
-        SchoolContact::create([
-           'name' => $this->name,
-           'email' => $this->email,
-           'phone' =>$this->phone,
-           'body' => $this->body,
-           'school_id' => $this->school->id
+        $sc = SchoolContact::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'body' => $this->body,
+            'school_id' => $this->school->id,
         ]);
+
+        if($this->registration != null){
+            $sc->registration_id = $this->registration->id;
+        }
+
+        $sc->push();
 
         $this->redirect("/");
     }

@@ -8,7 +8,7 @@
         <x-dashboard-card>
             <form wire:submit.prevent="submit">
                 <div class="mt-6">
-                    <label for="name">Jméno a přijmení</label>
+                    <label for="name" class="label">Jméno a přijmení</label>
                     <input id="name" type="text" wire:model="name"
                            class="input input-full @error('name') input-error @enderror">
                     @error('name') <span class="error">{{ $message }}</span> @enderror
@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="mt-6">
-                    <label for="body">Zpráva</label>
+                    <label for="body" class="label">Napište nám Vaše dotazy a mi vám na ně odpovíme e-mailem.</label>
                     <textarea name="body" id="body" cols="30" rows="10" wire:model="body"
                               class="input input-full @error('body') input-error @enderror"></textarea>
                     @error('body') <span class="error">{{ $message }}</span> @enderror
