@@ -160,19 +160,43 @@
                         </div>
                         <div class="mt-5 text-sm leading-5 text-gray-900 sm:mt-3 text-right">
                             {{--                                zobrazit jen pokud se kona dnes--}}
+                            @php
+                                $morning_provider = $registration->get_provider('morning');
+                                $evening_provider = $registration->get_provider('evening');
+
+                                $morning_message = "Připojit se ";
+                                $evening_message = "Připojit se ";
+
+                                if($morning_provider == 'ms'){
+                                    $morning_message .= 'k Teams';
+                                }else if($morning_provider == 'google'){
+                                    $morning_message .= 'k Meets '. $registration->google_get_code('morning');
+                                }else{
+                                    $morning_message .= 'online';
+                                }
+
+                                if($evening_provider == 'ms'){
+                                    $evening_message .= 'k Teams';
+                                }else if($evening_provider == 'google'){
+                                    $evening_message .= 'k Meets '. $registration->google_get_code('evening');
+                                }else{
+                                    $evening_message .= 'online';
+                                }
+                            @endphp
+
                             @if($registration->exhibition->show_join_buttons())
                                 <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
-                                   class="btn text-sm text-center mr-2 btn-primary inline-block">Online {{settings("morning_event_start")}}
+                                   class="btn text-sm text-center mr-2 btn-primary inline-block">{{$morning_message}}{{settings("morning_event_start")}}
                                     - {{settings("morning_event_end")}}</a>
                                 <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
-                                   class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Online {{settings("evening_event_start")}}
+                                   class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">{{$evening_message}}{{settings("evening_event_start")}}
                                     - {{settings("evening_event_end")}}</a>
                                 <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"
                                    class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>
                             @else
-                                <span class="btn text-sm text-center mr-2 btn-disabled inline-block">Online {{settings("morning_event_start")}}
+                                <span class="btn text-sm text-center mr-2 btn-disabled inline-block">{{$morning_message}} {{settings("morning_event_start")}}
                                     - {{settings("morning_event_end")}}</span>
-                                <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Online {{settings("evening_event_start")}}
+                                <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">{{$evening_message}} {{settings("evening_event_start")}}
                                     - {{settings("evening_event_end")}}</span>
                                 <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Chat</span>
                             @endif
