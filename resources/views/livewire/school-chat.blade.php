@@ -61,7 +61,7 @@
                 const lw = @this;
 
                 @foreach($messengers as $messenger)
-                Echo.channel("chat.{{$me->id}}.{{$messenger->id}}").listen("NewMessage", () => {
+                Echo.channel("chat.{{$messenger->id}}.{{$me->id}}").listen("NewMessage", () => {
 
                     lw.emit("refresh")
                 })
