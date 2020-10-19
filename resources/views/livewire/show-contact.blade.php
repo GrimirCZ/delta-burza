@@ -22,9 +22,28 @@
 
                 <dd>
                     <a href="tel:{{$contact->phone}}" class="link">
-                    {{$contact->phone}}
+                        {{$contact->phone}}
                     </a>
                 </dd>
+
+                <dt class="font-bold py-2">Čas</dt>
+
+                <dd>
+                    {{format_datetime($contact->created_at)}}
+                </dd>
+
+                @if($contact->registration_id != null)
+                    <dt class="font-bold py-2">Z výstavy</dt>
+                    <dd>
+                        @php
+                            $ex = $contact->registration->exhibition;
+                        @endphp
+                        <a href="/vystava/{{$ex->id}}" class="link">
+                            {{format_date($ex->date)}} - {{$ex->city}} ({{$ex->name}})
+                        </a>
+                    </dd>
+                @endif
+
                 <dt class="font-bold py-2">Zpráva</dt>
 
                 <dd>
