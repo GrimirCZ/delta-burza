@@ -64,7 +64,7 @@
                                     stažení</a>
                             </div>
                         @endif
-                        <div class="mt-10">
+                        <div class="mt-2">
                             <a href="/skola/{{$school->id}}/zajem"
                                class="btn bg-teal-400 text-white w-100 block text-center">
                                 Mám zájem!
