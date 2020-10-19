@@ -265,7 +265,7 @@
                                         @php
                                             $provider = $registration->get_provider();
                                         @endphp
-                                        <a href="@if($provider == 'ms') https://youtu.be/u9on9jIpQ6Y @else {{route('jak-se-pripojit')}} @endif"
+                                        <a href="@if($provider == 'ms') https://youtu.be/u9on9jIpQ6Y @elseif($provider == "google") https://youtu.be/UL7HrLIaodU @else {{route('jak-se-pripojit')}} @endif"
                                            class="hover:text-teal-400" target="_blank">
                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                  stroke="currentColor" class="h-5 inline-block">
