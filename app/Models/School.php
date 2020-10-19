@@ -121,4 +121,9 @@ class School extends Model
         })
             ->where("is_school", true);
     }
+
+    public function contacts()
+    {
+        return $this->hasMany(SchoolContact::class);
+    }
 }

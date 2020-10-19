@@ -64,6 +64,12 @@
                                     stažení</a>
                             </div>
                         @endif
+                        <div class="mt-10">
+                            <a href="/skola/{{$school->id}}/zajem"
+                               class="btn bg-teal-400 text-white w-100 block text-center">
+                                Mám zájem!
+                            </a>
+                        </div>
                     </div>
                     @if($school->is_school)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
@@ -197,8 +203,8 @@
                                 <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
                                    class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">{{$evening_message}} {{settings("evening_event_start")}}
                                     - {{settings("evening_event_end")}}</a>
-                                <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"
-                                   class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>
+{{--                                <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"--}}
+{{--                                   class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>--}}
                             @else
                                 <span
                                     class="btn text-sm text-center mr-2 btn-disabled inline-block">{{$morning_message}} {{settings("morning_event_start")}}

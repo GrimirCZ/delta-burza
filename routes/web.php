@@ -30,6 +30,7 @@ use App\Http\Livewire\PayOrder;
 use App\Http\Livewire\ProcessPayments;
 use App\Http\Livewire\SchoolChat;
 use App\Http\Livewire\ShowArticle;
+use App\Http\Livewire\ShowContact;
 use App\Http\Livewire\ShowExhibition;
 use App\Http\Livewire\ShowOrder;
 use App\Http\Livewire\ShowSchool;
@@ -110,6 +111,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::delete('/spolecnost/skola/{school}/smazat', UnlinkSchoolFromCompany::class);
 
     Route::get("/platby/import", ProcessPayments::class);
+
+    Route::get("/zprava/{contact}", ShowContact::class);
 
     Route::post("/obrazek/nahrat", "App\Http\Controllers\ImageController@nahrat");
     Route::delete("/obrazek/{file}/smazat", "App\Http\Controllers\ImageController@smazat");

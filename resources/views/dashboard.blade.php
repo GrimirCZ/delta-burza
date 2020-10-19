@@ -350,6 +350,28 @@
                     </table>
                 </div>
             </div>
+            <div class="bg-white shadow overflow-hidden sm:rounded-lg mx-5 mt-10">
+                <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        Zprávy od uchazečů
+                    </h3>
+                </div>
+                <div>
+                    <table class="table-fixed min-w-full text-gray-500">
+                        <tbody>
+                        @foreach(Auth::user()->school->contacts as $contact)
+                            <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
+                                <td class="px-8 py-5">
+                                    <a href="/zprava/{{$contact->id}}" class="link">
+                                       {{$contact->name}} - {{$contact->email}}
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
             <div class="mb-10"></div>
         @endif
     </div>
