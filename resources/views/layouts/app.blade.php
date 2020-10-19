@@ -271,7 +271,7 @@
 
         <script>
             const notyf = new Notyf({
-                duration: 5000,
+                duration: 60000,
                 position: {
                     x: 'right',
                     y: 'top',
