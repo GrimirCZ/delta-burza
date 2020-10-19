@@ -58,4 +58,21 @@ class Registration extends Model
 
         return $this->provider_from_str($this->morning_event);
     }
+
+    public function google_get_code($e)
+    {
+        if($e == "evening"){
+            $src = $this->evening_event;
+        } else if($e == "morning"){
+            $src = $this->morning_event;
+        }
+
+        $match = [];
+
+        if(preg_match("/\w{3}-\w{4}-\w{3}/", $src, $match)){
+            return $match[0];
+        }
+
+        return 'chyba';
+    }
 }
