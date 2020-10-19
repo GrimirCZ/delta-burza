@@ -10,9 +10,10 @@
 
     <div>
         <div class="max-w-7xl mx-auto pt-0 pb-10 px-2 sm:px-6 lg:px-8 w-100">
-            <div class="py-6 bg-teal-400 mt-6">
-                <div class="py-6 text-base min-w-full max-w-7xl mx-auto sm:px-6 lg:px-8 w-100 text-gray-700"
+            <div class="py-6 bg-teal-200 mt-6">
+                <div class="pb-6 pt-2 text-base min-w-full max-w-7xl mx-auto sm:px-6 lg:px-8 w-100 text-gray-700"
                      id="filter-component">
+                    <h2 class="text-gray-900 font-semibold text-xl pb-4">Vyber si školu, co tě opravdu zajímá</h2>
                     <div class="mr-5 mb-3 inline-block">
                         <div>Typ vystavovatele</div>
                         <div
