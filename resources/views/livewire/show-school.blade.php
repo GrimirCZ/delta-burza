@@ -134,7 +134,7 @@
             <div class="bg-white p-5 shadow-sm box-border mt-3">
                 <h2 class="text-2xl mb-3">
                     Výstavy
-                    <a href="{{$school->enabled_registrations()->first()->get_try_link()}}"
+                    <a href="{{route("try-connect")}}"
                        class="text-header ml-4 text-lg hover:text-teal-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                              class="h-5 inline-block">
