@@ -12,6 +12,7 @@
         "ext-intl": "*",
         "aws/aws-sdk-php": "~3.0",
         "barryvdh/laravel-dompdf": "^0.8.7",
+        "beyondcode/laravel-websockets": "^1.9",
         "biscolab/laravel-recaptcha": "^4.4",
         "doctrine/dbal": "^2.11",
         "fideloper/proxy": "^4.2",
