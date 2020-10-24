@@ -301,11 +301,11 @@
                                             {{$evening_message}} {{settings("evening_event_start")}}
                                             - {{settings("evening_event_end")}}
                                         </a>
-{{--                                        <a href="/vstoupit/chat/{{$registration->id}}"--}}
-{{--                                           target="_blank"--}}
-{{--                                           class="btn text-sm text-center btn-primary mt-1 block">--}}
-{{--                                            Chat--}}
-{{--                                        </a>--}}
+                                        <a href="/vstoupit/chat/{{$registration->id}}"
+                                           target="_blank"
+                                           class="btn text-sm text-center btn-primary mt-1 block">
+                                            Chat
+                                        </a>
                                     @else
                                         <span
                                             class="btn text-sm text-center mt-2 block btn-disabled">
