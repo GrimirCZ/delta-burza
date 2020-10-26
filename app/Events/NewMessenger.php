@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\Messenger;
+use Exception;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
@@ -13,13 +14,16 @@ class NewMessenger implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public Messenger $messenger;
-    public int $new_messenger_id;
+    private Messenger $messenger;
+    public int $messenger_id;
+    public int $messenger_registration_id;
 
-    public function __construct(Messenger $messenger, int $new_messenger_id)
+    public function __construct(Messenger $messenger, Messenger $new_messenger)
     {
         $this->messenger = $messenger;
-        $this->new_messenger_id = $new_messenger_id;
+
+        $this->messenger_id = $new_messenger->id;
+        $this->messenger_registration_id = $new_messenger->data['registration_id'];
         //
     }
 
@@ -30,6 +34,10 @@ class NewMessenger implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('new_messenger.' . $this->messenger->id);
+        if($this->messenger->type == "school"){
+            return new PrivateChannel('new_messenger.' . $this->messenger->data['school_id']);
+        }else {
+            throw new Exception("Messenger has to by of type school");
+        }
     }
 }

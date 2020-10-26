@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\Messenger;
+use Exception;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -14,13 +15,23 @@ class NewMessage implements ShouldBroadcastNow
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    public int $registration_id;
+
     public int $sender_id;
     public int $receiver_id;
 
-    public function __construct(int $sender_id, int $receiver_id)
+    private Messenger $sender;
+    private Messenger $receiver;
+
+    public function __construct(Messenger $sender, Messenger $receiver)
     {
-        $this->sender_id = $sender_id;
-        $this->receiver_id = $receiver_id;
+        $this->sender = $sender;
+        $this->receiver = $receiver;
+
+        $this->sender_id = $sender->id;
+        $this->receiver_id = $receiver->id;
+
+        $this->registration_id = $receiver->data['registration_id'];
     }
 
     /**
@@ -30,6 +41,12 @@ class NewMessage implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel('chat.' . $this->sender_id . "." . $this->receiver_id);
+        if($this->receiver->type == "anonymous"){
+            return new Channel('chat.' . $this->receiver->data['session_id']);
+        } else if($this->receiver->type == "school"){
+            return new Channel('chat-school.' . $this->receiver->data['school_id']);
+        } else{
+            throw new Exception("Only supported receiver types are school and anonymous");
+        }
     }
 }
