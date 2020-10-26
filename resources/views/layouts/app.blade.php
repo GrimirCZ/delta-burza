@@ -276,6 +276,7 @@
                     x: 'right',
                     y: 'top',
                 },
+                dismissible: true,
                 types: [
                     {
                         type: 'info',
@@ -284,6 +285,49 @@
                     }
                 ]
             });
+
+            @if(Auth::check() && Auth::user()->school_id != null)
+            @php
+                $_school_id  = \Illuminate\Support\Facades\Auth::user()->school_id;
+            @endphp
+            const selected_messenger_id = () => parseQuery()['selected_messenger_id'] || null
+            const is_school_chat = /\/registrace\/\d+\/chat/.test(location.href)
+
+            Echo.private("new_messenger.{{$_school_id}}").listen("NewMessenger", e => {
+                notyf.open({
+                    type: 'info',
+                    message: '<h1>Nový chat</h1>Připojil se nový zájemce. <br/>Kliknutím přejdete na chat.'
+                }).on("click", () => {
+                    if (is_school_chat) {
+                        setMessengerId(e.messenger_id)
+                    } else {
+                        location.href = `/registrace/${e.messenger_registration_id}/chat?selected_messenger_id=${e.messenger_id}`
+                    }
+                })
+
+                if (is_school_chat)
+                    render()
+            })
+
+            Echo.channel("chat-school.{{$_school_id}}").listen("NewMessage", e => {
+                if (!is_school_chat || e.sender_id != selected_messenger_id()) {
+                    console.log(e.sender_id, selected_messenger_id())
+                    notyf.open({
+                        type: 'info',
+                        message: '<h1>Nová zpráva</h1>Přišla vám nová zpráva.<br/>Kliknutím zobrazíte.'
+                    }).on("click", () => {
+                        if (is_school_chat) {
+                            setMessengerId(e.sender_id)
+                        } else {
+                            location.href = `/registrace/${e.registration_id}/chat?selected_messenger_id=${e.sender_id}`
+                        }
+                    })
+                }
+
+                if (is_school_chat)
+                    render()
+            })
+            @endif
         </script>
 
         @stack('modals')

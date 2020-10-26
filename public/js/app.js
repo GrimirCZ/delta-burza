@@ -25510,11 +25510,24 @@ window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/d
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "a50a2fa54cb8e1199dbe",
-  cluster: "",
   wsHost: "127.0.0.1",
   wsPort: "6001",
-  forceTLS: true
+  forceTLS: false,
+  disableStats: true
 });
+
+window.parseQuery = function () {
+  var queryString = window.location.search;
+  var query = {};
+  var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
+
+  for (var i = 0; i < pairs.length; i++) {
+    var pair = pairs[i].split('=');
+    query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
+  }
+
+  return query;
+};
 
 /***/ }),
 

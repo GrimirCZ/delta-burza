@@ -18,6 +18,6 @@ Broadcast::channel('App.Models.User.{id}', function($user, $id){
     return (int)$user->id === (int)$id;
 });
 
-Broadcast::channel('new_messenger.{receiver}', function($user, Messenger $receiver){
-    return Auth::check() && $receiver->data['school_id'] == Auth::user()->school_id;
+Broadcast::channel('new_messenger.{school_id}', function($user, $school_id){
+    return Auth::check() && $school_id == Auth::user()->school_id;
 });

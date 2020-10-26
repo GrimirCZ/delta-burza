@@ -27,7 +27,7 @@ class VisitorChat extends Component
 
     public function mount()
     {
-        $this->session_key = "messenger_id_" . $this->registration->id;
+        $this->session_key = "messenger_key";
 
         $this->school = Messenger::firstOrCreate([
             'type' => 'school',
@@ -36,19 +36,24 @@ class VisitorChat extends Component
         ]);
 
         if(session($this->session_key) == null){
+            $new_id = rand_str(24);
+
             $this->me = Messenger::create([
                 'type' => 'anonymous',
-                'data->ip' => get_ip(),
+                'data->session_id' => $new_id,
                 'data->registration_id' => $this->registration->id,
+                'data->ip' => get_ip(),
             ]);
 
             session([
-                $this->session_key => $this->me->id
+                $this->session_key => $this->me->data['session_id']
             ]);
 
-            broadcast(new NewMessenger($this->school, $this->me->id));
+            broadcast(new NewMessenger($this->school, $this->me));
         } else{
-            $this->me = Messenger::findOrFail(session($this->session_key));
+            $this->me = Messenger::where("data->session_id", "=", session($this->session_key))
+                ->where("data->registration_id", "=", $this->registration->id)
+                ->first();
         }
     }
 
@@ -64,7 +69,7 @@ class VisitorChat extends Component
 
         $this->message = "";
 
-        broadcast(new NewMessage($this->me->id, $this->school->id));
+        broadcast(new NewMessage($this->me, $this->school));
     }
 
     public function refresh()

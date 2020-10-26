@@ -37,7 +37,7 @@
                 // sorry just livewire fuckery
                 const lw = @this;
 
-                Echo.channel("chat.{{$school->id}}.{{$me->id}}").listen("NewMessage", () => {
+                Echo.channel("chat.{{$me->data['session_id']}}").listen("NewMessage", () => {
                 @this.call('render')
                 })
             })

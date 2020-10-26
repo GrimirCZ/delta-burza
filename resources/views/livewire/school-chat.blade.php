@@ -56,50 +56,14 @@
     @push('scripts')
         @once
         <script>
-            const selected_messenger_id = "{{$selected_messenger_id}}";
+            function setMessengerId(id) {
+            @this.set("selected_messenger_id", id)
+            }
 
-            document.addEventListener('livewire:load', function () {
-                Echo.private("new_messenger.{{$me->id}}").listen("NewMessenger", e => {
-                    if (e && e.new_messenger_id !== undefined && e.new_messenger_id !== null) {
-                        Echo.channel(`chat.${e.new_messenger_id}.{{$me->id}}`).listen("NewMessage", e => {
-                            if (e.sender_id != selected_messenger_id) {
-                                notyf.open({
-                                    type: 'info',
-                                    message: '<h1>Nová zpráva</h1>Přišla vám nová zpráva.<br/>Kliknutím zobrazíte.'
-                                }).on("click", () => @this.set("selected_messenger_id", e.sender_id))
-                            }
-
-                        @this.call('render')
-                        })
-
-                        notyf.open({
-                            type: 'info',
-                            message: '<h1>Nový chat</h1>Připojil se nový zájemce. <br/>Kliknutím přejdete na chat.'
-                        }).on("click", () => @this.set("selected_messenger_id", e.new_messenger_id))
-                    }
-
-                @this.call('render')
-                })
-            })
+            function render() {
+            @this.call("render")
+            }
         </script>
         @endonce
-
-        <script>
-            document.addEventListener('livewire:load', function () {
-                @foreach($messengers as $messenger)
-                Echo.channel("chat.{{$messenger->id}}.{{$me->id}}").listen("NewMessage", e => {
-                    console.log(e, selected_messenger_id)
-                    if (e.sender_id != selected_messenger_id) {
-                        notyf.open({
-                            type: 'info',
-                            message: '<h1>Nová zpráva</h1>Přišla vám nová zpráva.<br/>Kliknutím zobrazíte.'
-                        }).on("click", () => @this.set("selected_messenger_id", e.sender_id))
-                    }
-
-                @this.call('render')
-                })
-                @endforeach
-            })
-        </script>
     @endpush
 </div>
