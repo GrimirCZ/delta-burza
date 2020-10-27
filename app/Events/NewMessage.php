@@ -38,6 +38,8 @@ class NewMessage implements ShouldBroadcastNow
 
         if($sender->type == "school"){
             $this->school_name = School::find($sender->data['school_id'])->name;
+        } else{
+            $this->school_name = null;
         }
     }
 

@@ -69,7 +69,7 @@ class VisitorChat extends Component
     {
         $this->validate();
 
-        $message = Message::create([
+        Message::create([
             'body' => $this->message,
             'sender_id' => $this->me->id,
             'receiver_id' => $this->school->id
