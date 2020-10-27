@@ -335,13 +335,13 @@
             Echo.channel("chat.{{session("messenger_key")}}").listen("NewMessage", e => {
                 const notify = () => notyf.open({
                     type: 'info',
-                    message: `<h1>Nová zpráva</h1>${e.school_name}.<br/>Kliknutím zobrazíte.`
+                    message: `<h1>Nová zpráva</h1>${e.school_name}<br/>Kliknutím zobrazíte.`
                 }).on("click", () => {
                     location.href = `/vstoupit/chat/${e.registration_id}`
                 })
 
                 if (is_visitor_chat) {
-                    const registration_id = visitor_url_regex.exec(visitor_url_regex).groups.id
+                    const registration_id = visitor_url_regex.exec(location.href).groups.id
 
                     if (+registration_id === +e.registration_id)
                         render()
