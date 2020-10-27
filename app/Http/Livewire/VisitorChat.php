@@ -36,25 +36,33 @@ class VisitorChat extends Component
         ]);
 
         if(session($this->session_key) == null){
-            $new_id = rand_str(24);
-
-            $this->me = Messenger::create([
-                'type' => 'anonymous',
-                'data->session_id' => $new_id,
-                'data->registration_id' => $this->registration->id,
-                'data->ip' => get_ip(),
-            ]);
-
             session([
-                $this->session_key => $this->me->data['session_id']
+                $this->session_key => rand_str(24)
             ]);
 
-            broadcast(new NewMessenger($this->school, $this->me));
+            $this->create_new_messenger();
         } else{
             $this->me = Messenger::where("data->session_id", "=", session($this->session_key))
                 ->where("data->registration_id", "=", $this->registration->id)
                 ->first();
+
+            if($this->me == null){
+                $this->create_new_messenger();
+            }
         }
+    }
+
+    private function create_new_messenger()
+    {
+        $this->me = Messenger::create([
+            'type' => 'anonymous',
+            'data->session_id' => session($this->session_key),
+            'data->registration_id' => $this->registration->id,
+            'data->ip' => get_ip(),
+        ]);
+
+
+        broadcast(new NewMessenger($this->school, $this->me));
     }
 
     public function send()
