@@ -33,14 +33,9 @@
     @push('scripts')
         @once
         <script>
-            document.addEventListener('livewire:load', function () {
-                // sorry just livewire fuckery
-                const lw = @this;
-
-                Echo.channel("chat.{{$me->data['session_id']}}").listen("NewMessage", () => {
-                @this.call('render')
-                })
-            })
+            function render() {
+            @this.call('render')
+            }
         </script>
         @endonce
     @endpush

@@ -3,6 +3,7 @@
 namespace App\Events;
 
 use App\Models\Messenger;
+use App\Models\School;
 use Exception;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
@@ -16,6 +17,8 @@ class NewMessage implements ShouldBroadcastNow
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public int $registration_id;
+
+    public ?string $school_name;
 
     public int $sender_id;
     public int $receiver_id;
@@ -32,6 +35,10 @@ class NewMessage implements ShouldBroadcastNow
         $this->receiver_id = $receiver->id;
 
         $this->registration_id = $receiver->data['registration_id'];
+
+        if($sender->type == "school"){
+            $this->school_name = School::find($sender->data['school_id'])->name;
+        }
     }
 
     /**

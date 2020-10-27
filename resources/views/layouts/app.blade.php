@@ -328,6 +328,30 @@
                     render()
             })
             @endif
+            @if(session("messenger_key") != null)
+            const visitor_url_regex = /\/vstoupit\/chat\/(?<id>\d+)/
+            const is_visitor_chat = visitor_url_regex.test(location.href)
+
+            Echo.channel("chat.{{session("messenger_key")}}").listen("NewMessage", e => {
+                const notify = () => notyf.open({
+                    type: 'info',
+                    message: `<h1>Nová zpráva</h1>${e.school_name}.<br/>Kliknutím zobrazíte.`
+                }).on("click", () => {
+                    location.href = `/vstoupit/chat/${e.registration_id}`
+                })
+
+                if (is_visitor_chat) {
+                    const registration_id = visitor_url_regex.exec(visitor_url_regex).groups.id
+
+                    if (+registration_id === +e.registration_id)
+                        render()
+                    else
+                        notify()
+                } else
+                    notify()
+
+            })
+            @endif
         </script>
 
         @stack('modals')
