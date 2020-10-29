@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\ActiveChatsChanged;
 use App\Events\NewMessage;
 use App\Models\Message;
 use App\Models\Messenger;
@@ -20,7 +21,7 @@ class SchoolChat extends Component
     public ?string $selected_messenger_id = null;
 
     protected $queryString = ['selected_messenger_id' => ['except' => '']];
-    public $listeners = ['refresh' => 'render'];
+    public $listeners = ['refresh' => 'number_of_responded_to_chats_changed'];
 
     public ?string $message;
 
@@ -54,13 +55,17 @@ class SchoolChat extends Component
         broadcast(new NewMessage($this->me, Messenger::find($this->selected_messenger_id)));
     }
 
-    private function number_of_responded_to_chats_changed()
+    public function number_of_responded_to_chats_changed()
     {
+        broadcast(new ActiveChatsChanged($this->registration->id, SchoolChat::active_chats($this->me->id)->count()));
+    }
 
-        $last_chat_messages = DB::query()->fromSub(function($q){
+    public static function active_chats($messenger_id)
+    {
+        $last_chat_messages = DB::query()->fromSub(function($q) use ($messenger_id){
             $q->from("messages")
-                ->where("receiver_id", $this->me->id)
-                ->orWhere("sender_id", $this->me->id)
+                ->where("receiver_id", $messenger_id)
+                ->orWhere("sender_id", $messenger_id)
                 ->groupBy(DB::raw("id, receiver_id, sender_id"))
                 ->select(
                     "receiver_id",
@@ -74,7 +79,7 @@ class SchoolChat extends Component
 
         return Message::joinSub($last_chat_messages, "last_chat", function($join){
             $join->on("messages.id", "=", "last_chat.id");
-        })->where("sender_id", "!=", $this->me->id);
+        })->where("sender_id", "!=", $messenger_id);
     }
 
     public function get_messengers()
@@ -99,7 +104,6 @@ class SchoolChat extends Component
                 ->whereIn('receiver_id', $us)
                 ->orderBy("created_at")
                 ->get(),
-            "number_of_responded_to" => $this->number_of_responded_to_chats_changed()->count()
         ]);
     }
 }
