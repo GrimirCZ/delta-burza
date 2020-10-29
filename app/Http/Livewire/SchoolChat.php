@@ -7,6 +7,7 @@ use App\Models\Message;
 use App\Models\Messenger;
 use App\Models\Registration;
 use App\Models\School;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class SchoolChat extends Component
@@ -53,6 +54,29 @@ class SchoolChat extends Component
         broadcast(new NewMessage($this->me, Messenger::find($this->selected_messenger_id)));
     }
 
+    private function number_of_responded_to_chats_changed()
+    {
+
+        $last_chat_messages = DB::query()->fromSub(function($q){
+            $q->from("messages")
+                ->where("receiver_id", $this->me->id)
+                ->orWhere("sender_id", $this->me->id)
+                ->groupBy(DB::raw("id, receiver_id, sender_id"))
+                ->select(
+                    "received_id",
+                    "sender_id",
+                    DB::raw("receiver_id + sender_id as chat_id"),
+                    DB::raw("messages.id as id")
+                );
+        }, "chats")
+            ->groupBy("chats.chat_iid")
+            ->select("chats.chat_id", DB::raw("max(chats.id)"));
+
+        return Message::joinSub($last_chat_messages, "last_chat", function($join){
+            $join->on("messages.id", "=", "last_chat.id");
+        })->where("sender_id", "!=", $this->me->id);
+    }
+
     public function get_messengers()
     {
         return Messenger::where("type", "=", "anonymous")
@@ -74,7 +98,8 @@ class SchoolChat extends Component
             "messages" => Message::whereIn("sender_id", $us)
                 ->whereIn('receiver_id', $us)
                 ->orderBy("created_at")
-                ->get()
+                ->get(),
+            "number_of_responded_to" => $this->number_of_responded_to_chats_changed()->count()
         ]);
     }
 }
