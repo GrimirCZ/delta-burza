@@ -100,7 +100,9 @@ class VisitorChat extends Component
             'messages' => Message::whereIn("sender_id", $us)
                 ->whereIn('receiver_id', $us)
                 ->orderBy("created_at")
-                ->get()
+                ->get(),
+            'currently_responding_to' => SchoolChat::active_chats($this->school->id)->count(),
+            'registration' => $this->registration
         ]);
     }
 }

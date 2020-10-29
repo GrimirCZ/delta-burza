@@ -7,6 +7,11 @@
         <div class="bg-white shadow-sm text-center p-5 mx-5">
             <div class="px-4 py-5 border-b border-gray-200 mb-4 sm:px-6 flex justify-between">
                 <h3 class="text-2xl font-bold">Chat</h3>
+                <div id="currently_responding_to">
+                    @if($currently_responding_to > 0)
+                        Právě odpovída {{$currently_responding_to}} lidem
+                    @endif
+                </div>
             </div>
             <div class="flex flex-col gap-y-6 px-4 chat-window overflow-y-scroll">
                 @foreach($messages as $message)
@@ -36,6 +41,14 @@
             function render() {
             @this.call('render')
             }
+
+            Echo.channel("active-chats.{{$registration->id}}").listen("ActiveChatsChanged", e => {
+                if (e.count > 0) {
+                    document.querySelector("#currently_responding_to").innerText = `Právě odpovída ${e.count} lidem`
+                } else {
+                    document.querySelector("#currently_responding_to").innerText = ""
+                }
+            })
         </script>
         @endonce
     @endpush
