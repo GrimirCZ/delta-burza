@@ -302,14 +302,14 @@
                     const registration_id = school_chat_url_regex.exec(location.href).groups.id
 
                     if (is_school_chat && registration_id === e.registration_id) {
-                        setMessengerId(e.messenger_id)
+                        setMessengerId(e.messenger_id) // declared in SchoolChat
                     } else {
                         location.href = `/registrace/${e.messenger_registration_id}/chat?selected_messenger_id=${e.messenger_id}`
                     }
                 })
 
                 if (is_school_chat)
-                    render()
+                    render()// declared in SchoolChat
             })
 
             Echo.channel("chat-school.{{$_school_id}}").listen("NewMessage", e => {
@@ -322,7 +322,7 @@
                         const registration_id = school_chat_url_regex.exec(location.href).groups.id
 
                         if (is_school_chat && registration_id === e.registration_id) {
-                            setMessengerId(e.sender_id)
+                            setMessengerId(e.sender_id)// declared in SchoolChat
                         } else {
                             location.href = `/registrace/${e.registration_id}/chat?selected_messenger_id=${e.sender_id}`
                         }
@@ -330,7 +330,7 @@
                 }
 
                 if (is_school_chat)
-                    render()
+                    render()// declared in SchoolChat
             })
             @endif
             @if(session("messenger_key") != null)
@@ -349,11 +349,11 @@
                     const registration_id = visitor_url_regex.exec(location.href).groups.id
 
                     if (+registration_id === +e.registration_id)
-                        render()
+                        render()// declared in VisitorChat
                     else
-                        notify()
+                        notify()// declared in VisitorChat
                 } else
-                    notify()
+                    notify()// declared in VisitorChat
 
             })
             @endif

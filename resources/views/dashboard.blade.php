@@ -290,7 +290,7 @@
                                     </a>
                                 </td>
                                 <td class="px-8 py-5">
-                                    @if(!$registration->order_registration->fulfilled_at != null)
+                                    @if($registration->order_registration != null && !$registration->order_registration->fulfilled_at != null)
                                         <span class="text-red-700 font-semibold">Nezaplaceno</span>
                                     @endif
                                 </td>
@@ -363,7 +363,7 @@
                             <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                 <td class="px-8 py-5">
                                     <a href="/zprava/{{$contact->id}}" class="link">
-                                       {{$contact->name}} - {{$contact->email}}
+                                        {{$contact->name}} - {{$contact->email}}
                                     </a>
                                 </td>
                             </tr>
