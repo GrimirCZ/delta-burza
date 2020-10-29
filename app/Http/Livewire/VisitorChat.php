@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\ActiveChatsChanged;
 use App\Events\NewMessage;
 use App\Events\NewMessenger;
 use App\Models\Message;
@@ -78,6 +79,7 @@ class VisitorChat extends Component
         $this->message = "";
 
         broadcast(new NewMessage($this->me, $this->school));
+        broadcast(new ActiveChatsChanged($this->registration->id, SchoolChat::active_chats($this->school->id)->count()));
     }
 
     public function refresh()

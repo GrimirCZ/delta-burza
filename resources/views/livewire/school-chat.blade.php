@@ -61,7 +61,6 @@
             }
 
             function render() {
-            @this.emit("refresh")
             @this.call("render")
             }
         </script>

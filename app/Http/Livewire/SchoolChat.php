@@ -55,11 +55,6 @@ class SchoolChat extends Component
         broadcast(new NewMessage($this->me, Messenger::find($this->selected_messenger_id)));
     }
 
-    public function number_of_responded_to_chats_changed()
-    {
-        broadcast(new ActiveChatsChanged($this->registration->id, SchoolChat::active_chats($this->me->id)->count()));
-    }
-
     public static function active_chats($messenger_id)
     {
         $last_chat_messages = DB::query()->fromSub(function($q) use ($messenger_id){
