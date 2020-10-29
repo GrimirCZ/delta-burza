@@ -291,14 +291,17 @@
                 $_school_id  = \Illuminate\Support\Facades\Auth::user()->school_id;
             @endphp
             const selected_messenger_id = () => parseQuery()['selected_messenger_id'] || null
-            const is_school_chat = /\/registrace\/\d+\/chat/.test(location.href)
+            const school_chat_url_regex = /\/registrace\/(?<id>\d+)\/chat/
+            const is_school_chat = school_chat_url_regex.test(location.href)
 
             Echo.private("new_messenger.{{$_school_id}}").listen("NewMessenger", e => {
                 notyf.open({
                     type: 'info',
                     message: '<h1>Nový chat</h1>Připojil se nový zájemce. <br/>Kliknutím přejdete na chat.'
                 }).on("click", () => {
-                    if (is_school_chat) {
+                    const registration_id = school_chat_url_regex.exec(location.href).groups.id
+
+                    if (is_school_chat && registration_id === e.registration_id) {
                         setMessengerId(e.messenger_id)
                     } else {
                         location.href = `/registrace/${e.messenger_registration_id}/chat?selected_messenger_id=${e.messenger_id}`
@@ -316,7 +319,9 @@
                         type: 'info',
                         message: '<h1>Nová zpráva</h1>Přišla vám nová zpráva.<br/>Kliknutím zobrazíte.'
                     }).on("click", () => {
-                        if (is_school_chat) {
+                        const registration_id = school_chat_url_regex.exec(location.href).groups.id
+
+                        if (is_school_chat && registration_id === e.registration_id) {
                             setMessengerId(e.sender_id)
                         } else {
                             location.href = `/registrace/${e.registration_id}/chat?selected_messenger_id=${e.sender_id}`
