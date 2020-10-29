@@ -53,6 +53,7 @@ class SchoolChat extends Component
         $this->message = "";
 
         broadcast(new NewMessage($this->me, Messenger::find($this->selected_messenger_id)));
+        broadcast(new ActiveChatsChanged($this->registration->id, SchoolChat::active_chats($this->me->id)->count()));
     }
 
     public static function active_chats($messenger_id)
