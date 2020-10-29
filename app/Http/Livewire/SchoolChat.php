@@ -63,14 +63,14 @@ class SchoolChat extends Component
                 ->orWhere("sender_id", $this->me->id)
                 ->groupBy(DB::raw("id, receiver_id, sender_id"))
                 ->select(
-                    "received_id",
+                    "receiver_id",
                     "sender_id",
                     DB::raw("receiver_id + sender_id as chat_id"),
                     DB::raw("messages.id as id")
                 );
         }, "chats")
-            ->groupBy("chats.chat_iid")
-            ->select("chats.chat_id", DB::raw("max(chats.id)"));
+            ->groupBy("chats.chat_id")
+            ->select("chats.chat_id", DB::raw("max(chats.id) as id"));
 
         return Message::joinSub($last_chat_messages, "last_chat", function($join){
             $join->on("messages.id", "=", "last_chat.id");
