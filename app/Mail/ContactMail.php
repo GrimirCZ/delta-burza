@@ -23,7 +23,7 @@ class ContactMail extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->from("info@burzaskol.online")
-                ->subject("Zpráva uchazeče prostřednictvím portálu BurzaŠkol.Online")
+                ->subject("Zpráva uchazeče o studiu prostřednictvím portálu BurzaŠkol.Online")
             ->view('emails.contact')
             ->with([
                 'contact' => $this->contact,
