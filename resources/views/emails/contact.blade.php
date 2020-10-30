@@ -1,4 +1,4 @@
-<h1>Někdo má zájem o vaši školu.</h1>
+<h1>Zpráva uchazeče prostřednictvím portálu BurzaŠkol.Online</h1>
 
 <p>
     @if(isset($contact->name))

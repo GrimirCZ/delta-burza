@@ -7,7 +7,7 @@ set -e
 (git push) || true
 
 git checkout deploy
-git merge -q master
+git merge --no-edit -q master
 
 git push origin deploy --force
 

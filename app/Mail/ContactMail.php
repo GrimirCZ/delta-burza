@@ -2,10 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Order;
 use App\Models\SchoolContact;
-use App\Models\User;
-use Doctrine\DBAL\Connection;
 use Illuminate\Mail\Mailable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,7 +23,7 @@ class ContactMail extends Mailable implements ShouldQueue
     public function build()
     {
         return $this->from("info@burzaskol.online")
-            ->subject("Zálohová faktura k objednávce č. " . $this->order->id)
+                ->subject("Zpráva uchazeče prostřednictvím portálu BurzaŠkol.Online")
             ->view('emails.contact')
             ->with([
                 'contact' => $this->contact,
