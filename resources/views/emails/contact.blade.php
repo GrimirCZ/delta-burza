@@ -1,25 +1,33 @@
 <h1>Zpráva uchazeče prostřednictvím portálu BurzaŠkol.Online</h1>
 
-<p>
+<div>
     @if(isset($contact->name))
-        Jméno: <span id="name">{{$contact->name}}</span><br/>
+        <p>
+            Jméno: <span id="name">{{$contact->name}}</span>
+        </p>
     @endif
     @if(isset($contact->email))
-        Email: <span id="email">{{$contact->email}}</span><br/>
+        <p>
+            Email: <span id="email">{{$contact->email}}</span>
+        </p>
     @endif
     @if(isset($contact->phone))
-        Telefon: <span id="phone">{{$contact->phone}}</span><br/>
+        <p>
+            Telefon: <span id="phone">{{$contact->phone}}</span>
+        </p>
     @endif
     @if(isset($contact->registration_id))
         @php
             $exhibition = $contact->registration->exhibition;
         @endphp
-        Výstava: <span>{{format_date($exhibition->date)}} - {{$exhibition->city}} ({{$exhibition->name}})</span>
-        @if($exhibition->organizer_id != 1)
-            <br><span><pre>&#9;</pre>Pořadatel: {{$exhibition->organizer->short_name}}</span>
-        @endif
+        <div>
+            Výstava: <span>{{format_date($exhibition->date)}} - {{$exhibition->city}} ({{$exhibition->name}})</span>
+            @if($exhibition->organizer_id != 1)
+                <div style="padding-left: 4em">Pořadatel: {{$exhibition->organizer->short_name}}</div>
+            @endif
+        </div>
     @endif
-</p>
+</div>
 
 @if(isset($contact->body))
     <p>
