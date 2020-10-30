@@ -2,10 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\ContactMail;
 use App\Models\Registration;
 use App\Models\School;
 use App\Models\SchoolContact;
 use Livewire\Component;
+use Mail;
 
 class ContactSchool extends Component
 {
@@ -42,7 +44,9 @@ class ContactSchool extends Component
             $sc->registration_id = $this->registration->id;
         }
 
-
+        if($this->school->main_contact() != null){
+            Mail::to($this->school->main_contact())->queue(new ContactMail($sc));
+        }
 
         $sc->push();
 
