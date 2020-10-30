@@ -42,6 +42,8 @@ class ContactSchool extends Component
             $sc->registration_id = $this->registration->id;
         }
 
+
+
         $sc->push();
 
         $this->redirect("/");
