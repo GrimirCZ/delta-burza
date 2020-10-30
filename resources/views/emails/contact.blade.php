@@ -1,4 +1,4 @@
-<h1>Zpráva uchazeče prostřednictvím portálu BurzaŠkol.Online</h1>
+<h3>Zpráva uchazeče o studiu prostřednictvím portálu BurzaŠkol.Online</h3>
 
 <div>
     @if(isset($contact->name))
@@ -23,7 +23,7 @@
         <div>
             Výstava: <span>{{format_date($exhibition->date)}} - {{$exhibition->city}} ({{$exhibition->name}})</span>
             @if($exhibition->organizer_id != 1)
-                <div style="padding-left: 4em">Pořadatel: {{$exhibition->organizer->short_name}}</div>
+                <div style="padding-left: 1em">Pořadatel: {{$exhibition->organizer->short_name}}</div>
             @endif
         </div>
     @endif
