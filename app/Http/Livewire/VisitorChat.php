@@ -69,7 +69,7 @@ class VisitorChat extends Component
         $this->validate();
 
         // send notification on first message
-        if($this->me->data['has_sent_message'] == null || $this->me->data['has_sent_message'] == false){
+        if(!isset($this->me->data['has_sent_message']) || $this->me->data['has_sent_message'] == false){
             $send_new_messenger = true;
 
             $this->me->data['has_sent_message'] = true;
