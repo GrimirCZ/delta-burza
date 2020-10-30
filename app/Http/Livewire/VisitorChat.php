@@ -61,14 +61,20 @@ class VisitorChat extends Component
             'data->registration_id' => $this->registration->id,
             'data->ip' => get_ip(),
         ]);
-
-
-        broadcast(new NewMessenger($this->school, $this->me));
     }
 
     public function send()
     {
+        $send_new_messenger = false;
         $this->validate();
+
+        // send notification on first message
+        if($this->me->data['has_sent_message'] == null || $this->me->data['has_sent_message'] == false){
+            $send_new_messenger = true;
+
+            $this->me->data['has_sent_message'] = true;
+            $this->me->push();
+        }
 
         Message::create([
             'body' => $this->message,
@@ -78,7 +84,10 @@ class VisitorChat extends Component
 
         $this->message = "";
 
-        broadcast(new NewMessage($this->me, $this->school));
+        if($send_new_messenger)
+            broadcast(new NewMessenger($this->school, $this->me));
+        else
+            broadcast(new NewMessage($this->me, $this->school));
         broadcast(new ActiveChatsChanged($this->registration->id, SchoolChat::active_chats($this->school->id)->count()));
     }
 
