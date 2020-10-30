@@ -11,7 +11,13 @@
         Telefon: <span id="phone">{{$contact->phone}}</span><br/>
     @endif
     @if(isset($contact->registration_id))
-        Výstava: <span>{{$contact->registration->exhibition->name}}</span>
+        @php
+            $exhibition = $contact->registration->exhibition;
+        @endphp
+        Výstava: <span>{{format_date($exhibition->date)}} - {{$exhibition->city}} ({{$exhibition->name}})</span>
+        @if($exhibition->organizer_id != 1)
+            <br><span><pre>&#9;</pre>Pořadatel: {{$exhibition->organizer->short_name}}</span>
+        @endif
     @endif
 </p>
 
