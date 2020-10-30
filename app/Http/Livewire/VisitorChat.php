@@ -72,8 +72,9 @@ class VisitorChat extends Component
         if(!isset($this->me->data['has_sent_message']) || $this->me->data['has_sent_message'] == false){
             $send_new_messenger = true;
 
-            $this->me->data['has_sent_message'] = true;
-            $this->me->push();
+            $this->me->update([
+                'data->has_sent_message' => true
+            ]);
         }
 
         Message::create([
