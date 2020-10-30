@@ -2,10 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Order;
 use App\Models\SchoolContact;
-use App\Models\User;
-use Doctrine\DBAL\Connection;
 use Illuminate\Mail\Mailable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
