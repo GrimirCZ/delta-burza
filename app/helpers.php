@@ -170,3 +170,28 @@ if(!function_exists("html_cut")){
 
     }
 }
+
+if(!function_exists("html_clean")){
+    function html_clean($html)
+    {
+        $dom = new DOMDocument();
+
+        libxml_use_internal_errors(true);
+        $dom->loadHTML($html);
+        libxml_use_internal_errors(false);
+
+
+        $script = $dom->getElementsByTagName('script');
+
+        $remove = [];
+        foreach($script as $item){
+            $remove[] = $item;
+        }
+
+        foreach($remove as $item){
+            $item->parentNode->removeChild($item);
+        }
+
+        return $dom->saveHTML();
+    }
+}

@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Stevebauman\Purify\Facades\Purify;
 
 class EditSchool extends Component
 {
@@ -78,7 +77,7 @@ class EditSchool extends Component
                 'email' => $this->email,
                 'web' => $this->web,
                 'phone' => $this->phone,
-                'description' => Purify::clean($this->description),
+                'description' => html_clean($this->description),
                 'district_id' => $this->district_id,
             ]);
 

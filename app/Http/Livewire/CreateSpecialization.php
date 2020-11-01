@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Stevebauman\Purify\Facades\Purify;
 
 class CreateSpecialization extends Component
 {
@@ -41,7 +40,7 @@ class CreateSpecialization extends Component
 
         Specialization::create([
             'name' => $this->name,
-            'description' => Purify::clean($this->description),
+            'description' => html_clean($this->description),
             'prescribed_specialization_id' => $this->prescribed_specialization_id,
             'school_id' => $this->school->id,
         ]);
