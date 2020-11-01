@@ -102,7 +102,7 @@
 
                 function render() {
                 @this.call("render")
-                    scroll_down()
+                    setTimeout(() => scroll_down(), 500)
                 }
 
                 scroll_down()

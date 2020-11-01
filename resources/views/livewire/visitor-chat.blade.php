@@ -45,7 +45,7 @@
 
             function render() {
             @this.call('render')
-                scroll_down()
+                setTimeout(() => scroll_down(), 500)
             }
 
             Echo.channel("active-chats.{{$registration->id}}").listen("ActiveChatsChanged", e => {
