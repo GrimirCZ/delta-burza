@@ -288,6 +288,12 @@
                 ]
             });
 
+            const get_registration_id = (regex) => {
+                const regexRes = school_chat_url_regex.exec(location.href);
+
+                return regexRes === null ? null : regexRes.groups.id
+            }
+
             @if(Auth::check() && Auth::user()->school_id != null)
             @php
                 $_school_id  = Auth::user()->school_id;
@@ -295,11 +301,6 @@
             const selected_messenger_id = () => parseQuery()['selected_messenger_id'] || null
             const school_chat_url_regex = /\/registrace\/(?<id>\d+)\/chat/
             const is_school_chat = school_chat_url_regex.test(location.href)
-            const get_registration_id = (regex) => {
-                const regexRes = school_chat_url_regex.exec(location.href);
-
-                return regexRes === null ? null : regexRes.groups.id
-            }
 
             Echo.private("new_messenger.{{$_school_id}}").listen("NewMessenger", e => {
                 notyf.open({
