@@ -11,7 +11,10 @@
     }
 }
 
-.chat-window {
-    min-height: 25vh;
-    max-height: 50vh;
+.chat-window, .chat-switch-window {
+    height: 50vh;
+}
+
+.chat-switch-button {
+    @apply py-3 px-4 bg-white rounded-lg shadow my-2 cursor-pointer;
 }

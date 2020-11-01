@@ -53,12 +53,17 @@ class SchoolChat extends Component
         $this->message = "";
 
         broadcast(new NewMessage($this->me, Messenger::find($this->selected_messenger_id)));
-        broadcast(new ActiveChatsChanged($this->registration->id, SchoolChat::active_chats($this->me->id)->count()));
+        broadcast(new ActiveChatsChanged($this->registration->id, self::active_chats_count($this->me->id)));
     }
 
-    public static function active_chats($messenger_id)
+    public function set_messenger_id($messenger_id)
     {
-        $last_chat_messages = DB::query()->fromSub(function($q) use ($messenger_id){
+        $this->selected_messenger_id = $messenger_id;
+    }
+
+    private static function all_chats($messenger_id)
+    {
+        return DB::query()->fromSub(function($q) use ($messenger_id){
             $q->from("messages")
                 ->where("receiver_id", $messenger_id)
                 ->orWhere("sender_id", $messenger_id)
@@ -73,12 +78,46 @@ class SchoolChat extends Component
         }, "chats")
             ->groupBy("chats.chat_id")
             ->select("chats.chat_id", DB::raw("max(chats.id) as id"), DB::raw("max(chats.time) as time"));
+    }
+
+    private function chats_waiting_for_answer()
+    {
+        $last_chat_messages = self::all_chats($this->me->id);
 
         return Message::joinSub($last_chat_messages, "last_chat", function($join){
             $join->on("messages.id", "=", "last_chat.id");
-        })->where("sender_id", "!=", $messenger_id)
-            ->where("last_chat.time", ">", DB::raw("DATE_SUB(NOW(), INTERVAL 15 MINUTE)"));
+        })->join("messengers", "messengers.id", "=", "messages.sender_id")
+            ->select("messages.body as message", "messages.created_at as time", "messengers.id as id")
+            ->orderByDesc("messages.created_at")
+            ->where("sender_id", "!=", $this->me->id);
     }
+
+    private function chats_waiting_for_response()
+    {
+        $last_chat_messages = self::all_chats($this->me->id);
+
+        return Message::joinSub($last_chat_messages, "last_chat", function($join){
+            $join->on("messages.id", "=", "last_chat.id");
+        })->join("messengers", "messengers.id", "=", "messages.receiver_id")
+            ->select("messages.body as message", "messages.created_at as time", "messengers.id as id")
+            ->orderByDesc("messages.created_at")
+            ->where("sender_id", "=", $this->me->id);
+    }
+
+    public static function active_chats($messenger_id)
+    {
+        $last_chat_messages = self::all_chats($messenger_id);
+
+        return Message::joinSub($last_chat_messages, "last_chat", function($join){
+            $join->on("messages.id", "=", "last_chat.id");
+        })->where("sender_id", "!=", $messenger_id);
+    }
+
+    public static function active_chats_count($messenger_id)
+    {
+        return self::active_chats($messenger_id)->where("last_chat.time", ">", DB::raw("DATE_SUB(NOW(), INTERVAL 15 MINUTE)"))->count();
+    }
+
 
     public function get_messengers()
     {
@@ -102,6 +141,8 @@ class SchoolChat extends Component
                 ->whereIn('receiver_id', $us)
                 ->orderBy("created_at")
                 ->get(),
+            "chats_waiting_for_answer" => $this->chats_waiting_for_answer()->get(),
+            "chats_waiting_for_response" => $this->chats_waiting_for_response()->get(),
         ]);
     }
 }
