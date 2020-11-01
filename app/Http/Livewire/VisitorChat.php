@@ -8,6 +8,7 @@ use App\Events\NewMessenger;
 use App\Models\Message;
 use App\Models\Messenger;
 use App\Models\Registration;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class VisitorChat extends Component
@@ -89,7 +90,7 @@ class VisitorChat extends Component
             broadcast(new NewMessenger($this->school, $this->me));
         else
             broadcast(new NewMessage($this->me, $this->school));
-        broadcast(new ActiveChatsChanged($this->registration->id, SchoolChat::active_chats($this->school->id)->count()));
+        broadcast(new ActiveChatsChanged($this->registration->id, SchoolChat::active_chats_count($this->school->id)));
     }
 
     public function refresh()
@@ -113,7 +114,7 @@ class VisitorChat extends Component
                 ->whereIn('receiver_id', $us)
                 ->orderBy("created_at")
                 ->get(),
-            'currently_responding_to' => SchoolChat::active_chats($this->school->id)->count(),
+                'currently_responding_to' => SchoolChat::active_chats_count($this->school->id),
             'registration' => $this->registration
         ]);
     }
