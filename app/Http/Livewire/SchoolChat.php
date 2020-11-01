@@ -67,15 +67,17 @@ class SchoolChat extends Component
                     "receiver_id",
                     "sender_id",
                     DB::raw("receiver_id + sender_id as chat_id"),
-                    DB::raw("messages.id as id")
+                    DB::raw("messages.id as id"),
+                    DB::raw("max(created_at) as time")
                 );
         }, "chats")
             ->groupBy("chats.chat_id")
-            ->select("chats.chat_id", DB::raw("max(chats.id) as id"));
+            ->select("chats.chat_id", DB::raw("max(chats.id) as id"), DB::raw("max(chats.time) as time"));
 
         return Message::joinSub($last_chat_messages, "last_chat", function($join){
             $join->on("messages.id", "=", "last_chat.id");
-        })->where("sender_id", "!=", $messenger_id);
+        })->where("sender_id", "!=", $messenger_id)
+            ->where("last_chat.time", ">", DB::raw("DATE_SUB(NOW(), INTERVAL 15 MINUTE)"));
     }
 
     public function get_messengers()

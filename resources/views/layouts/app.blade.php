@@ -270,8 +270,10 @@
         <script src="{{asset("/notyf/notyf.min.js")}}"></script>
 
         <script>
+            const currentTime = () => `${(new Date()).getHours()}:${(new Date()).getMinutes()}`
+            const currentTimePart = () => `<span style="font-size: 0.9em">${(new Date()).getHours()}:${(new Date()).getMinutes()}</span>`
             const notyf = new Notyf({
-                duration: 60000,
+                duration: 0,
                 position: {
                     x: 'right',
                     y: 'top',
@@ -288,7 +290,7 @@
 
             @if(Auth::check() && Auth::user()->school_id != null)
             @php
-                $_school_id  = \Illuminate\Support\Facades\Auth::user()->school_id;
+                $_school_id  = Auth::user()->school_id;
             @endphp
             const selected_messenger_id = () => parseQuery()['selected_messenger_id'] || null
             const school_chat_url_regex = /\/registrace\/(?<id>\d+)\/chat/
@@ -297,7 +299,7 @@
             Echo.private("new_messenger.{{$_school_id}}").listen("NewMessenger", e => {
                 notyf.open({
                     type: 'info',
-                    message: '<h1>Nový chat</h1>Připojil se nový zájemce. <br/>Kliknutím přejdete na chat.'
+                    message: `<h1>Nový chat</h1>Připojil se nový zájemce. <br/>Kliknutím přejdete na chat.<br>${currentTimePart()}`
                 }).on("click", () => {
                     const registration_id = school_chat_url_regex.exec(location.href).groups.id
 
@@ -317,7 +319,7 @@
                     console.log(e.sender_id, selected_messenger_id())
                     notyf.open({
                         type: 'info',
-                        message: '<h1>Nová zpráva</h1>Přišla vám nová zpráva.<br/>Kliknutím zobrazíte.'
+                        message: `<h1>Nová zpráva</h1>Přišla vám nová zpráva.<br/>Kliknutím zobrazíte.<br>${currentTimePart()}`
                     }).on("click", () => {
                         const registration_id = school_chat_url_regex.exec(location.href).groups.id
 
@@ -340,7 +342,7 @@
             Echo.channel("chat.{{session("messenger_key")}}").listen("NewMessage", e => {
                 const notify = () => notyf.open({
                     type: 'info',
-                    message: `<h1>Nová zpráva</h1>${e.school_name}<br/>Kliknutím zobrazíte.`
+                    message: `<h1>Nová zpráva</h1>${e.school_name}<br/>Kliknutím zobrazíte.<br>${currentTimePart()}`
                 }).on("click", () => {
                     location.href = `/vstoupit/chat/${e.registration_id}`
                 })

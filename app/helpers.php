@@ -34,6 +34,20 @@ if(!function_exists('format_datetime')){
     }
 }
 
+if(!function_exists('format_time')){
+    function format_time(?string $str) : string
+    {
+        if($str == null){
+            return "chyba";
+        }
+        try{
+            return (new  Carbon($str))->addHours(2)->isoFormat("HH:mm");
+        } catch(Exception $e){
+            return "chyba";
+        }
+    }
+}
+
 if(!function_exists('format_date_now')){
     function format_date_now() : string
     {
