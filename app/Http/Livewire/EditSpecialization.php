@@ -6,10 +6,8 @@ use App\Models\File;
 use App\Models\PrescribedSpecialization;
 use App\Models\School;
 use App\Models\Specialization;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Stevebauman\Purify\Facades\Purify;
 
 class EditSpecialization extends Component
 {
@@ -42,7 +40,7 @@ class EditSpecialization extends Component
 
         $this->specialization->update([
             'name' => $this->name,
-            'description' => Purify::clean($this->description),
+            'description' => html_clean($this->description),
             'prescribed_specialization_id' => $this->prescribed_specialization_id,
         ]);
 

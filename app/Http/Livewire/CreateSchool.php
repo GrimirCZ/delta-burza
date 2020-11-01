@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\Livewire;
 use Livewire\WithFileUploads;
-use Stevebauman\Purify\Facades\Purify;
 
 class CreateSchool extends Component
 {
@@ -74,7 +73,7 @@ class CreateSchool extends Component
                 'email' => $this->email,
                 'web' => $this->web,
                 'phone' => $this->phone,
-                'description' => Purify::clean($this->description),
+                'description' => html_clean($this->description),
                 'is_school' => $this->type_of_exhibitioner == "school",
                 'district_id' => $this->district_id,
             ]);
