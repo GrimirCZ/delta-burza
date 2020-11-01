@@ -33,7 +33,7 @@
                 <div class="flex flex-col md:w-1/3 text-left pb-4 md:pb-0 chat-switch-window">
                     <h2 class="text-xl">Chaty</h2>
                     <div class="overflow-y-auto">
-                        <div>Čekající na odpověď</div>
+                        <div>Čeká na odpověď</div>
                         <div class="flex flex-col px-4">
                             @if(count($chats_waiting_for_answer) > 0)
                                 @foreach($chats_waiting_for_answer as $chwa)
@@ -79,6 +79,10 @@
                                    class="h-full mb-4 md:mb-0 h-4 sm:h-12 text-xl py-2 px-4 bg-gray-200 outline-none">
                             <button wire:click="send" class="btn btn-primary h-full">Odeslat</button>
                         </div>
+                    </div>
+                @else
+                    <div class="w-full h-full grid place-items-center pt-4 md:pt-0 md:ml-4 chat-window">
+                            Prosím vyberte chat
                     </div>
                 @endif
             </div>
