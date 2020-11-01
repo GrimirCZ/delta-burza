@@ -5,7 +5,8 @@
 
     <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
         <div class="bg-white shadow-sm text-center p-5 mx-5">
-            <div class="px-4 py-5 border-b border-gray-200 mb-4 sm:px-6 flex flex-col md:flex-row divide-y-2 divide-gray-200 md:divide-y-0">
+            <div
+                class="px-4 py-5 border-b border-gray-200 mb-4 sm:px-6 flex flex-col md:flex-row divide-y-2 divide-gray-200 md:divide-y-0">
                 {{--                <div--}}
                 {{--                    class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block text-gray-700">--}}
                 {{--                    <div class="relative inline-block">--}}
@@ -34,21 +35,25 @@
                     <div class="overflow-y-auto">
                         <div>Čekající na odpověď</div>
                         <div class="flex flex-col px-4">
-                            @foreach($chats_waiting_for_answer as $chwa)
-                                <div class="chat-switch-button" wire:click="set_messenger_id({{$chwa->id}})">
-                                    {{$chwa->message}}
-                                    <div class="text-sm">{{format_time($chwa->time)}}</div>
-                                </div>
-                            @endforeach
+                            @if(count($chats_waiting_for_answer) > 0)
+                                @foreach($chats_waiting_for_answer as $chwa)
+                                    <div class="chat-switch-button" wire:click="set_messenger_id({{$chwa->id}})">
+                                        {{$chwa->message}}
+                                        <div class="text-sm">{{format_time($chwa->time)}}</div>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                         <div>Ostatní</div>
                         <div class="flex flex-col px-4">
-                            @foreach($chats_waiting_for_response as $chwr)
-                                <div class="chat-switch-button" wire:click="set_messenger_id({{$chwr->id}})">
-                                    {{$chwr->message}}
-                                    <div class="text-sm">{{format_time($chwa->time)}}</div>
-                                </div>
-                            @endforeach
+                            @if(count($chats_waiting_for_response) > 0)
+                                @foreach($chats_waiting_for_response as $chwr)
+                                    <div class="chat-switch-button" wire:click="set_messenger_id({{$chwr->id}})">
+                                        {{$chwr->message}}
+                                        <div class="text-sm">{{format_time($chwa->time)}}</div>
+                                    </div>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
