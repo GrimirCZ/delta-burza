@@ -289,7 +289,7 @@
             });
 
             const get_registration_id = (regex) => {
-                const regexRes = school_chat_url_regex.exec(location.href);
+                const regexRes = regex.exec(location.href);
 
                 return regexRes === null ? null : regexRes.groups.id
             }
