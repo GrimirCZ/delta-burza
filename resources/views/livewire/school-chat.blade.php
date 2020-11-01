@@ -50,7 +50,7 @@
                                 @foreach($chats_waiting_for_response as $chwr)
                                     <div class="chat-switch-button" wire:click="set_messenger_id({{$chwr->id}})">
                                         {{$chwr->message}}
-                                        <div class="text-sm">{{format_time($chwa->time)}}</div>
+                                        <div class="text-sm">{{format_time($chwr->time)}}</div>
                                     </div>
                                 @endforeach
                             @endif
