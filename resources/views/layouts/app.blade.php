@@ -271,7 +271,7 @@
 
         <script>
             const notyf = new Notyf({
-                duration: 60000,
+                duration: 0,
                 position: {
                     x: 'right',
                     y: 'top',
@@ -288,7 +288,7 @@
 
             @if(Auth::check() && Auth::user()->school_id != null)
             @php
-                $_school_id  = \Illuminate\Support\Facades\Auth::user()->school_id;
+                $_school_id  = Auth::user()->school_id;
             @endphp
             const selected_messenger_id = () => parseQuery()['selected_messenger_id'] || null
             const school_chat_url_regex = /\/registrace\/(?<id>\d+)\/chat/
