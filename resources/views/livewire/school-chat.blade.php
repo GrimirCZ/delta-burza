@@ -96,16 +96,16 @@
                         el.scrollTop = el.scrollHeight
                 }
 
+                scroll_down()
+                window.addEventListener('rendered', () => scroll_down())
+
                 function setMessengerId(id) {
                 @this.set("selected_messenger_id", id)
                 }
 
                 function render() {
                 @this.call("render")
-                    setTimeout(() => scroll_down(), 500)
                 }
-
-                scroll_down()
             </script>
             @endonce
         @endpush

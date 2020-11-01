@@ -134,6 +134,8 @@ class SchoolChat extends Component
     {
         $us = [$this->me->id, $this->selected_messenger_id];
 
+        $this->dispatchBrowserEvent("rendered");
+
         return view('livewire.school-chat', [
             'messengers' => $this->get_messengers()->get(),
             "selected_messenger" => Messenger::find($this->selected_messenger_id),

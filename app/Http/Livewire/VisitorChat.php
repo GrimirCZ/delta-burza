@@ -109,6 +109,8 @@ class VisitorChat extends Component
     {
         $us = [$this->me->id, $this->school->id];
 
+        $this->dispatchBrowserEvent("rendered");
+
         return view('livewire.visitor-chat', [
             'messages' => Message::whereIn("sender_id", $us)
                 ->whereIn('receiver_id', $us)
