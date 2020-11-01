@@ -59,7 +59,7 @@
                 </div>
                 @if($selected_messenger_id != null && $selected_messenger_id != '')
                     <div class="w-full h-full flex flex-col justify-between pt-4 md:pt-0 md:ml-4 chat-window">
-                        <div class="flex flex-col gap-y-6 px-4 overflow-y-scroll h-full">
+                        <div id="chat-window" class="flex flex-col gap-y-6 px-4 overflow-y-scroll h-full">
                             @foreach($messages as $message)
                                 @if($message->sender->id == $selected_messenger_id)
                                     <div class="text-left">
@@ -82,7 +82,7 @@
                     </div>
                 @else
                     <div class="w-full h-full grid place-items-center pt-4 md:pt-0 md:ml-4 chat-window">
-                            Prosím vyberte chat
+                        Prosím vyberte chat
                     </div>
                 @endif
             </div>
@@ -90,13 +90,22 @@
         @push('scripts')
             @once
             <script>
+                const scroll_down = () => {
+                    const el = document.querySelector("#chat-window")
+                    if (el)
+                        el.scrollTop = el.scrollHeight
+                }
+
                 function setMessengerId(id) {
                 @this.set("selected_messenger_id", id)
                 }
 
                 function render() {
                 @this.call("render")
+                    scroll_down()
                 }
+
+                scroll_down()
             </script>
             @endonce
         @endpush

@@ -13,7 +13,7 @@
                     @endif
                 </div>
             </div>
-            <div class="flex flex-col gap-y-6 px-4 chat-window overflow-y-scroll">
+            <div id="chat-user" class="flex flex-col gap-y-6 px-4 chat-window overflow-y-scroll">
                 @foreach($messages as $message)
                     @if($message->sender->id == $school->id)
                         <div class="text-left">
@@ -38,8 +38,14 @@
     @push('scripts')
         @once
         <script>
+            const scroll_down = () => {
+                const el = document.querySelector("#chat-user")
+                el.scrollTop = el.scrollHeight
+            }
+
             function render() {
             @this.call('render')
+                scroll_down()
             }
 
             Echo.channel("active-chats.{{$registration->id}}").listen("ActiveChatsChanged", e => {
@@ -49,6 +55,7 @@
                     document.querySelector("#currently_responding_to").innerText = ""
                 }
             })
+            scroll_down()
         </script>
         @endonce
     @endpush
