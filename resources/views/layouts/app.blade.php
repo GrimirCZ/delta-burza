@@ -295,13 +295,18 @@
             const selected_messenger_id = () => parseQuery()['selected_messenger_id'] || null
             const school_chat_url_regex = /\/registrace\/(?<id>\d+)\/chat/
             const is_school_chat = school_chat_url_regex.test(location.href)
+            const get_registration_id = (regex) => {
+                const regexRes = school_chat_url_regex.exec(location.href);
+
+                return regexRes === null ? null : regexRes.groups.id
+            }
 
             Echo.private("new_messenger.{{$_school_id}}").listen("NewMessenger", e => {
                 notyf.open({
                     type: 'info',
                     message: `<h1>Nový chat</h1>Připojil se nový zájemce. <br/>Kliknutím přejdete na chat.<br>${currentTimePart()}`
                 }).on("click", () => {
-                    const registration_id = school_chat_url_regex.exec(location.href).groups.id
+                    const registration_id = get_registration_id(school_chat_url_regex)
 
                     if (is_school_chat && registration_id === e.registration_id) {
                         setMessengerId(e.messenger_id) // declared in SchoolChat
@@ -321,7 +326,7 @@
                         type: 'info',
                         message: `<h1>Nová zpráva</h1>Přišla vám nová zpráva.<br/>Kliknutím zobrazíte.<br>${currentTimePart()}`
                     }).on("click", () => {
-                        const registration_id = school_chat_url_regex.exec(location.href).groups.id
+                        const registration_id = get_registration_id(school_chat_url_regex)
 
                         if (is_school_chat && registration_id === e.registration_id) {
                             setMessengerId(e.sender_id)// declared in SchoolChat
@@ -338,6 +343,11 @@
             @if(session("messenger_key") != null)
             const visitor_url_regex = /\/vstoupit\/chat\/(?<id>\d+)/
             const is_visitor_chat = visitor_url_regex.test(location.href)
+            const visitor_get_registration_id = () => {
+                const regexRes = visitor_url_regex.exec(location.href);
+
+                return regexRes === null ? null : regexRes.groups.id
+            }
 
             Echo.channel("chat.{{session("messenger_key")}}").listen("NewMessage", e => {
                 const notify = () => notyf.open({
@@ -348,7 +358,7 @@
                 })
 
                 if (is_visitor_chat) {
-                    const registration_id = visitor_url_regex.exec(location.href).groups.id
+                    const registration_id = get_registration_id(visitor_url_regex)
 
                     if (+registration_id === +e.registration_id)
                         render()// declared in VisitorChat
