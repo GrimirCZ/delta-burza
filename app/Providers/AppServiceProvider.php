@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App;
 use App\Settings;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use URL;
@@ -35,6 +36,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         App::setLocale('cs');
+        Blade::setEchoFormat('e(utf8_encode(%s))');
         Schema::defaultStringLength(191);
         //
     }
