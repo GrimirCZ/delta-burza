@@ -27,7 +27,7 @@ if(!function_exists('format_datetime')){
         }
         try{
 //            TODO: fix time
-            return (new  Carbon($str))->addHours(2)->isoFormat("D. M. YYYY HH:mm:ss");
+            return (new  Carbon($str))->isoFormat("D. M. YYYY HH:mm:ss");
         } catch(Exception $e){
             return "chyba";
         }
@@ -41,7 +41,7 @@ if(!function_exists('format_time')){
             return "chyba";
         }
         try{
-            return (new  Carbon($str))->addHours(2)->isoFormat("HH:mm");
+            return (new  Carbon($str))->isoFormat("HH:mm");
         } catch(Exception $e){
             return "chyba";
         }
