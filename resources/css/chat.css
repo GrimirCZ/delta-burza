@@ -12,7 +12,7 @@
 }
 
 .chat-window, .chat-switch-window {
-    height: 42vh;
+    height: 38vh;
 }
 
 @media (min-width: theme('screens.md')) {
