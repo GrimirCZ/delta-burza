@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
             <div class="mb-5">
                 <div
-                    class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-16 rounded inline-block">
+                    class="region-input bg-gray-200 border border-gray-200 text-gray-700 p-1 max-w-18 rounded inline-block">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#aeaeae"
                          class="h-7 inline-block ml-2">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
