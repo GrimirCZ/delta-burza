@@ -12,7 +12,13 @@
 }
 
 .chat-window, .chat-switch-window {
-    height: 50vh;
+    height: 42vh;
+}
+
+@media (min-width: theme('screens.md')) {
+    .chat-window, .chat-switch-window {
+        height: 50vh;
+    }
 }
 
 .chat-switch-button {
