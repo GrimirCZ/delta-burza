@@ -192,6 +192,6 @@ if(!function_exists("html_clean")){
             $item->parentNode->removeChild($item);
         }
 
-        return $dom->saveHTML();
+        return utf8_decode(html_entity_decode($dom->saveHTML()));
     }
 }
