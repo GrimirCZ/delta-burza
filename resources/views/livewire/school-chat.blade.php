@@ -75,9 +75,9 @@
                             @endforeach
                         </div>
                         <div class="send mt-6">
-                            <input type="text" wire:model="message" placeholder="Zde napište svou zprávu"
+                            <input type="text" wire:model="message" placeholder="Zde napište svou zprávu" id="message"
                                    class="h-full mb-4 md:mb-0 h-4 sm:h-12 text-xl py-2 px-4 bg-gray-200 outline-none">
-                            <button wire:click="send" class="btn btn-primary h-full">Odeslat</button>
+                            <button wire:click="send" id="sendBtn" class="btn btn-primary h-full">Odeslat</button>
                         </div>
                     </div>
                 @else
@@ -98,6 +98,13 @@
 
                 scroll_down()
                 window.addEventListener('rendered', () => scroll_down())
+
+                // send on enter
+                document.querySelector("#message").addEventListener("keyup", e => {
+                    if (e.keyCode === 13 && !e.shiftKey) {
+                        document.querySelector("#sendBtn").click()
+                    }
+                })
 
                 function setMessengerId(id) {
                 @this.set("selected_messenger_id", id)

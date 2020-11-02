@@ -50,17 +50,18 @@
 
             window.addEventListener('rendered', () => scroll_down())
 
+            // send on enter
+            document.querySelector("#message").addEventListener("keyup", e => {
+                if (e.keyCode === 13 && !e.shiftKey) {
+                    document.querySelector("#sendBtn").click()
+                }
+            })
+
             Echo.channel("active-chats.{{$registration->id}}").listen("ActiveChatsChanged", e => {
                 if (e.count > 0) {
                     document.querySelector("#currently_responding_to").innerText = `Právě odpovída ${e.count} lidem`
                 } else {
                     document.querySelector("#currently_responding_to").innerText = ""
-                }
-            })
-
-            document.querySelector("#message").addEventListener("keyup", e => {
-                if (e.keyCode === 13 && !e.shiftKey) {
-                    document.querySelector("#sendBtn").click()
                 }
             })
         </script>
