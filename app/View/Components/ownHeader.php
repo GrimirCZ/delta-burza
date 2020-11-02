@@ -8,16 +8,18 @@ class ownHeader extends Component
 {
     public $top;
     public $bottom;
+    public $class;
 
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct($top = "", $bottom = "")
+    public function __construct($top = "", $bottom = "", $class = "")
     {
         $this->top = $top;
         $this->bottom = $bottom;
+        $this->class = $class;
     }
 
     /**
