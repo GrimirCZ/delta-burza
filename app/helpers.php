@@ -177,7 +177,7 @@ if(!function_exists("html_clean")){
         $dom = new DOMDocument();
 
         libxml_use_internal_errors(true);
-        $dom->loadHTML($html);
+        $dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         libxml_use_internal_errors(false);
 
 
@@ -192,6 +192,6 @@ if(!function_exists("html_clean")){
             $item->parentNode->removeChild($item);
         }
 
-        return $dom->saveHTML();
+        return utf8_decode(html_entity_decode($dom->saveHTML()));
     }
 }

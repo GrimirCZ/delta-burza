@@ -14,7 +14,7 @@
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8 w-100 px-4">
             <div class="grid md:grid-cols-2 gap-3">
                 <div class="bg-white p-5 shadow-sm box-border default-css">
-                    {!! utf8_decode($school->description) !!}
+                    {!!  $school->description !!}
                 </div>
                 <div>
                     <div class="bg-white p-5 shadow-sm box-border">
@@ -204,8 +204,8 @@
                                 <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
                                    class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">{{$evening_message}} {{settings("evening_event_start")}}
                                     - {{settings("evening_event_end")}}</a>
-                                                                <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"
-                                                                   class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>
+                                <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"
+                                   class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>
                             @else
                                 <span
                                     class="btn text-sm text-center mr-2 btn-disabled inline-block">{{$morning_message}} {{settings("morning_event_start")}}
@@ -213,7 +213,7 @@
                                 <span
                                     class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">{{$evening_message}} {{settings("evening_event_start")}}
                                     - {{settings("evening_event_end")}}</span>
-                                                                <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Chat</span>
+                                <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Chat</span>
                             @endif
                         </div>
                     </div>
