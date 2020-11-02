@@ -1,9 +1,9 @@
 <div>
-    <div class="hidden md:block">
-        <x-own-header>
+    <x-own-header>
+        <div class="hidden md:block">
             Chat s {{$registration->school->name}}
-        </x-own-header>
-    </div>
+        </div>
+    </x-own-header>
 
     <div class="max-w-7xl mx-auto md:pt-5 pb-10 sm:px-6 lg:px-8 w-100">
         <div class="bg-white shadow-sm text-center p-5 mx-5">
