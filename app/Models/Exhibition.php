@@ -37,6 +37,6 @@ class Exhibition extends Model
 
         $diff = $date->diffInDays($now);
 
-        return ($diff < 2 && $date >= $now) || $this->exhibition->force_enable_join;
+        return ($diff < 2 && $date >= $now) || $this->force_enable_join;
     }
 }
