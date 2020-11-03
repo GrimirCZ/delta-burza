@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class Exhibition extends Model
 {
-    protected $fillable = ['name', 'city', 'date', 'organizer_id', 'district_id'];
+    protected $fillable = ['name', 'city', 'date', 'organizer_id', 'force_enable_join', 'district_id'];
 
     public function district()
     {
@@ -37,6 +37,6 @@ class Exhibition extends Model
 
         $diff = $date->diffInDays($now);
 
-        return $diff < 2 && $date >= $now;
+        return ($diff < 2 && $date >= $now) || $this->exhibition->force_enable_join;
     }
 }
