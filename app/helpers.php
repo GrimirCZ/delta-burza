@@ -174,10 +174,12 @@ if(!function_exists("html_cut")){
 if(!function_exists("html_clean")){
     function html_clean($html)
     {
+        $in = "<div>" . $html . "</div>"; // wrap all in div, needs wrapper element or it will extend first tag to wrap whole thing`
+
         $dom = new DOMDocument();
 
         libxml_use_internal_errors(true);
-        $dom->loadHTML(mb_convert_encoding($html, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $dom->loadHTML(mb_convert_encoding($in, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
         libxml_use_internal_errors(false);
 
 
@@ -192,6 +194,10 @@ if(!function_exists("html_clean")){
             $item->parentNode->removeChild($item);
         }
 
-        return  html_entity_decode($dom->saveHTML());
+        $out = html_entity_decode($dom->saveHTML());
+
+        $out = substr($out, 5, -7); // remove the wrapper div
+
+        return $out;
     }
 }
