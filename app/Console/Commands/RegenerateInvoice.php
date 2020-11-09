@@ -20,7 +20,7 @@ class RegenerateInvoice extends Command
 
         SendInvoice::dispatch($order->id);
 
-        $this->info("Sene");
+        $this->info("Sent");
         //
     }
 }
