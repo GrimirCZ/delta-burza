@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Jobs\SendInvoice;
+use App\Jobs\GenerateInvoice;
 use App\Models\Exhibition;
 use App\Models\Order;
 use App\Models\OrderRegistration;
@@ -176,7 +176,7 @@ class CreateOrder extends Component
             $ord->push();
 
             if($ord->price() > 0){
-                SendInvoice::dispatch($ord->id);
+                GenerateInvoice::dispatch($ord->id);
             }
         });
 
