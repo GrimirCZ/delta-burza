@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire;
 
-use App\Jobs\SendInvoice;
+use App\Jobs\GenerateProformaInvoice;
 use App\Models\Exhibition;
 use App\Models\Order;
 use App\Models\OrderRegistration;
@@ -176,7 +176,11 @@ class CreateOrder extends Component
             $ord->push();
 
             if($ord->price() > 0){
-                SendInvoice::dispatch($ord->id);
+                $ord->update([
+                    'proforma_invoice_number' => "2020" . fill_number_to_length($ord->id, 4)
+                ]);
+
+                GenerateProformaInvoice::dispatch($ord->id);
             }
         });
 

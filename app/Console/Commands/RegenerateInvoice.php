@@ -2,7 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Jobs\SendInvoice;
+use App\Jobs\GenerateInvoice;
+use App\Jobs\GenerateProformaInvoice;
 use App\Models\Order;
 use Exception;
 use Illuminate\Console\Command;
@@ -22,7 +23,7 @@ class RegenerateInvoice extends Command
             try{
                 $order = Order::findOrFail($order_id);
 
-                SendInvoice::dispatch($order->id, $send_mail);
+                GenerateInvoice::dispatch($order->id, $send_mail);
                 $this->info(($send_mail ? "Sent" : "Generated") . " new invoice for order $order->id");
             } catch(Exception $e){
                 $this->error("Failed to " . ($send_mail ? "send" : "generate") . " new invoice for order $order_id");

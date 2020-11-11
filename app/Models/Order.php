@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = ['due_date', 'school_id'];
+    protected $fillable = ['due_date', 'school_id', "invoice", "proforma_invoice", "proforma_invoice_number", "invoice_number", "invoice_year"];
+
+    private ?int $price = null;
 
     public function school()
     {
@@ -25,9 +27,14 @@ class Order extends Model
 
     public function price()
     {
-        return $this->join("order_registration", "orders.id", "=", "order_registration.order_id")
-            ->where("orders.id", "=", $this->id)
-            ->sum("order_registration.price");
+        if($this->price == null){
+            // cache results
+            $this->price = $this->join("order_registration", "orders.id", "=", "order_registration.order_id")
+                ->where("orders.id", "=", $this->id)
+                ->sum("order_registration.price");
+        }
+
+        return $this->price;
     }
 
     public function fulfilled()
