@@ -84,9 +84,8 @@ table {
 }
 
 .spacer {
-  padding-top: 57px;
+  padding-top: 5px;
   padding-right: 23px;
-  height: 200px;
 }
 
 .contact-info {
@@ -99,6 +98,10 @@ table {
 
 .mt-8 {
   margin-top: 8px;
+}
+
+.pt-24 {
+  padding-top: 24px;
 }
 
 .not-an-invoice {

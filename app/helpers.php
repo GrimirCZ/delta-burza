@@ -59,6 +59,28 @@ if(!function_exists('format_date_now')){
     }
 }
 
+if(!function_exists('format_date_year')){
+    function format_date_year(?string $str) : string
+    {
+        try{
+            return (new  Carbon($str))->isoFormat("YYYY");
+        } catch(Exception $e){
+            return "chyba";
+        }
+    }
+}
+
+
+if(!function_exists('format_now')){
+    function format_now($fmt) : string
+    {
+        try{
+            return Carbon::now()->isoFormat($fmt);
+        } catch(Exception $e){
+            return "chyba";
+        }
+    }
+}
 
 if(!function_exists('fix_url')){
     function fix_url(string $str) : string

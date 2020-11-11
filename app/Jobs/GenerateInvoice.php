@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Mail\InvoiceMail;
 use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -30,6 +31,20 @@ class GenerateInvoice implements ShouldQueue
     {
         $order = Order::find($this->order_id);
         $user = $order->school->main_contact();
+
+        // some orders do not have this, perhapse remove later
+        if($order->invoice_number == null){
+            $current_year = Carbon::now()->isoFormat("YYYY");
+            $last_invoice_number = Order::where("invoice_year", $current_year)->max("invoice_number");
+
+            if($last_invoice_number == null)
+                $last_invoice_number = 0; // first this year
+
+            $order->update([
+                'invoice_year' => $current_year,
+                'invoice_number' => $last_invoice_number + 1
+            ]);
+        }
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('pdf.invoice', [

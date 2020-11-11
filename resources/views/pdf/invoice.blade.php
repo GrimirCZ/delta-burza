@@ -6,23 +6,23 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>PROFORMA FAKTURA</title>
+        <title>FAKTURA - DAŇOVÝ DOKLAD</title>
         <link rel="stylesheet" href="{{public_path()."/css/invoice.css"}}">
     </head>
     <body>
         <div class="title">
-            <h1>ZÁLOHOVÁ FAKTURA</h1>
-            <span class="not-an-invoice">Není daňový doklad</span>
+            <h1>FAKTURA - DAŇOVÝ DOKLAD</h1>
         </div>
         <div class="header">
             <table>
                 <tbody>
                 <tr>
-                    <td>
+                    <td colspan="6" style="font-size: 12px">
                         <b>DELTA – Střední škola informatiky a ekonomie, s.r.o.</b>
                     </td>
-                    <td class="text-right">
-                        Číslo zálohové faktury: <b>2020{{fill_number_to_length($order->id, 4)}}</b>
+                    <td class="text-right" colspan="4">
+                        Daňový doklad číslo:
+                        <b>{{$order->invoice_year}}11{{fill_number_to_length($order->invoice_number, 4)}}</b>
                     </td>
                 </tr>
                 </tbody>
@@ -94,10 +94,32 @@
                         <div class="dashed-divider"></div>
                     </td>
                 </tr>
+                @php
+                $price = $order->price();
+                @endphp
                 <tr>
-                    <td>Celkem k platbě:</td>
+                    <td><b>Celkem</b></td>
                     <td class="text-right">
-                        {{$order->price()}},- Kč
+                        {{$price}},- Kč
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="double-divider"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Odpočet zálohy dle zálohové faktury č. {{$order->proforma_invoice_number}}
+                    </td>
+                    <td class="text-right">
+                        -{{$price}},- Kč
+                    </td>
+                </tr>
+                <tr class="mt-24">
+                    <td><b>Celkem k platbě</b></td>
+                    <td class="text-right">
+                        0,- Kč
                     </td>
                 </tr>
                 </tbody>

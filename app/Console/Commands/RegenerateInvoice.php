@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\GenerateInvoice;
+use App\Jobs\GenerateProformaInvoice;
 use App\Models\Order;
 use Exception;
 use Illuminate\Console\Command;

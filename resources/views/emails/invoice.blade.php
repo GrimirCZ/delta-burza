@@ -1,7 +1,7 @@
-<h1>Zálohová faktura k objednávce č. {{$order->id}}</h1>
+<h1>Daňový doklad k objednávce č. {{$order->id}}</h1>
 
 <p>
-    V příloze tohoto e-mailu Vám zasíláme zálohovou fakturu k objednávce č. {{$order->id}}.
+    V příloze tohoto e-mailu Vám zasíláme fakturu k objednávce č. {{$order->id}}.
 </p>
 
 
