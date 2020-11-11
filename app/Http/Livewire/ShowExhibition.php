@@ -14,7 +14,7 @@ class ShowExhibition extends Component
 {
     public Exhibition $exhibition;
 
-    public string $type = "skoly";
+    public string $type = "all";
 
     public ?string $prescribed_specialization_id = "all";
 
