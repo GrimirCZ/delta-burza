@@ -18,10 +18,12 @@ class SendInvoice implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected int $order_id;
+    protected bool $send_mail;
 
-    public function __construct($order_id)
+    public function __construct(int $order_id, bool $send_mail = true)
     {
         $this->order_id = $order_id;
+        $this->send_mail = $send_mail;
     }
 
     public function handle()
@@ -35,7 +37,10 @@ class SendInvoice implements ShouldQueue
             'school' => $order->school
         ]);
 
-        $filepath = 'invoices/' . $order->id . "_" . uniqid() . ".pdf";
+        $name = $order->id . "_" . uniqid() . ".pdf";
+
+
+        $filepath = 'invoices/' . $name;
 
         $s3 = Storage::disk("s3");
         $s3->put($filepath, $pdf->stream(), 'public');
@@ -45,7 +50,9 @@ class SendInvoice implements ShouldQueue
         $order->invoice = $url;
         $order->push();
 
-        Mail::to($user)->queue(new InvoiceMail($user, $order));
+        if($this->send_mail){
+            Mail::to($user)->queue(new InvoiceMail($user, $order));
+        }
         //
     }
 }
