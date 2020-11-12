@@ -83,7 +83,11 @@
 
             <div class="text-right mt-20">
                 @if($order->invoice)
-                    <a href="{{$order->invoice}}" class="btn btn-primary">Zálohová
+                    <a href="{{$order->invoice}}" class="btn btn-primary">Faktura - daňvý doklad.pdf</a>
+                @endif
+
+                @if($order->proforma_invoice)
+                    <a href="{{$order->proforma_invoice}}" class="btn btn-primary">Zálohová
                         faktura.pdf</a>
                 @endif
 
