@@ -35,7 +35,8 @@ class ShowOrder extends Component
                 ->join("exhibitions", "exhibitions.id", "=", "registrations.exhibition_id")
                 ->orderBy("exhibitions.date")
                 ->select("order_registration.*")
-                ->get()
+                ->get(),
+            'is_complete' => $this->order->ordered_registrations->every(fn($or) => $or != null)
         ]);
     }
 }

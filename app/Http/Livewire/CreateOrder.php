@@ -129,6 +129,10 @@ class CreateOrder extends Component
 
     public function complete()
     {
+        if(count($this->selected_exhibitions) == 0){
+            return;
+        }
+
         $due_date = new Carbon(Exhibition::whereIn(
             "id",
             collect($this->selected_exhibitions)->map(fn($e) => $e['exhibition_id'])
