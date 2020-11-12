@@ -98,7 +98,7 @@
                 $price = $order->price();
                 @endphp
                 <tr>
-                    <td><b>Celkem</b></td>
+                    <td>Celkem</td>
                     <td class="text-right">
                         {{$price}},- Kč
                     </td>
@@ -110,16 +110,16 @@
                 </tr>
                 <tr>
                     <td>
-                        Odpočet zálohy dle zálohové faktury č. {{$order->proforma_invoice_number}}
+                        <b>Odpočet zálohy dle zálohové faktury č. {{$order->proforma_invoice_number}}</b>
                     </td>
                     <td class="text-right">
-                        -{{$price}},- Kč
+                       <b>-{{$price}},- Kč</b>
                     </td>
                 </tr>
                 <tr class="mt-24">
                     <td><b>Celkem k platbě</b></td>
                     <td class="text-right">
-                        0,- Kč
+                       <b>0,- Kč</b>
                     </td>
                 </tr>
                 </tbody>
