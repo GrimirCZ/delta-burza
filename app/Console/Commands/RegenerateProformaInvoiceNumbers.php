@@ -12,7 +12,7 @@ class RegenerateProformaInvoiceNumbers extends Command
 {
     protected $signature = 'generate:proforma-invoice-numbers {id*}';
 
-    protected $description = 'Command description';
+    protected $description = 'Generate proforma numbers. To process all orders use all as the first argument.';
 
     public function handle()
     {
