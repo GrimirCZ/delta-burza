@@ -68,7 +68,7 @@
                     <td>Číslo účtu:</td>
                     <td class="text-right"><b>101831946/0300</b></td>
                     <td>Datum splatnosti:</td>
-                    <td class="text-right"><b>{{format_date($order->due_date)}}</b></td>
+                    <td class="text-right"><b>{{format_date_now()}}</b></td>
                 </tr>
             </table>
         </div>
