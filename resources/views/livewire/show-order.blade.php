@@ -83,7 +83,7 @@
 
             <div class="text-right mt-20">
                 @if($order->invoice)
-                    <a href="{{$order->invoice}}" class="btn btn-primary">Faktura - daňvý doklad.pdf</a>
+                    <a href="{{$order->invoice}}" class="btn btn-primary">Faktura - daňový doklad.pdf</a>
                 @endif
 
                 @if($order->proforma_invoice)
@@ -91,7 +91,7 @@
                         faktura.pdf</a>
                 @endif
 
-                @if(!$or->fulfilled_at != null)
+                @if(!$is_complete)
                     <a href="/objednavka/{{$order->id}}/zaplatit" class="btn bg-teal-400 text-white">Zaplatit</a>
                 @endif
             </div>
