@@ -9,6 +9,8 @@ class CreateEntityTypesTable extends Migration
     public function up()
     {
         \Illuminate\Support\Facades\DB::transaction(function(){
+            Schema::dropIfExists("entity_types");
+
             Schema::create('entity_types', function(Blueprint $table){
                 $table->bigIncrements('id');
 
