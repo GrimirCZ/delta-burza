@@ -64,7 +64,15 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
-
+        'private_s3' => [
+            'driver' => 's3',
+            'key' => env('AWS_BUCKET_ACCESS_KEY_ID'),
+            'secret' => env('AWS_BUCKET_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('PRIVATE_AWS_BUCKET'),
+            'url' => env('AWS_URL'),
+            'endpoint' => env('AWS_ENDPOINT'),
+        ],
     ],
 
     /*
