@@ -8,6 +8,7 @@ use App\Jobs\GenerateInvoice;
 use App\Jobs\GenerateProformaInvoice;
 use App\Models\Order;
 use App\Models\OrderRegistration;
+use Aws\ImportExport\Exception\ImportExportException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -38,7 +39,11 @@ class ProcessPayments extends Component
     public function submit()
     {
         $this->error = null;
-        DB::transaction(function(){
+
+        $amount_key = "castka";
+        $vs_key = "variabilni_symbolreference";
+
+        DB::transaction(function() use ($amount_key, $vs_key){
             try{
 
                 $this->validate();
@@ -51,10 +56,22 @@ class ProcessPayments extends Component
                 for($i = 0; $i < $rows->count(); $i++){
                     $row = $rows[$i];
 
-                    $num_fmt = numfmt_create('cs', \NumberFormatter::DECIMAL);
-                    $castka = numfmt_parse($num_fmt, trim($row['castka']));
+                    if($row[$amount_key] == null){
+                        $rows[$i]->put("chyba", "Chybí částka ($amount_key)");
+                        $rows[$i]->put("stav", "selhání");
+                        continue;
+                    }
 
-                    $vs = trim($row['variabilni_symbolreference']);
+                    $num_fmt = numfmt_create('cs', \NumberFormatter::DECIMAL);
+                    $castka = numfmt_parse($num_fmt, trim($row[$amount_key]));
+
+                    if($row[$vs_key] == null){
+                        $rows[$i]->put("chyba", "Chybí variabilní symbol ($vs_key)");
+                        $rows[$i]->put("stav", "selhání");
+                        continue;
+                    }
+
+                    $vs = trim($row[$vs_key]);
 
                     $or = Order::where("proforma_invoice_number", $vs)->first();
 
