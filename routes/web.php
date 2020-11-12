@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminStaticResourceController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeleteSpecialization;
 use App\Http\Controllers\EnterEventController;
@@ -133,6 +134,8 @@ Route::middleware(['auth:sanctum', 'verified', IsAdmin::class])->group(function(
     Route::get("/admin/clanek/{article}/upravit", AdminArticleEdit::class);
 
     Route::get("/admin/platby/import", ProcessPayments::class);
+
+    Route::get("/admin/static", AdminStaticResourceController::class);
 
     Route::get("/admin", AdminDashboard::class)->name("admin-dashboard");
 

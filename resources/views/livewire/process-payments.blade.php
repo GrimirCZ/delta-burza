@@ -31,7 +31,7 @@
                     @if($output != null)
                         <div class="mt-6">
                             <a class="btn btn-primary"
-                               href="{{$output}}"
+                               href="{{url("/admin/static?path=".$output)}}"
                                target="_blank">
                                 Stáhnout výsledky
                             </a>
@@ -54,6 +54,5 @@
                 </div>
             </div>
         </x-dashboard-card>
-
     </div>
 </div>

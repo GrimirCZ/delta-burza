@@ -9,6 +9,7 @@ use App\Jobs\GenerateProformaInvoice;
 use App\Models\Order;
 use App\Models\OrderRegistration;
 use Aws\ImportExport\Exception\ImportExportException;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -48,10 +49,16 @@ class ProcessPayments extends Component
 
                 $this->validate();
 
-                $file_path = $this->platby->store("imports");
+                $s3 = Storage::disk("private_s3");
+                $upload_name = "imports/" . uniqid() . "_" . $this->platby->getClientOriginalName();
+
+//                $file_path = $this->platby->store($upload_name, "private_s3");
+                $s3->put($upload_name, $this->platby->get());
+//                dd($upload_name, $file_path);
 
                 // parse csv
-                $rows = (new PaymentImport())->toCollection($file_path, "local", \Maatwebsite\Excel\Excel::CSV)[0]; // why is there a nested collection?
+                $rows = (new PaymentImport())->toCollection($upload_name, "private_s3", \Maatwebsite\Excel\Excel::CSV)[0]; // why is there a nested collection?
+                Storage::disk("private_s3")->delete($upload_name);
 
                 for($i = 0; $i < $rows->count(); $i++){
                     $row = $rows[$i];
@@ -101,17 +108,13 @@ class ProcessPayments extends Component
                 }
 
 
-                $this->filepath = "invoice_export_result/" . uniqid() . ".csv";
+                $this->filepath = "/invoice_export_result/" . uniqid() . ".csv";
 
                 $export = new PaymentResultExport($rows);
-                $content = Excel::raw($export, \Maatwebsite\Excel\Excel::CSV, true);
+                Excel::store($export, $this->filepath, "private_s3", \Maatwebsite\Excel\Excel::CSV);
 
-                $s3 = Storage::disk("s3");
-                $s3->put($this->filepath, $content, [
-                    'visibility' => 'public',
-                ]);
-                $this->output = $s3->url($this->filepath);
-            } catch(\Exception $e){
+                $this->output = $this->filepath;
+            } catch(Exception $e){
                 $this->error = $e->getMessage();
             }
         });
@@ -119,9 +122,15 @@ class ProcessPayments extends Component
 
     public function delete_results()
     {
-        $s3 = Storage::disk("s3");
-        $s3->delete($this->filepath);
-        $this->output = null;
+        try{
+            $s3 = Storage::disk("private_s3");
+            $s3->delete($this->filepath);
+
+            $this->output = null;
+            $this->error = null;
+        } catch(Exception $e){
+            $this->error = $e->getMessage();
+        }
     }
 
     /**
