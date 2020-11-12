@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Console\Commands\FileMigrateToS3;
 use App\Console\Commands\RegenerateProformaInvoice;
+use App\Console\Commands\RegenerateProformaInvoiceNumbers;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -18,6 +19,7 @@ class Kernel extends ConsoleKernel
         //
         FileMigrateToS3::class,
         RegenerateProformaInvoice::class,
+        RegenerateProformaInvoiceNumbers::class,
     ];
 
     /**
