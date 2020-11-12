@@ -30,7 +30,8 @@ class GenerateProformaInvoice implements ShouldQueue
     public function handle()
     {
         $order = Order::find($this->order_id);
-        $user = $order->school->main_contact();
+        $school = $order->school;
+        $user = $school->main_contact();
 
         // some orders do not have this, perhapse remove later
         if($order->proforma_invoice_number == null){
@@ -60,7 +61,7 @@ class GenerateProformaInvoice implements ShouldQueue
         ]);
 
         if($this->send_mail){
-            Mail::to($user)->queue(new ProformaInvoiceMail($user, $order));
+            Mail::to($school->email)->queue(new ProformaInvoiceMail($user, $order));
         }
         //
     }

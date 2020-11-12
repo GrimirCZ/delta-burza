@@ -30,7 +30,9 @@ class GenerateInvoice implements ShouldQueue
     public function handle()
     {
         $order = Order::find($this->order_id);
-        $user = $order->school->main_contact();
+        $school = $order->school;
+        $user = $school->main_contact();
+
 
         // some orders do not have this, perhapse remove later
         if($order->invoice_number == null){
@@ -66,7 +68,7 @@ class GenerateInvoice implements ShouldQueue
         $order->push();
 
         if($this->send_mail){
-            Mail::to($user)->queue(new InvoiceMail($user, $order));
+            Mail::to($school->email)->queue(new InvoiceMail($user, $order));
         }
         //
     }
