@@ -83,27 +83,30 @@ class ProcessPayments extends Component
                     $or = Order::where("proforma_invoice_number", $vs)->first();
 
                     if($or == null){
-                        $rows[$i]->put("chyba", "Nebyla nalezena shoda pro číslo proforma faktury: $vs");
+                        $rows[$i]->put("popis", "Nebyla nalezena shoda pro číslo proforma faktury: $vs");
                         $rows[$i]->put("stav", "selhání");
                         continue;
                     }
 
                     if($or->price() != $castka){
-                        $rows[$i]->put("chyba", "Částka se neshoduje, předpokládaná částka: {$or->price()}, skutečná částka: {$castka}");
+                        $rows[$i]->put("popis", "Částka se neshoduje, předpokládaná částka: {$or->price()}, skutečná částka: {$castka}");
                         $rows[$i]->put("stav", "selhání");
                         continue;
                     }
 
-                    if($or->invoice == null){ // do not process orders twice
-                        OrderRegistration::where("order_id", $or->id)->update([
-                            'fulfilled_at' => DB::raw("CURRENT_TIMESTAMP"),
-                        ]);
-
-
-                        GenerateInvoice::dispatch($or->id);
+                    if($or->invoice != null){ // do not process orders twice
+                        $rows[$i]->put("popis", "Tato platba už byla zpracováná, žádná akce nebyla provedena");
+                        $rows[$i]->put("stav", "Duplicitní platba");
+                        continue;
                     }
 
-                    $rows[$i]->put("chyba", "");
+                    OrderRegistration::where("order_id", $or->id)->update([
+                        'fulfilled_at' => DB::raw("CURRENT_TIMESTAMP"),
+                    ]);
+
+                    GenerateInvoice::dispatch($or->id);
+
+                    $rows[$i]->put("popis", "Platba byla zpracována a email odeslán");
                     $rows[$i]->put("stav", "úspěch");
                 }
 
