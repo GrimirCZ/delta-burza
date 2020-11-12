@@ -30,29 +30,15 @@ body {
 
 .company_info {
     @include section;
-
 }
 
 .receipt_info {
     @include section;
-
-    .col {
-        width: 50%;
-        float: left;
-
-        &__head, &__value {
-            float: left;
-        }
-
-        &__value {
-            margin-left: 70%;
-        }
-    }
 }
 
 .items {
     @include section;
-    padding-top: 16px;
+    padding-top: 0;
     background-color: white;
 }
 
@@ -91,6 +77,10 @@ table {
 
 .mt-8 {
     margin-top: 8px;
+}
+
+.pr-8 {
+    padding-right: 8px;
 }
 
 .pt-24 {

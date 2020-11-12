@@ -31,28 +31,32 @@
         <div class="company_info">
             <table>
                 <tr>
-                    <td>
-                        Dodavatel:
-                        <div>
-                            <div class="bold">
-                                DELTA-Střední škola informatiky<br/> a ekonomie s.r.o.<br/>
-                                Ke Kamenci 151<br/>
-                                530 03 Pardubice<br/>
-                            </div>
-                            <div class="mt-8">IČ: <b>62061178</b></div>
-                        </div>
+                    <td>Dodavatel:</td>
+                    <td>Odběratel:</td>
+                </tr>
+                <tr>
+                    <td class="bold">
+                        DELTA-Střední škola informatiky<br/> a ekonomie s.r.o.<br/>
                     </td>
-                    <td>
-                        Odběratel:
-                        <div>
-                            <div class="bold">
-                                {{$school->name}}<br/>
-                                {{$school->address}}<br/>
-                                {{$school->psc}} {{$school->city}}<br/>
-                            </div>
-                            <div class="mt-8">IČ: <b>{{$school->ico}}</b></div>
-                        </div>
+                    <td class="bold">
+                        {{$school->name}}
                     </td>
+                </tr>
+                <tr>
+                    <td class="bold">
+                        Ke Kamenci 151
+                    </td>
+                    <td class="bold">
+                        {{$school->address}}
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>530 03 Pardubice</b></td>
+                    <td><b>{{$school->psc}} {{$school->city}}</b></td>
+                </tr>
+                <tr>
+                    <td class="mt-8">IČ: <b>62061178</td>
+                    <td class="mt-8">IČ: <b>{{$school->ico}}</b></td>
                 </tr>
             </table>
         </div>
@@ -60,13 +64,13 @@
             <table>
                 <tr>
                     <td>Peněžní ústav:</td>
-                    <td class="text-right"><b>ČSOB Pardubice</b></td>
+                    <td class="text-right pr-8"><b>ČSOB Pardubice</b></td>
                     <td>Datum vystavení dokladu:</td>
                     <td class="text-right"><b>{{format_date_now()}}</b></td>
                 </tr>
                 <tr>
                     <td>Číslo účtu:</td>
-                    <td class="text-right"><b>101831946/0300</b></td>
+                    <td class="text-right pr-8"><b>101831946/0300</b></td>
                     <td>Datum splatnosti:</td>
                     <td class="text-right"><b>{{format_date_now()}}</b></td>
                 </tr>
@@ -95,7 +99,7 @@
                     </td>
                 </tr>
                 @php
-                $price = $order->price();
+                    $price = $order->price();
                 @endphp
                 <tr>
                     <td>Celkem</td>
@@ -113,13 +117,13 @@
                         <b>Odpočet zálohy dle zálohové faktury č. {{$order->proforma_invoice_number}}</b>
                     </td>
                     <td class="text-right">
-                       <b>-{{$price}},- Kč</b>
+                        <b>-{{$price}},- Kč</b>
                     </td>
                 </tr>
                 <tr class="mt-24">
                     <td><b>Celkem k platbě</b></td>
                     <td class="text-right">
-                       <b>0,- Kč</b>
+                        <b>0,- Kč</b>
                     </td>
                 </tr>
                 </tbody>
