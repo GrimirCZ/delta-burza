@@ -24,6 +24,9 @@
                                 <option value="company">
                                     Firma
                                 </option>
+                                <option value="empl_dep">
+                                    Úřad práce
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -58,18 +61,21 @@
                 </div>
                 <div class="form-row-2">
                     <div class="form-field">
-                        <label for="ico" class="label">IČ</label>
-                        <input id="ico" type="text" wire:model="ico" class="input @error('ico') input-error @enderror">
-                        @error('ico') <span class="error">{{ $message }}</span> @enderror
+                        @if($type_of_exhibitioner != "empl_dep")
+                            <label for="ico" class="label">IČ</label>
+                            <input id="ico" type="text" wire:model="ico"
+                                   class="input @error('ico') input-error @enderror">
+                            @error('ico') <span class="error">{{ $message }}</span> @enderror
+                        @endif
                     </div>
-                    @if($type_of_exhibitioner == "school")
-                        <div class="form-field">
+                    <div class="form-field">
+                        @if($type_of_exhibitioner == "school")
                             <label for="izo" class="label">IZO</label>
                             <input id="izo" type="text" wire:model="izo"
                                    class="input @error('izo') input-error @enderror">
                             @error('izo') <span class="error">{{ $message }}</span> @enderror
-                        </div>
-                    @endif
+                        @endif
+                    </div>
                 </div>
                 <div class="form-row-2">
                     <div class="form-field">
@@ -106,27 +112,30 @@
 
                 <div class="form-row-2">
                     <div>
-                        <label for="logo" class="label">Logo</label>
-                        <input type="file" wire:model="logo" id="logo" class="input" onchange="checkFileSizeLogo(this)">
-                        @error('logo') <span class="error" id="logo-error-laravel">{{ $message }}</span> @enderror
+                        @if($type_of_exhibitioner != "empl_dep")
+                            <label for="logo" class="label">Logo</label>
+                            <input type="file" wire:model="logo" id="logo" class="input"
+                                   onchange="checkFileSizeLogo(this)">
+                            @error('logo') <span class="error" id="logo-error-laravel">{{ $message }}</span> @enderror
 
-                        <div class="error" id="logo-error" wire:ignore="always"></div>
+                            <div class="error" id="logo-error" wire:ignore="always"></div>
 
-                        <script>
-                            function checkFileSizeLogo(el) {
-                                if (el.files.length > 0) {
-                                    const size = Math.round(el.files[0].size / 1024 / 1024 * 100) / 100;
+                            <script>
+                                function checkFileSizeLogo(el) {
+                                    if (el.files.length > 0) {
+                                        const size = Math.round(el.files[0].size / 1024 / 1024 * 100) / 100;
 
-                                    if (size > 1) {
-                                        document.getElementById('logo-error').innerHTML = "maximální povolená velikost souboru je 1MB. (velikost vašeho souboru: " + size + "MB)"
-                                        return false;
+                                        if (size > 1) {
+                                            document.getElementById('logo-error').innerHTML = "maximální povolená velikost souboru je 1MB. (velikost vašeho souboru: " + size + "MB)"
+                                            return false;
+                                        }
                                     }
-                                }
 
-                                document.getElementById('logo-error').innerHTML = "";
-                                return true;
-                            }
-                        </script>
+                                    document.getElementById('logo-error').innerHTML = "";
+                                    return true;
+                                }
+                            </script>
+                        @endif
                     </div>
                     <div>
                         <label for="brojure" class="label">Brožura</label>
@@ -169,5 +178,14 @@
                 </div>
             </form>
         </x-dashboard-card>
+        @push("scripts")
+            @once
+            <script>
+                window.addEventListener('description-updated', e => {
+                    tinyMCE.get("description").setContent(e.detail.content)
+                })
+            </script>
+            @endonce
+        @endpush
     </div>
 </div>

@@ -31,7 +31,8 @@
         "pusher/pusher-php-server": "^4.1",
         "spatie/valuestore": "^1.2",
         "ext-dom": "*",
-        "ext-libxml": "*"
+        "ext-libxml": "*",
+        "ext-json": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",

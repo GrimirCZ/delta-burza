@@ -17,6 +17,7 @@ use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\CreateRegistration;
 use App\Http\Livewire\CreateSchool;
 use App\Http\Livewire\EditCompany;
+use App\Http\Livewire\EditEmploymentDepartment;
 use App\Http\Livewire\EditRegistration;
 use App\Http\Livewire\EditSchool;
 use App\Http\Livewire\EditSpecialization;
@@ -117,6 +118,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 
     Route::get('/skola/upravit', EditSchool::class);
     Route::get('/spolecnost/upravit', EditCompany::class);
+    Route::get('/urad_prace/upravit', EditEmploymentDepartment::class);
+
+    Route::get("/entita/upravit", "App\Http\Controllers\EntityRouter@edit");
 
     Route::get('/spolecnost/skola/pridat', AddSchool::class);
     Route::delete('/spolecnost/skola/{school}/smazat', UnlinkSchoolFromCompany::class);

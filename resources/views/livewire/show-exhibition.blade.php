@@ -174,7 +174,7 @@
                     <div id="macyJS">
                         @foreach($registrations as $registration)
                             <div
-                                class="relative overflow-hidden shadow-sm box-border h-min-content bg-white {{$registration->school->is_school ? "" : "border-2 border-teal-400"}}">
+                                class="relative overflow-hidden shadow-sm box-border h-min-content bg-white {{$registration->school->type() == "school" ? "" : "border-2 border-teal-400"}}">
                                 @if($registration->school->id === 1)
                                     <div class="flag bg-light-green text-sm text-center text-white shadow-md">
                                         <span class="font-light">autoři portálu</span><br>
@@ -332,7 +332,7 @@
 
                                     <a href="/skola/{{$registration->school->id}}"
                                        class="btn text-sm text-center btn-primary mt-1 block">
-                                        Detail @if($registration->school->is_school) školy @else firmy @endif
+                                        Detail {{$registration->school->type_name(2)}}
                                     </a>
 
                                     <div class="mt-4 text-sm hover:underline text-gray-400">

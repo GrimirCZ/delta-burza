@@ -19,8 +19,8 @@ class ListSchools extends Component
 
         return view('livewire.list-schools', [
             'schools' => School::orderBy('name', 'asc')->get(),
-            "schoolsCount" => School::where('is_school', 1)->count(),
-            "companiesCount" => School::where('is_school', 0)->count(),
+            "schoolsCount" => School::schools()->count(),
+            "companiesCount" => School::companies()->count(),
             'exibitionsCount' => Exhibition::count()
         ]);
     }

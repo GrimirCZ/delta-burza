@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use Exception;
 use Illuminate\Database\Eloquent\Model;
 
 class School extends Model
 {
-    protected $fillable = ['address', 'city', 'psc', 'ico', 'izo', 'name', 'email', 'web', 'phone', 'description', 'is_trustworthy', 'is_school', 'district_id'];
+    protected $fillable = ['address', 'city', 'psc', 'ico', 'izo', 'name', 'email', 'web', 'phone', 'description', 'is_trustworthy', 'entity_type_id', 'district_id'];
+
+    private ?EntityType $et = null; // cache
 
     public function users()
     {
@@ -46,6 +49,93 @@ class School extends Model
     public function brojure()
     {
         return $this->files()->where("type", "brojure")->first()->name ?? "#";
+    }
+
+    public function entity_type()
+    {
+        return $this->belongsTo(EntityType::class);
+    }
+
+    public function type()
+    {
+        if($this->et == null){
+            $this->et = $this->entity_type;
+        }
+
+        return $this->et->type;
+    }
+
+    // translation
+    public function type_name($pad = 1)
+    {
+        $intl = [ // move somewhere else
+            'school' => [
+                1 => "škola",
+                2 => "školy"
+            ],
+            'company' => [
+                1 => "společnost",
+                2 => "společnosti"
+            ],
+            'empl_dep' => [
+                1 => "Úřad práce",
+                2 => "Úřadu práce"
+            ]
+        ];
+
+        if($this->et == null){
+            $this->et = $this->entity_type;
+        }
+
+        if(!array_key_exists($this->et->type, $intl)){
+            throw new Exception("Translation for type name {$this->et->type} not implemented");
+        }
+        if(!array_key_exists($pad, $intl[$this->et->type])){
+            throw new Exception("Pad $pad for type name {$this->et->type} not implemented");
+        }
+
+        return $intl[$this->et->type][$pad];
+    }
+
+    private function get_type_data()
+    {
+        if($this->et == null){
+            $this->et = $this->entity_type;
+        }
+
+        if(is_string($this->et->data)){
+            $this->et->data = json_decode($this->et->data);
+        }
+
+        return $this->et->data;
+    }
+
+    public function type_can_have_related()
+    {
+        return $this->get_type_data()->can_have_related ?? false;
+    }
+
+    public function type_can_be_related_to()
+    {
+        return $this->get_type_data()->can_be_related_to ?? false;
+    }
+
+    public function type_has_free_exhibitions()
+    {
+        if($this->et == null){
+            $this->et = $this->entity_type;
+        }
+
+        return $this->get_type_data()->has_free_exhibitions ?? false;
+    }
+
+    public function type_can_have_specializations()
+    {
+        if($this->et == null){
+            $this->et = $this->entity_type;
+        }
+
+        return $this->get_type_data()->can_have_specializations ?? false;
     }
 
     public function ordered_registrations()
@@ -104,26 +194,37 @@ class School extends Model
         return $this->belongsToMany(School::class, 'company_school', 'company_id', 'school_id');
     }
 
-    public function pipe_text() {
-        $pipe_text = $this->is_school ? 'škola' : 'firma';
+    public function pipe_text()
+    {
+        $pipe_text = $this->type_name(1);
         $pipe_text .= ' | ';
-        $pipe_text .= $this->city . ' <i>(okres '.$this->district->name.')</i>';
+        $pipe_text .= $this->city . ' <i>(okres ' . $this->district->name . ')</i>';
 
         return $pipe_text;
     }
 
     public function eligible_schools()
     {
-        return $this->whereNotIn('id', function($q){
+        return $this->whereNotIn('schools.id', function($q){
             $q->select('company_school.school_id')
                 ->from("company_school")
                 ->where("company_school.company_id", "=", $this->id);
-        })
-            ->where("is_school", true);
+        })->join("entity_types", "entity_type_id", "=", "entity_types.id")
+            ->where("entity_types.data->can_be_related_to", true);
     }
 
     public function contacts()
     {
         return $this->hasMany(SchoolContact::class);
+    }
+
+    public static function schools()
+    {
+        return School::join("entity_types", "entity_type_id", "=", "entity_types.id")->where("entity_types.type", "=", "school");
+    }
+
+    public static function companies()
+    {
+        return School::join("entity_types", "entity_type_id", "=", "entity_types.id")->where("entity_types.type", "=", "company");
     }
 }

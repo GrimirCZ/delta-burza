@@ -2,10 +2,12 @@
 <div>
     <div>
         <div wire:ignore>
+            @once
             <label for="{{$field}}" class="mb-2 label inline-block">{{$label}}</label>
 
             <textarea name="{{$field}}" id="{{$field}}" cols="30" rows="10"
                       class="input @error($field) input-error @enderror"></textarea>
+            @endonce
         </div>
         @error($field) <span class="error">{{ $message }}</span> @enderror
     </div>
