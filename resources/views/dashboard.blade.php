@@ -1,23 +1,23 @@
 <x-app-layout>
-    @if(Auth::user()->school_id == null)
+    @if($school == null)
         <x-own-header>
             Profil
         </x-own-header>
     @else
         <div class="sm:flex justify-between max-w-7xl mx-auto py-10 pb-0 px-2 sm:px-6 lg:px-8 w-100 items-center">
             <div class="inline-block">
-                <div class="top text-gray-600">{{Auth::user()->school->district->name}}</div>
-                <h1 class="font-light text-3xl text-gray-800">{{Auth::user()->school->name}}</h1>
+                <div class="top text-gray-600">{{$school->district->name}}</div>
+                <h1 class="font-light text-3xl text-gray-800">{{$school->name}}</h1>
             </div>
             <div class="inline-block">
-                <img src="{{Auth::user()->school->logo()}}" class="h-8"
-                     alt="Logo {{Auth::user()->school->name}}">
+                <img src="{{$school->logo()}}" class="h-8"
+                     alt="Logo {{$school->name}}">
             </div>
         </div>
     @endif
 
     <div class="max-w-7xl mx-auto">
-        @if(Auth::user()->school_id == null)
+        @if($school == null)
             <div
                 class="grid justify-around items-center h-72 bg-white py-10 pb-0 px-2 sm:px-6 lg:px-8 w-100 my-7 mx-5 shadow-sm">
                 <div class="text-center">
@@ -32,7 +32,7 @@
                 <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Informace o vystavovateli
-                        <a href="{{Auth::user()->school->is_school ? url("/skola/upravit") : url("/spolecnost/upravit")}}"
+                        <a href="{{url("/entita/upravit")}}"
                            class="text-header ml-4">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" class="inline h-5">
@@ -41,7 +41,7 @@
                             </svg>
                             <span class="inline-block align-middle">Upravit</span>
                         </a>
-                        <a href="{{url("/skola/".Auth::user()->school->id)}}" class="text-header ml-4 inline-block">
+                        <a href="{{url("/skola/".$school->id)}}" class="text-header ml-4 inline-block">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  stroke="currentColor" class="inline h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -58,7 +58,7 @@
                                 Název
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{Auth::User()->school->name}}
+                                {{$school->name}}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -66,8 +66,8 @@
                                 Email
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                <a href="mailto:{{Auth::User()->school->email}}">
-                                    {{Auth::User()->school->email}}
+                                <a href="mailto:{{$school->email}}">
+                                    {{$school->email}}
                                 </a>
                             </dd>
                         </div>
@@ -76,8 +76,8 @@
                                 Telefon
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                <a href="tel:{{Auth::User()->school->phone}}">
-                                    {{Auth::User()->school->phone}}
+                                <a href="tel:{{$school->phone}}">
+                                    {{$school->phone}}
                                 </a>
                             </dd>
                         </div>
@@ -86,8 +86,8 @@
                                 Web
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                <a href="{{fix_url(Auth::User()->school->web)}}">
-                                    {{Auth::User()->school->web}}
+                                <a href="{{fix_url($school->web)}}">
+                                    {{$school->web}}
                                 </a>
                             </dd>
                         </div>
@@ -96,7 +96,7 @@
                                 IČ
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{Auth::User()->school->ico}}
+                                {{$school->ico}}
                             </dd>
                         </div>
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -104,7 +104,7 @@
                                 IZO
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{Auth::User()->school->izo}}
+                                {{$school->izo}}
                             </dd>
                         </div>
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -113,9 +113,9 @@
                             </dt>
 
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                <a href="http://maps.google.com/?q={{Auth::User()->school->address}}, {{Auth::User()->school->psc}} {{Auth::User()->school->city}}">
-                                    {{Auth::User()->school->address}}
-                                    , {{Auth::User()->school->psc}} {{Auth::User()->school->city}}
+                                <a href="http://maps.google.com/?q={{$school->address}}, {{$school->psc}} {{$school->city}}">
+                                    {{$school->address}}
+                                    , {{$school->psc}} {{$school->city}}
                                 </a>
                             </dd>
                         </div>
@@ -124,14 +124,14 @@
                                 Informace o škole
                             </dt>
                             <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                {{ substr(strip_tags(Auth::User()->school->description), 0, 50)."..." }}
+                                {{ substr(strip_tags($school->description), 0, 50)."..." }}
                             </dd>
                         </div>
                     </dl>
                 </div>
             </div>
 
-            @if(Auth::User()->school->is_school)
+            @if($school->type_can_have_specializations())
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg mx-5 mt-10">
                     <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -149,7 +149,7 @@
                     <div>
                         <table class="table-fixed min-w-full text-gray-500">
                             <tbody>
-                            @foreach(Auth::User()->school->ordered_specializations()->get() as $specialization)
+                            @foreach($school->ordered_specializations()->get() as $specialization)
                                 <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                     <td class="px-8 py-5">
                                         {{$specialization->prescribed_specialization->code}}
@@ -190,7 +190,7 @@
                 </div>
             @endif
 
-            @if(Auth::user()->school->is_school)
+            @if($school->type_can_be_related_to())
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg mx-5 mt-10">
                     <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -200,7 +200,7 @@
                     <div>
                         <table class="table-fixed min-w-full text-gray-500">
                             <tbody>
-                            @foreach(Auth::user()->school->related_companies as $related_company)
+                            @foreach($school->related_companies as $related_company)
                                 <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                     <td class="px-8 py-5">
                                         <a href="/school/{{$related_company->id}}" class="link">
@@ -213,7 +213,8 @@
                         </table>
                     </div>
                 </div>
-            @else
+            @endif
+            @if($school->type_can_have_related())
                 <div class="bg-white shadow overflow-hidden sm:rounded-lg mx-5 mt-10">
                     <div class="px-4 py-5 border-b border-gray-200 sm:px-6 flex justify-between">
                         <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -232,7 +233,7 @@
                     <div>
                         <table class="table-fixed min-w-full text-gray-500">
                             <tbody>
-                            @foreach(Auth::user()->school->related_schools()->orderBy("name")->get() as $related_school)
+                            @foreach($school->related_schools()->orderBy("name")->get() as $related_school)
                                 <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                     <td class="px-8 py-5">
                                         <a href="/school/{{$related_school->id}}" class="link">
@@ -281,7 +282,7 @@
                 <div>
                     <table class="table-fixed min-w-full text-gray-500">
                         <tbody>
-                        @foreach(Auth::user()->school->ordered_registrations()->get() as $registration)
+                        @foreach($school->ordered_registrations()->get() as $registration)
                             <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                 <td class="px-8 py-5">
                                     <a href="{{url('/vystava/'.$registration->exhibition->id)}}">
@@ -323,7 +324,7 @@
                 <div>
                     <table class="table-fixed min-w-full text-gray-500">
                         <tbody>
-                        @foreach(Auth::user()->school->orders as $order)
+                        @foreach($school->orders as $order)
                             <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                 <td class="px-8 py-5">
                                     <a href="/objednavka/{{$order->id}}" class="link">
@@ -359,7 +360,7 @@
                 <div>
                     <table class="table-fixed min-w-full text-gray-500">
                         <tbody>
-                        @foreach(Auth::user()->school->contacts as $contact)
+                        @foreach($school->contacts as $contact)
                             <tr class="{{$loop->index %2 == 0 ? "bg-gray-100" : ""}}">
                                 <td class="px-8 py-5">
                                     <a href="/zprava/{{$contact->id}}" class="link">

@@ -30,7 +30,8 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                <h3 class="ml-3 inline-block text-3xl align-middle">Nebyli nalezeni žádní vystavovatelé, kteří by odpovídali podmínkám.</h3>
+                <h3 class="ml-3 inline-block text-3xl align-middle">Nebyli nalezeni žádní vystavovatelé, kteří by
+                    odpovídali podmínkám.</h3>
 
                 <div class="align-center">
                     <button
@@ -53,7 +54,8 @@
 
         <div class="gap-3" id="macyJS">
             @foreach($schools as $school)
-                <div class="relative overflow-hidden bg-white shadow-sm box-border h-min-content {{$school->is_school ?  "": "border-2 border-teal-400"}}">
+                <div
+                    class="relative overflow-hidden bg-white shadow-sm box-border h-min-content {{$school->type() == "school" ?  "": "border-2 border-teal-400"}}">
                     @if($school->id === 1)
                         <div class="flag bg-light-green text-sm text-center text-white shadow-md">
                             <span class="font-light">autoři portálu</span><br>
@@ -120,7 +122,7 @@
 
                         <a href="/skola/{{$school->id}}"
                            class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
-                            Detail @if($school->is_school) školy @else firmy @endif
+                            Detail {{$school->type_name(2)}}
                         </a>
 
                         <div class="mt-4 text-gray-400 text-sm hover:underline">

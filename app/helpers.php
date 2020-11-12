@@ -154,6 +154,12 @@ if(!function_exists("current_date_str")){
 if(!function_exists("calc_price")){
     function calc_price(int $school_id, int $exhibition_id, $nth = 0)
     {
+        $sch = \App\Models\School::findOrFail($school_id);
+
+        if($sch->type_has_free_exhibitions()){
+            return 0;
+        }
+
         $exhibition = Exhibition::find($exhibition_id);
         $is_first_order = DB::table('schools')
                 ->join("orders", "schools.id", "=", "orders.school_id")

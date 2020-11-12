@@ -20,7 +20,9 @@ class AddSchool extends Component
     {
         $this->company = Auth::user()->school;
 
-        if($this->company->is_school){
+
+        if(!$this->company->type_can_have_related()){
+            dd($this->company->entity_type);
             $this->redirect(url("/vystavy"));
             return;
         }

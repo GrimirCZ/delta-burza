@@ -71,7 +71,7 @@
                             </a>
                         </div>
                     </div>
-                    @if($school->is_school)
+                    @if($school->type_can_have_specializations())
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <h2 class="p-2">Obory</h2>
                             @foreach ($school->ordered_specializations()->get() as $specialization)
@@ -91,7 +91,7 @@
                         </div>
                     @endif
 
-                    @if($school->is_school)
+                    @if($school->type_can_be_related_to())
                         @if($school->related_companies()->count() > 0)
                             <div class="bg-white p-5 shadow-sm box-border mt-3">
                                 <h2 class="p-2">Spolupracující firmy</h2>
@@ -110,7 +110,8 @@
                                 @endforeach
                             </div>
                         @endif
-                    @else
+                    @endif
+                    @if($school->type_can_have_related())
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <h2 class="p-2">Spolupracující školy</h2>
                             @foreach ($school->related_schools as $related_schools)

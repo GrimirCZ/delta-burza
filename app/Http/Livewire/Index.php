@@ -19,8 +19,8 @@ class Index extends Component
     public function render()
     {
         return view('livewire.index', [
-            "schoolsCount" => School::where('is_school', 1)->count(),
-            "companiesCount" => School::where('is_school', 0)->count(),
+            "schoolsCount" => School::schools()->count(),
+            "companiesCount" => School::companies()->count(),
             'exibitionsCount' => Exhibition::count(),
             'articles' => Article::where("show", true)
                 ->orderByDesc("date")

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Article;
 use App\Models\File;
 use App\Models\PrescribedSpecialization;
 use App\Models\Registration;
@@ -35,7 +36,7 @@ class DummyDataSeeder extends Seeder
             'web' => 'http://www.delta-skola.cz',
             'phone' => '+420 466 611 106',
             'description' => 'School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.',
-            'is_school' => true,
+            'entity_type_id' => 1,
             'district_id' => '45',
         ]);
 
@@ -63,7 +64,7 @@ class DummyDataSeeder extends Seeder
             'web' => 'http://www.delta-skola.cz',
             'phone' => '+420 466 611 106',
             'description' => 'School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.School <b>bozi</b>.',
-            'is_school' => false,
+            'entity_type_id' => 2,
             'district_id' => '45',
         ]);
 
@@ -72,9 +73,17 @@ class DummyDataSeeder extends Seeder
             'email' => "falta.vit@zsbcuo.cz",
 //            'email' => "jiri.formanek@delta-skola.cz",
             'password' => Hash::make("admin"),
-            'school_id' => $sch->id,
+//            'school_id' => $sch->id,
             'is_main_contact' => true,
             'is_admin' => true
+        ]);
+
+        Article::create([
+            'id' => 1001,
+            'title' => 'a',
+            'content' => "<b>hal</b>as",
+            'show' => false,
+            'cover_image' => "#"
         ]);
     }
 }

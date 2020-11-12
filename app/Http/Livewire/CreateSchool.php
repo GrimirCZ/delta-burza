@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Article;
 use App\Models\District;
+use App\Models\EntityType;
 use App\Models\File;
 use App\Models\School;
 use Auth;
@@ -33,6 +35,20 @@ class CreateSchool extends Component
 
     public $type_of_exhibitioner = "school";
 
+    public function updated($name, $value)
+    {
+        if($name == "type_of_exhibitioner" && $value == "empl_dep"){
+            $empl_dep_desc_template = Article::find(1001);
+            if($empl_dep_desc_template != null){
+                $this->ico = "724 96 991";
+                $this->description = $empl_dep_desc_template->content;
+
+                $this->dispatchBrowserEvent('description-updated', ['content' => $this->description]);
+            }
+        }
+
+    }
+
     public function submit()
     {
         $this->validate([
@@ -52,16 +68,17 @@ class CreateSchool extends Component
             'phone' => 'required|max:255',
             'description' => 'required',
             'district_id' => 'exists:districts,id',
-            'logo' => 'image|max:1024', // 1MB Max
+            'type_of_exhibitioner' => 'exists:entity_types,type',
+            'logo' => 'nullable|image|max:1024', // 1MB Max
             'brojure' => 'nullable|sometimes|file|max:5120', // 5MB Max
         ]);
 
 
         DB::transaction(function(){
-            $filename = $this->logo->storePublicly("logos", 's3');
-            $logo_path = Storage::disk("s3")->url($filename);
 
             $user = Auth::user();
+
+            $et_id = EntityType::get($this->type_of_exhibitioner)->id;
 
             $sch = School::create([
                 'address' => $this->address,
@@ -74,15 +91,32 @@ class CreateSchool extends Component
                 'web' => $this->web,
                 'phone' => $this->phone,
                 'description' => html_clean($this->description),
-                'is_school' => $this->type_of_exhibitioner == "school",
                 'district_id' => $this->district_id,
+                'entity_type_id' => $et_id
             ]);
 
-            File::create([
-                'type' => 'logo',
-                'name' => substr($logo_path, 6), // strip the public part
-                'school_id' => $sch->id
-            ]);
+            if($this->type_of_exhibitioner == "empl_dep"){
+                File::create([
+                    'type' => 'logo',
+                    'name' => url("/images/up.png"), // strip the public part
+                    'school_id' => $sch->id
+                ]);
+            } else if($this->logo){
+                $filename = $this->logo->storePublicly("logos", 's3');
+                $logo_path = Storage::disk("s3")->url($filename);
+
+                File::create([
+                    'type' => 'logo',
+                    'name' => substr($logo_path, 6), // strip the public part
+                    'school_id' => $sch->id
+                ]);
+            } else{
+                File::create([
+                    'type' => 'logo',
+                    'name' => "#",
+                    'school_id' => $sch->id
+                ]);
+            }
 
             if($this->brojure){
                 $filename = $this->brojure->storePublicly("brojures", "s3");

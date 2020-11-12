@@ -91,6 +91,8 @@ class FilterSchools extends Component
 
     private function filtered_schools_restrictions($q)
     {
+        $q = $q->join("entity_types", "entity_type_id", "=", "entity_types.id");
+
         if($this->type == "skoly"){
             if($this->type_of_study_id != "all" && $this->field_of_study_id == "all"){
                 $q = $q->join("specializations", "schools.id", "=", "specializations.school_id")
@@ -110,9 +112,9 @@ class FilterSchools extends Component
                     ->where("prescribed_specializations.id", $this->prescribed_specialization_id);
             }
 
-            $q = $q->where("schools.is_school", true);
+            $q = $q->where("entity_types.type", "school");
         } else if($this->type == "firmy"){
-            $q = $q->where("schools.is_school", false);
+            $q = $q->where("entity_types.type", "company");
         }
 
         $selected_region_ids = collect($this->regions)
