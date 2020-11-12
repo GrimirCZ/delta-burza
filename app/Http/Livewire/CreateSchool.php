@@ -55,7 +55,7 @@ class CreateSchool extends Component
             'address' => 'required|max:255',
             'psc' => 'required|max:6',
             'city' => 'required|max:255',
-            'ico' => 'required|unique:schools,ico|max:10',
+            'ico' => 'required|max:10',
             'izo' => [
                 Rule::requiredIf($this->type_of_exhibitioner == "school"),
                 'nullable',
