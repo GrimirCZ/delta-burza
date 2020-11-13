@@ -55,7 +55,7 @@ class ShowExhibition extends Component
                 ->orderByDesc("entity_types.data->importance")
                 ->orderBy("schools.name")
         )
-            ->select("registrations.*", "schools.name");
+            ->select("registrations.*", "schools.name", "entity_types.data->importance");
     }
 
     private function filtered_schools_restrictions($q)
