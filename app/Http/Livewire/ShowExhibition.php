@@ -47,10 +47,12 @@ class ShowExhibition extends Component
                 ->registrations()
                 ->join("schools", "registrations.school_id", "=", "schools.id")
                 ->join("order_registration", "order_registration.registration_id", "=", "registrations.id")
+                ->join("entity_types", "entity_type_id", "=", "entity_types.id")
                 ->where(function($q){
                     $q->whereNotNull("order_registration.fulfilled_at")
                         ->orWhere("schools.is_trustworthy", true);
                 })
+                ->orderByDesc("entity_types.data->importance")
                 ->orderBy("schools.name")
         )
             ->select("registrations.*", "schools.name");
@@ -58,8 +60,6 @@ class ShowExhibition extends Component
 
     private function filtered_schools_restrictions($q)
     {
-        $q = $q->join("entity_types", "entity_type_id", "=", "entity_types.id");
-
         if($this->type == "skoly"){
             if($this->type_of_study_id != "all" && $this->field_of_study_id == "all"){
                 $q = $q->join("specializations", "schools.id", "=", "specializations.school_id")
