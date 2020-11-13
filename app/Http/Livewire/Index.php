@@ -22,7 +22,6 @@ class Index extends Component
                 $q->whereNotNull("order_registration.fulfilled_at")
                     ->orWhere("schools.is_trustworthy", true);
             })
-            ->where("date", ">", DB::raw("CURRENT_DATE"))
             ->select(DB::raw("exhibitions.id as exhibition_id"), DB::raw("count(schools.id) as school_count"))
             ->groupBy("exhibitions.id");
 
@@ -33,6 +32,8 @@ class Index extends Component
             ->orderByDesc("exh_sch_count.school_count")
             ->orderBy("exhibitions.city")
             ->orderBy("exhibitions.name")
+            ->where("date", ">", DB::raw("CURRENT_DATE"))
+            ->where("exh_sch_count.school_count", ">", 7)
             ->limit(4)
             ->select("exhibitions.*", DB::raw("exh_sch_count.school_count as school_count"));
     }
