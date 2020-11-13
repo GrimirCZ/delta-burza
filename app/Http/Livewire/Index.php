@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class Index extends Component
 {
-    private function get_current_exhibitions()
+    private function get_upcoming_exhibitions()
     {
         // nesahat
         $q = DB::table("exhibitions")
@@ -22,17 +22,18 @@ class Index extends Component
                 $q->whereNotNull("order_registration.fulfilled_at")
                     ->orWhere("schools.is_trustworthy", true);
             })
-            ->where("date", "=", DB::raw("CURRENT_DATE"))
+            ->where("date", ">", DB::raw("CURRENT_DATE"))
             ->select(DB::raw("exhibitions.id as exhibition_id"), DB::raw("count(schools.id) as school_count"))
             ->groupBy("exhibitions.id");
 
         return Exhibition::joinSub($q, "exh_sch_count", function($join){
             $join->on("exhibitions.id", "=", "exh_sch_count.exhibition_id");
         })
-            ->orderByDesc("exh_sch_count.school_count")
             ->orderBy("exhibitions.date")
+            ->orderByDesc("exh_sch_count.school_count")
             ->orderBy("exhibitions.city")
             ->orderBy("exhibitions.name")
+            ->limit(4)
             ->select("exhibitions.*", DB::raw("exh_sch_count.school_count as school_count"));
     }
 
@@ -50,11 +51,10 @@ class Index extends Component
             'articles' => Article::where("show", true)
                 ->orderByDesc("date")
                 ->get(),
-            'current_exhibitions' => $this->get_current_exhibitions()->get(),
-            'upcoming_exhibitions' => Exhibition::where("date", ">", DB::raw("CURRENT_DATE"))
+            'current_exhibitions' => Exhibition::where("date", "=", DB::raw("CURRENT_DATE"))
                 ->orderBy("date")
-                ->limit(4)
-                ->get()
+                ->get(),
+            'upcoming_exhibitions' => $this->get_upcoming_exhibitions()->get()
         ]);
     }
 }
