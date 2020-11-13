@@ -13,12 +13,10 @@ class ProformaInvoiceMail extends Mailable implements ShouldQueue
 {
     use Queueable, SerializesModels;
 
-    protected User $user;
     protected Order $order;
 
-    public function __construct(User $user, Order $order)
+    public function __construct(Order $order)
     {
-        $this->user = $user;
         $this->order = $order;
         //
     }
@@ -29,7 +27,6 @@ class ProformaInvoiceMail extends Mailable implements ShouldQueue
             ->subject("Zálohová faktura k objednávce č. " . $this->order->id)
             ->view('emails.proforma-invoice')
             ->with([
-                'user' => $this->user,
                 'order' => $this->order
             ])
             ->attach($this->order->invoice, [

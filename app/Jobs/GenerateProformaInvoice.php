@@ -61,7 +61,7 @@ class GenerateProformaInvoice implements ShouldQueue
         ]);
 
         if($this->send_mail){
-            Mail::to($school->email)->queue(new ProformaInvoiceMail($user, $order));
+            Mail::to($school->email)->queue(new ProformaInvoiceMail($order));
         }
         //
     }
