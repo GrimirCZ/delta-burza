@@ -210,7 +210,8 @@ class School extends Model
                 ->from("company_school")
                 ->where("company_school.company_id", "=", $this->id);
         })->join("entity_types", "entity_type_id", "=", "entity_types.id")
-            ->where("entity_types.data->can_be_related_to", true);
+            ->where("entity_types.data->can_be_related_to", true)
+            ->select("schools.*");
     }
 
     public function contacts()
