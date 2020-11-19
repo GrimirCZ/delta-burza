@@ -86,7 +86,7 @@ class FilterSchools extends Component
 
         $q = $this->filtered_schools_restrictions($q);
 
-        return $q->select("schools.*");
+        return $q->select("schools.*", "entity_types.data");
     }
 
     private function filtered_schools_restrictions($q)
