@@ -126,7 +126,8 @@ class FilterSchools extends Component
         $q = $q
             ->join("districts", "schools.district_id", "=", "districts.id")
             ->join("regions", "districts.region_id", "=", "regions.id")
-            ->whereIn("regions.id", $selected_region_ids);
+            ->whereIn("regions.id", $selected_region_ids)
+            ->orderByDesc("entity_types.data->importance");
 
         return $q;
     }
