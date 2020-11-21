@@ -1,6 +1,6 @@
 <div>
     <x-own-header>
-        Nová objednávka
+        Nová přihláška
     </x-own-header>
 
     <div class="py-12">
