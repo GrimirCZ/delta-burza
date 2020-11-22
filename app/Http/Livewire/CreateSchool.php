@@ -19,19 +19,19 @@ class CreateSchool extends Component
 {
     use WithFileUploads;
 
-    public ?string $address;
-    public ?string $psc;
-    public ?string $city;
-    public ?string $ico;
-    public ?string $izo;
-    public ?string $name;
-    public ?string $email;
-    public ?string $web;
-    public ?string $phone;
-    public ?string $description;
-    public ?int $district_id;
-    public $logo; // school logo file
-    public $brojure; // school pdf brojure
+    public ?string $address = null;
+    public ?string $psc = null;
+    public ?string $city = null;
+    public ?string $ico = null;
+    public ?string $izo = null;
+    public ?string $name = null;
+    public ?string $email = null;
+    public ?string $web = null;
+    public ?string $phone = null;
+    public ?string $description = null;
+    public ?int $district_id = null;
+    public $logo = null; // school logo file
+    public $brojure = null; // school pdf brojure
 
     public $type_of_exhibitioner = "school";
 
