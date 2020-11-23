@@ -6,6 +6,7 @@ use App\Models\File;
 use App\Models\PrescribedSpecialization;
 use App\Models\School;
 use App\Models\Specialization;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -27,6 +28,10 @@ class EditSpecialization extends Component
 
     public function mount(Specialization $specialization)
     {
+        if(Auth::user()->id != $specialization->school->main_contact()->id){
+            return abort(400);
+        }
+
         $this->specialization = $specialization;
         $this->name = $specialization->name;
         $this->description = $specialization->description;
