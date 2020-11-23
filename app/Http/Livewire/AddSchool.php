@@ -10,7 +10,7 @@ class AddSchool extends Component
 {
     public School $company;
 
-    public ?string $selected_school_id;
+    public ?string $selected_school_id = null;
 
     protected $rules = [
         'selected_school_id' => 'required|exists:schools,id'

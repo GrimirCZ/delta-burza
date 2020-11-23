@@ -12,9 +12,9 @@ class EditRegistration extends Component
 {
     public Registration $registration;
 
-    public ?string $morning_event;
+    public ?string $morning_event = null;
 
-    public ?string $evening_event;
+    public ?string $evening_event = null;
 
     protected $rules = [
         'morning_event' => 'required|url',

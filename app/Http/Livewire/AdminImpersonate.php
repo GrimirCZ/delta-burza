@@ -9,7 +9,7 @@ use Livewire\Component;
 
 class AdminImpersonate extends Component
 {
-    public ?int $user_id;
+    public ?int $user_id = null;
 
     function submit()
     {

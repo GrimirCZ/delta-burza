@@ -27,7 +27,7 @@ class CreateOrder extends Component
     public School $school;
 
     public array $selected_exhibitions;
-    public ?array $selected_exhibition = [];
+    public ?array $selected_exhibition = null;
 
     public int $last_id = 0;
 
