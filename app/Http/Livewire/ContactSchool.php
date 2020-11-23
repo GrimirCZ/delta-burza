@@ -12,14 +12,14 @@ use Mail;
 class ContactSchool extends Component
 {
     public School $school;
-    public ?Registration $registration;
+    public ?Registration $registration = null;
 
-    public ?string $name;
-    public ?string $email;
-    public ?string $phone;
-    public ?string $body;
+    public ?string $name = null;
+    public ?string $email = null;
+    public ?string $phone = null;
+    public ?string $body = null;
 
-    public ?bool $gdpr;
+    public ?bool $gdpr = null;
 
     protected $rules = [
         'name' => 'required|max:250',

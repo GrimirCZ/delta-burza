@@ -23,7 +23,7 @@ class SchoolChat extends Component
     protected $queryString = ['selected_messenger_id' => ['except' => '']];
     public $listeners = ['refresh' => 'number_of_responded_to_chats_changed'];
 
-    public ?string $message;
+    public ?string $message = null;
 
     protected $rules = [
         'message' => 'required|max:500'

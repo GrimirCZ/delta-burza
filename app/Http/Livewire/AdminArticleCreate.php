@@ -13,10 +13,10 @@ class AdminArticleCreate extends Component
 {
     use WithFileUploads;
 
-    public ?string $title;
-    public ?string $content;
-    public ?string $date;
-    public $cover;
+    public ?string $title = null;
+    public ?string $content = null;
+    public ?string $date = null;
+    public $cover = null;
 
     protected $rules = [
         'title' => 'required|max:512',

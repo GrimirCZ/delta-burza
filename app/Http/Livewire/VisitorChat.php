@@ -14,10 +14,10 @@ use Livewire\Component;
 class VisitorChat extends Component
 {
     public Registration $registration;
-    public ?Messenger $me;
-    public ?Messenger $school;
+    public ?Messenger $me = null;
+    public ?Messenger $school = null;
 
-    public ?string $message;
+    public ?string $message = null;
 
     private string $session_key;
 

@@ -13,11 +13,11 @@ class AdminArticleEdit extends Component
 {
     use WithFileUploads;
 
-    public ?Article $article;
-    public ?string $title;
-    public ?string $content;
-    public ?string $date;
-    public $cover;
+    public ?Article $article = null;
+    public ?string $title = null;
+    public ?string $content = null;
+    public ?string $date = null;
+    public $cover = null;
 
     protected $rules = [
         'title' => 'required|max:512',
