@@ -13,8 +13,7 @@ class ShowOrder extends Component
     public function mount(Order $order)
     {
         if(Auth::user()->id != $order->school->main_contact()->id){
-            $this->redirect("/vystavy");
-            return;
+            return abort(400);
         }
 
         $this->order = $order;
