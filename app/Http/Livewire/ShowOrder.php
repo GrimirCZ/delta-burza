@@ -17,7 +17,7 @@ class ShowOrder extends Component
      */
     public function render()
     {
-        if(Auth::user()->id != $order->school->main_contact()->id){
+        if(Auth::user()->id != $this->order->school->main_contact()->id){
             return abort(400);
         }
 
