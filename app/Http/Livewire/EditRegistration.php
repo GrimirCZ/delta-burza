@@ -24,8 +24,7 @@ class EditRegistration extends Component
     public function mount(Registration $registration)
     {
         if(Auth::user()->id != $registration->school->main_contact()->id){
-            $this->redirect("/vystavy");
-            return;
+            return abort(400);
         }
 
         $this->registration = $registration;
