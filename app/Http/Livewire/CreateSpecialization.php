@@ -17,9 +17,9 @@ class CreateSpecialization extends Component
 
     public School $school;
 
-    public ?string $name;
-    public ?string $description;
-    public ?int $prescribed_specialization_id;
+    public ?string $name = null;
+    public ?string $description = null;
+    public ?int $prescribed_specialization_id = null;
 
     protected $rules = [
         'name' => 'required|max:500',
