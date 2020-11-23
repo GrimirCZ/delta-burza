@@ -29,7 +29,7 @@ class EditSpecialization extends Component
     public function mount(Specialization $specialization)
     {
         if(Auth::user()->id != $specialization->school->main_contact()->id){
-            return abort(400);
+            abort(403);
         }
 
         $this->specialization = $specialization;
