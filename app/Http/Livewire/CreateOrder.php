@@ -27,13 +27,13 @@ class CreateOrder extends Component
     public School $school;
 
     public array $selected_exhibitions;
-    public ?array $selected_exhibition;
+    public ?array $selected_exhibition = [];
 
     public int $last_id = 0;
 
-    public ?int $exhibition_id;
-    public ?string $morning_event;
-    public ?string $evening_event;
+    public ?int $exhibition_id = null;
+    public ?string $morning_event = null;
+    public ?string $evening_event = null;
 
     public $listeners = ['transfer' => 'render', 'complete' => 'complete'];
 

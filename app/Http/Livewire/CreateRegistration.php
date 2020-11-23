@@ -12,11 +12,11 @@ use Livewire\Component;
 class CreateRegistration extends Component
 {
     public School $school;
-    public ?int $exhibition_id;
+    public ?int $exhibition_id = null;
 
-    public ?string $morning_event;
+    public ?string $morning_event = null;
 
-    public ?string $evening_event;
+    public ?string $evening_event = null;
 
     protected $rules = [
         'exhibition_id' => "exists:exhibitions,id",

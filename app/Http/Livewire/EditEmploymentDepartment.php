@@ -18,16 +18,16 @@ class EditEmploymentDepartment extends Component
 
     public School $school;
 
-    public ?string $address;
-    public ?string $psc;
-    public ?string $city;
-    public ?string $name;
-    public ?string $email;
-    public ?string $web;
-    public ?string $phone;
-    public ?string $description;
-    public ?int $district_id;
-    public $brojure; // school pdf brojure
+    public ?string $address = null;
+    public ?string $psc = null;
+    public ?string $city = null;
+    public ?string $name = null;
+    public ?string $email = null;
+    public ?string $web = null;
+    public ?string $phone = null;
+    public ?string $description = null;
+    public ?int $district_id = null;
+    public $brojure = null; // school pdf brojure
 
     public function submit()
     {
