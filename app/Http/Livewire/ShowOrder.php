@@ -10,6 +10,15 @@ class ShowOrder extends Component
 {
     public Order $order;
 
+    public function mount(Order $order)
+    {
+        if(Auth::user()->id != $order->school->main_contact()->id){
+            abort(403);
+        }
+
+        $this->order = $order;
+    }
+
     /**
      * Get the view / contents that represent the component.
      *
@@ -17,10 +26,6 @@ class ShowOrder extends Component
      */
     public function render()
     {
-        if(Auth::user()->id != $this->order->school->main_contact()->id){
-            return abort(400);
-        }
-
         return view('livewire.show-order', [
             'price' => number_format($this->order->price(), 0, ",", "."),
             'order_registrations' => $this->order
