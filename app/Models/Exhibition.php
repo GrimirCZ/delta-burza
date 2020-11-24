@@ -42,7 +42,7 @@ class Exhibition extends Model
         return
             ($diffInDays < 2 && $date >= $now)
             // make join available two days before the exhibition from 8:00 to 8:45 am
-            || $diffInDays <= 2 && $now < $date && $currentHour == 8 && $currentHour >= 0 && $currentMinute <= 45
+            || $diffInDays <= 2 && $now < $date && $currentHour == 8 && $currentMinute >= 0 && $currentMinute <= 45
             || $this->force_enable_join;
     }
 }
