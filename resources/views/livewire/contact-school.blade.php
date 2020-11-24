@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="mt-6">
-                    <label for="body" class="label">Napište nám Vaše dotazy a mi vám na ně odpovíme e-mailem.</label>
+                    <label for="body" class="label">Napište nám Vaše dotazy a my Vám na ně odpovíme e-mailem.</label>
                     <textarea name="body" id="body" cols="30" rows="10" wire:model="body"
                               class="input input-full @error('body') input-error @enderror"></textarea>
                     @error('body') <span class="error">{{ $message }}</span> @enderror
