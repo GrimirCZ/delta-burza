@@ -255,18 +255,18 @@
                         <img src="/images/msmt.png" alt="MŠMT"
                              class="footer-img"/>
                     </a>
-                    <a target="_blank" href="https://www.khkpce.cz/" class="m-3 mb-10">
-                        <img src="/images/khk-pk.png" alt="Krajská hospodářská komora pardubického kraje"
-                             class="footer-img"/>
-                    </a>
-                    <a target="_blank" href="https://www.pardubickykraj.cz/" class="mx-3 mb-10">
-                        <img src="/images/pardubickykraj.png" alt="Pardubický kraj" class="footer-img k-pce"/>
-                    </a>
                     <a target="_blank" href="https://www.uradprace.cz/" class="mx-3 mb-10">
                         <img src="/images/up.png" alt="Úřad práce" class="footer-img urad-prace"/>
                     </a>
                     <a target="_blank" href="/clanek/16" class="m-3 mb-10">
                         <img src="/images/hspkcr.svg" alt="Hospodářská komora ČR"
+                             class="footer-img"/>
+                    </a>
+                    <a target="_blank" href="https://www.pardubickykraj.cz/" class="mx-3 mb-10">
+                        <img src="/images/pardubickykraj.png" alt="Pardubický kraj" class="footer-img k-pce"/>
+                    </a>
+                    <a target="_blank" href="https://www.khkpce.cz/" class="m-3 mb-10">
+                        <img src="/images/khk-pk.png" alt="Krajská hospodářská komora pardubického kraje"
                              class="footer-img"/>
                     </a>
                 </div>
