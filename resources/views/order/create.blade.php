@@ -30,11 +30,10 @@
                                         - Pořadatel: {{$ue->organizer->short_name}} (fakturační podmínky řeší
                                         organizátor
                                         výstavy)
-                                        @if($ue->test_date != null)
-                                            test
-                                            připojení proběhne {{format_date($exhibition->test_date)}}
-                                        @endif
-
+                                    @endif
+                                    @if($ue->test_date != null)
+                                        test
+                                        připojení proběhne {{format_date($exhibition->test_date)}}
                                     @endif
                                 </option>
                             @endforeach
