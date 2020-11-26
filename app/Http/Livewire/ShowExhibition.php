@@ -95,7 +95,7 @@ class ShowExhibition extends Component
         $title = $this->exhibition->district->region->name . " " . format_date($this->exhibition->date);
 
         if($this->exhibition->test_date != null){
-            $title .= "(test proběhne " . format_date($this->exhibition->test_date) . ")";
+            $title .= " (test proběhne " . format_date($this->exhibition->test_date) . ")";
         }
 
         return view('livewire.show-exhibition', [
