@@ -27,13 +27,14 @@
                             @foreach($exhibitions as $ue)
                                 <option value="{{$ue->id}}">{{format_date($ue->date)}} - {{$ue->city}} ({{$ue->name}})
                                     @if($ue->organizer_id != 1)
-                                        - Pořadatel: {{$ue->organizer->short_name}}(
-                                        @if($ue->test_date != null)<i>test
-                                            připojení {{format_date($exhibition->test_date)}}; </i>
-                                        @endif
-                                        fakturační podmínky řeší
+                                        - Pořadatel: {{$ue->organizer->short_name}} (fakturační podmínky řeší
                                         organizátor
                                         výstavy)
+                                        @if($ue->test_date != null)
+                                            test
+                                            připojení proběhne {{format_date($exhibition->test_date)}}
+                                        @endif
+
                                     @endif
                                 </option>
                             @endforeach
