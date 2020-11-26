@@ -1,12 +1,9 @@
 <div>
     <x-own-header
-        top="{{$exhibition->district->region->name}} {{format_date($exhibition->date)}}">
+        top="{{$exhibition->district->region->name}} {{format_date($exhibition->date)}}@if($exhibition->test_date != null)<i>(test připojení {{format_date($exhibition->test_date)}})</i>@endif">
         <span class="font-bold">{{$exhibition->city}}</span> ({{$exhibition->name}})<br>
         @if($exhibition->organizer_id != 1)
             <span class="italic text-lg">Pořadatel: {{$exhibition->organizer->short_name}}</span>
-        @endif
-        @if($exhibition->test_date != null)
-            <span class="italic">Test proběhne: {{format_date($exhibition->test_date)}} od 8:00 do 8:30</span>
         @endif
 
     </x-own-header>
