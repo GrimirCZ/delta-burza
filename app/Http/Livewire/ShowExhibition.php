@@ -101,7 +101,7 @@ class ShowExhibition extends Component
         return view('livewire.show-exhibition', [
             'title' => $title,
             'is_empty' => $this->exhibition->registrations()->count() == 0,
-            'registrations' => $this->get_registrations()->distinct()->get(),
+            'registrations' => $this->get_registrations()->distinct()->paginate(20),
             'enable_join_buttons' => $this->exhibition->show_join_buttons(),
             'prescribed_specializations' => PrescribedSpecialization::where("field_of_study_id", $this->field_of_study_id)
                 ->orderBy("code")

@@ -354,6 +354,7 @@
                                 </div>
                             </div>
                         @endforeach
+                        {{ $posts->links() }}
                     </div>
                     <script>
                         let macyInstance = Macy({
