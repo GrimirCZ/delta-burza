@@ -9,9 +9,12 @@ use App\Models\Region;
 use App\Models\TypeOfStudy;
 use DB;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class ShowExhibition extends Component
 {
+    use WithPagination;
+
     public Exhibition $exhibition;
 
     public string $type = "all";
@@ -25,10 +28,15 @@ class ShowExhibition extends Component
     {
         if($name == "type"){
             $this->type_of_study_id = "all";
+            $this->resetPage();
         } else if($name == "type_of_study_id"){
             $this->field_of_study_id = "all";
+            $this->resetPage();
         } else if($name == "field_of_study_id"){
             $this->prescribed_specialization_id = "all";
+            $this->resetPage();
+        } else if($name == "prescribed_specialization_id"){
+            $this->resetPage();
         }
     }
 
@@ -38,6 +46,7 @@ class ShowExhibition extends Component
         $this->type_of_study_id = 'all';
         $this->field_of_study_id = 'all';
         $this->prescribed_specialization_id = 'all';
+        $this->resetPage();
     }
 
     public function get_registrations()
@@ -101,7 +110,7 @@ class ShowExhibition extends Component
         return view('livewire.show-exhibition', [
             'title' => $title,
             'is_empty' => $this->exhibition->registrations()->count() == 0,
-            'registrations' => $this->get_registrations()->distinct()->paginate(20),
+            'registrations' => $this->get_registrations()->distinct()->paginate(14),
             'enable_join_buttons' => $this->exhibition->show_join_buttons(),
             'prescribed_specializations' => PrescribedSpecialization::where("field_of_study_id", $this->field_of_study_id)
                 ->orderBy("code")
