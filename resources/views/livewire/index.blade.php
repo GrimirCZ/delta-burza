@@ -74,7 +74,7 @@
                             <a href="/vystava/{{$ue->id}}">
                                 <div class="exhibitions-card p-5 bg-white shadow-md box-border text-gray-900">
                                     <div
-                                        class="date">{{$ue->district->region->name}} {{format_date($ue->date)}} @if($exhibition->test_date != null)
+                                        class="date">{{$ue->district->region->name}} {{format_date($ue->date)}} @if($ue->test_date != null)
                                             <i>(test připojení {{format_date($exhibition->test_date)}})</i>@endif</div>
                                     <h3 class="text-2xl font-light"><span
                                             class="font-black">{{$ue->city}}</span> {{$ue->name}}</h3>
