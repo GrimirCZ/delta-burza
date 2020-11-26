@@ -92,7 +92,14 @@ class ShowExhibition extends Component
      */
     public function render()
     {
+        $title = $this->exhibition->district->region->name . " " . format_date($this->exhibition->date);
+
+        if($this->exhibition->test_date != null){
+            $title .= "(test proběhne " . format_date($this->exhibition->test_date) . ")";
+        }
+
         return view('livewire.show-exhibition', [
+            'title' => $title,
             'is_empty' => $this->exhibition->registrations()->count() == 0,
             'registrations' => $this->get_registrations()->distinct()->get(),
             'enable_join_buttons' => $this->exhibition->show_join_buttons(),
