@@ -357,7 +357,7 @@
                     </div>
 
 
-                    <div>
+                    <div class="mt-12">
                         {{ $registrations->withQueryString()->links() }}
                     </div>
                     <script>
