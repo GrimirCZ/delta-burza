@@ -20,7 +20,9 @@
                             @elseif(isset($selected_exhibition))
                                 <option
                                     value="{{$selected_exhibition['id']}}">{{format_date($selected_exhibition['date'])}}
-                                    - {{$selected_exhibition['city']}} ({{$selected_exhibition['name']}})
+                                    - {{$selected_exhibition['city']}} ({{$selected_exhibition['name']}}
+                                    @if($exhibition->test_date != null)<i>; test
+                                        připojení {{format_date($exhibition->test_date)}})</i>@else
                                 </option>
                             @endif
                             @foreach($exhibitions as $ue)
