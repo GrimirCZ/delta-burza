@@ -39,29 +39,6 @@
         </div>
     @endif
 
-    @if(count($articles) > 0)
-        <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 100">
-            <h3 class="text-2xl mt-10 mb-5 font-bold">Novinky z burzy škol</h3>
-            <div class="grid md:grid-cols-2 gap-6">
-                @foreach($articles as $article)
-                    <div>
-                        <a href="/clanek/{{$article->id}}">
-                            @if(isset($article->cover_image))
-                                <img src="{{$article->cover_image}}" alt="{{$article->title}}">
-                            @endif
-                            <div class="exhibitions-card p-5 bg-white shadow-md box-border text-gray-900 text-left">
-                                <h3 class="text-2xl font-light text-left">{{$article->title}}</h3>
-                                <span
-                                    class="text-gray-600 text-black text-sm">{{format_date($article->date)}}</span>
-                                <p>{!! html_cut($article->content, 50)."..." !!}</p>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    @endif
-
     @if(count($upcoming_exhibitions) > 0)
         <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
             <div class="bg-white shadow-sm text-center p-5 mx-5">
@@ -91,6 +68,29 @@
                             výstavy</a>
                     </div>
                 </div>
+            </div>
+        </div>
+    @endif
+
+    @if(count($articles) > 0)
+        <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 100">
+            <h3 class="text-2xl mt-10 mb-5 font-bold">Novinky z burzy škol</h3>
+            <div class="grid md:grid-cols-2 gap-6">
+                @foreach($articles as $article)
+                    <div>
+                        <a href="/clanek/{{$article->id}}">
+                            @if(isset($article->cover_image))
+                                <img src="{{$article->cover_image}}" alt="{{$article->title}}">
+                            @endif
+                            <div class="exhibitions-card p-5 bg-white shadow-md box-border text-gray-900 text-left">
+                                <h3 class="text-2xl font-light text-left">{{$article->title}}</h3>
+                                <span
+                                    class="text-gray-600 text-black text-sm">{{format_date($article->date)}}</span>
+                                <p>{!! html_cut($article->content, 50)."..." !!}</p>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
             </div>
         </div>
     @endif
