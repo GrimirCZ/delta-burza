@@ -25,17 +25,15 @@
                                 </option>
                             @endif
                             @foreach($exhibitions as $ue)
-                                <option value="{{$ue->id}}">{{format_date($ue->date)}}
-                                    @if($ue->test_date != null)
-                                        test {{format_date($ue->test_date)}}
-                                    @endif
-                                    - {{$ue->city}} ({{$ue->name}})
+                                <option value="{{$ue->id}}">{{format_date($ue->date)}} - {{$ue->city}} ({{$ue->name}})
                                     @if($ue->organizer_id != 1)
                                         - Pořadatel: {{$ue->organizer->short_name}} (fakturační podmínky řeší
                                         organizátor
                                         výstavy)
                                     @endif
-
+                                    @if($ue->test_date != null)
+                                        test proběhne {{format_date($ue->test_date)}}
+                                    @endif
                                 </option>
                             @endforeach
                         </select>
