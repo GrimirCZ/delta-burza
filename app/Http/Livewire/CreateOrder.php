@@ -111,6 +111,7 @@ class CreateOrder extends Component
             $this->selected_exhibitions[$this->selected_exhibition['id']]['exhibition_id'] = $this->exhibition_id;
             $this->selected_exhibitions[$this->selected_exhibition['id']]['morning_event'] = $this->morning_event;
             $this->selected_exhibitions[$this->selected_exhibition['id']]['evening_event'] = $this->evening_event;
+            $this->selected_exhibitions[$this->selected_exhibition['id']]['test_date'] = $this->test_date;
         }
 
         $this->state = "ALL";
