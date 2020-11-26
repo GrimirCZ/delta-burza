@@ -68,7 +68,7 @@
                         <a href="/vystava/{{$exhibition->id}}">
                             <div class="exhibitions-card p-5 bg-white shadow-sm hover:shadow-lg box-border text-gray-900">
                                 <div
-                                    class="date">{{$exhibition->region_name}} {{format_date($exhibition->date)}}@if($exhibition->test_date != null)<i>(test připojení {{format_date($exhibition->test_date)}})</i>@endif</div>
+                                    class="date">{{$exhibition->region_name}} {{format_date($exhibition->date)}}@if($exhibition->test_date != null) <i>(test připojení {{format_date($exhibition->test_date)}})</i>@endif</div>
                                 <h3 class="text-2xl font-light"><span
                                         class="font-black">{{$exhibition->city}}</span> {{$exhibition->name}}</h3>
                                 @if($exhibition->organizer_id != 1)
