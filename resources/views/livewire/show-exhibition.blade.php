@@ -357,7 +357,9 @@
                     </div>
 
 
-                    {{ $registrations->links() }}
+                    <div class="mt-12">
+                        {{ $registrations->withQueryString()->links() }}
+                    </div>
                     <script>
                         let macyInstance = Macy({
                             container: '#macyJS',
