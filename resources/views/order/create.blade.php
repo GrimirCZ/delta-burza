@@ -33,7 +33,7 @@
                                     @endif
                                     @if($ue->test_date != null)
                                         test
-                                        připojení proběhne {{format_date($exhibition->test_date)}}
+                                        připojení proběhne {{format_date($ue->test_date)}}
                                     @endif
                                 </option>
                             @endforeach
