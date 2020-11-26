@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class Exhibition extends Model
 {
-    protected $fillable = ['name', 'city', 'date', 'organizer_id', 'force_enable_join', 'district_id'];
+    protected $fillable = ['name', 'city', 'date', 'test_date', 'organizer_id', 'force_enable_join', 'district_id'];
 
     public function district()
     {
@@ -46,30 +46,10 @@ class Exhibition extends Model
         $currentHour = Carbon::now()->hour;
         $currentMinute = Carbon::now()->minute;
 
-        $workDayDiff = 0;
-
-        $workDayNow = Carbon::now()
-            ->setHours(0)
-            ->setSecond(0)
-            ->setMinutes(0)
-            ->setMicroseconds(0);
-
-        // get workday difference between now and target date
-        while($workDayNow < $date && $workDayDiff < $bussinessDayThreshold + 1){
-            if(
-                $workDayNow->dayOfWeek > 0 && $workDayNow->dayOfWeek < 6
-                && Holiday::where("date", $workDayNow)->count() == 0
-            ){
-                $workDayDiff++;
-            }
-
-            $workDayNow->addDay();
-        }
-
         return
             ($diffInDays < 2 && $date >= $now)
             // make join available two days before the exhibition from 8:00 to 8:45 am
-            || $workDayDiff <= 2 && $now < $date && $currentHour == 8 && $currentMinute >= 0 && $currentMinute <= 45
+            || $now->isoFormat("YYYY-MM-DD") == $this->test_date && $currentHour == 8 && $currentMinute >= 0 && $currentMinute <= 45
             || $this->force_enable_join;
     }
 }
