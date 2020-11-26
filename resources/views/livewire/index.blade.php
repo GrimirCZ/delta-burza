@@ -1,7 +1,4 @@
 <div>
-    @php
-    dd($current_exhibitions,count($current_exhibitions));
-    @endphp
     @if(count($current_exhibitions) > 0)
         <div class="bg-teal-200">
             <div class="max-w-7xl mx-auto pt-5 pb-10 px-6 lg:px-8 w-100">
