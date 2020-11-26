@@ -42,6 +42,9 @@
                 </a>
             @endforeach
         </div>
+        <div class="mt-4">
+            {{ $registrations->links() }}
+        </div>
         <script>
             let macyInstance = Macy({
                 container: '#macyJS',
