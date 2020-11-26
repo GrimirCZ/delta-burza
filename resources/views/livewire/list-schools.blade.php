@@ -43,7 +43,7 @@
             @endforeach
         </div>
         <div class="mt-4">
-            {{ $registrations->links() }}
+            {{ $schools->links() }}
         </div>
         <script>
             let macyInstance = Macy({
