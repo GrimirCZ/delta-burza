@@ -28,7 +28,14 @@ class Exhibition extends Model
 
     public function show_join_buttons()
     {
-        $date = new Carbon($this->date);
+        $bussinessDayThreshold = 2;
+
+        $date = (new Carbon($this->date))
+            ->setHours(0)
+            ->setSecond(0)
+            ->setMinutes(0)
+            ->setMicroseconds(0);
+
         $now = Carbon::now()
             ->setHours(0)
             ->setSecond(0)
@@ -39,10 +46,30 @@ class Exhibition extends Model
         $currentHour = Carbon::now()->hour;
         $currentMinute = Carbon::now()->minute;
 
+        $workDayDiff = 0;
+
+        $workDayNow = Carbon::now()
+            ->setHours(0)
+            ->setSecond(0)
+            ->setMinutes(0)
+            ->setMicroseconds(0);
+
+        // get workday difference between now and target date
+        while($workDayNow < $date && $workDayDiff < $bussinessDayThreshold + 1){
+            if(
+                $workDayNow->dayOfWeek > 0 && $workDayNow->dayOfWeek < 6
+                && Holiday::where("date", $workDayNow)->count() == 0
+            ){
+                $workDayDiff++;
+            }
+
+            $workDayNow->addDay();
+        }
+
         return
             ($diffInDays < 2 && $date >= $now)
             // make join available two days before the exhibition from 8:00 to 8:45 am
-            || $diffInDays <= 2 && $now < $date && $currentHour == 8 && $currentMinute >= 0 && $currentMinute <= 45
+            || $workDayDiff <= 2 && $now < $date && $currentHour == 8 && $currentMinute >= 0 && $currentMinute <= 45
             || $this->force_enable_join;
     }
 }
