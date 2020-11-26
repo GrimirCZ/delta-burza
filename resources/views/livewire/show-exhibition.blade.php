@@ -5,13 +5,17 @@
         @if($exhibition->organizer_id != 1)
             <span class="italic text-lg">Pořadatel: {{$exhibition->organizer->short_name}}</span>
         @endif
+        @if($exhibition->test_date != null)
+            <span class="italic">Test proběhne: {{format_date($exhibition->test_date)}} od 8:00 do 8:30</span>
+        @endif
 
     </x-own-header>
 
     <div>
         <div class="max-w-7xl mx-auto pt-0 pb-10 px-2 px-6 lg:px-8 w-100">
             <div class="py-6 bg-teal-200 mt-6 mb-5">
-                <div class="pb-6 pt-2 text-base min-w-full max-w-7xl mx-auto px-6 lg:px-8 w-100 text-header" id="filter-component">
+                <div class="pb-6 pt-2 text-base min-w-full max-w-7xl mx-auto px-6 lg:px-8 w-100 text-header"
+                     id="filter-component">
                     <div class="flex justify-between">
                         <h2 class="text-header font-bold text-2xl pb-4">Vyber si školu, co tě opravdu zajímá</h2>
                         @if($type != "all")
