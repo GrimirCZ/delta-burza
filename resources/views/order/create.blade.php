@@ -28,7 +28,7 @@
                                 <option value="{{$ue->id}}">{{format_date($ue->date)}} - {{$ue->city}} ({{$ue->name}})
                                     @if($ue->organizer_id != 1)
                                         - Pořadatel: {{$ue->organizer->short_name}}(
-                                        @if($exhibition->test_date != null)<i>test
+                                        @if($ue->test_date != null)<i>test
                                             připojení {{format_date($exhibition->test_date)}}; </i>
                                         @endif
                                         fakturační podmínky řeší
