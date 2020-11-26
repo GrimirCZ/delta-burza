@@ -1,23 +1,28 @@
 <div>
-    <div class="bg-teal-200">
-        <div class="max-w-7xl mx-auto pt-5 pb-10 px-6 lg:px-8 w-100">
-            <div class="md:flex text-header py-20">
-                <div class="w-full mr-20">
-                    <h1 class="text-4xl font-bold">BurzaŠkol.Online</h1>
-                    <p></p>
+    @if(count($current_exhibitions) > 0)
+        <div class="bg-teal-200">
+            <div class="max-w-7xl mx-auto pt-5 pb-10 px-6 lg:px-8 w-100">
+                <div class="md:flex text-header py-20">
+                    <div class="w-full mr-20">
+                        <h1 class="text-4xl font-bold">BurzaŠkol.Online</h1>
+                        <p></p>
 
-                    <div class="mt-10">
-                    <a href="{{route("vystavy")}}" class="btn text-sm inline-block text-center bg-teal-400 hover:bg-teal-500 text-white mr-5 mt-3">Zobrazit všechny výstavy</a>
-                    <a href="{{route("jak-se-pripojit")}}" class="btn  inline-block text-sm text-center bg-teal-300 hover:bg-teal-400 hover:text-white mr-5 mt-1">Jak se připojit k hovoru?</a>
+                        <div class="mt-10">
+                            <a href="{{route("vystavy")}}"
+                               class="btn text-sm inline-block text-center bg-teal-400 hover:bg-teal-500 text-white mr-5 mt-3">Zobrazit
+                                všechny výstavy</a>
+                            <a href="{{route("jak-se-pripojit")}}"
+                               class="btn  inline-block text-sm text-center bg-teal-300 hover:bg-teal-400 hover:text-white mr-5 mt-1">Jak
+                                se připojit k hovoru?</a>
+                        </div>
                     </div>
-                </div>
-                @if(count($current_exhibitions) > 0)
                     <div class="w-full  mt-20 md:mt-0">
                         <h1 class="text-1xl font-bold mb-2">Právě probíhá</h1>
 
                         @foreach($current_exhibitions as $ce)
                             <a href="/vystava/{{$ce->id}}">
-                                <div class="exhibitions-card p-5 bg-white shadow-md hover:shadow-lg box-border text-gray-900 mb-3">
+                                <div
+                                    class="exhibitions-card p-5 bg-white shadow-md hover:shadow-lg box-border text-gray-900 mb-3">
                                     <div
                                         class="date">{{$ce->district->region->name}} {{format_date($ce->date)}}</div>
                                     <h3 class="text-2xl font-light"><span
@@ -29,10 +34,10 @@
                             </a>
                         @endforeach
                     </div>
-                @endif
+                </div>
             </div>
         </div>
-    </div>
+    @endif
 
     @if(count($articles) > 0)
         <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 100">
@@ -80,7 +85,9 @@
                         @endforeach
                     </div>
                     <div class="text-center pt-12 pb-3">
-                        <a href="{{url("/vystavy")}}" class="btn text-lg inline-block text-center bg-teal-400 hover:bg-teal-500 text-white">Všechny výstavy</a>
+                        <a href="{{url("/vystavy")}}"
+                           class="btn text-lg inline-block text-center bg-teal-400 hover:bg-teal-500 text-white">Všechny
+                            výstavy</a>
                     </div>
                 </div>
             </div>
