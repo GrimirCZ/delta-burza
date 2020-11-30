@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Console\Commands\FileMigrateToS3;
+use App\Console\Commands\GenerateContentDispositionCommands;
 use App\Console\Commands\RegenerateProformaInvoice;
 use App\Console\Commands\RegenerateProformaInvoiceNumbers;
 use App\Console\Commands\SendProformaInvoice;
@@ -22,6 +23,7 @@ class Kernel extends ConsoleKernel
         RegenerateProformaInvoice::class,
         RegenerateProformaInvoiceNumbers::class,
         SendProformaInvoice::class,
+        GenerateContentDispositionCommands::class,
     ];
 
     /**
