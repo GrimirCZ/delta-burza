@@ -113,7 +113,13 @@
                 <div class="form-row-2">
                     <div>
                         @if($type_of_exhibitioner != "empl_dep")
-                            <label for="logo" class="label">Logo</label>
+                            <label for="logo" class="label">
+                                @if($edit)
+                                    Pokud chcete změnit stávající logo, vlože nový soubor...
+                                @else
+                                    Logo
+                                @endif
+                            </label>
                             <input type="file" wire:model="logo" id="logo" class="input"
                                    onchange="checkFileSizeLogo(this)">
                             @error('logo') <span class="error" id="logo-error-laravel">{{ $message }}</span> @enderror
@@ -138,7 +144,13 @@
                         @endif
                     </div>
                     <div>
-                        <label for="brojure" class="label">Brožura</label>
+                        <label for="brojure" class="label">
+                            @if($edit)
+                                Pokud chcete změnit stávající brožuru, vlože nový soubor...
+                            @else
+                                Brožura
+                            @endif
+                        </label>
                         <input type="file" wire:model="brojure" id="brojure" class="input"
                                onchange="checkFileSizeBrojure(this)">
                         @error('brojure') <span class="error">{{ $message }}</span> @enderror
