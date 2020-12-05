@@ -86,7 +86,7 @@ class CreateSchool extends Component
                 'city' => $this->city,
                 'ico' => $this->ico,
                 'izo' => $this->izo,
-                'name' => $this->name,
+                'name' => trim($this->name),
                 'email' => $this->email,
                 'web' => $this->web,
                 'phone' => $this->phone,

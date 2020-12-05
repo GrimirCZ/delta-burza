@@ -66,7 +66,7 @@ class EditCompany extends Component
                 'psc' => $this->psc,
                 'city' => $this->city,
                 'ico' => $this->ico,
-                'name' => $this->name,
+                'name' => trim($this->name),
                 'email' => $this->email,
                 'web' => $this->web,
                 'phone' => $this->phone,

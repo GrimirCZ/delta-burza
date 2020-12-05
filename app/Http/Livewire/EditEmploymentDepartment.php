@@ -57,7 +57,7 @@ class EditEmploymentDepartment extends Component
                 'address' => $this->address,
                 'psc' => $this->psc,
                 'city' => $this->city,
-                'name' => $this->name,
+                'name' => trim($this->name),
                 'email' => $this->email,
                 'web' => $this->web,
                 'phone' => $this->phone,
