@@ -317,6 +317,13 @@
                     }
                 ]
             });
+            
+            
+            notyf.open({
+                    type: 'info',
+                    duration: 5000,
+                    message: `Informace o údržbě severu<br>Z důvodu údržby bude server od 18:15 do 18:30 vypnut.<br>Děkujeme za pochopení!`
+            })
 
             const get_registration_id = (regex) => {
                 const regexRes = regex.exec(location.href);
