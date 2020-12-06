@@ -8,7 +8,4 @@
     <p class="mt-4">
         Právě na serveru provádíme údržbu.
     </p>
-    <p>
-        Rozsah úržby: 22:00 - 22:30
-    </p>
 @endsection
