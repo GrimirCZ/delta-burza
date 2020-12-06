@@ -1,7 +1,7 @@
 <div>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            @if(isset($edit))
+            @if(isset($edit) && $edit)
                 Upravit vystavovatele
             @else
                 Vytvořit vystavovatele
@@ -114,7 +114,7 @@
                     <div>
                         @if($type_of_exhibitioner != "empl_dep")
                             <label for="logo" class="label">
-                                @if($edit)
+                                @if(isset($edit) && $edit)
                                     Pokud chcete změnit stávající logo, vlože nový soubor...
                                 @else
                                     Logo
@@ -145,7 +145,7 @@
                     </div>
                     <div>
                         <label for="brojure" class="label">
-                            @if($edit)
+                            @if(isset($edit) && $edit)
                                 Pokud chcete změnit stávající brožuru, vlože nový soubor...
                             @else
                                 Brožura

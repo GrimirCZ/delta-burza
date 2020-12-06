@@ -1,6 +1,6 @@
 <div>
     <x-own-header>
-        @if(isset($edit))
+        @if(isset($edit)&&$edit)
             Upravit článek
         @else
             Vytvořit článek
