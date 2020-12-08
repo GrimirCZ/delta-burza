@@ -67,6 +67,8 @@ class EditSchool extends Component
 
         DB::transaction(function(){
 
+            dd($this->brojure);
+
             $this->school->update([
                 'address' => $this->address,
                 'psc' => $this->psc,
