@@ -98,13 +98,11 @@ class EditSchool extends Component
             if($this->brojure){
                 $s3 = Storage::disk("s3");
 
-                $path = $s3->url($this->brojure->getRealPath());
-
-                $ext = pathinfo($path, PATHINFO_EXTENSION);
+                $ext = pathinfo($this->brojure->getClientName(), PATHINFO_EXTENSION);
 
                 $filename = "brojures/" . rand_str(32) . ".$ext";
 
-                $s3->getDriver()->put($filename, file_get_contents($path), [
+                $s3->getDriver()->put($filename, $s3->get($this->brojure->getRealPath()), [
                     'visibility' => 'public',
                     'ContentDisposition' => "attachment; filename=\"$this->name brožura.$ext\""
                 ]);
