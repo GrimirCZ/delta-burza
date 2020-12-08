@@ -67,8 +67,6 @@ class EditSchool extends Component
 
         DB::transaction(function(){
 
-            dd($this->brojure);
-
             $this->school->update([
                 'address' => $this->address,
                 'psc' => $this->psc,
@@ -100,11 +98,13 @@ class EditSchool extends Component
             if($this->brojure){
                 $s3 = Storage::disk("s3");
 
-                $ext = pathinfo($this->brojure->getClientOriginalName(), PATHINFO_EXTENSION);
+                $path = $s3->url($this->brojure->getClientOriginalName());
+
+                $ext = pathinfo($path, PATHINFO_EXTENSION);
 
                 $filename = "brojures/" . rand_str(32) . ".$ext";
 
-                $s3->getDriver()->put($filename, file_get_contents($this->brojure->getRealPath()), [
+                $s3->getDriver()->put($filename, file_get_contents($path), [
                     'visibility' => 'public',
                     'ContentDisposition' => "attachment; filename=\"$this->name brožura.$ext\""
                 ]);
