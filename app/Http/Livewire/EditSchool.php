@@ -98,7 +98,7 @@ class EditSchool extends Component
             if($this->brojure){
                 $s3 = Storage::disk("s3");
 
-                $path = $s3->url($this->brojure->getClientOriginalName());
+                $path = $s3->url($this->brojure->getRealPath());
 
                 $ext = pathinfo($path, PATHINFO_EXTENSION);
 
