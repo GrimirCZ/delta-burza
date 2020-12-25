@@ -217,36 +217,34 @@
                 {{ $slot }}
             </main>
 
-            <!--
-            <div class="backers px-3 sm:px-0 py-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="md:flex justify-between">
-                    <div class="">
-                        <div class="backers-title text-gray-400 mb-3 text-left">Projekt vznikl za podpory:</div>
-                        <div class="mx-5 text-center">
-                            <a target="_blank" href="https://www.khkpce.cz/" class="m-3 mb-10">
-                                <img src="/images/khk-pk.png" alt="Krajská hospodářská komora pardubického kraje"
-                                     class="footer-img"/>
-                            </a>
-                            <a target="_blank" href="https://www.pardubickykraj.cz/" class="mx-3 mb-10">
-                                <img src="/images/pardubickykraj.png" alt="Pardubický kraj" class="footer-img k-pce"/>
-                            </a>
-                            <a target="_blank" href="https://www.uradprace.cz/" class="mx-3 mb-10">
-                                <img src="/images/up.png" alt="Úřad práce" class="footer-img urad-prace"/>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class="backers-title text-gray-400 mb-3 text-left">Záštitu nad projektem převzali:</div>
-                        <div class="mx-5 text-center">
-                            <a target="_blank" href="/clanek/16" class="m-3 mb-10">
-                                <img src="/images/hspkcr.svg" alt="Hospodářská komora ČR"
-                                     class="footer-img"/>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            -->
+{{--            <div class="backers px-3 sm:px-0 py-6 max-w-7xl mx-auto sm:px-6 lg:px-8">--}}
+{{--                <div class="md:flex justify-between">--}}
+{{--                    <div class="">--}}
+{{--                        <div class="backers-title text-gray-400 mb-3 text-left">Projekt vznikl za podpory:</div>--}}
+{{--                        <div class="mx-5 text-center">--}}
+{{--                            <a target="_blank" href="https://www.khkpce.cz/" class="m-3 mb-10">--}}
+{{--                                <img src="/images/khk-pk.png" alt="Krajská hospodářská komora pardubického kraje"--}}
+{{--                                     class="footer-img"/>--}}
+{{--                            </a>--}}
+{{--                            <a target="_blank" href="https://www.pardubickykraj.cz/" class="mx-3 mb-10">--}}
+{{--                                <img src="/images/pardubickykraj.png" alt="Pardubický kraj" class="footer-img k-pce"/>--}}
+{{--                            </a>--}}
+{{--                            <a target="_blank" href="https://www.uradprace.cz/" class="mx-3 mb-10">--}}
+{{--                                <img src="/images/up.png" alt="Úřad práce" class="footer-img urad-prace"/>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="">--}}
+{{--                        <div class="backers-title text-gray-400 mb-3 text-left">Záštitu nad projektem převzali:</div>--}}
+{{--                        <div class="mx-5 text-center">--}}
+{{--                            <a target="_blank" href="/clanek/16" class="m-3 mb-10">--}}
+{{--                                <img src="/images/hspkcr.svg" alt="Hospodářská komora ČR"--}}
+{{--                                     class="footer-img"/>--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <div class="backers px-3 sm:px-0 py-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="backers-title text-gray-400 mb-3 text-center">Projekt podporují:</div>
@@ -317,8 +315,8 @@
                     }
                 ]
             });
-            
-            
+
+
             //notyf.open({
             //        type: 'info',
             //        duration: 5000,

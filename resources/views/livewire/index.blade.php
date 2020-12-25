@@ -40,7 +40,7 @@
     @endif
 
     @if(count($upcoming_exhibitions) > 0)
-        <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
+        <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 100">
             <div class="bg-white shadow-sm text-center p-5 mx-5">
                 <div class="px-4 py-5 border-b border-gray-200 mb-4 sm:px-6 flex justify-between">
                     <h3 class="text-2xl font-bold">Nadcházející výstavy</h3>
@@ -73,7 +73,7 @@
     @endif
 
     @if(count($articles) > 0)
-        <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 100">
+        <div class="max-w-7xl mx-auto pt-5 pb-10 sm:px-6 lg:px-8 w-100">
             <h3 class="text-2xl mt-10 mb-5 font-bold">Novinky z burzy škol</h3>
             <div class="grid md:grid-cols-2 gap-6">
                 @foreach($articles as $article)
