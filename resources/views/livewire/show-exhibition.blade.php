@@ -10,6 +10,11 @@
 
     <div>
         <div class="max-w-7xl mx-auto pt-0 pb-10 px-2 px-6 lg:px-8 w-100">
+            @if($exhibition->description)
+                <div class="mb-8 default-css">
+                    {!! $exhibition->description !!}
+                </div>
+            @endif
             <div class="py-6 bg-teal-200 mt-6 mb-5">
                 <div class="pb-6 pt-2 text-base min-w-full max-w-7xl mx-auto px-6 lg:px-8 w-100 text-header"
                      id="filter-component">
