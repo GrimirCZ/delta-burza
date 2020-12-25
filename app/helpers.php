@@ -150,6 +150,22 @@ if(!function_exists("current_date_str")){
     }
 }
 
+if(!function_exists("parse_time_string")){
+    // returns ["hours" => parsed_hours, "minutes" => parsed_minutes]
+    function parse_time_string(string $src) : array
+    {
+        $matches = [];
+
+        if(preg_match("/(?<hours>\d{1,2}):(?<minutes>\d{1,2})/", $src, $matches)){
+            return [
+                'hours' => intval($matches['hours']),
+                'minutes' => intval($matches['minutes']),
+            ];
+        } else{
+            throw new Exception("String `" . $src . "` does not match format hh:mm");
+        }
+    }
+}
 
 if(!function_exists("calc_price")){
     function calc_price(int $school_id, int $exhibition_id, $nth = 0)
@@ -179,7 +195,7 @@ if(!function_exists("calc_price")){
             return 0;
         }
 
-        return settings("exhibition_price");
+        return $exhibition->price;
     }
 }
 

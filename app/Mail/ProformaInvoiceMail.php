@@ -29,7 +29,7 @@ class ProformaInvoiceMail extends Mailable implements ShouldQueue
             ->with([
                 'order' => $this->order
             ])
-            ->attach($this->order->invoice, [
+            ->attach($this->order->proforma_invoice, [
                 'as' => 'faktura.pdf',
                 'mime' => 'application/pdf',
             ]);

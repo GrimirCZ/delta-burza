@@ -156,7 +156,7 @@
                         Návod: Jak se připojit k hovoru
                     </a>
                 </h2>
-                @foreach ($school->enabled_registrations()->get() as $registration)
+                @foreach ($school->enabled_registrations_today()->get() as $registration)
                     <div
                         class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 md:gap-4 md:px-6">
                         <div class="text-sm leading-5 font-medium text-gray-500">
@@ -173,8 +173,8 @@
                             </a>
                         </div>
                         <div class="mt-5 text-sm leading-5 text-gray-900 sm:mt-3 text-right">
-                            {{--                                zobrazit jen pokud se kona dnes--}}
                             @php
+                                $exhibition = $registration->exhibition;
                                 $morning_provider = $registration->get_provider('morning');
                                 $evening_provider = $registration->get_provider('evening');
 
@@ -196,25 +196,51 @@
                                 }else{
                                     $evening_message .= 'online';
                                 }
+
+                                $has_morning = $exhibition->has_morning_event;
+                                $has_evening = $exhibition->has_evening_event;
+                                $has_test = $exhibition->has_test_event;
+                                $has_chat = $exhibition->has_chat;
+
+                                $enable_morning_join_buttons = $exhibition->enable_morning_join_buttons() || $exhibition->enable_test_join_buttons();
+                                $enable_evening_join_buttons = $exhibition->enable_evening_join_buttons() || $exhibition->enable_test_join_buttons();
+                                $enable_chat = $exhibition->enable_chat() || $exhibition->enable_test_join_buttons();
                             @endphp
 
-                            @if($registration->exhibition->show_join_buttons())
-                                <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
-                                   class="btn text-sm text-center mr-2 btn-primary inline-block">{{$morning_message}} {{settings("morning_event_start")}}
-                                    - {{settings("morning_event_end")}}</a>
-                                <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
-                                   class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">{{$evening_message}} {{settings("evening_event_start")}}
-                                    - {{settings("evening_event_end")}}</a>
-                                <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"
-                                   class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>
-                            @else
-                                <span
-                                    class="btn text-sm text-center mr-2 btn-disabled inline-block">{{$morning_message}} {{settings("morning_event_start")}}
-                                    - {{settings("morning_event_end")}}</span>
-                                <span
-                                    class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">{{$evening_message}} {{settings("evening_event_start")}}
-                                    - {{settings("evening_event_end")}}</span>
-                                <span class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Chat</span>
+                            @if($has_morning)
+                                @if($enable_morning_join_buttons)
+
+                                    <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
+                                       class="btn text-sm mr-1 text-center btn-primary inline-block">{{$morning_message}} {{$registration->exhibition->morning_event_start}}
+                                        - {{$registration->exhibition->morning_event_end}}</a>
+                                @else
+                                    <span
+                                        class="btn text-sm mr-1 text-center btn-disabled inline-block">{{$morning_message}} {{$registration->exhibition->morning_event_start}}
+                                    - {{$registration->exhibition->morning_event_end}}</span>
+                                @endif
+                            @endif
+                            @if($has_evening)
+                                @if($enable_evening_join_buttons)
+
+                                    <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
+                                       class="mt-4 text-sm mr-1 text-center btn btn-primary inline-block">{{$evening_message}} {{$registration->exhibition->evening_event_start}}
+                                        - {{$registration->exhibition->evening_event_end}}</a>
+                                @else
+
+                                    <span
+                                        class="mt-4 text-sm mr-1 text-center btn btn-disabled inline-block">{{$evening_message}}  {{$registration->exhibition->evening_event_start}}
+                                    - {{$registration->exhibition->evening_event_end}}</span>
+                                @endif
+                            @endif
+                            @if($has_chat)
+                                @if($enable_chat)
+
+                                    <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"
+                                       class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>
+                                @else
+                                    <span
+                                        class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Chat</span>
+                                @endif
                             @endif
                         </div>
                     </div>

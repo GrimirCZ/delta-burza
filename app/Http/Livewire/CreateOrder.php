@@ -34,6 +34,8 @@ class CreateOrder extends Component
     public ?int $exhibition_id = null;
     public ?string $morning_event = null;
     public ?string $evening_event = null;
+    public ?string $has_morning_event = null;
+    public ?string $has_evening_event = null;
 
     public $listeners = ['transfer' => 'render', 'complete' => 'complete'];
 
@@ -60,6 +62,8 @@ class CreateOrder extends Component
         $this->exhibition_id = $exhb['exhibition_id'];
         $this->morning_event = $exhb['morning_event'];
         $this->evening_event = $exhb['evening_event'];
+        $this->has_morning_event = $exhb['has_morning_event'];
+        $this->has_evening_event = $exhb['has_evening_event'];
 
         $this->state = "EDIT";
         $this->rerender();
@@ -75,9 +79,11 @@ class CreateOrder extends Component
 
     public function add()
     {
-        $this->exhibition_id = $this->selectable_exhibitions()->first()->id;
+        $this->exhibition_id = null;
         $this->morning_event = null;
         $this->evening_event = null;
+        $this->has_morning_event = null;
+        $this->has_evening_event = null;
 
         $this->state = "NEW";
         $this->rerender();
@@ -88,6 +94,15 @@ class CreateOrder extends Component
         $this->validate();
 
         $ex = Exhibition::findOrFail($this->exhibition_id);
+
+        if($ex->has_morning_event && $this->morning_event == null){
+            $this->addError("morning_event", __("validation.required"));
+            return;
+        }
+        if($ex->has_evening_event && $this->evening_event == null){
+            $this->addError("evening_event", __("validation.required"));
+            return;
+        }
 
         if($this->state == "NEW"){
             array_push(
@@ -101,6 +116,8 @@ class CreateOrder extends Component
                     'morning_event' => $this->morning_event,
                     'evening_event' => $this->evening_event,
                     'organizer_id' => $ex->organizer_id,
+                    'has_morning_event' => $ex->has_morning_event,
+                    'has_evening_event' => $ex->has_evening_event,
                 ]
             );
         } else if($this->state == 'EDIT'){
@@ -111,7 +128,8 @@ class CreateOrder extends Component
             $this->selected_exhibitions[$this->selected_exhibition['id']]['exhibition_id'] = $this->exhibition_id;
             $this->selected_exhibitions[$this->selected_exhibition['id']]['morning_event'] = $this->morning_event;
             $this->selected_exhibitions[$this->selected_exhibition['id']]['evening_event'] = $this->evening_event;
-            $this->selected_exhibitions[$this->selected_exhibition['id']]['test_date'] = $this->test_date;
+            $this->selected_exhibitions[$this->selected_exhibition['id']]['has_morning_event'] = $this->has_morning_event;
+            $this->selected_exhibitions[$this->selected_exhibition['id']]['has_evening_event'] = $this->evening_event;
         }
 
         $this->state = "ALL";
@@ -160,13 +178,18 @@ class CreateOrder extends Component
             $nth = 0;
             foreach($this->selected_exhibitions as $se){
 //                TODO: add check for already having the exhibition
-                $reg = Registration::create([
+                $data = [
                     'school_id' => $this->school->id,
                     'exhibition_id' => $se['exhibition_id'],
+                ];
 
-                    'morning_event' => $se['morning_event'],
-                    'evening_event' => $se['evening_event'],
-                ]);
+                if($se['has_morning_event'])
+                    $data['morning_event'] = $se['morning_event'];
+                if($se['has_evening_event'])
+                    $data['evening_event'] = $se['evening_event'];
+
+
+                $reg = Registration::create($data);
 
                 $price = calc_price($this->school->id, $se['exhibition_id'], $nth++);
 
@@ -194,8 +217,8 @@ class CreateOrder extends Component
 
     protected $rules = [
         'exhibition_id' => 'required|exists:exhibitions,id',
-        'morning_event' => 'required|url',
-        'evening_event' => 'required|url',
+        'morning_event' => 'nullable|url',
+        'evening_event' => 'nullable|url',
     ];
 
     private function selectable_exhibitions()
@@ -238,7 +261,8 @@ class CreateOrder extends Component
             ]);
         else if($this->state == "EDIT" || $this->state == "NEW")
             return view("order.create", [
-                'exhibitions' => $this->selectable_exhibitions()->get()
+                'exhibitions' => $this->selectable_exhibitions()->get(),
+                'temp_exhibition' => Exhibition::find($this->exhibition_id),
             ]);
         else
             return abort(500);

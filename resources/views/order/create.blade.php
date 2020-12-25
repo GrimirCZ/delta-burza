@@ -16,7 +16,7 @@
                                 wire:model="exhibition_id"
                                 class="input @error('exhibition_id') input-error @enderror">
                             @if(!isset($exhibition_id))
-                                <option selected></option>
+                                <option selected>Vyberte výstavu</option>
                             @elseif(isset($selected_exhibition))
                                 <option
                                     value="{{$selected_exhibition['id']}}">{{format_date($selected_exhibition['date'])}}
@@ -40,25 +40,34 @@
                         @error('exhibition_id') <span class="error">{{ $message }}</span> @enderror
                     </div>
                 </div>
-                <div class="form-row">
-                    <div>
-                        <label for="morning_event" class="label">{{settings("morning_event_start")}}
-                            - {{settings("morning_event_end")}} - Odkaz na Microsoft Teams/Google Meets/Zoom/...</label>
-                        <input id="morning_event" type="text" wire:model="morning_event"
-                               class="input input-full @error('morning_event') input-error @enderror">
-                        @error('morning_event') <span class="error">{{ $message }}</span> @enderror
-                    </div>
-                </div>
 
-                <div class="form-row">
-                    <div>
-                        <label for="evening_event" class="label">{{settings("evening_event_start")}}
-                            - {{settings("evening_event_end")}} - Odkaz na Microsoft Teams/Google Meets/Zoom/...</label>
-                        <input id="evening_event" type="text" wire:model="evening_event"
-                               class="input input-full @error('evening_event') input-error @enderror">
-                        @error('evening_event') <span class="error">{{ $message }}</span> @enderror
-                    </div>
-                </div>
+                @if($temp_exhibition != null)
+                    @if($temp_exhibition->has_morning_event)
+                        <div class="form-row">
+                            <div>
+                                <label for="morning_event" class="label">{{$temp_exhibition->morning_event_start}}
+                                    - {{$temp_exhibition->morning_event_end}} - Odkaz na Microsoft Teams/Google
+                                    Meets/Zoom/...</label>
+                                <input id="morning_event" type="text" wire:model="morning_event"
+                                       class="input input-full @error('morning_event') input-error @enderror">
+                                @error('morning_event') <span class="error">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                    @endif
+
+                    @if($temp_exhibition->has_evening_event)
+                        <div class="form-row">
+                            <div>
+                                <label for="evening_event" class="label">{{$temp_exhibition->evening_event_start}}
+                                    - {{$temp_exhibition->evening_event_end}} - Odkaz na Microsoft Teams/Google
+                                    Meets/Zoom/...</label>
+                                <input id="evening_event" type="text" wire:model="evening_event"
+                                       class="input input-full @error('evening_event') input-error @enderror">
+                                @error('evening_event') <span class="error">{{ $message }}</span> @enderror
+                            </div>
+                        </div>
+                    @endif
+                @endif
 
                 <div class="form-row">
                     <button wire:click="back" class="btn btn-secondary">Zpět</button>

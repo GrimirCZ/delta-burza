@@ -291,40 +291,53 @@
                                         }
                                     @endphp
 
-                                    @if($enable_join_buttons)
-                                        <a href="/vstoupit/ranni/{{$registration->id}}"
-                                           target="_blank"
-                                           class="btn text-sm text-center mt-2 btn-primary block">
-                                            {{$morning_message}} {{settings("morning_event_start")}}
-                                            - {{settings("morning_event_end")}}
-                                        </a>
-                                        <a href="/vstoupit/vecerni/{{$registration->id}}"
-                                           target="_blank"
-                                           class="btn text-sm text-center btn-primary mt-1 block">
-                                            {{$evening_message}} {{settings("evening_event_start")}}
-                                            - {{settings("evening_event_end")}}
-                                        </a>
-                                        <a href="/vstoupit/chat/{{$registration->id}}"
-                                           target="_blank"
-                                           class="btn text-sm text-center btn-primary mt-1 block">
-                                            Chat
-                                        </a>
-                                    @else
-                                        <span
-                                            class="btn text-sm text-center mt-2 block btn-disabled">
-                                              {{$morning_message}} {{settings("morning_event_start")}}
-                                            - {{settings("morning_event_end")}}
-                                        </span>
-                                        <span
-                                            class="btn text-sm text-center mt-1 block btn-disabled">
-                                           {{$evening_message}} {{settings("evening_event_start")}}
-                                            - {{settings("evening_event_end")}}
-                                        </span>
-                                        <span
-                                            class="btn text-sm text-center mt-1 block btn-disabled">
-                                            Chat
-                                        </span>
+                                    @if($has_morning)
+                                        @if($enable_morning_join_buttons)
+                                            <a href="/vstoupit/ranni/{{$registration->id}}"
+                                               target="_blank"
+                                               class="btn text-sm text-center mt-2 btn-primary block">
+                                                {{$morning_message}}  {{$exhibition->morning_event_start}}
+                                                - {{$exhibition->morning_event_end}}
+                                            </a>
+                                        @else
+                                            <span
+                                                class="btn text-sm text-center mt-2 block btn-disabled">
+                                              {{$morning_message}} {{$exhibition->morning_event_start}}
+                                            - {{$exhibition->morning_event_end}}
+                                            </span>
+                                        @endif
                                     @endif
+                                    @if($has_evening)
+                                        @if($enable_evening_join_buttons)
+                                            <a href="/vstoupit/vecerni/{{$registration->id}}"
+                                               target="_blank"
+                                               class="btn text-sm text-center btn-primary mt-1 block">
+                                                {{$evening_message}} {{$exhibition->evening_event_start}}
+                                                - {{$exhibition->evening_event_end}}
+                                            </a>
+                                        @else
+                                            <span
+                                                class="btn text-sm text-center mt-1 block btn-disabled">
+                                           {{$evening_message}} {{$exhibition->evening_event_start}}
+                                                - {{$exhibition->evening_event_end}}
+                                        </span>
+                                        @endif
+                                    @endif
+                                    @if($has_chat)
+                                        @if($enable_chat)
+                                            <a href="/vstoupit/chat/{{$registration->id}}"
+                                               target="_blank"
+                                               class="btn text-sm text-center btn-primary mt-1 block">
+                                                Chat
+                                            </a>
+                                        @else
+                                            <span
+                                                class="btn text-sm text-center mt-1 block btn-disabled">
+                                            Chat
+                                        </span>
+                                        @endif
+                                    @endif
+
 
                                     <a href="/skola/{{$registration->school->id}}/zajem/{{$registration->id}}"
                                        class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">

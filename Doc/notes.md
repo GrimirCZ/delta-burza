@@ -1,0 +1,3 @@
+- *Nginx worker* 
+  - not enough workers
+  - /etc/nginx/nginx.conf
