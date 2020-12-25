@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class School extends Model
 {
@@ -156,6 +157,13 @@ class School extends Model
                 $q->whereNotNull("order_registration.fulfilled_at")
                     ->orWhere("schools.is_trustworthy", true);
             });
+    }
+
+
+    public function enabled_registrations_today()
+    {
+        return $this->enabled_registrations()->where("exhibitions.date", "=", DB::raw("CURRENT_DATE()"));
+
     }
 
     public function ordered_specializations()

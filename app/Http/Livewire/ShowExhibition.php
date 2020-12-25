@@ -21,8 +21,8 @@ class ShowExhibition extends Component
 
     public ?string $prescribed_specialization_id = "all";
 
-    public ?string  $type_of_study_id = "all";
-    public ?string  $field_of_study_id = "all";
+    public ?string $type_of_study_id = "all";
+    public ?string $field_of_study_id = "all";
 
     public function updated($name, $value)
     {
@@ -107,11 +107,21 @@ class ShowExhibition extends Component
             $title .= " (test proběhne " . format_date($this->exhibition->test_date) . ")";
         }
 
+        $has_test = $this->exhibition->has_test_event;
+
         return view('livewire.show-exhibition', [
             'title' => $title,
             'is_empty' => $this->exhibition->registrations()->count() == 0,
             'registrations' => $this->get_registrations()->distinct()->get(),
-            'enable_join_buttons' => $this->exhibition->show_join_buttons(),
+
+            'has_morning' => $this->exhibition->has_morning_event,
+            'has_evening' => $this->exhibition->has_evening_event,
+            'has_chat' => $this->exhibition->has_chat,
+
+            'enable_morning_join_buttons' => $this->exhibition->enable_morning_join_buttons() || ($this->exhibition->enable_test_join_buttons() && $has_test),
+            'enable_evening_join_buttons' => $this->exhibition->enable_evening_join_buttons() || ($this->exhibition->enable_test_join_buttons() && $has_test),
+            'enable_chat' => $this->exhibition->enable_chat() || ($this->exhibition->enable_test_join_buttons() && $has_test),
+
             'prescribed_specializations' => PrescribedSpecialization::where("field_of_study_id", $this->field_of_study_id)
                 ->orderBy("code")
                 ->orderBy("name")
