@@ -89,8 +89,18 @@ class EditCompany extends Component
             }
 
             if($this->brojure){
-                $filename = $this->brojure->storePublicly("brojures", 's3');
-                $brojure_path = Storage::disk("s3")->url($filename);
+                $s3 = Storage::disk("s3");
+
+                $ext = pathinfo($this->brojure->getRealPath(), PATHINFO_EXTENSION);
+
+                $filename = "brojures/" . rand_str(32) . ".$ext";
+
+                $s3->getDriver()->put($filename, $s3->get($this->brojure->getRealPath()), [
+                    'visibility' => 'public',
+                    'ContentDisposition' => "attachment; filename=\"$this->name brožura.$ext\""
+                ]);
+
+                $brojure_path = $s3->url($filename);
 
                 File::where("school_id", $this->school->id)->where("type", "brojure")->delete();
 
