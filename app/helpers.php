@@ -152,7 +152,7 @@ if(!function_exists("current_date_str")){
 
 if(!function_exists("parse_time_string")){
     // returns ["hours" => parsed_hours, "minutes" => parsed_minutes]
-    function parse_time_string(string $src) : array
+    function parse_time_string(string $src) : ?array
     {
         $matches = [];
 
@@ -162,7 +162,7 @@ if(!function_exists("parse_time_string")){
                 'minutes' => intval($matches['minutes']),
             ];
         } else{
-            throw new Exception("String `" . $src . "` does not match format hh:mm");
+            return null;
         }
     }
 }

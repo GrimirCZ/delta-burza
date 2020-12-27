@@ -63,6 +63,9 @@ class Exhibition extends Model
 
     private function should_enable($date, $start, $end)
     {
+        if($date == null || $start == null || $end == null)
+            return false;
+
         $currentTime = Carbon::now()->isoFormat("HH:mm");
         $startTime = $this->createTimeStr($start["hours"], $start['minutes']);
         $endTime = $this->createTimeStr($end["hours"], $end['minutes']);
