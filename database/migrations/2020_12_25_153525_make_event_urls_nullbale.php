@@ -10,8 +10,8 @@ class MakeEventUrlsNullbale extends Migration
     {
         Schema::table('registrations', function(Blueprint $table){
 
-            $table->string("morning_event", 512)->nullable()->change();
-            $table->string("evening_event", 512)->nullable()->change();
+            $table->string("morning_event", 2048)->nullable()->change();
+            $table->string("evening_event", 2048)->nullable()->change();
             //
         });
     }
