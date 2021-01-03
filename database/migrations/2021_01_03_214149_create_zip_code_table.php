@@ -1,26 +1,26 @@
 <?php
 
-use App\Imports\ImportPSCFromCSV;
+use App\Imports\ImportZipCodes;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Maatwebsite\Excel\Facades\Excel;
 
-class CreatePscTable extends Migration
+class CreateZipCodeTable extends Migration
 {
     public function up()
     {
-        Schema::dropIfExists("psc");
+        Schema::dropIfExists("zip_codes");
 
-        Schema::create('psc', function(Blueprint $table){
+        Schema::create('zip_codes', function(Blueprint $table){
             $table->bigIncrements('id');
 
-            $table->string("psc");
+            $table->string("zip_code");
             $table->string("city");
             $table->foreignId("district_id")->constrained();
         });
 
-        Excel::import(new ImportPSCFromCSV, resource_path("data/psc.csv"));
+        Excel::import(new ImportZipCodes, resource_path("data/zip_codes.csv"));
     }
 
     public function down()

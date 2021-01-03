@@ -2,20 +2,20 @@
 
 namespace App\Imports;
 
-use App\Models\PSC;
+use App\Models\ZipCode;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ImportPSCFromCSV implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading
+class ImportZipCodes implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading
 {
     /**
      * @param array $row
      */
     public function model(array $row)
     {
-        return new PSC($row);
+        return new ZipCode($row);
         //
     }
 
