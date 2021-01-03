@@ -38,14 +38,15 @@ class AdminArticleEdit extends Component
         ]);
 
         if($this->cover){
-            $img = Image::make($this->cover)
+            $s3 = Storage::disk("s3");
+
+            $img = Image::make($s3->get($this->cover->getRealPath()))
                 ->resize(800, null, function($constraint){
                     $constraint->aspectRatio();
                 });
 
             $filepath = "images/" . uniqid() . ".jpg";
 
-            $s3 = Storage::disk("s3");
             $s3->put($filepath, $img->stream('jpg', 100), 'public');
 
             $this->article->cover_image = $s3->url($filepath);
