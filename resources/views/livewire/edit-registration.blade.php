@@ -12,7 +12,7 @@
                     <div class="form-row">
                         <div>
                             <label for="morning_event" class="label">url odkaz na on-line
-                                schůzku {{settings("morning_event_start")}}-{{settings("morning_event_end")}} (Microsoft
+                                schůzku {{$exhibition->morning_event_start)}}-{{$exhibition->morning_event_end}} (Microsoft
                                 Teams/Google Meets/...)</label>
                             <input id="morning_event" type="text" wire:model="morning_event"
                                    class="input input-full @error('morning_event') input-error @enderror">
