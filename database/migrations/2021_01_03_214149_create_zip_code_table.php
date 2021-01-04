@@ -25,6 +25,6 @@ class CreateZipCodeTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('psc');
+        Schema::dropIfExists('zip_codes');
     }
 }
