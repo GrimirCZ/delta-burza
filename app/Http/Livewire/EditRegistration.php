@@ -6,19 +6,21 @@ use App\Models\Registration;
 use App\Models\School;
 use App\Models\Exhibition;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class EditRegistration extends Component
 {
     public Registration $registration;
+    public Exhibition $exhibition;
 
     public ?string $morning_event = null;
 
     public ?string $evening_event = null;
 
     protected $rules = [
-        'morning_event' => 'required|url',
-        'evening_event' => 'required|url',
+        'morning_event' => 'nullable|url',
+        'evening_event' => 'nullable|url',
     ];
 
     public function mount(Registration $registration)
@@ -28,19 +30,30 @@ class EditRegistration extends Component
         }
 
         $this->registration = $registration;
-        $this->morning_event = $registration->morning_event;
-        $this->evening_event = $registration->evening_event;
+        $this->exhibition = $registration->exhibition;
+
+        if($this->exhibition->has_morning_event)
+            $this->morning_event = $registration->morning_event;
+        if($this->exhibition->has_evening_event)
+            $this->evening_event = $registration->evening_event;
     }
 
     public function submit()
     {
         $this->validate();
 
+        DB::transaction(function(){
 
-        $this->registration->update([
-            'morning_event' => $this->morning_event,
-            'evening_event' => $this->evening_event,
-        ]);
+            if($this->exhibition->has_morning_event)
+                $this->registration->update([
+                    'morning_event' => $this->morning_event,
+                ]);
+
+            if($this->exhibition->has_evening_event)
+                $this->registration->update([
+                    'evening_event' => $this->evening_event,
+                ]);
+        });
 
         $this->redirect("/dashboard");
     }
@@ -52,8 +65,6 @@ class EditRegistration extends Component
      */
     public function render()
     {
-        return view('livewire.edit-registration', [
-            'exhibition' => Exhibition::find($this->registration->exhibition_id)
-        ]);
+        return view('livewire.edit-registration');
     }
 }

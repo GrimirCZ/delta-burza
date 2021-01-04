@@ -8,27 +8,32 @@
     <div class="py-12">
         <x-dashboard-card>
             <form wire:submit.prevent="submit">
-                <div class="form-row">
-                    <div>
-                        <label for="morning_event" class="label">url odkaz na on-line
-                            schůzku {{settings("morning_event_start")}}-{{settings("morning_event_end")}} (Microsoft
-                            Teams/Google Meets/...)</label>
-                        <input id="morning_event" type="text" wire:model="morning_event"
-                               class="input input-full @error('morning_event') input-error @enderror">
-                        @error('morning_event') <span class="error">{{ $message }}</span> @enderror
+                @if($exhibition->has_morning_event)
+                    <div class="form-row">
+                        <div>
+                            <label for="morning_event" class="label">url odkaz na on-line
+                                schůzku {{settings("morning_event_start")}}-{{settings("morning_event_end")}} (Microsoft
+                                Teams/Google Meets/...)</label>
+                            <input id="morning_event" type="text" wire:model="morning_event"
+                                   class="input input-full @error('morning_event') input-error @enderror">
+                            @error('morning_event') <span class="error">{{ $message }}</span> @enderror
+                        </div>
                     </div>
-                </div>
+                @endif
 
-                <div class="form-row">
-                    <div>
-                        <label for="evening_event" class="label">url odkaz na on-line
-                            schůzku {{settings("evening_event_start")}}-{{settings("evening_event_end")}} (Microsoft
-                            Teams/Google Meets/...)</label>
-                        <input id="evening_event" type="text" wire:model="evening_event"
-                               class="input input-full @error('evening_event') input-error @enderror">
-                        @error('evening_event') <span class="error">{{ $message }}</span> @enderror
+                @if($exhibition->has_evening_event)
+                    <div class="form-row">
+                        <div>
+                            <label for="evening_event" class="label">url odkaz na on-line
+                                schůzku {{$exhibition->evening_event_start}}-{{$exhibition->evening_event_end}}
+                                (Microsoft
+                                Teams/Google Meets/...)</label>
+                            <input id="evening_event" type="text" wire:model="evening_event"
+                                   class="input input-full @error('evening_event') input-error @enderror">
+                            @error('evening_event') <span class="error">{{ $message }}</span> @enderror
+                        </div>
                     </div>
-                </div>
+                @endif
 
                 <div class="form-row">
                     <button type="submit" class="btn btn-primary">Upravit</button>
