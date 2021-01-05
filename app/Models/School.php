@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\DB;
 
 class School extends Model
@@ -12,34 +14,40 @@ class School extends Model
 
     private ?EntityType $et = null; // cache
 
-    public function users()
+    public function users() : HasMany
     {
         return $this->hasMany(User::class);
     }
 
-    public function files()
+    public function files() : HasMany
     {
         return $this->hasMany(File::class);
     }
 
-    public function registrations()
+    public function registrations() : HasMany
     {
         return $this->hasMany(Registration::class);
     }
 
-    public function district()
+    public function district() : BelongsTo
     {
         return $this->belongsTo(District::class);
     }
 
-    public function specializations()
+    public function specializations() : HasMany
     {
         return $this->hasMany(Specialization::class);
     }
 
-    public function orders()
+    public function orders() : HasMany
     {
         return $this->hasMany(Order::class);
+    }
+
+
+    public function inspection_reports() : HasMany
+    {
+        return $this->hasMany(InspectionReport::class);
     }
 
     public function logo()
@@ -111,6 +119,12 @@ class School extends Model
         return $this->et->data;
     }
 
+
+    public function type_can_have_inspection_reports()
+    {
+        return $this->get_type_data()->can_have_inspection_reports ?? false;
+    }
+
     public function type_can_have_related()
     {
         return $this->get_type_data()->can_have_related ?? false;
@@ -129,6 +143,7 @@ class School extends Model
 
         return $this->get_type_data()->has_free_exhibitions ?? false;
     }
+
 
     public function type_can_have_specializations()
     {

@@ -64,6 +64,13 @@
                                     stažení</a>
                             </div>
                         @endif
+                        @if($school->type_can_have_inspection_reports() && $last_inspection_report !== null)
+                            <div class="mt-10">
+                                <a href="{{$last_inspection_report->url}}" target="_blank"
+                                   class="btn bg-teal-400 text-white w-100 block text-center">Nejnovější inspekční
+                                    zpráva</a>
+                            </div>
+                        @endif
                         <div class="mt-2">
                             <a href="/skola/{{$school->id}}/zajem"
                                class="btn bg-teal-400 text-white w-100 block text-center">
@@ -85,6 +92,23 @@
                                     <div class="mt-5 text-sm leading-5 text-gray-900 md:mt-3">
                                         <a class="btn btn-primary truncate" href="/obor/{{$specialization->id}}">Více
                                             informací o oboru</a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                    @if($school->type_can_have_inspection_reports() && count($inspection_reports) > 0)
+                        <div class="bg-white p-5 shadow-sm box-border mt-3">
+                            <h2 class="p-2">Inspekční zprávy</h2>
+                            @foreach($inspection_reports as $inspection_report)
+                                <div
+                                    class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">
+                                    <div class="text-sm leading-5 font-medium text-gray-500 flex place-items-center">
+                                        {{format_date($inspection_report->start_date)}}
+                                        - {{format_date($inspection_report->end_date)}}
+                                    </div>
+                                    <div class="mt-5 leading-5 text-gray-900 md:mt-0 flex place-items-center justify-end">
+                                        <a class="text-sm btn btn-primary truncate" target="_blank" href="{{$inspection_report->url}}">Zobrazit zprávu</a>
                                     </div>
                                 </div>
                             @endforeach

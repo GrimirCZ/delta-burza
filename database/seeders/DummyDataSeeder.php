@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Article;
 use App\Models\File;
+use App\Models\InspectionReport;
 use App\Models\PrescribedSpecialization;
 use App\Models\Registration;
 use App\Models\School;
@@ -22,7 +23,7 @@ class DummyDataSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(DatabaseSeeder::class);
+//        $this->call(DatabaseSeeder::class);
         //
 
         $sch1 = School::create([
@@ -84,6 +85,14 @@ class DummyDataSeeder extends Seeder
             'content' => "<b>hal</b>as",
             'show' => false,
             'cover_image' => "#"
+        ]);
+
+        InspectionReport::create([
+           'ico' => $sch1->ico,
+           'start_date' => '2020/11/11',
+           'end_date' => '2020/12/1',
+           'url' => 'https://grimir.cz',
+           'school_id' => $sch1->id
         ]);
     }
 }
