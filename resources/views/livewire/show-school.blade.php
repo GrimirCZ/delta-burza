@@ -90,7 +90,9 @@
                                         - {{$specialization->prescribed_specialization->name}} <br>
                                         (ŠVP: <i>{{$specialization->name}}</i>)
                                     </div>
-                                    <div class="mt-5 text-sm leading-5 text-gray-900 md:mt-3">
+                                    <div
+                                        class="mt-5 leading-5 text-gray-900 md:mt-0 md:flex md:place-items-center
+                                        md:justify-end">
                                         <a class="btn btn-primary truncate" href="/obor/{{$specialization->id}}">Více
                                             informací o oboru</a>
                                     </div>
@@ -109,7 +111,8 @@
                                         <div class="text-sm leading-5 font-medium text-gray-500">
                                             {{$related_company->name}}
                                         </div>
-                                        <div class="mt-5 text-sm leading-5 text-gray-900 md:mt-3">
+                                        <div class="mt-5 leading-5 text-gray-900 md:mt-0 md:flex md:place-items-center
+                                            md:justify-end">
                                             <a class="btn btn-primary truncate" href="/skola/{{$related_company->id}}">
                                                 Zobrazit detail firmy
                                             </a>
@@ -128,7 +131,8 @@
                                     <div class="text-sm leading-5 font-medium text-gray-500">
                                         {{$related_schools->name}}
                                     </div>
-                                    <div class="mt-5 text-sm leading-5 text-gray-900 md:mt-3">
+                                    <div class="mt-5 leading-5 text-gray-900 md:mt-0 md:flex md:place-items-center
+                                        md:justify-end">
                                         <a class="btn btn-primary truncate" href="/skola/{{$related_schools->id}}">
                                             Zobrazit detail školy
                                         </a>
@@ -147,8 +151,8 @@
                                         {{format_date($inspection_report->start_date)}}
                                         - {{format_date($inspection_report->end_date)}}
                                     </div>
-                                    <div
-                                        class="mt-5 leading-5 text-gray-900 md:mt-0 md:flex md:place-items-center md:justify-end">
+                                    <div class="mt-5 leading-5 text-gray-900 md:mt-0 md:flex md:place-items-center
+                                        md:justify-end">
                                         <a class="text-sm btn btn-primary truncate" target="_blank"
                                            href="{{$inspection_report->url}}">Zobrazit zprávu</a>
                                     </div>
