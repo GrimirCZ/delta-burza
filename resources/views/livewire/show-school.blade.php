@@ -148,7 +148,7 @@
                                         - {{format_date($inspection_report->end_date)}}
                                     </div>
                                     <div
-                                        class="mt-5 leading-5 text-gray-900 md:mt-0 flex place-items-center justify-end">
+                                        class="mt-5 leading-5 text-gray-900 md:mt-0 md:flex md:place-items-center md:justify-end">
                                         <a class="text-sm btn btn-primary truncate" target="_blank"
                                            href="{{$inspection_report->url}}">Zobrazit zprávu</a>
                                     </div>
