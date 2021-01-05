@@ -67,8 +67,9 @@
                         @if($school->type_can_have_inspection_reports() && $last_inspection_report !== null)
                             <div class="mt-10">
                                 <a href="{{$last_inspection_report->url}}" target="_blank"
-                                   class="btn bg-teal-400 text-white w-100 block text-center">Nejnovější inspekční
-                                    zpráva</a>
+                                   class="btn bg-teal-400 text-white w-100 block text-center">Inspekční
+                                    zpráva ({{format_date($last_inspection_report->start_date)}}
+                                    - {{format_date($last_inspection_report->end_date)}})</a>
                             </div>
                         @endif
                         <div class="mt-2">

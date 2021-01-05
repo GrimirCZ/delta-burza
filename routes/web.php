@@ -26,6 +26,7 @@ use App\Http\Livewire\Index;
 use App\Http\Livewire\InfoProStredniSkoly;
 use App\Http\Livewire\InfoProZakyZS;
 use App\Http\Livewire\InfoProPoradatele;
+use App\Http\Livewire\LinkAccountToExistingSchool;
 use App\Http\Livewire\ListExhibitions;
 use App\Http\Livewire\ListExhibitionsRegion;
 use App\Http\Livewire\PayOrder;
@@ -115,6 +116,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
 //    Route::get("/faktura/{order}", InvoiceController::class);
 
     Route::get('/skola/vytvorit', CreateSchool::class);
+    Route::get('/skola/spojit', LinkAccountToExistingSchool::class);
 
     Route::get('/skola/upravit', EditSchool::class);
     Route::get('/spolecnost/upravit', EditCompany::class);

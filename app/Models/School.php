@@ -251,4 +251,12 @@ class School extends Model
     {
         return School::join("entity_types", "entity_type_id", "=", "entity_types.id")->where("entity_types.type", "=", "company");
     }
+
+    public static function unassociated_schools()
+    {
+        return School::query()
+            ->leftJoin("users", "users.school_id", "=", "schools.id")
+            ->whereNull("users.id")
+            ->select("schools.*");
+    }
 }
