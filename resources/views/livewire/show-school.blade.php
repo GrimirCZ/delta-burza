@@ -98,25 +98,6 @@
                             @endforeach
                         </div>
                     @endif
-                    @if($school->type_can_have_inspection_reports() && count($inspection_reports) > 0)
-                        <div class="bg-white p-5 shadow-sm box-border mt-3">
-                            <h2 class="p-2">Inspekční zprávy</h2>
-                            @foreach($inspection_reports as $inspection_report)
-                                <div
-                                    class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">
-                                    <div class="text-sm leading-5 font-medium text-gray-500 flex place-items-center">
-                                        {{format_date($inspection_report->start_date)}}
-                                        - {{format_date($inspection_report->end_date)}}
-                                    </div>
-                                    <div
-                                        class="mt-5 leading-5 text-gray-900 md:mt-0 flex place-items-center justify-end">
-                                        <a class="text-sm btn btn-primary truncate" target="_blank"
-                                           href="{{$inspection_report->url}}">Zobrazit zprávu</a>
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endif
 
                     @if($school->type_can_be_related_to())
                         @if($school->related_companies()->count() > 0)
@@ -151,6 +132,25 @@
                                         <a class="btn btn-primary truncate" href="/skola/{{$related_schools->id}}">
                                             Zobrazit detail školy
                                         </a>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                    @if($school->type_can_have_inspection_reports() && count($inspection_reports) > 0)
+                        <div class="bg-white p-5 shadow-sm box-border mt-3">
+                            <h2 class="p-2">Inspekční zprávy</h2>
+                            @foreach($inspection_reports as $inspection_report)
+                                <div
+                                    class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">
+                                    <div class="text-sm leading-5 font-medium text-gray-500 flex place-items-center">
+                                        {{format_date($inspection_report->start_date)}}
+                                        - {{format_date($inspection_report->end_date)}}
+                                    </div>
+                                    <div
+                                        class="mt-5 leading-5 text-gray-900 md:mt-0 flex place-items-center justify-end">
+                                        <a class="text-sm btn btn-primary truncate" target="_blank"
+                                           href="{{$inspection_report->url}}">Zobrazit zprávu</a>
                                     </div>
                                 </div>
                             @endforeach
