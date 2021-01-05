@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-field">
                         @if($type_of_exhibitioner == "school")
-                            <label for="izo" class="label">IZO</label>
+                            <label for="izo" class="label">REDIZO</label>
                             <input id="izo" type="text" wire:model="izo"
                                    class="input @error('izo') input-error @enderror">
                             @error('izo') <span class="error">{{ $message }}</span> @enderror

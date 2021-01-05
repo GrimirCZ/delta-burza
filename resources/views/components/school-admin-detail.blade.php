@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="field">
-                <div class="field__header">IZO:</div>
+                <div class="field__header">REDIZO:</div>
                 <div class="field__value">
                     {{$school->izo}}
                 </div>
