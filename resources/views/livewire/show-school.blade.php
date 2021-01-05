@@ -65,7 +65,7 @@
                             </div>
                         @endif
                         @if($school->type_can_have_inspection_reports() && $last_inspection_report !== null)
-                            <div class="mt-10">
+                            <div class="mt-2">
                                 <a href="{{$last_inspection_report->url}}" target="_blank"
                                    class="btn bg-teal-400 text-white w-100 block text-center">Inspekční
                                     zpráva ({{format_date($last_inspection_report->start_date)}}
@@ -108,8 +108,10 @@
                                         {{format_date($inspection_report->start_date)}}
                                         - {{format_date($inspection_report->end_date)}}
                                     </div>
-                                    <div class="mt-5 leading-5 text-gray-900 md:mt-0 flex place-items-center justify-end">
-                                        <a class="text-sm btn btn-primary truncate" target="_blank" href="{{$inspection_report->url}}">Zobrazit zprávu</a>
+                                    <div
+                                        class="mt-5 leading-5 text-gray-900 md:mt-0 flex place-items-center justify-end">
+                                        <a class="text-sm btn btn-primary truncate" target="_blank"
+                                           href="{{$inspection_report->url}}">Zobrazit zprávu</a>
                                     </div>
                                 </div>
                             @endforeach
