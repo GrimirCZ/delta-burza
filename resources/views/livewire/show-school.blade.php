@@ -33,22 +33,26 @@
                                     </a>
                                 </dd>
                             </div>
-                            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt class="text-sm leading-5 font-medium text-gray-500">
-                                    Email
-                                </dt>
-                                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                    <a href="mailto:{{$school->email}}">{{$school->email}}</a>
-                                </dd>
-                            </div>
-                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt class="text-sm leading-5 font-medium text-gray-500">
-                                    Telefon
-                                </dt>
-                                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                    <a href="tel:{{$school->phone}}">{{$school->phone}}</a>
-                                </dd>
-                            </div>
+                            @if($school->email != null)
+                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm leading-5 font-medium text-gray-500">
+                                        Email
+                                    </dt>
+                                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                        <a href="mailto:{{$school->email}}">{{$school->email}}</a>
+                                    </dd>
+                                </div>
+                            @endif
+                            @if($school->phone != null)
+                                <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm leading-5 font-medium text-gray-500">
+                                        Telefon
+                                    </dt>
+                                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                        <a href="tel:{{$school->phone}}">{{$school->phone}}</a>
+                                    </dd>
+                                </div>
+                            @endif
                             @if($school->web != null)
                                 <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                     <dt class="text-sm leading-5 font-medium text-gray-500">

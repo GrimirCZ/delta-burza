@@ -11,20 +11,24 @@
                 <dd>
                     {{$contact->name}}
                 </dd>
-                <dt class="font-bold py-2">Email</dt>
+                @if($school->email != null)
+                    <dt class="font-bold py-2">Email</dt>
 
-                <dd>
-                    <a href="mailto:{{$contact->email}}" class="link">
-                        {{$contact->email}}
-                    </a>
-                </dd>
-                <dt class="font-bold py-2">Telefon</dt>
+                    <dd>
+                        <a href="mailto:{{$contact->email}}" class="link">
+                            {{$contact->email}}
+                        </a>
+                    </dd>
+                @endif
+                @if($school->phone != null)
+                    <dt class="font-bold py-2">Telefon</dt>
 
-                <dd>
-                    <a href="tel:{{$contact->phone}}" class="link">
-                        {{$contact->phone}}
-                    </a>
-                </dd>
+                    <dd>
+                        <a href="tel:{{$contact->phone}}" class="link">
+                            {{$contact->phone}}
+                        </a>
+                    </dd>
+                @endif
 
                 <dt class="font-bold py-2">Čas</dt>
 

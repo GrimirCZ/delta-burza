@@ -13,18 +13,22 @@
     <h1 class="text-3xl font-semibold block mt-8">{{$school->name}}</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 mt-8">
         <div>
-            <div class="field">
+            @if($school->email != null)
+                <div class="field">
                 <div class="field__header">Email:</div>
                 <div class="field__value">
                     <a href="mailto:{{$school->email}}" target="_blank">{{$school->email}}</a>
                 </div>
             </div>
-            <div class="field">
+            @endif
+            @if($school->phone != null)
+                <div class="field">
                 <div class="field__header">Telefon:</div>
                 <div class="field__value">
                     <a href="tel:{{$school->phone}}" target="_blank">{{$school->phone}}</a>
                 </div>
             </div>
+            @endif
             @if($school->web != null)
                 <div class="field">
                     <div class="field__header">Web:</div>
