@@ -98,7 +98,7 @@
                                     <div class="text-sm leading-5 font-medium text-gray-500">
                                         {{$specialization->prescribed_specialization->code}}
                                         - {{$specialization->prescribed_specialization->name}} <br>
-                                        (ŠVP: <i>{{$specialization->name}}</i>)
+                                        @if($school->is_registered())(ŠVP: <i>{{$specialization->name}}</i>)@endif
                                     </div>
                                     <div
                                         class="mt-5 leading-5 text-gray-900 md:mt-0 md:flex md:place-items-center

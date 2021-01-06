@@ -420,8 +420,7 @@
                                                 <td class="py-3">
                                                     <a href="/obor/{{$specialization->id}}">
                                                         {{$specialization->prescribed_specialization->code}}
-                                                        - {{$specialization->prescribed_specialization->name}} <br/>
-                                                        <i>(ŠVP: {{$specialization->name}})</i>
+                                                        - {{$specialization->prescribed_specialization->name}}
                                                     </a>
                                                 </td>
                                                 <td class="py-3 text-right w-48">
