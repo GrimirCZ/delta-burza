@@ -83,8 +83,12 @@ if(!function_exists('format_now')){
 }
 
 if(!function_exists('fix_url')){
-    function fix_url(string $str) : string
+    function fix_url(?string $str) : string
     {
+        if($str == null){
+            return "#";
+        }
+
         if(str_starts_with($str, "http") || str_starts_with($str, "http")){
             return $str;
         }

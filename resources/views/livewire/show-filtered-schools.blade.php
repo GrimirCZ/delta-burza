@@ -67,7 +67,7 @@
 
                         <a href="/skola/{{$school->id}}">
                             <div class="flex mt-3">
-                                @if($school->logo())
+                                @if($school->has_logo())
                                     <div class="mr-5 py-3">
                                         <img src="{{$school->logo()}}" alt="{{$school->name}} logo" class="card-logo">
                                     </div>
@@ -125,17 +125,19 @@
                             Detail {{$school->type_name(2)}}
                         </a>
 
-                        <div class="mt-4 text-gray-400 text-sm hover:underline">
-                            <div class="display-inline-block">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                     stroke="currentColor" class="inline-block h-4 align-middle">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                          d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                                </svg>
-                                <a href="{{fix_url($school->web)}}" target="_blank"
-                                   class="align-middle">{{$school->web}}</a>
+                        @if($school->web != null)
+                            <div class="mt-4 text-gray-400 text-sm hover:underline">
+                                <div class="display-inline-block">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                         stroke="currentColor" class="inline-block h-4 align-middle">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                    </svg>
+                                    <a href="{{fix_url($school->web)}}" target="_blank"
+                                       class="align-middle">{{$school->web}}</a>
+                                </div>
                             </div>
-                        </div>
+                        @endif
                     </div>
                 </div>
             @endforeach

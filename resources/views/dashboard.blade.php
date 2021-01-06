@@ -10,8 +10,10 @@
                 <h1 class="font-light text-3xl text-gray-800">{{$school->name}}</h1>
             </div>
             <div class="inline-block">
-                <img src="{{$school->logo()}}" class="h-8"
-                     alt="Logo {{$school->name}}">
+                @if($school->has_logo())
+                    <img src="{{$school->logo()}}" class="h-8"
+                         alt="Logo {{$school->name}}">
+                @endif
             </div>
         </div>
     @endif
@@ -86,6 +88,7 @@
                                 </a>
                             </dd>
                         </div>
+                        @if($school->web != null)
                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm leading-5 font-medium text-gray-500">
                                 Web
@@ -96,6 +99,7 @@
                                 </a>
                             </dd>
                         </div>
+                        @endif
                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm leading-5 font-medium text-gray-500">
                                 IČ

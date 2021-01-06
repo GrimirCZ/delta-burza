@@ -6,7 +6,9 @@
             <h1 class="font-light text-3xl text-gray-800">{{$school->name}}</h1>
         </div>
         <div class="inline-block md:order-2 text-left w-full md:w-auto mb-10 md:mb-0">
-            <img src="{{$school->logo()}}" class="school-logo" alt="Logo {{$school->name}}">
+            @if($school->has_logo())
+                <img src="{{$school->logo()}}" class="school-logo" alt="Logo {{$school->name}}">
+                @
         </div>
     </div>
 
@@ -47,14 +49,16 @@
                                     <a href="tel:{{$school->phone}}">{{$school->phone}}</a>
                                 </dd>
                             </div>
-                            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt class="text-sm leading-5 font-medium text-gray-500">
-                                    Webové stránky
-                                </dt>
-                                <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
-                                    <a href="{{fix_url($school->web)}}">{{$school->web}}</a>
-                                </dd>
-                            </div>
+                            @if($school->web != null)
+                                <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                    <dt class="text-sm leading-5 font-medium text-gray-500">
+                                        Webové stránky
+                                    </dt>
+                                    <dd class="mt-1 text-sm leading-5 text-gray-900 sm:mt-0 sm:col-span-2">
+                                        <a href="{{fix_url($school->web)}}">{{$school->web}}</a>
+                                    </dd>
+                                </div>
+                            @endif
                         </dl>
 
                         @if($school->brojure() !== "#")

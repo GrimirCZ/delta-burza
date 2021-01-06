@@ -2,7 +2,9 @@
 <div class="mt-8">
     <div class="flex justify-between align-center">
         <div>
-            <img src="{{$school->logo()}}" alt="Logo {{$school->name}}" class="block h-8">
+            @if($school->has_logo())
+                <img src="{{$school->logo()}}" alt="Logo {{$school->name}}" class="block h-8">
+            @endif
         </div>
         <div class="flex items-center">
             <a href="{{url("/skola/upravit")}}" class="btn btn-primary">Upravit</a>
@@ -23,12 +25,14 @@
                     <a href="tel:{{$school->phone}}" target="_blank">{{$school->phone}}</a>
                 </div>
             </div>
-            <div class="field">
-                <div class="field__header">Web:</div>
-                <div class="field__value">
-                    <a href="{{fix_url($school->web)}}" target="_blank">{{$school->web}}</a>
+            @if($school->web != null)
+                <div class="field">
+                    <div class="field__header">Web:</div>
+                    <div class="field__value">
+                        <a href="{{fix_url($school->web)}}" target="_blank">{{$school->web}}</a>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
         <div>
             <div class="field">

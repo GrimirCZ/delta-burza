@@ -50,6 +50,11 @@ class School extends Model
         return $this->hasMany(InspectionReport::class);
     }
 
+    public function has_logo()
+    {
+        return $this->files()->where("type", "logo")->exists();
+    }
+
     public function logo()
     {
         return $this->files()->where("type", "logo")->first()->name ?? "#";
