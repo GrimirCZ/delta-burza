@@ -8,7 +8,7 @@
         <div class="inline-block md:order-2 text-left w-full md:w-auto mb-10 md:mb-0">
             @if($school->has_logo())
                 <img src="{{$school->logo()}}" class="school-logo" alt="Logo {{$school->name}}">
-                @
+            @endif
         </div>
     </div>
 
