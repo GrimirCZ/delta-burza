@@ -379,7 +379,7 @@
                     </div>
                     <div id="macyJsUnregistered">
 
-                        @foreach($us as $unregistered_schools)
+                        @foreach($unregistered_schools as $us)
                             <div
                                 class="relative overflow-hidden shadow-sm box-border h-min-content bg-white">
                                 <div class="p-5">
