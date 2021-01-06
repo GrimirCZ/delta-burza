@@ -33,7 +33,7 @@ class CreateSchool extends Component
     public $logo = null; // school logo file
     public $brojure = null; // school pdf brojure
 
-    public $type_of_exhibitioner = "school";
+    public $type_of_exhibitioner = "company";
 
     public function updated($name, $value)
     {
@@ -55,7 +55,7 @@ class CreateSchool extends Component
             'address' => 'required|max:255',
             'psc' => 'required|max:6',
             'city' => 'required|max:255',
-            'ico' => 'required|max:10',
+            'ico' => 'sometimes|max:10',
             'izo' => [
                 Rule::requiredIf($this->type_of_exhibitioner == "school"),
                 'nullable',

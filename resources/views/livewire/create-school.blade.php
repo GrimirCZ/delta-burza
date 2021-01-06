@@ -18,9 +18,9 @@
                             <label for="type_of_exhibitioner" class="label">Typ vystavovatele</label>
                             <select wire:model="type_of_exhibitioner" name="type_of_exhibitioner"
                                     id="type_of_exhibitioner" class="input">
-{{--                                <option value="school">--}}
-{{--                                    Škola--}}
-{{--                                </option>--}}
+                                {{--                                <option value="school">--}}
+                                {{--                                    Škola--}}
+                                {{--                                </option>--}}
                                 <option value="company">
                                     Firma
                                 </option>
@@ -63,15 +63,23 @@
                     <div class="form-field">
                         @if($type_of_exhibitioner != "empl_dep")
                             <label for="ico" class="label">IČ</label>
-                            <input id="ico" type="text" wire:model="ico"
-                                   class="input @error('ico') input-error @enderror">
-                            @error('ico') <span class="error">{{ $message }}</span> @enderror
+                            @if($edit && $type_of_exhibitioner === "school")
+                                <input id="ico" type="text" wire:model="ico" disabled
+                                       class="input @error('ico') input-error @enderror">
+                            @else
+                                <input id="ico" type="text" wire:model="ico"
+                                       class="input @error('ico') input-error @enderror">
+                                @error('ico') <span class="error">{{ $message }}</span> @enderror
+                            @endif
                         @endif
                     </div>
                     <div class="form-field">
                         @if($type_of_exhibitioner == "school")
                             <label for="izo" class="label">REDIZO</label>
-                            <input id="izo" type="text" wire:model="izo"
+                            {{--                            <input id="izo" type="text" wire:model="izo"--}}
+                            {{--                                   class="input @error('izo') input-error @enderror">--}}
+
+                            <input id="izo" type="text" wire:model="izo" disabled
                                    class="input @error('izo') input-error @enderror">
                             @error('izo') <span class="error">{{ $message }}</span> @enderror
                         @endif
