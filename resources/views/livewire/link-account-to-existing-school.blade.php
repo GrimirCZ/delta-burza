@@ -24,7 +24,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-field">
-                        <label for="ico" class="label">IČ</label>
+                        <label for="ico" class="label">IČ školy - vložte pro ověření</label>
                         <input id="ico" type="text" wire:model="ico"
                                class="input @error('ico') input-error @enderror">
                         @error('ico') <span class="error">{{ $message }}</span> @enderror
