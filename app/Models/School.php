@@ -209,7 +209,7 @@ class School extends Model
 
     public function is_registered()
     {
-        return !$this->users()
+        return $this->users()
             ->where("is_main_contact", true)
             ->exists();
     }
