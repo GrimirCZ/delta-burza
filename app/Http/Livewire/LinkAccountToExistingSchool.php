@@ -30,8 +30,9 @@ class LinkAccountToExistingSchool extends Component
             abort(403);
         }
 
-        $normalized_ico = str_replace(" ", "", $this->ico);
-        if($normalized_ico !== $sch->ico){
+        $normalized_input_ico = str_replace(" ", "", $this->ico);
+        $normalized_school_ico = str_replace(" ", "", $sch->ico);
+        if($normalized_input_ico !== $normalized_school_ico){
             $this->addError("ico", "Toto není zprávné IČ školy");
             return;
         }
