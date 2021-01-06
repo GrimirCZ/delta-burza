@@ -80,12 +80,14 @@
                                     - {{format_date($last_inspection_report->end_date)}})</a>
                             </div>
                         @endif
-                        <div class="mt-2">
-                            <a href="/skola/{{$school->id}}/zajem"
-                               class="btn bg-teal-400 text-white w-100 block text-center">
-                                Napište nám!
-                            </a>
-                        </div>
+                        @if($school->is_registered())
+                            <div class="mt-2">
+                                <a href="/skola/{{$school->id}}/zajem"
+                                   class="btn bg-teal-400 text-white w-100 block text-center">
+                                    Napište nám!
+                                </a>
+                            </div>
+                        @endif
                     </div>
                     @if($school->type_can_have_specializations())
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
@@ -171,120 +173,124 @@
                 </div>
             </div>
 
-            <div class="bg-white p-5 shadow-sm box-border mt-3">
-                <h2 class="text-2xl mb-3">
-                    Výstavy
-                    <a href="{{route("try-connect")}}"
-                       class="text-header ml-4 text-lg hover:text-teal-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                             class="h-5 inline-block">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                        </svg>
-                        Vyzkoušej si spojení "nanečisto"
-                    </a>
-                    <a href="https://youtu.be/u9on9jIpQ6Y" target="_blank"
-                       class="text-header ml-4 text-lg hover:text-teal-400">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                             class="h-5 inline-block">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                        Návod: Jak se připojit k hovoru
-                    </a>
-                </h2>
-                @foreach ($school->enabled_registrations_today()->get() as $registration)
-                    <div
-                        class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 md:gap-4 md:px-6">
-                        <div class="text-sm leading-5 font-medium text-gray-500">
-                            <a class=""
-                               href="/vystava/{{$registration->exhibition->id}}">
-                                <div class="">
-                                    {{$registration->exhibition->district->region->name}}
-                                    {{format_date($registration->exhibition->date)}}
-                                </div>
-                                <div class="text-lg font-light">
-                                    <span class="font-black">{{$registration->exhibition->city}}</span>
-                                    ({{$registration->exhibition->name}})
-                                </div>
-                            </a>
-                        </div>
-                        <div class="mt-5 text-sm leading-5 text-gray-900 sm:mt-3 text-right">
-                            @php
-                                $exhibition = $registration->exhibition;
-                                $morning_provider = $registration->get_provider('morning');
-                                $evening_provider = $registration->get_provider('evening');
+            @if($school->is_registered())
+                <div class="bg-white p-5 shadow-sm box-border mt-3">
+                    <h2 class="text-2xl mb-3">
+                        Výstavy
+                        <a href="{{route("try-connect")}}"
+                           class="text-header ml-4 text-lg hover:text-teal-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor"
+                                 class="h-5 inline-block">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                            Vyzkoušej si spojení "nanečisto"
+                        </a>
+                        <a href="https://youtu.be/u9on9jIpQ6Y" target="_blank"
+                           class="text-header ml-4 text-lg hover:text-teal-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                 stroke="currentColor"
+                                 class="h-5 inline-block">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                      d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            Návod: Jak se připojit k hovoru
+                        </a>
+                    </h2>
+                    @foreach ($school->enabled_registrations_today()->get() as $registration)
+                        <div
+                            class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 md:gap-4 md:px-6">
+                            <div class="text-sm leading-5 font-medium text-gray-500">
+                                <a class=""
+                                   href="/vystava/{{$registration->exhibition->id}}">
+                                    <div class="">
+                                        {{$registration->exhibition->district->region->name}}
+                                        {{format_date($registration->exhibition->date)}}
+                                    </div>
+                                    <div class="text-lg font-light">
+                                        <span class="font-black">{{$registration->exhibition->city}}</span>
+                                        ({{$registration->exhibition->name}})
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="mt-5 text-sm leading-5 text-gray-900 sm:mt-3 text-right">
+                                @php
+                                    $exhibition = $registration->exhibition;
+                                    $morning_provider = $registration->get_provider('morning');
+                                    $evening_provider = $registration->get_provider('evening');
 
-                                $morning_message = "Připojit se ";
-                                $evening_message = "Připojit se ";
+                                    $morning_message = "Připojit se ";
+                                    $evening_message = "Připojit se ";
 
-                                if($morning_provider == 'ms'){
-                                    $morning_message .= 'k Teams';
-                                }else if($morning_provider == 'google'){
-                                    $morning_message .= 'k Meets';
-                                }else{
-                                    $morning_message .= 'online';
-                                }
+                                    if($morning_provider == 'ms'){
+                                        $morning_message .= 'k Teams';
+                                    }else if($morning_provider == 'google'){
+                                        $morning_message .= 'k Meets';
+                                    }else{
+                                        $morning_message .= 'online';
+                                    }
 
-                                if($evening_provider == 'ms'){
-                                    $evening_message .= 'k Teams';
-                                }else if($evening_provider == 'google'){
-                                    $evening_message .= 'k Meets';
-                                }else{
-                                    $evening_message .= 'online';
-                                }
+                                    if($evening_provider == 'ms'){
+                                        $evening_message .= 'k Teams';
+                                    }else if($evening_provider == 'google'){
+                                        $evening_message .= 'k Meets';
+                                    }else{
+                                        $evening_message .= 'online';
+                                    }
 
-                                $has_morning = $exhibition->has_morning_event;
-                                $has_evening = $exhibition->has_evening_event;
-                                $has_test = $exhibition->has_test_event;
-                                $has_chat = $exhibition->has_chat;
+                                    $has_morning = $exhibition->has_morning_event;
+                                    $has_evening = $exhibition->has_evening_event;
+                                    $has_test = $exhibition->has_test_event;
+                                    $has_chat = $exhibition->has_chat;
 
-                                $enable_morning_join_buttons = $exhibition->enable_morning_join_buttons() || $exhibition->enable_test_join_buttons();
-                                $enable_evening_join_buttons = $exhibition->enable_evening_join_buttons() || $exhibition->enable_test_join_buttons();
-                                $enable_chat = $exhibition->enable_chat() || $exhibition->enable_test_join_buttons();
-                            @endphp
+                                    $enable_morning_join_buttons = $exhibition->enable_morning_join_buttons() || $exhibition->enable_test_join_buttons();
+                                    $enable_evening_join_buttons = $exhibition->enable_evening_join_buttons() || $exhibition->enable_test_join_buttons();
+                                    $enable_chat = $exhibition->enable_chat() || $exhibition->enable_test_join_buttons();
+                                @endphp
 
-                            @if($has_morning)
-                                @if($enable_morning_join_buttons)
+                                @if($has_morning)
+                                    @if($enable_morning_join_buttons)
 
-                                    <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
-                                       class="btn text-sm mr-1 text-center btn-primary inline-block">{{$morning_message}} {{$registration->exhibition->morning_event_start}}
-                                        - {{$registration->exhibition->morning_event_end}}</a>
-                                @else
-                                    <span
-                                        class="btn text-sm mr-1 text-center btn-disabled inline-block">{{$morning_message}} {{$registration->exhibition->morning_event_start}}
+                                        <a href="/vstoupit/ranni/{{$registration->id}}" target="_blank"
+                                           class="btn text-sm mr-1 text-center btn-primary inline-block">{{$morning_message}} {{$registration->exhibition->morning_event_start}}
+                                            - {{$registration->exhibition->morning_event_end}}</a>
+                                    @else
+                                        <span
+                                            class="btn text-sm mr-1 text-center btn-disabled inline-block">{{$morning_message}} {{$registration->exhibition->morning_event_start}}
                                     - {{$registration->exhibition->morning_event_end}}</span>
+                                    @endif
                                 @endif
-                            @endif
-                            @if($has_evening)
-                                @if($enable_evening_join_buttons)
+                                @if($has_evening)
+                                    @if($enable_evening_join_buttons)
 
-                                    <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
-                                       class="mt-4 text-sm mr-1 text-center btn btn-primary inline-block">{{$evening_message}} {{$registration->exhibition->evening_event_start}}
-                                        - {{$registration->exhibition->evening_event_end}}</a>
-                                @else
+                                        <a href="/vstoupit/vecerni/{{$registration->id}}" target="_blank"
+                                           class="mt-4 text-sm mr-1 text-center btn btn-primary inline-block">{{$evening_message}} {{$registration->exhibition->evening_event_start}}
+                                            - {{$registration->exhibition->evening_event_end}}</a>
+                                    @else
 
-                                    <span
-                                        class="mt-4 text-sm mr-1 text-center btn btn-disabled inline-block">{{$evening_message}}  {{$registration->exhibition->evening_event_start}}
+                                        <span
+                                            class="mt-4 text-sm mr-1 text-center btn btn-disabled inline-block">{{$evening_message}}  {{$registration->exhibition->evening_event_start}}
                                     - {{$registration->exhibition->evening_event_end}}</span>
+                                    @endif
                                 @endif
-                            @endif
-                            @if($has_chat)
-                                @if($enable_chat)
+                                @if($has_chat)
+                                    @if($enable_chat)
 
-                                    <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"
-                                       class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>
-                                @else
-                                    <span
-                                        class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Chat</span>
+                                        <a href="/vstoupit/chat/{{$registration->id}}" target="_blank"
+                                           class="mt-4 text-sm mr-2 text-center btn btn-primary inline-block">Chat</a>
+                                    @else
+                                        <span
+                                            class="mt-4 text-sm mr-2 text-center btn btn-disabled inline-block">Chat</span>
+                                    @endif
                                 @endif
-                            @endif
+                            </div>
                         </div>
-                    </div>
-                @endforeach
-            </div>
+                    @endforeach
+                </div>
+            @endif
         </div>
     </div>
 </div>

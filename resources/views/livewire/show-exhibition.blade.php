@@ -177,7 +177,7 @@
                             nepřihlásil. Buďte první!</h3>
                     </div>
                 @else
-                    <div id="macyJS">
+                    <div id="macyJSRegistered">
                         @foreach($registrations as $registration)
                             <div
                                 class="relative overflow-hidden shadow-sm box-border h-min-content bg-white {{$registration->school->type() == "school" ? "" : "border-2 border-teal-400"}}">
@@ -377,11 +377,115 @@
                             </div>
                         @endforeach
                     </div>
+                    <div id="macyJsUnregistered">
+
+                        @foreach($school as $unregistered_schools)
+                            <div
+                                class="relative overflow-hidden shadow-sm box-border h-min-content bg-white">
+                                <div class="p-5">
+                                    <div class="leading-3 text-gray-400">
+                                        {!! $school->pipe_text() !!}
+                                    </div>
+                                    <a href="/skola/{{$school->id}}">
+                                        <div class="flex mt-3">
+                                            @if($school->has_logo())
+                                                <div class="mr-5 py-3">
+                                                    <img src="{{$school->logo()}}"
+                                                         alt="{{$school->name}} logo" class="card-logo">
+                                                </div>
+                                            @endif
+                                            <h3 class="text-2xl font-light">
+                                                {{$school->name}}
+                                            </h3>
+                                        </div>
+                                    </a>
+
+                                    <table class="table w-full mt-5 text-sm text-gray-600">
+                                        <tbody class="divide-y divide-gray-200">
+                                        @php
+                                            if($type_of_study_id == "all" && $field_of_study_id == "all" && $prescribed_specialization_id == "all"){
+                                                $specializations = $school->ordered_specializations()->get();
+                                            } else if($field_of_study_id == "all" && $prescribed_specialization_id == "all"){
+                                                $specializations = $school
+                                                                    ->ordered_specializations()
+                                                                    ->where("type_of_studies.id", "=", $type_of_study_id)
+                                                                    ->select("specializations.*")
+                                                                    ->get();
+                                            } else if($prescribed_specialization_id == "all"){
+                                                $specializations = $school
+                                                                    ->ordered_specializations()
+                                                                    ->where("field_of_studies.id", "=", $field_of_study_id)
+                                                                    ->select("specializations.*")
+                                                                    ->get();
+                                            } else{
+                                                $specializations = $school->ordered_specializations()->where("prescribed_specialization_id", $prescribed_specialization_id)->get();
+                                            }
+                                        @endphp
+                                        @foreach($specializations as $specialization)
+                                            <tr>
+                                                <td class="py-3">
+                                                    <a href="/obor/{{$specialization->id}}">
+                                                        {{$specialization->prescribed_specialization->code}}
+                                                        - {{$specialization->prescribed_specialization->name}} <br/>
+                                                        <i>(ŠVP: {{$specialization->name}})</i>
+                                                    </a>
+                                                </td>
+                                                <td class="py-3 text-right w-48">
+                                                    <a href="/obor/{{$specialization->id}}"
+                                                       class="btn btn-primary text-sm inline-block">Více
+                                                        informací o oboru</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+
+                                    <a href="/skola/{{$school->id}}"
+                                       class="btn text-sm text-center btn-primary mt-1 block">
+                                        Detail {{$school->type_name(2)}}
+                                    </a>
+
+                                    @if($school->web != null)
+                                        <div class="mt-4 text-sm hover:underline text-gray-400">
+                                            <div>
+
+                                                <a href="{{fix_url($school->web)}}" target="_blank"
+                                                   class="hover:text-teal-400">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24"
+                                                         stroke="currentColor" class="inline-block h-4 align-middle">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2"
+                                                              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                                    </svg>
+                                                    {{$school->web}}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
 
 
                     <script>
-                        let macyInstance = Macy({
-                            container: '#macyJS',
+                        let macyInstanceRegistered = Macy({
+                            container: '#macyJSRegistered',
+                            columns: 1,
+                            margin: {
+                                x: 10,
+                                y: 10
+                            },
+                            mobileFirst: true,
+                            breakAt: {
+                                870: {
+                                    columns: 2
+                                }
+                            }
+                        });
+                        let macyInstanceUnRegistered = Macy({
+                            container: '#macyJSUnregistered',
                             columns: 1,
                             margin: {
                                 x: 10,
@@ -411,8 +515,8 @@
 
                         document.addEventListener("DOMContentLoaded", () => {
                             Livewire.hook('element.updated', debounce(() => {
-                                console.log("re");
-                                macyInstance.reInit()
+                                macyInstanceRegistered.reInit()
+                                macyInstanceUnRegistered.reInit()
                             }, 5))
                         });
                     </script>

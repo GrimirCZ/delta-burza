@@ -207,6 +207,13 @@ class School extends Model
             ->first();
     }
 
+    public function is_registered()
+    {
+        return !$this->users()
+            ->where("is_main_contact", true)
+            ->exists();
+    }
+
     public function images()
     {
         return $this->files()->where("type", "image");
