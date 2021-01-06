@@ -50,7 +50,7 @@ class LinkAccountToExistingSchool extends Component
     public function render()
     {
         return view('livewire.link-account-to-existing-school', [
-            'unassociated_schools' => School::unassociated_schools()->get()
+            'unassociated_schools' => School::unassociated_schools()->orderBy("schools.name")->get()
         ]);
     }
 }
