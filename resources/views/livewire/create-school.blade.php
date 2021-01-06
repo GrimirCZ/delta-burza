@@ -63,7 +63,7 @@
                     <div class="form-field">
                         @if($type_of_exhibitioner != "empl_dep")
                             <label for="ico" class="label">IČ</label>
-                            @if($edit && $type_of_exhibitioner === "school")
+                            @if(isset($edit) && $edit && $type_of_exhibitioner === "school")
                                 <input id="ico" type="text" wire:model="ico" disabled
                                        class="input @error('ico') input-error @enderror">
                             @else
