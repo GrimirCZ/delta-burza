@@ -32,7 +32,7 @@ class LinkAccountToExistingSchool extends Component
         $user->school_id = $sch->id;
         $user->push();
 
-        $this->redirect("/dashboard");
+        $this->redirect("/entita/upravit");
     }
 
     public function mount()

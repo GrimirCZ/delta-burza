@@ -18,9 +18,9 @@
                             <label for="type_of_exhibitioner" class="label">Typ vystavovatele</label>
                             <select wire:model="type_of_exhibitioner" name="type_of_exhibitioner"
                                     id="type_of_exhibitioner" class="input">
-                                <option value="school">
-                                    Škola
-                                </option>
+{{--                                <option value="school">--}}
+{{--                                    Škola--}}
+{{--                                </option>--}}
                                 <option value="company">
                                     Firma
                                 </option>

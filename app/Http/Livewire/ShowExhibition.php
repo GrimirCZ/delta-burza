@@ -116,6 +116,7 @@ class ShowExhibition extends Component
             'registrations' => $this->get_registrations()->distinct()->get(),
             'unregistered_schools' => School::unassociated_schools()
                 ->where("schools.district_id", "=", $this->exhibition->district_id)
+                ->orderBy("schools.name")
                 ->distinct()
                 ->get(),
 
