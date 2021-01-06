@@ -25,11 +25,11 @@
                 <div class="text-center">
                     <i>Zatím nebyly vloženy informace o vystavovateli.</i>
                     <a href="/skola/vytvorit" class="text-xl btn btn-primary block mt-2">
-                        Vložte informace o vystavovateli.
+                        Vložte informace o vystavovateli
                     </a>
                     @if($unnasociated_schools_exist)
                         <a href="/skola/spojit" class="text-xl btn btn-primary block mt-2">
-                            Vybrat školu.
+                            Vybrat školu
                         </a>
                     @endif
                 </div>
