@@ -388,12 +388,6 @@
                                     </div>
                                     <a href="/skola/{{$us->id}}">
                                         <div class="flex mt-3">
-                                            @if($school->has_logo())
-                                                <div class="mr-5 py-3">
-                                                    <img src="{{$us->logo()}}"
-                                                         alt="{{$us->name}} logo" class="card-logo">
-                                                </div>
-                                            @endif
                                             <h3 class="text-2xl font-light">
                                                 {{$us->name}}
                                             </h3>
