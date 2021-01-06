@@ -114,7 +114,10 @@ class ShowExhibition extends Component
             'title' => $title,
             'is_empty' => $this->exhibition->registrations()->count() == 0,
             'registrations' => $this->get_registrations()->distinct()->get(),
-            'unregistered_schools' => School::unassociated_schools()->where("district_id", "=", $this->exhibition->district_id),
+            'unregistered_schools' => School::unassociated_schools()
+                ->where("district_id", "=", $this->exhibition->district_id)
+                ->distinct()
+                ->get(),
 
             'has_morning' => $this->exhibition->has_morning_event,
             'has_evening' => $this->exhibition->has_evening_event,
