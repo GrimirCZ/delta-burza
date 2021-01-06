@@ -485,7 +485,7 @@
                             }
                         });
                         let macyInstanceUnRegistered = Macy({
-                            container: '#macyJSUnregistered',
+                            container: '#macyJsUnregistered',
                             columns: 1,
                             margin: {
                                 x: 10,
