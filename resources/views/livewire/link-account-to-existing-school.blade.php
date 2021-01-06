@@ -20,6 +20,12 @@
                     </select>
                     @error('school_id') <span class="error">{{ $message }}</span> @enderror
                 </div>
+                <div class="form-field">
+                    <label for="ico" class="label">IČ</label>
+                    <input id="ico" type="text" wire:model="ico"
+                           class="input @error('ico') input-error @enderror">
+                    @error('ico') <span class="error">{{ $message }}</span> @enderror
+                </div>
                 <div class="form-row">
                     <button type="submit" class="btn btn-primary">Uložit</button>
                 </div>

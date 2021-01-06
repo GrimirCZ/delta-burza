@@ -10,6 +10,7 @@ use Livewire\Component;
 class LinkAccountToExistingSchool extends Component
 {
     public ?int $school_id = null;
+    public ?string $ico = null;
 
     protected $rules = [
         'school_id' => 'required|exists:schools,id',
@@ -28,6 +29,13 @@ class LinkAccountToExistingSchool extends Component
         if($user->school_id != null){
             abort(403);
         }
+
+        $normalized_ico = str_replace(" ", "", $this->ico);
+        if($normalized_ico !== $sch->ico){
+            $this->addError("ico", "Toto není zprávné IČ školy");
+            return;
+        }
+
 
         $user->school_id = $sch->id;
         $user->push();

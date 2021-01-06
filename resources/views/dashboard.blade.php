@@ -29,7 +29,7 @@
                     </a>
                     @if($unnasociated_schools_exist)
                         <a href="/skola/spojit" class="text-xl btn btn-primary block mt-2">
-                            Vybrat z předvyplněných vystavovatelů.
+                            Vybrat školu.
                         </a>
                     @endif
                 </div>
