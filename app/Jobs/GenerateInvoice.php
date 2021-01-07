@@ -11,6 +11,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
@@ -36,16 +37,22 @@ class GenerateInvoice implements ShouldQueue
 
         // some orders do not have this, perhapse remove later
         if($order->invoice_number == null){
-            $current_year = Carbon::now()->isoFormat("YYYY");
-            $last_invoice_number = Order::where("invoice_year", $current_year)->max("invoice_number");
+            try{
+                DB::raw('LOCK TABLES orders WRITE');
 
-            if($last_invoice_number == null)
-                $last_invoice_number = 0; // first this year
+                $current_year = Carbon::now()->isoFormat("YYYY");
+                $last_invoice_number = Order::where("invoice_year", $current_year)->max("invoice_number");
 
-            $order->update([
-                'invoice_year' => $current_year,
-                'invoice_number' => $last_invoice_number + 1
-            ]);
+                if($last_invoice_number == null)
+                    $last_invoice_number = 0; // first this year
+
+                $order->update([
+                    'invoice_year' => $current_year,
+                    'invoice_number' => $last_invoice_number + 1
+                ]);
+            } finally{
+                DB::raw('UNLOCK TABLES');
+            }
         }
 
         $pdf = App::make('dompdf.wrapper');

@@ -205,7 +205,7 @@ class CreateOrder extends Component
 
             if($ord->price() > 0){
                 $ord->update([
-                    'proforma_invoice_number' => "2020" . fill_number_to_length($ord->id, 4)
+                    'proforma_invoice_number' => Carbon::now()->isoFormat("YYYY") . fill_number_to_length($ord->id, 4)
                 ]);
 
                 GenerateProformaInvoice::dispatch($ord->id);

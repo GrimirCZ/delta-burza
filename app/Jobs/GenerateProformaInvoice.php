@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Mail\InvoiceMail;
 use App\Mail\ProformaInvoiceMail;
 use App\Models\Order;
+use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -36,7 +37,7 @@ class GenerateProformaInvoice implements ShouldQueue
         // some orders do not have this, perhapse remove later
         if($order->proforma_invoice_number == null){
             $order->update([
-                'proforma_invoice_number' => "2020" . fill_number_to_length($order->id, 4)
+                'proforma_invoice_number' => Carbon::now()->isoFormat("YYYY") . fill_number_to_length($order->id, 4)
             ]);
         }
 
