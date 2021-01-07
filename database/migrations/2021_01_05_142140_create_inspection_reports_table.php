@@ -19,7 +19,7 @@ class CreateInspectionReportsTable extends Migration
 
             $table->string("url", 255);
 
-            $table->unique(['ico', 'start_date', 'end_date']);
+//            $table->unique(['ico', 'start_date', 'end_date']);
 
             $table->foreignId("school_id")->constrained();
             //
