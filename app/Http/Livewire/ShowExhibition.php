@@ -100,6 +100,7 @@ class ShowExhibition extends Component
         return $this->filtered_schools_restrictions(
             School::unassociated_schools()
                 ->where("schools.district_id", "=", $this->exhibition->district_id)
+                ->join("entity_types", "entity_type_id", "=", "entity_types.id")
         )->orderBy("schools.name");
     }
 
