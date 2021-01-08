@@ -177,7 +177,7 @@
                             nepřihlásil. Buďte první!</h3>
                     </div>
                 @else
-                    <div id="macyJSRegistered">
+                    <div id="macyJS">
                         @foreach($registrations as $registration)
                             <div
                                 class="relative overflow-hidden shadow-sm box-border h-min-content bg-white {{$registration->school->type() == "school" ? "" : "border-2 border-teal-400"}}">
@@ -376,8 +376,6 @@
                                 </div>
                             </div>
                         @endforeach
-                    </div>
-                    <div id="macyJsUnregistered">
 
                         @foreach($unregistered_schools as $us)
                             <div
@@ -463,22 +461,8 @@
 
 
                     <script>
-                        let macyInstanceRegistered = Macy({
-                            container: '#macyJSRegistered',
-                            columns: 1,
-                            margin: {
-                                x: 10,
-                                y: 10
-                            },
-                            mobileFirst: true,
-                            breakAt: {
-                                870: {
-                                    columns: 2
-                                }
-                            }
-                        });
-                        let macyInstanceUnRegistered = Macy({
-                            container: '#macyJsUnregistered',
+                        let macyInstance= Macy({
+                            container: '#macyJS',
                             columns: 1,
                             margin: {
                                 x: 10,
@@ -508,8 +492,7 @@
 
                         document.addEventListener("DOMContentLoaded", () => {
                             Livewire.hook('element.updated', debounce(() => {
-                                macyInstanceRegistered.reInit()
-                                macyInstanceUnRegistered.reInit()
+                                macyInstance.reInit()
                             }, 5))
                         });
                     </script>
