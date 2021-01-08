@@ -37,33 +37,6 @@ class CreateExamsTable extends Migration
             $table->foreignId("school_id")->constrained();
             $table->foreignId("specialization_group_id")->constrained();
 
-//            this.year = data.year;
-//            this.subject = data.subject;
-//
-//            this.podil = data["4"];
-//            this.prihlaseno = data["5"];
-//            this.omluveno = data["6"];
-//            this.vylouceno = data["7"];
-//            this.konalo = data["8"];
-//            this.neuspelo = data["9"];
-//            this.uspelo = data["10"];
-//            this.percentil = data["11"];
-//            this.odchylka = data["12"];
-//            this.median = data["13"];
-//            this.rozpeti = data["14"];
-//            this.percentil25 = data["15"];
-//            this.percentil75 = data["16"];
-//            this.odlozeny = data["17"];
-//            this.opravny = data["18"];
-//            this.nahradni = data["19"];
-//            this.type = data.type;
-//            this.specCode = data.obor[0][2]
-//        this.specGroupId = null
-//        this.schoolId = null
-//        this.redizo = data["1"];
-//        this.name = data["2"]
-            //
-
             $table->timestamps();
         });
     }
