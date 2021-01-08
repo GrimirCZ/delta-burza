@@ -95,6 +95,14 @@ class ShowExhibition extends Component
         return $q;
     }
 
+    function get_unregistered_schools()
+    {
+        return $this->filtered_schools_restrictions(
+            School::unassociated_schools()
+                ->where("schools.district_id", "=", $this->exhibition->district_id)
+        )->orderBy("schools.name");
+    }
+
     /**
      * Get the view / contents that represent the component.
      *
@@ -114,11 +122,7 @@ class ShowExhibition extends Component
             'title' => $title,
             'is_empty' => $this->exhibition->registrations()->count() == 0,
             'registrations' => $this->get_registrations()->distinct()->get(),
-            'unregistered_schools' => School::unassociated_schools()
-                ->where("schools.district_id", "=", $this->exhibition->district_id)
-                ->orderBy("schools.name")
-                ->distinct()
-                ->get(),
+            'unregistered_schools' => $this->get_unregistered_schools()->distinct()->get(),
 
             'has_morning' => $this->exhibition->has_morning_event,
             'has_evening' => $this->exhibition->has_evening_event,
