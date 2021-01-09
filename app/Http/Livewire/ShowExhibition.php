@@ -166,7 +166,7 @@ class ShowExhibition extends Component
             ->select("name", "school_id");
     }
 
-    private function get_registrations(Collection $school_ids)
+    private function get_specializations(Collection $school_ids)
     {
         $q = Specialization::query()->whereIn("school_id", $school_ids)
             ->join("prescribed_specializations", "specializations.prescribed_specialization_id", "=", "prescribed_specializations.id")
@@ -178,6 +178,7 @@ class ShowExhibition extends Component
             ->orderBy("specializations.name")
             ->select(
                 "specializations.*",
+                "type_of_studies.id",
                 "prescribed_specializations.code as prescribed_specialization_code",
                 "prescribed_specializations.name as prescribed_specialization_name"
             );
@@ -215,7 +216,7 @@ class ShowExhibition extends Component
 
         $school_ids = $schools->map(fn($sch) => $sch->id);
 
-        $specializations = $this->get_registrations($school_ids)->distinct()->get();
+        $specializations = $this->get_specializations($school_ids)->distinct()->get();
 
         $logos = $this->get_logos($school_ids)->distinct()->get();
 
