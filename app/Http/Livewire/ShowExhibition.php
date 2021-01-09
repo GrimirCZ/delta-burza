@@ -178,7 +178,8 @@ class ShowExhibition extends Component
             ->orderBy("specializations.name")
             ->select(
                 "specializations.*",
-                "type_of_studies.id",
+                "specializations.id AS id",
+                "type_of_studies.id AS type_of_studies_id",
                 "prescribed_specializations.code as prescribed_specialization_code",
                 "prescribed_specializations.name as prescribed_specialization_name"
             );
