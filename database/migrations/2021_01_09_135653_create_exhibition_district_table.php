@@ -14,9 +14,6 @@ class CreateExhibitionDistrictTable extends Migration
 
             $table->foreignId("exhibition_id")->constrained();
             $table->foreignId("district_id")->constrained();
-            //
-
-            $table->timestamps();
         });
 
         DB::transaction(function(){
