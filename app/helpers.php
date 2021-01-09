@@ -249,3 +249,17 @@ if(!function_exists("html_clean")){
         return $out;
     }
 }
+
+
+if(!function_exists("provider_from_str")){
+    function provider_from_str($str)
+    {
+        if(preg_match("/teams\.microsoft/", $str)){
+            return 'ms';
+        } else if(preg_match('/meet\.google/', $str)){
+            return 'google';
+        }
+
+        return 'other';
+    }
+}
