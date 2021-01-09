@@ -228,8 +228,9 @@ if(!function_exists("html_clean")){
 
         libxml_use_internal_errors(true);
         $dom->loadHTML(mb_convert_encoding($in, 'HTML-ENTITIES', 'UTF-8'), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        libxml_use_internal_errors(false);
+        libxml_use_internal_errors();
 
+        $xpath = new DOMXPath($dom);
 
         $script = $dom->getElementsByTagName('script');
 
@@ -240,6 +241,13 @@ if(!function_exists("html_clean")){
 
         foreach($remove as $item){
             $item->parentNode->removeChild($item);
+        }
+
+        // TODO: explore more XSS attack vectors
+        // remove js event attributes
+        $onAttributes = $xpath->query("//*/@*[starts-with(name(), 'on')]");
+        foreach ($onAttributes as $onAttribute) {
+            $onAttribute->ownerElement->removeAttributeNode($onAttribute);
         }
 
         $out = html_entity_decode($dom->saveHTML());
