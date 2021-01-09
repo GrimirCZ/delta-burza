@@ -79,8 +79,7 @@ class School extends Model
         return $this->et->type;
     }
 
-    // translation
-    public function type_name($pad = 1)
+    public static function get_entity_type_intl($type, $pad = 1)
     {
         $intl = [ // move somewhere else
             'school' => [
@@ -97,22 +96,32 @@ class School extends Model
             ]
         ];
 
+
+        if(!array_key_exists($type, $intl)){
+            throw new Exception("Translation for type name {$type} not implemented");
+        }
+        if(!array_key_exists($pad, $intl[$type])){
+            throw new Exception("Pad $pad for type name {$type} not implemented");
+        }
+
+        return $intl[$type][$pad];
+    }
+
+    // translation
+    public function type_name($pad = 1)
+    {
         if($this->et == null){
             $this->et = $this->entity_type;
         }
 
-        if(!array_key_exists($this->et->type, $intl)){
-            throw new Exception("Translation for type name {$this->et->type} not implemented");
-        }
-        if(!array_key_exists($pad, $intl[$this->et->type])){
-            throw new Exception("Pad $pad for type name {$this->et->type} not implemented");
-        }
-
-        return $intl[$this->et->type][$pad];
+        return self::get_entity_type_intl($this->et->type, $pad);
     }
 
     private function get_type_data()
     {
+        if($this->et == null && $this->et_data != null){
+            return json_decode($this->et_data);
+        }
         if($this->et == null){
             $this->et = $this->entity_type;
         }
@@ -270,5 +279,14 @@ class School extends Model
             ->leftJoin("users", "users.school_id", "=", "schools.id")
             ->whereNull("users.id")
             ->select("schools.*");
+    }
+
+    public static function get_pipe_text($entity_type, $city, $district_name)
+    {
+        $pipe_text = self::get_entity_type_intl($entity_type);
+        $pipe_text .= ' | ';
+        $pipe_text .= $city . ' <i>(okres ' . $district_name . ')</i>';
+
+        return $pipe_text;
     }
 }

@@ -166,7 +166,7 @@
                 </div>
             </div>
             <div class="py-4">
-                @if($is_empty)
+                @if(count($schools) == 0)
                     <div class="text-center text-gray-400">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
                              class="h-12 inline-block align-middle">
@@ -178,290 +178,252 @@
                     </div>
                 @else
                     <div id="macyJS">
-                        @foreach($registrations as $registration)
-                            <div
-                                class="relative overflow-hidden shadow-sm box-border h-min-content bg-white {{$registration->school->type() == "school" ? "" : "border-2 border-teal-400"}}">
-                                @if($registration->school->id === 1)
-                                    <div class="flag bg-light-green text-sm text-center text-white shadow-md">
-                                        <span class="font-light">autoři portálu</span><br>
-                                        <span class="font-black">BurzaŠkol.Online</span>
-                                    </div>
-                                @endif
-                                <div class="p-5">
-                                    <div class="leading-3 text-gray-400">
-                                        {!! $registration->school->pipe_text() !!}
-                                    </div>
-                                    <a href="/skola/{{$registration->school->id}}">
-                                        <div class="flex mt-3">
-                                            @if($registration->school->has_logo())
-                                                <div class="mr-5 py-3">
-                                                    <img src="{{$registration->school->logo()}}"
-                                                         alt="{{$registration->school->name}} logo" class="card-logo">
-                                                </div>
-                                            @endif
-                                            <h3 class="text-2xl font-light">
-                                                {{$registration->school->name}}
-                                            </h3>
+                        @foreach($schools as $school)
+                            @if($school->is_registered)
+                                <div
+                                    class="relative overflow-hidden shadow-sm box-border h-min-content bg-white {{$school->type_name == "school" ? "" : "border-2 border-teal-400"}}">
+                                    @if($school->id === 1)
+                                        <div class="flag bg-light-green text-sm text-center text-white shadow-md">
+                                            <span class="font-light">autoři portálu</span><br>
+                                            <span class="font-black">BurzaŠkol.Online</span>
                                         </div>
-                                    </a>
+                                    @endif
+                                    <div class="p-5">
+                                        <div class="leading-3 text-gray-400">
+                                            {!! \App\Models\School::get_pipe_text($school->type_name, $school->city, $school->district_name) !!}
+                                        </div>
+                                        <a href="/skola/{{$school->id}}">
+                                            <div class="flex mt-3">
+                                                @if($logos->contains(fn($logo) => $logo->school_id === $school->id))
+                                                    <div class="mr-5 py-3">
+                                                        <img src="{{$logos->first(fn($logo) => $logo->school_id === $school->id)->name}}"
+                                                             alt="{{$school->name}} logo"
+                                                             class="card-logo">
+                                                    </div>
+                                                @endif
+                                                <h3 class="text-2xl font-light">
+                                                    {{$school->name}}
+                                                </h3>
+                                            </div>
+                                        </a>
 
-                                    <table class="table w-full mt-5 text-sm text-gray-600">
-                                        <tbody class="divide-y divide-gray-200">
+                                        <table class="table w-full mt-5 text-sm text-gray-600">
+                                            <tbody class="divide-y divide-gray-200">
+                                            @foreach($specializations->filter(fn($spec) => $spec->school_id === $school->id) as $specialization)
+                                                <tr>
+                                                    <td class="py-3">
+                                                        <a href="/obor/{{$specialization->id}}">
+                                                            {{$specialization->prescribed_specialization_code}}
+                                                            - {{$specialization->prescribed_specialization_name}}
+                                                        </a>
+                                                    </td>
+                                                    <td class="py-3 text-right w-48">
+                                                        <a href="/obor/{{$specialization->id}}"
+                                                           class="btn btn-primary text-sm inline-block">Více
+                                                            informací o oboru</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+
+                                        <div class="flex justify-between mt-10 text-gray-900">
+                                            <a href="{{$school->try_link}}" class="hover:text-teal-400">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                     stroke="currentColor" class="h-5 inline-block">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                                </svg>
+                                                <span class="underline">Vyzkoušej si spojení "nanečisto"</span>
+                                            </a>
+                                            @php
+                                                $morning_provider = provider_from_str($school->morning_event);
+                                                $evening_provider = provider_from_str($school->evening_event);
+                                            @endphp
+                                            <a href="@if($morning_provider == 'ms') https://youtu.be/u9on9jIpQ6Y @elseif($morning_provider == "google") https://youtu.be/UL7HrLIaodU @else {{route('jak-se-pripojit')}} @endif"
+                                               class="hover:text-teal-400" target="_blank">
+                                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                     stroke="currentColor" class="h-5 inline-block">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2"
+                                                          d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                          stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                </svg>
+                                                <span class="underline">Návod: Jak se připojit k hovoru</span>
+                                            </a>
+                                        </div>
+
                                         @php
-                                            if($type_of_study_id == "all" && $field_of_study_id == "all" && $prescribed_specialization_id == "all"){
-                                                $specializations = $registration->school->ordered_specializations()->get();
-                                            } else if($field_of_study_id == "all" && $prescribed_specialization_id == "all"){
-                                                $specializations = $registration->school
-                                                                    ->ordered_specializations()
-                                                                    ->where("type_of_studies.id", "=", $type_of_study_id)
-                                                                    ->select("specializations.*")
-                                                                    ->get();
-                                            } else if($prescribed_specialization_id == "all"){
-                                                $specializations = $registration->school
-                                                                    ->ordered_specializations()
-                                                                    ->where("field_of_studies.id", "=", $field_of_study_id)
-                                                                    ->select("specializations.*")
-                                                                    ->get();
-                                            } else{
-                                                $specializations = $registration->school->ordered_specializations()->where("prescribed_specialization_id", $prescribed_specialization_id)->get();
+
+                                            $morning_message = "Připojit se ";
+                                            $evening_message = "Připojit se ";
+
+                                            if($morning_provider == 'ms'){
+                                                $morning_message .= 'k Teams';
+                                            }else if($morning_provider == 'google'){
+                                                $morning_message .= 'k Meets';
+                                            }else{
+                                                $morning_message .= 'online';
+                                            }
+
+                                            if($evening_provider == 'ms'){
+                                                $evening_message .= 'k Teams';
+                                            }else if($evening_provider == 'google'){
+                                                $evening_message .= 'k Meets';
+                                            }else{
+                                                $evening_message .= 'online';
                                             }
                                         @endphp
-                                        @foreach($specializations as $specialization)
-                                            <tr>
-                                                <td class="py-3">
-                                                    <a href="/obor/{{$specialization->id}}">
-                                                        {{$specialization->prescribed_specialization->code}}
-                                                        - {{$specialization->prescribed_specialization->name}} <br/>
-                                                        <i>(ŠVP: {{$specialization->name}})</i>
-                                                    </a>
-                                                </td>
-                                                <td class="py-3 text-right w-48">
-                                                    <a href="/obor/{{$specialization->id}}"
-                                                       class="btn btn-primary text-sm inline-block">Více
-                                                        informací o oboru</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
 
-                                    <div class="flex justify-between mt-10 text-gray-900">
-                                        <a href="{{$registration->get_try_link()}}" class="hover:text-teal-400">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                 stroke="currentColor" class="h-5 inline-block">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="2"
-                                                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                                            </svg>
-                                            <span class="underline">Vyzkoušej si spojení "nanečisto"</span>
-                                        </a>
-                                        @php
-                                            $provider = $registration->get_provider();
-                                        @endphp
-                                        <a href="@if($provider == 'ms') https://youtu.be/u9on9jIpQ6Y @elseif($provider == "google") https://youtu.be/UL7HrLIaodU @else {{route('jak-se-pripojit')}} @endif"
-                                           class="hover:text-teal-400" target="_blank">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                                 stroke="currentColor" class="h-5 inline-block">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="2"
-                                                      d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                      stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                                            </svg>
-                                            <span class="underline">Návod: Jak se připojit k hovoru</span>
-                                        </a>
-                                    </div>
-
-                                    @php
-                                        $school           = $registration->school;
-                                        $morning_provider = $provider;
-                                        $evening_provider = $registration->get_provider('evening');
-
-                                        $morning_message = "Připojit se ";
-                                        $evening_message = "Připojit se ";
-
-                                        if($morning_provider == 'ms'){
-                                            $morning_message .= 'k Teams';
-                                        }else if($morning_provider == 'google'){
-                                            $morning_message .= 'k Meets';
-                                        }else{
-                                            $morning_message .= 'online';
-                                        }
-
-                                        if($evening_provider == 'ms'){
-                                            $evening_message .= 'k Teams';
-                                        }else if($evening_provider == 'google'){
-                                            $evening_message .= 'k Meets';
-                                        }else{
-                                            $evening_message .= 'online';
-                                        }
-                                    @endphp
-
-                                    @if($has_morning)
-                                        @if($enable_morning_join_buttons)
-                                            <a href="/vstoupit/ranni/{{$registration->id}}"
-                                               target="_blank"
-                                               class="btn text-sm text-center mt-2 btn-primary block">
-                                                {{$morning_message}}  {{$exhibition->morning_event_start}}
-                                                - {{$exhibition->morning_event_end}}
-                                            </a>
-                                        @else
-                                            <span
-                                                class="btn text-sm text-center mt-2 block btn-disabled">
+                                        @if($has_morning)
+                                            @if($enable_morning_join_buttons)
+                                                <a href="/vstoupit/ranni/{{$school->registration_id}}"
+                                                   target="_blank"
+                                                   class="btn text-sm text-center mt-2 btn-primary block">
+                                                    {{$morning_message}}  {{$exhibition->morning_event_start}}
+                                                    - {{$exhibition->morning_event_end}}
+                                                </a>
+                                            @else
+                                                <span
+                                                    class="btn text-sm text-center mt-2 block btn-disabled">
                                               {{$morning_message}} {{$exhibition->morning_event_start}}
                                             - {{$exhibition->morning_event_end}}
                                             </span>
+                                            @endif
                                         @endif
-                                    @endif
-                                    @if($has_evening)
-                                        @if($enable_evening_join_buttons)
-                                            <a href="/vstoupit/vecerni/{{$registration->id}}"
-                                               target="_blank"
-                                               class="btn text-sm text-center btn-primary mt-1 block">
-                                                {{$evening_message}} {{$exhibition->evening_event_start}}
-                                                - {{$exhibition->evening_event_end}}
-                                            </a>
-                                        @else
-                                            <span
-                                                class="btn text-sm text-center mt-1 block btn-disabled">
+                                        @if($has_evening)
+                                            @if($enable_evening_join_buttons)
+                                                <a href="/vstoupit/vecerni/{{$school->registration_id}}"
+                                                   target="_blank"
+                                                   class="btn text-sm text-center btn-primary mt-1 block">
+                                                    {{$evening_message}} {{$exhibition->evening_event_start}}
+                                                    - {{$exhibition->evening_event_end}}
+                                                </a>
+                                            @else
+                                                <span
+                                                    class="btn text-sm text-center mt-1 block btn-disabled">
                                            {{$evening_message}} {{$exhibition->evening_event_start}}
                                                 - {{$exhibition->evening_event_end}}
                                         </span>
+                                            @endif
                                         @endif
-                                    @endif
-                                    @if($has_chat)
-                                        @if($enable_chat)
-                                            <a href="/vstoupit/chat/{{$registration->id}}"
-                                               target="_blank"
-                                               class="btn text-sm text-center btn-primary mt-1 block">
-                                                Chat
-                                            </a>
-                                        @else
-                                            <span
-                                                class="btn text-sm text-center mt-1 block btn-disabled">
+                                        @if($has_chat)
+                                            @if($enable_chat)
+                                                <a href="/vstoupit/chat/{{$school->registration_id}}"
+                                                   target="_blank"
+                                                   class="btn text-sm text-center btn-primary mt-1 block">
+                                                    Chat
+                                                </a>
+                                            @else
+                                                <span
+                                                    class="btn text-sm text-center mt-1 block btn-disabled">
                                             Chat
                                         </span>
+                                            @endif
                                         @endif
-                                    @endif
 
 
-                                    <a href="/skola/{{$school->id}}/zajem/{{$registration->id}}"
-                                       class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
-                                        Napište nám!
-                                    </a>
+                                        <a href="/skola/{{$school->id}}/zajem/{{$school->registration_id}}"
+                                           class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
+                                            Napište nám!
+                                        </a>
 
-                                    <a href="/skola/{{$school->id}}"
-                                       class="btn text-sm text-center btn-primary mt-1 block">
-                                        Detail {{$school->type_name(2)}}
-                                    </a>
+                                        <a href="/skola/{{$school->id}}"
+                                           class="btn text-sm text-center btn-primary mt-1 block">
+                                            Detail {{\App\Models\School::get_entity_type_intl($school->type_name,2)}}
+                                        </a>
 
-                                    @if($school->web != null)
-                                        <div class="mt-4 text-sm hover:underline text-gray-400">
-                                            <div>
+                                        @if($school->web != null)
+                                            <div class="mt-4 text-sm hover:underline text-gray-400">
+                                                <div>
 
-                                                <a href="{{fix_url($school->web)}}" target="_blank"
-                                                   class="hover:text-teal-400">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                         viewBox="0 0 24 24"
-                                                         stroke="currentColor" class="inline-block h-4 align-middle">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2"
-                                                              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                                                    </svg>
-                                                    {{$school->web}}
-                                                </a>
-                                            </div>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        @endforeach
-
-                        @foreach($unregistered_schools as $us)
-                            <div
-                                class="relative overflow-hidden shadow-sm box-border h-min-content bg-white">
-                                <div class="p-5">
-                                    <div class="leading-3 text-gray-400">
-                                        {!! $us->pipe_text() !!}
-                                    </div>
-                                    <a href="/skola/{{$us->id}}">
-                                        <div class="flex mt-3">
-                                            <h3 class="text-2xl font-light">
-                                                {{$us->name}}
-                                            </h3>
-                                        </div>
-                                    </a>
-
-                                    <table class="table w-full mt-5 text-sm text-gray-600">
-                                        <tbody class="divide-y divide-gray-200">
-                                        @php
-                                            if($type_of_study_id == "all" && $field_of_study_id == "all" && $prescribed_specialization_id == "all"){
-                                                $specializations = $us->ordered_specializations()->get();
-                                            } else if($field_of_study_id == "all" && $prescribed_specialization_id == "all"){
-                                                $specializations = $us
-                                                                    ->ordered_specializations()
-                                                                    ->where("type_of_studies.id", "=", $type_of_study_id)
-                                                                    ->select("specializations.*")
-                                                                    ->get();
-                                            } else if($prescribed_specialization_id == "all"){
-                                                $specializations = $us
-                                                                    ->ordered_specializations()
-                                                                    ->where("field_of_studies.id", "=", $field_of_study_id)
-                                                                    ->select("specializations.*")
-                                                                    ->get();
-                                            } else{
-                                                $specializations = $us->ordered_specializations()->where("prescribed_specialization_id", $prescribed_specialization_id)->get();
-                                            }
-                                        @endphp
-                                        @foreach($specializations as $specialization)
-                                            <tr>
-                                                <td class="py-3">
-                                                    <a href="/obor/{{$specialization->id}}">
-                                                        {{$specialization->prescribed_specialization->code}}
-                                                        - {{$specialization->prescribed_specialization->name}}
+                                                    <a href="{{fix_url($school->web)}}" target="_blank"
+                                                       class="hover:text-teal-400">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                             viewBox="0 0 24 24"
+                                                             stroke="currentColor"
+                                                             class="inline-block h-4 align-middle">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2"
+                                                                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                                        </svg>
+                                                        {{$school->web}}
                                                     </a>
-                                                </td>
-                                                <td class="py-3 text-right w-48">
-                                                    <a href="/obor/{{$specialization->id}}"
-                                                       class="btn btn-primary text-sm inline-block">Více
-                                                        informací o oboru</a>
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
-
-                                    <a href="/skola/{{$us->id}}"
-                                       class="btn text-sm text-center btn-primary mt-1 block">
-                                        Detail {{$us->type_name(2)}}
-                                    </a>
-
-                                    @if($us->web != null)
-                                        <div class="mt-4 text-sm hover:underline text-gray-400">
-                                            <div>
-
-                                                <a href="{{fix_url($us->web)}}" target="_blank"
-                                                   class="hover:text-teal-400">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                         viewBox="0 0 24 24"
-                                                         stroke="currentColor" class="inline-block h-4 align-middle">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                              stroke-width="2"
-                                                              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                                                    </svg>
-                                                    {{$us->web}}
-                                                </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    @endif
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <div
+                                    class="relative overflow-hidden shadow-sm box-border h-min-content bg-white">
+                                    <div class="p-5">
+                                        <div class="leading-3 text-gray-400">
+                                            {!! \App\Models\School::get_pipe_text($school->type_name, $school->city, $school->district_name) !!}
+                                        </div>
+                                        <a href="/skola/{{$school->id}}">
+                                            <div class="flex mt-3">
+                                                <h3 class="text-2xl font-light">
+                                                    {{$school->name}}
+                                                </h3>
+                                            </div>
+                                        </a>
+
+                                        <table class="table w-full mt-5 text-sm text-gray-600">
+                                            <tbody class="divide-y divide-gray-200">
+                                            @foreach($specializations->filter(fn($spec) => $spec->school_id === $school->id) as $specialization)
+                                                <tr>
+                                                    <td class="py-3">
+                                                        <a href="/obor/{{$specialization->id}}">
+                                                            {{$specialization->prescribed_specialization_code}}
+                                                            - {{$specialization->prescribed_specialization_name}}
+                                                        </a>
+                                                    </td>
+                                                    <td class="py-3 text-right w-48">
+                                                        <a href="/obor/{{$specialization->id}}"
+                                                           class="btn btn-primary text-sm inline-block">Více
+                                                            informací o oboru</a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+
+                                        <a href="/skola/{{$school->id}}"
+                                           class="btn text-sm text-center btn-primary mt-1 block">
+                                            Detail {{\App\Models\School::get_entity_type_intl($school->type_name,2)}}
+                                        </a>
+
+                                        @if($school->web != null)
+                                            <div class="mt-4 text-sm hover:underline text-gray-400">
+                                                <div>
+
+                                                    <a href="{{fix_url($school->web)}}" target="_blank"
+                                                       class="hover:text-teal-400">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                             viewBox="0 0 24 24"
+                                                             stroke="currentColor"
+                                                             class="inline-block h-4 align-middle">
+                                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                                  stroke-width="2"
+                                                                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                                        </svg>
+                                                        {{$school->web}}
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            @endif
                         @endforeach
                     </div>
 
 
                     <script>
-                        let macyInstance= Macy({
+                        let macyInstance = Macy({
                             container: '#macyJS',
                             columns: 1,
                             margin: {

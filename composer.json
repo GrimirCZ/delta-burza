@@ -9,7 +9,10 @@
     "license": "MIT",
     "require": {
         "php": "^7.4",
+        "ext-dom": "*",
         "ext-intl": "*",
+        "ext-json": "*",
+        "ext-libxml": "*",
         "aws/aws-sdk-php": "~3.0",
         "barryvdh/laravel-dompdf": "^0.8.7",
         "beyondcode/laravel-websockets": "^1.9",
@@ -22,17 +25,14 @@
         "laravel/framework": "^8.0",
         "laravel/jetstream": "^1.2",
         "laravel/sanctum": "^2.6",
-        "laravel/telescope": "^4.0",
+        "laravel/telescope": "^4.4",
         "laravel/tinker": "^2.0",
         "league/flysystem-aws-s3-v3": "^1.0",
         "league/flysystem-cached-adapter": "^1.1",
         "livewire/livewire": "^2.0",
         "maatwebsite/excel": "^3.1",
         "pusher/pusher-php-server": "^4.1",
-        "spatie/valuestore": "^1.2",
-        "ext-dom": "*",
-        "ext-libxml": "*",
-        "ext-json": "*"
+        "spatie/valuestore": "^1.2"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
@@ -78,6 +78,9 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan telescope:publish --ansi"
         ]
     }
 }
