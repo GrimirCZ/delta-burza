@@ -97,13 +97,13 @@
                                         @if($exam != null)
                                             <tr>
                                                 <td class="cell">{{$year}}</td>
-                                                <td class="cell">{{$fmt($exam->cze_percentil)}}</td>
+                                                <td class="cell">{{$fmt($exam->cze_percentil)}}%</td>
                                                 <td class="cell">{{$fmt($exam->percentil)}}</td>
-                                                <td class="cell">{{$fmt($exam->cze_median)}}</td>
+                                                <td class="cell">{{$fmt($exam->cze_median)}}%</td>
                                                 <td class="cell">{{$fmt($exam->median)}}</td>
-                                                <td class="cell">{{$fmt($exam->cze_uspesnost)}}</td>
+                                                <td class="cell">{{$fmt($exam->cze_uspesnost)}}%</td>
                                                 <td class="cell">{{$fmtPrc($exam->uspelo / $exam->prihlaseno)}}</td>
-                                                <td class="cell">{{$fmt($exam->cze_nepripusteno)}}</td>
+                                                <td class="cell">{{$fmt($exam->cze_nepripusteno)}}%</td>
                                                 <td class="cell">{{$fmtPrc($exam->omluveno / $exam->prihlaseno)}}</td>
                                             </tr>
                                         @else
