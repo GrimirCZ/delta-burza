@@ -92,7 +92,7 @@
                                     </tr>
                                     @foreach($years_to_display as $year)
                                         @php
-                                            $exam = $exam_results->first(fn($exam)=>$exam->subject === $subject && $exam->year === $year);
+                                            $exam = $exam_results->first(fn($exam)=>$exam->subject === $subject && $exam->year == $year);
                                         @endphp
                                         @if($exam != null)
                                             <tr>
