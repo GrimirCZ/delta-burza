@@ -37,7 +37,7 @@ class ShowSpecialization extends Component
     public string $textUspesnost = "Celková úspěšnost říká, kolik % studentů 4. ročníku uspělo u zkoušky z celkově přihlášených. Jako neúspěšní jsou do tohoto kritéria započítáváni jak ti, kteří u zkoušky neuspěli, tak i ti, kteří se k ní buď nedostavili nebo k ní nebyli ani připuštěni (např. nedokončili úspěšně 4. ročník). ";
     public string $textNeuspesnost = "Toto kritérium ukazuje především, jaké % studentů nebylo ke zkoušce připuštěno. Spadnou sem však každoročně i \"speciální případy\" jako dlouhodobé nemoce, zanechání studia ve 4. ročníku před maturitou (po dovršení 18-ti let) apod.";
     public string $textDidaktak = "Server zobrazuje výsledky pouze z didaktických testů, protože ty jediné jsou objektivně porovnatelné. Další zkoušky - jak písemnou práci tak i ústní zkoušku hodnotí stovky různých hodnotitelů jejichž hodnocení se diametrálně liší.";
-    public string $textLepsiNez = "Škola je v tomto kritériu lepší než ...% škol v ČR ze stejné skupiny oborů.";
+    public string $textLepsiNez = "Výsledek školy je v tomto kritériu lepší nebo stejný než ...% škol v ČR ze <b>stejné skupiny oborů</b>.";
 
 
     /**
