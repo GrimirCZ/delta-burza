@@ -1,5 +1,5 @@
 .cell {
-    @apply py-4 px-4 border-black border border-collapse text-center
+    @apply py-6 px-6 border-black border border-collapse text-center
 }
 
 .empty{

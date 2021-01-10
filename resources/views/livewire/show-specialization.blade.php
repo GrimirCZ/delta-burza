@@ -29,47 +29,76 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white p-5 shadow-sm box-border mt-3">
                     <h2 class="text-2xl mb-3">
-                        Výsledky maturit
+                        Výsledky státních maturit
                     </h2>
                     <div>
                         @foreach($subjects as $subject)
                             @php
                                 $shown = true;
                             @endphp
-                            <h3 class="text-xl mb-3">
-                                {{$subject}}
-                            </h3>
-                            <div class="overflow-x-auto p-1">
+                            <div class="flex justify-content-start">
+                                <div class="text-xl mb-3 flex place-items-center h-8 w-75 relative">
+                                    {{$subject}} - Didaktický test
+                                    <livewire:tooltip title="Didaktický test" :content="$textDidaktak"/>
+                                </div>
+                            </div>
+                            <div class="overflow-x-auto p-1 mb-6">
                                 <table class="w-100 mb-4 overflow-x-auto">
                                     <tr>
                                         <th class="cell empty"></th>
-                                        <th class="cell" colspan="2">Průměrný percentil</th>
-                                        <th class="cell" colspan="2">Medián</th>
-                                        <th class="cell" colspan="2">% čistá úspěšnost</th>
-                                        <th class="cell" colspan="2">% nekonali 1. termín</th>
+                                        <th class="cell text-center relative px-6" colspan="2">
+                                            Průměrný percentil
+                                            <livewire:tooltip title="Průměrný percentil" :content="$textPercentil"/>
+                                        </th>
+                                        <th class="cell text-center relative px-6" colspan="2">
+                                            Medián
+                                            <livewire:tooltip title="Medián" :content="$textMedian"/>
+                                        </th>
+                                        <th class="cell text-center relative px-6" colspan="2">
+                                            Celková úspěšnost %
+                                            <livewire:tooltip title="Celková úspěšnost %"
+                                                              :content="$textUspesnost"/>
+                                        </th>
+                                        <th class="cell text-center relative px-6" colspan="2">
+                                            Nekonalo 1. termín %
+                                            <livewire:tooltip title="Nekonalo 1. termín %"
+                                                              :content="$textNeuspesnost"/>
+                                        </th>
                                     </tr>
                                     <tr>
-                                        <th class="cell"></th>
+                                        <th class="cell empty"></th>
+                                        <th class="cell text-center relative px-6">
+                                            lepší <br/> než...
+                                            <livewire:tooltip title="Lepší než % škol ČR" :content="$textMedian"/>
+                                        </th>
                                         <th class="cell">škola</th>
-                                        <th class="cell">ČR</th>
+                                        <th class="cell text-center relative px-6">
+                                            lepší <br/> než...
+                                            <livewire:tooltip title="Lepší než % škol ČR" :content="$textMedian"/>
+                                        </th>
                                         <th class="cell">škola</th>
-                                        <th class="cell">ČR</th>
+                                        <th class="cell text-center relative px-6">
+                                            lepší <br/> než...
+                                            <livewire:tooltip title="Lepší než % škol ČR" :content="$textMedian"/>
+                                        </th>
                                         <th class="cell">škola</th>
-                                        <th class="cell">ČR</th>
+                                        <th class="cell text-center relative px-6">
+                                            lepší <br/> než...
+                                            <livewire:tooltip title="Lepší než % škol ČR" :content="$textMedian"/>
+                                        </th>
                                         <th class="cell">škola</th>
-                                        <th class="cell">ČR</th>
                                     </tr>
                                     @foreach($exam_results->filter(fn($exam)=>$exam->subject === $subject) as $exam)
                                         <tr>
                                             <td class="cell">{{$exam->year}}</td>
-                                            <td class="cell">{{$fmt($exam->percentil)}}</td>
                                             <td class="cell">{{$fmt($exam->cze_percentil)}}</td>
-                                            <td class="cell">{{$fmt($exam->median)}}</td>
+                                            <td class="cell">{{$fmt($exam->percentil)}}</td>
                                             <td class="cell">{{$fmt($exam->cze_median)}}</td>
-                                            <td class="cell">{{$fmtPrc($exam->uspelo / $exam->prihlaseno)}}</td>
+                                            <td class="cell">{{$fmt($exam->median)}}</td>
                                             <td class="cell">{{$fmt($exam->cze_uspesnost)}}</td>
-                                            <td class="cell">{{$fmtPrc($exam->omluveno / $exam->prihlaseno)}}</td>
+                                            <td class="cell">{{$fmtPrc($exam->uspelo / $exam->prihlaseno)}}</td>
                                             <td class="cell">{{$fmt($exam->cze_nepripusteno)}}</td>
+                                            <td class="cell">{{$fmtPrc($exam->omluveno / $exam->prihlaseno)}}</td>
                                         </tr>
                                     @endforeach
                                 </table>

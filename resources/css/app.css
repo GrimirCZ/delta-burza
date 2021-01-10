@@ -9,6 +9,7 @@
 @import "typo.css";
 @import "chat.css";
 @import "table.css";
+@import "tooltip.css";
 @import "force-inline-block.css";
 
 .school-detail-grid {
