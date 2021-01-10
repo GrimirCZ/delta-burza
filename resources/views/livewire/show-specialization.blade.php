@@ -66,9 +66,9 @@
                                             <td class="cell">{{$fmt($exam->cze_percentil)}}</td>
                                             <td class="cell">{{$fmt($exam->median)}}</td>
                                             <td class="cell">{{$fmt($exam->cze_median)}}</td>
-                                            <td class="cell">{{$fmt($exam->uspelo / $exam->prihlaseno)}}</td>
+                                            <td class="cell">{{$fmtPrc($exam->uspelo / $exam->prihlaseno)}}</td>
                                             <td class="cell">{{$fmt($exam->cze_konalo)}}</td>
-                                            <td class="cell">{{$fmt($exam->omluveno / $exam->prihlaseno)}}</td>
+                                            <td class="cell">{{$fmtPrc($exam->omluveno / $exam->prihlaseno)}}</td>
                                             <td class="cell">{{$fmt($exam->cze_nekonalo)}}</td>
                                         </tr>
                                     @endforeach

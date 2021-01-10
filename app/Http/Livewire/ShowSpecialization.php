@@ -33,7 +33,8 @@ class ShowSpecialization extends Component
         return view('livewire.show-specialization', [
             'exam_results' => $exam_results,
             'subjects' => $subjects,
-            'fmt' => fn($num) => fmod($num, 1) == 0 ? number_format($num, 0) : number_format($num, 1, ",", " ")
+            'fmt' => fn($num) => fmod($num, 1) == 0 ? number_format($num, 0) : number_format($num, 1, ",", " "),
+            'fmtPrc' => fn($num) => fmod($num, 1) == 0 ? number_format($num * 100, 0) : number_format($num * 100, 1, ",", " ")
         ]);
     }
 }
