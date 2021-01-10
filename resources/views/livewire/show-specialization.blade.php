@@ -24,7 +24,7 @@
 
         @if(count($exam_results) > 0)
             @php
-            $shown = false;
+                $shown = false;
             @endphp
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white p-5 shadow-sm box-border mt-3">
@@ -76,7 +76,9 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="text-sm">Podrobnější výsledky dostupné z <a href="https://vysledky.cermat.cz/data/Default.aspx" class="link">vysledky.cermat.cz</a></div>
+                    <div class="text-sm">Podrobnější výsledky dostupné z <a target="_blank"
+                                                                            href="https://vysledky.cermat.cz/data/Default.aspx"
+                                                                            class="link">vysledky.cermat.cz</a></div>
                 </div>
             </div>
         @endif
