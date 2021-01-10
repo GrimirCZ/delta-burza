@@ -23,14 +23,19 @@
         </div>
 
         @if(count($exam_results) > 0)
+            @php
+            $shown = false;
+            @endphp
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white p-5 shadow-sm box-border mt-3">
                     <h2 class="text-2xl mb-3">
                         Výsledky maturit
-
                     </h2>
                     <div>
                         @foreach($subjects as $subject)
+                            @php
+                                $shown = true;
+                            @endphp
                             <h3 class="text-xl mb-3">
                                 {{$subject}}
                             </h3>
@@ -71,6 +76,7 @@
                             </div>
                         @endforeach
                     </div>
+                    <div class="text-sm">Podrobnější výsledky dostupné z <a href="https://vysledky.cermat.cz/data/Default.aspx">vysledky.cermat.cz</a></div>
                 </div>
             </div>
         @endif
