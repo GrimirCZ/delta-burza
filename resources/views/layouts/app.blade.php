@@ -273,18 +273,18 @@
 
             <footer>
                 <div class="px-3 sm:px-0 pt-6 md:flex justify-between align-center max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="text-left">
+                    <div class="text-center md:text-left">
                         <a href="{{route("osobni-udaje")}}" class="link">Ochrana osobních údajů a Podmínky
                             užití</a>
                     </div>
                     <div></div>
                 </div>
                 <div class="px-3 sm:px-0 py-6 md:flex justify-between align-center max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <p class="text-right md:text-left mb-2 md:mb-0">
+                    <p class="text-center md:text-right md:text-left mb-2 md:mb-0">
                         <a href="{{route("obchodni_podminky")}}" class="link">Obchodní podmínky</a>
                     </p>
-                    <div class="text-right">
-                        <p class="text-right text-gray-600 text-sm">
+                    <div class="text-center md:text-right">
+                        <p class="text-center md:text-right text-gray-600 text-sm">
                             Vytvořil Vít Falta a Matěj Půhoný, studenti <br class="inline sm:hidden"/> <a
                                 href="{{url("/skola/1")}}" class="link">DELTA - Střední škola informatiky a ekonomie,
                                 s.r.o.</a>

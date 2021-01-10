@@ -1,0 +1,7 @@
+.cell {
+    @apply py-4 px-4 border-black border border-collapse text-center
+}
+
+.empty{
+    @apply border-0;
+}

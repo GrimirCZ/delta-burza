@@ -8,7 +8,7 @@ class CreateExamsTable extends Migration
 {
     public function up()
     {
-        Schema::create('exams', function(Blueprint $table){
+        Schema::create('exam_results', function(Blueprint $table){
             $table->bigIncrements('id');
 
             $table->string("year");
@@ -43,6 +43,6 @@ class CreateExamsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('exam_results');
     }
 }
