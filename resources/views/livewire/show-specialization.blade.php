@@ -76,17 +76,17 @@
                                         <th class="cell">škola</th>
                                         <th class="cell text-center relative px-6">
                                             lepší <br/> než...
-                                            <livewire:tooltip title="Lepší než..." :content="$textMedian"/>
+                                            <livewire:tooltip title="Lepší než..." :content="$textLepsiNez"/>
                                         </th>
                                         <th class="cell">škola</th>
                                         <th class="cell text-center relative px-6">
                                             lepší <br/> než...
-                                            <livewire:tooltip title="Lepší než..." :content="$textMedian"/>
+                                            <livewire:tooltip title="Lepší než..." :content="$textLepsiNez"/>
                                         </th>
                                         <th class="cell">škola</th>
                                         <th class="cell text-center relative px-6">
                                             lepší <br/> než...
-                                            <livewire:tooltip title="Lepší než..." :content="$textMedian"/>
+                                            <livewire:tooltip title="Lepší než..." :content="$textLepsiNez"/>
                                         </th>
                                         <th class="cell">škola</th>
                                     </tr>
