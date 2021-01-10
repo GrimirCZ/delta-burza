@@ -90,18 +90,35 @@
                                         </th>
                                         <th class="cell">škola</th>
                                     </tr>
-                                    @foreach($exam_results->filter(fn($exam)=>$exam->subject === $subject) as $exam)
-                                        <tr>
-                                            <td class="cell">{{$exam->year}}</td>
-                                            <td class="cell">{{$fmt($exam->cze_percentil)}}</td>
-                                            <td class="cell">{{$fmt($exam->percentil)}}</td>
-                                            <td class="cell">{{$fmt($exam->cze_median)}}</td>
-                                            <td class="cell">{{$fmt($exam->median)}}</td>
-                                            <td class="cell">{{$fmt($exam->cze_uspesnost)}}</td>
-                                            <td class="cell">{{$fmtPrc($exam->uspelo / $exam->prihlaseno)}}</td>
-                                            <td class="cell">{{$fmt($exam->cze_nepripusteno)}}</td>
-                                            <td class="cell">{{$fmtPrc($exam->omluveno / $exam->prihlaseno)}}</td>
-                                        </tr>
+                                    @foreach(['2020', '2019', '2018', '2017', '2016'] as $year)
+                                        @php
+                                            $exam = $exam_results->first(fn($exam)=>$exam->subject === $subject && $exam->year === $year);
+                                        @endphp
+                                        @if($exam != null)
+                                            <tr>
+                                                <td class="cell">{{$year}}</td>
+                                                <td class="cell">{{$fmt($exam->cze_percentil)}}</td>
+                                                <td class="cell">{{$fmt($exam->percentil)}}</td>
+                                                <td class="cell">{{$fmt($exam->cze_median)}}</td>
+                                                <td class="cell">{{$fmt($exam->median)}}</td>
+                                                <td class="cell">{{$fmt($exam->cze_uspesnost)}}</td>
+                                                <td class="cell">{{$fmtPrc($exam->uspelo / $exam->prihlaseno)}}</td>
+                                                <td class="cell">{{$fmt($exam->cze_nepripusteno)}}</td>
+                                                <td class="cell">{{$fmtPrc($exam->omluveno / $exam->prihlaseno)}}</td>
+                                            </tr>
+                                        @else
+                                            <tr>
+                                                <td class="cell">{{$year}}</td>
+                                                <td class="cell">-</td>
+                                                <td class="cell">-</td>
+                                                <td class="cell">-</td>
+                                                <td class="cell">-</td>
+                                                <td class="cell">-</td>
+                                                <td class="cell">-</td>
+                                                <td class="cell">-</td>
+                                                <td class="cell">-</td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                 </table>
                             </div>
