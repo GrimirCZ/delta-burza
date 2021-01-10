@@ -30,11 +30,13 @@ class ShowSpecialization extends Component
         $exam_results = $this->get_exam_results()->distinct()->get();
         $subjects = $exam_results->map(fn($exam_report) => $exam_report->subject)->unique();
 
+        $fmt = fn($num) => fmod($num, 1) == 0 ? number_format($num, 0) : number_format($num, 1, ",", " ");
+
         return view('livewire.show-specialization', [
             'exam_results' => $exam_results,
             'subjects' => $subjects,
-            'fmt' => fn($num) => fmod($num, 1) == 0 ? number_format($num, 0) : number_format($num, 1, ",", " "),
-            'fmtPrc' => fn($num) => fmod($num, 1) == 0 ? number_format($num * 100, 0) : number_format($num * 100, 1, ",", " ")
+            'fmt' => $fmt,
+            'fmtPrc' => fn($num) => $fmt($num * 100)
         ]);
     }
 }
