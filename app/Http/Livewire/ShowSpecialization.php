@@ -12,9 +12,14 @@ class ShowSpecialization extends Component
     public Specialization $specialization;
     public School $school;
 
+    public $exam_results = [];
+    public $subjects = [];
+
     public function mount()
     {
         $this->school = $this->specialization->school;
+        $this->exam_results = $this->get_exam_results()->distinct()->get();
+        $this->subjects = $this->exam_results->map(fn($exam_report) => $exam_report->subject)->unique();
     }
 
     private function get_exam_results()
@@ -41,22 +46,19 @@ class ShowSpecialization extends Component
      */
     public function render()
     {
-        $exam_results = $this->get_exam_results()->distinct()->get();
-        $subjects = $exam_results->map(fn($exam_report) => $exam_report->subject)->unique();
-
         $fmt = fn($num) => fmod($num, 1) == 0 ? number_format($num, 0) : number_format($num, 1, ",", " ");
 
         $years_to_display = [];
 
-        $nearest_year = $exam_results->max(fn($exam) => $exam->year);
+        $nearest_year = $this->exam_results->max(fn($exam) => $exam->year);
 
         for($i = $nearest_year; $i > $nearest_year - 5; $i--){
             array_push($years_to_display, $i);
         }
 
         return view('livewire.show-specialization', [
-            'exam_results' => $exam_results,
-            'subjects' => $subjects,
+            'exam_results' => $this->exam_results,
+            'subjects' => $this->subjects,
             'years_to_display' => $years_to_display,
             'fmt' => $fmt,
             'fmtPrc' => fn($num) => $fmt($num * 100)
