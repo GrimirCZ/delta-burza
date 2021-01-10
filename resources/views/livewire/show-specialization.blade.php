@@ -76,7 +76,7 @@
                             </div>
                         @endforeach
                     </div>
-                    <div class="text-sm">Podrobnější výsledky dostupné z <a href="https://vysledky.cermat.cz/data/Default.aspx">vysledky.cermat.cz</a></div>
+                    <div class="text-sm">Podrobnější výsledky dostupné z <a href="https://vysledky.cermat.cz/data/Default.aspx" class="link">vysledky.cermat.cz</a></div>
                 </div>
             </div>
         @endif
