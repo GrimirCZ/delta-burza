@@ -90,7 +90,7 @@
                                         </th>
                                         <th class="cell">škola</th>
                                     </tr>
-                                    @foreach(['2020', '2019', '2018', '2017', '2016'] as $year)
+                                    @foreach($years_to_display as $year)
                                         @php
                                             $exam = $exam_results->first(fn($exam)=>$exam->subject === $subject && $exam->year === $year);
                                         @endphp

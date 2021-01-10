@@ -12,7 +12,8 @@ class ShowSpecialization extends Component
     public Specialization $specialization;
     public School $school;
 
-    public function mount(){
+    public function mount()
+    {
         $this->school = $this->specialization->school;
     }
 
@@ -45,9 +46,18 @@ class ShowSpecialization extends Component
 
         $fmt = fn($num) => fmod($num, 1) == 0 ? number_format($num, 0) : number_format($num, 1, ",", " ");
 
+        $years_to_display = [];
+
+        $nearest_year = $exam_results->max(fn($exam) => $exam->year);
+
+        for($i = $nearest_year; $i > $nearest_year - 5; $i--){
+            array_push($years_to_display, $i);
+        }
+
         return view('livewire.show-specialization', [
             'exam_results' => $exam_results,
             'subjects' => $subjects,
+            'years_to_display' => $years_to_display,
             'fmt' => $fmt,
             'fmtPrc' => fn($num) => $fmt($num * 100)
         ]);
