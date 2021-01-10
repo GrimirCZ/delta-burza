@@ -149,6 +149,11 @@ class School extends Model
         return $this->get_type_data()->can_be_related_to ?? false;
     }
 
+    public function type_can_show_exam_results()
+    {
+        return $this->get_type_data()->can_show_exam_results ?? false;
+    }
+
     public function type_has_free_exhibitions()
     {
         if($this->et == null){

@@ -9,7 +9,7 @@ class EntityType extends Model
     protected $table = "entity_types";
 
     protected $fillable = [
-        'type', 'data', 'data->importance', 'data->can_have_related', 'data->can_be_related_to', 'data->has_free_exhibitions', 'data->can_have_specializations', 'data->can_have_inspection_reports'
+        'type', 'data', 'data->importance', 'data->can_have_related', 'data->can_be_related_to', 'data->has_free_exhibitions', 'data->can_have_specializations', 'data->can_have_inspection_reports', "data->can_show_exam_results"
     ];
 
     public function schools()

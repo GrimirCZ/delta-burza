@@ -3,12 +3,18 @@
 namespace App\Http\Livewire;
 
 use App\Models\ExamResult;
+use App\Models\School;
 use App\Models\Specialization;
 use Livewire\Component;
 
 class ShowSpecialization extends Component
 {
     public Specialization $specialization;
+    public School $school;
+
+    public function mount(){
+        $this->school = $this->specialization->school;
+    }
 
     private function get_exam_results()
     {

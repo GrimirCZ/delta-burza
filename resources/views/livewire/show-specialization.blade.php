@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        @if(count($exam_results) > 0)
+        @if($school->type_can_show_exam_results() && count($exam_results) > 0)
             @php
                 $shown = false;
             @endphp
@@ -37,8 +37,10 @@
                                 $shown = true;
                             @endphp
                             <div class="flex justify-content-start">
-                                <div class="text-xl mb-3 flex place-items-center h-8 w-75 relative">
-                                    {{$subject}} - Didaktický test
+                                <div class="relative pr-8 py-4">
+                                    <div class="text-xl">
+                                        {{$subject}} - Didaktický test
+                                    </div>
                                     <livewire:tooltip title="Didaktický test" :content="$textDidaktak"/>
                                 </div>
                             </div>
@@ -107,7 +109,8 @@
                     </div>
                     <div class="text-sm">Podrobnější výsledky dostupné z <a target="_blank"
                                                                             href="https://vysledky.cermat.cz/data/Default.aspx"
-                                                                            class="link">vysledky.cermat.cz</a></div>
+                                                                            class="link">vysledky.cermat.cz</a>
+                    </div>
                 </div>
             </div>
         @endif
