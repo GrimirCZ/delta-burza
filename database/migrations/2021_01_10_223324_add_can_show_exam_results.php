@@ -18,7 +18,7 @@ class AddCanShowExamResults extends Migration
                 ]);
 
                 EntityType::query()->where("type", "=", "school")->update([
-                    'data->can_show_exam_results' => false,
+                    'data->can_show_exam_results' => true,
                 ]);
             });
         });
