@@ -39,6 +39,7 @@ class LinkAccountToExistingSchool extends Component
 
 
         $user->school_id = $sch->id;
+        $user->is_main_contact = true;
         $user->push();
 
         $this->redirect("/entita/upravit");
