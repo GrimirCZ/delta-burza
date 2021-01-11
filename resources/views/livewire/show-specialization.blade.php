@@ -1,3 +1,21 @@
+<?php
+    //Sort subject
+    $subjectSortingPriorities = [
+        "Anglický jazyk" => 3,
+        "Matematika" => 2,
+        "Český jazyk a literatura" => 1
+    ];
+
+    $sortedSubjects = [];
+
+    foreach ($subjects as $subject) {
+        $sortedSubjects[$subject] = $subjectSortingPriorities[$subject] ?? 0;
+    }
+
+    ksort($sortedSubjects);
+    $subjects = array_keys($sortedSubjects);
+?>
+
 <div>
     <header class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 w-100 pt-8 mx-3">
         <div class="top text-gray-600">
