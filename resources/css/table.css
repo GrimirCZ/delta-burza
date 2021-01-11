@@ -1,5 +1,16 @@
 .cell {
-    @apply py-6 px-6 border-black border border-collapse text-center
+    @apply py-2 px-6 pr-9 border border-collapse text-center
+}
+
+.livewire-tooltip img {
+    opacity: 0.5;
+    position: relative;
+    top: -4px;
+    left: -4px;
+}
+
+.livewire-tooltip img:hover {
+    opacity: 0.3;
 }
 
 .empty{
