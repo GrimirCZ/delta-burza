@@ -37,74 +37,46 @@
                                 $shown = true;
                             @endphp
                             <div class="flex justify-content-start">
-                                <div class="relative pr-8 py-4">
+                                <div class="relative pr-8 py-4 pb-0">
                                     <div class="text-xl">
                                         {{$subject}} - Didaktický test
                                     </div>
+                                    <div class="livewire-tooltip-in-title">
                                     <livewire:tooltip title="Didaktický test" :content="$textDidaktak"/>
+                                    </div>
                                 </div>
                             </div>
+                            <p class="pb-6 display-none text-gray-500 max-w-3xl">Tučně uvedené hodnoty ukazují kolik % škol v ČR v dané skupině oborů dosáhlo horšího výsledku (nebo stejného) než daná škola. Výsledek v závorce je absolutní hodnota školy v daném kritériu.</p>
                             <div class="overflow-x-auto p-1 mb-6">
                                 <table class="w-100 mb-4 overflow-x-auto">
                                     <tr>
                                         <th class="cell empty"></th>
-                                        <th class="cell text-center relative px-6" colspan="2">
-                                            Průměrný percentil
-                                            <div class="livewire-tooltip">
-                                                <livewire:tooltip title="Průměrný percentil" :content="$textPercentil"/>
-                                            </div>
-                                        </th>
-                                        <th class="cell text-center relative px-6" colspan="2">
+                                        <th class="cell th-background text-center relative px-6 fw" colspan="2">
                                             Medián
                                             <div class="livewire-tooltip">
                                                 <livewire:tooltip title="Medián" :content="$textMedian"/>
                                             </div>
                                         </th>
-                                        <th class="cell text-center relative px-6" colspan="2">
-                                            Celková úspěšnost %
+                                        <th class="cell th-background text-center relative px-6 fw" colspan="2">
+                                            Průměrný percentil
+                                            <div class="livewire-tooltip">
+                                                <livewire:tooltip title="Průměrný percentil" :content="$textPercentil"/>
+                                            </div>
+                                        </th>
+                                        <th class="cell th-background text-center relative px-6 fw" colspan="2">
+                                            Celková úspěšnost
                                             <div class="livewire-tooltip">
                                                 <livewire:tooltip title="Celková úspěšnost %"
                                                               :content="$textUspesnost"/>
                                             </div>
                                         </th>
-                                        <th class="cell text-center relative px-6" colspan="2">
-                                            Nekonalo 1. termín %
+                                        <th class="cell th-background text-center relative px-6 fw" colspan="2">
+                                            Nekonalo 1. termín
                                             <div class="livewire-tooltip">
                                                 <livewire:tooltip title="Nekonalo 1. termín %"
                                                               :content="$textNeuspesnost"/>
                                             </div>
                                         </th>
-                                    </tr>
-                                    <tr>
-                                        <th class="cell empty"></th>
-                                        <th class="cell text-center relative px-6">
-                                            lepší <br/> než...
-                                            <div class="livewire-tooltip">
-                                            <livewire:tooltip title="Lepší než..." :content="$textLepsiNez"/>
-                                            </div>
-                                        </th>
-                                        <th class="cell">škola</th>
-                                        <th class="cell text-center relative px-6">
-                                            lepší <br/> než...
-                                            <div class="livewire-tooltip">
-                                            <livewire:tooltip title="Lepší než..." :content="$textLepsiNez"/>
-                                            </div>
-                                        </th>
-                                        <th class="cell">škola</th>
-                                        <th class="cell text-center relative px-6">
-                                            lepší <br/> než...
-                                            <div class="livewire-tooltip">
-                                            <livewire:tooltip title="Lepší než..." :content="$textLepsiNez"/>
-                                            </div>
-                                        </th>
-                                        <th class="cell">škola</th>
-                                        <th class="cell text-center relative px-6">
-                                            lepší <br/> než...
-                                            <div class="livewire-tooltip">
-                                            <livewire:tooltip title="Lepší než..." :content="$textLepsiNez"/>
-                                            </div>
-                                        </th>
-                                        <th class="cell">škola</th>
                                     </tr>
                                     @foreach($years_to_display as $year)
                                         @php
@@ -113,26 +85,30 @@
                                         @if($exam != null)
                                             <tr>
                                                 <td class="cell">{{$year}}</td>
-                                                <td class="cell">{{$fmt($exam->cze_percentil)}}%</td>
-                                                <td class="cell">{{$fmt($exam->percentil)}}</td>
-                                                <td class="cell">{{$fmt($exam->cze_median)}}%</td>
-                                                <td class="cell">{{$fmt($exam->median)}}</td>
-                                                <td class="cell">{{$fmt($exam->cze_uspesnost)}}%</td>
-                                                <td class="cell">{{$fmtPrc($exam->uspelo / $exam->prihlaseno)}}%</td>
-                                                <td class="cell">{{$fmt($exam->cze_nepripusteno)}}%</td>
-                                                <td class="cell">{{$fmtPrc($exam->omluveno / $exam->prihlaseno)}}%</td>
+                                                <td class="cell" colspan="2">
+                                                    <b>{{$fmt($exam->cze_median)}}%</b>
+                                                    ({{$fmt($exam->median)}})
+                                                </td>
+                                                <td class="cell" colspan="2">
+                                                    <b>{{$fmt($exam->cze_percentil)}}%</b>
+                                                    ({{$fmt($exam->percentil)}})
+                                                </td>
+                                                <td class="cell" colspan="2">
+                                                    <b>{{$fmt($exam->cze_uspesnost)}}%</b>
+                                                    ({{$fmtPrc($exam->uspelo / $exam->prihlaseno)}}%)
+                                                </td>
+                                                <td class="cell" colspan="2">
+                                                    <b>{{$fmt($exam->cze_nepripusteno)}}%</b>
+                                                    ({{$fmtPrc($exam->omluveno / $exam->prihlaseno)}}%)
+                                                </td>
                                             </tr>
                                         @else
                                             <tr>
                                                 <td class="cell">{{$year}}</td>
-                                                <td class="cell">-</td>
-                                                <td class="cell">-</td>
-                                                <td class="cell">-</td>
-                                                <td class="cell">-</td>
-                                                <td class="cell">-</td>
-                                                <td class="cell">-</td>
-                                                <td class="cell">-</td>
-                                                <td class="cell">-</td>
+                                                <td class="cell" colspan="2">-</td>
+                                                <td class="cell" colspan="2">-</td>
+                                                <td class="cell" colspan="2">-</td>
+                                                <td class="cell" colspan="2">-</td>
                                             </tr>
                                         @endif
                                     @endforeach
