@@ -27,8 +27,8 @@
     content: "• ";
 }
 
-.body {
-    color: #323234;
+body, .body {
+    color: #343742;
 }
 
 .max-w-16 {
