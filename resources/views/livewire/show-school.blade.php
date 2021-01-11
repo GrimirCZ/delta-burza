@@ -155,15 +155,12 @@
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <h2 class="p-2">Inspekční zprávy</h2>
                             @foreach($inspection_reports as $inspection_report)
-                                <div
-                                    class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">
-                                    <div class="text-sm leading-5 font-medium text-gray-500 flex place-items-center">
-                                        {{format_date($inspection_report->start_date)}}
-                                        - {{format_date($inspection_report->end_date)}}
+                                <div class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-3 text-gray-500 text-sm flex justify-between">
+                                    <div>{{format_date($inspection_report->start_date)}}
+                                    - {{format_date($inspection_report->end_date)}}
                                     </div>
-                                    <div class="mt-5 leading-5 text-gray-900 md:mt-0 md:flex md:place-items-center
-                                        md:justify-end">
-                                        <a class="text-sm btn btn-primary truncate" target="_blank"
+                                    <div>
+                                        <a class="btn btn-primary truncate text-xs" target="_blank"
                                            href="{{$inspection_report->url}}">Zobrazit zprávu</a>
                                     </div>
                                 </div>
