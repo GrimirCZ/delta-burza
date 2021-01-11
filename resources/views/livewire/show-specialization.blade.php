@@ -70,14 +70,14 @@
                                         <th class="cell th-background text-center relative px-6 fw" colspan="2">
                                             Celková úspěšnost
                                             <div class="livewire-tooltip">
-                                                <livewire:tooltip title="Celková úspěšnost %"
+                                                <livewire:tooltip title="Celková úspěšnost"
                                                               :content="$textUspesnost"/>
                                             </div>
                                         </th>
                                         <th class="cell th-background text-center relative px-6 fw" colspan="2">
                                             Nekonalo 1. termín
                                             <div class="livewire-tooltip">
-                                                <livewire:tooltip title="Nekonalo 1. termín %"
+                                                <livewire:tooltip title="Nekonalo 1. termín"
                                                               :content="$textNeuspesnost"/>
                                             </div>
                                         </th>
