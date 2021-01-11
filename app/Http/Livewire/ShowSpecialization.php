@@ -15,6 +15,7 @@ class ShowSpecialization extends Component
 
     public $exam_results = [];
     public $subjects = [];
+    public $max_year = 0;
 
     public function mount()
     {
@@ -22,6 +23,8 @@ class ShowSpecialization extends Component
         $this->exam_results = $this->get_exam_results()->distinct()->get();
 
         $this->subjects = $this->sort_subjects($this->exam_results->map(fn($exam_report) => $exam_report->subject)->unique());
+
+        $this->max_year = intval(ExamResult::max("year"));
     }
 
     private function sort_subjects(Collection $subjects) : Collection
@@ -72,9 +75,8 @@ class ShowSpecialization extends Component
 
         $years_to_display = [];
 
-        $nearest_year = $this->exam_results->max(fn($exam) => $exam->year);
 
-        for($i = $nearest_year; $i > $nearest_year - 5; $i--){
+        for($i = $this->max_year; $i > $this->max_year - 5; $i--){
             array_push($years_to_display, $i);
         }
 
