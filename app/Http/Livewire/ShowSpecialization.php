@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\ExamResult;
 use App\Models\School;
 use App\Models\Specialization;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 use Livewire\Component;
 
 class ShowSpecialization extends Component
@@ -24,7 +24,7 @@ class ShowSpecialization extends Component
         $this->subjects = $this->sort_subjects($this->exam_results->map(fn($exam_report) => $exam_report->subject)->unique());
     }
 
-    private function sort_subjects(Collection $subjects) : \Illuminate\Support\Collection
+    private function sort_subjects(Collection $subjects) : Collection
     {
         //Sort subjects
         $subjectSortingPriorities = [
