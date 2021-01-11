@@ -7,9 +7,11 @@
         <div class="top text-gray-600">
             {{$specialization->prescribed_specialization->code}} {{$specialization->prescribed_specialization->name}}
         </div>
-        <h1 class="font-light text-gray-800 text-2xl md:text-3xl">
-            {{$specialization->name}}
-        </h1>
+        @if($school->is_registered())
+            <h1 class="font-light text-gray-800 text-2xl md:text-3xl">
+                {{$specialization->name}}
+            </h1>
+        @endif
         <div class="bottom">
             <a href='/skola/{{$specialization->school->id}}' class="link">{{$specialization->school->district->name}}
                 - {{$specialization->school->name}}</a>
@@ -46,11 +48,13 @@
                                         {{$subject}} - Didaktický test
                                     </div>
                                     <div class="livewire-tooltip-in-title">
-                                    <livewire:tooltip title="Didaktický test" :content="$textDidaktak"/>
+                                        <livewire:tooltip title="Didaktický test" :content="$textDidaktak"/>
                                     </div>
                                 </div>
                             </div>
-                            <p class="pb-6 display-none text-gray-500 max-w-3xl">Tučně uvedené hodnoty ukazují kolik % škol v ČR v dané skupině oborů dosáhlo horšího výsledku (nebo stejného) než daná škola. Výsledek v závorce je absolutní hodnota školy v daném kritériu.</p>
+                            <p class="pb-6 display-none text-gray-500 max-w-3xl">Tučně uvedené hodnoty ukazují kolik %
+                                škol v ČR v dané skupině oborů dosáhlo horšího výsledku (nebo stejného) než daná škola.
+                                Výsledek v závorce je absolutní hodnota školy v daném kritériu.</p>
                             <div class="overflow-x-auto p-1 mb-6">
                                 <table class="w-100 mb-4 overflow-x-auto">
                                     <tr>
@@ -71,14 +75,14 @@
                                             Celková úspěšnost
                                             <div class="livewire-tooltip">
                                                 <livewire:tooltip title="Celková úspěšnost"
-                                                              :content="$textUspesnost"/>
+                                                                  :content="$textUspesnost"/>
                                             </div>
                                         </th>
                                         <th class="cell th-background text-center relative px-6 fw" colspan="2">
                                             Nekonalo 1. termín
                                             <div class="livewire-tooltip">
                                                 <livewire:tooltip title="Nekonalo 1. termín"
-                                                              :content="$textNeuspesnost"/>
+                                                                  :content="$textNeuspesnost"/>
                                             </div>
                                         </th>
                                     </tr>
