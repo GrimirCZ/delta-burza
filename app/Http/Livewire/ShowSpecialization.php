@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\ExamResult;
 use App\Models\School;
 use App\Models\Specialization;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 class ShowSpecialization extends Component
@@ -19,7 +20,27 @@ class ShowSpecialization extends Component
     {
         $this->school = $this->specialization->school;
         $this->exam_results = $this->get_exam_results()->distinct()->get();
-        $this->subjects = $this->exam_results->map(fn($exam_report) => $exam_report->subject)->unique();
+
+        $this->subjects = $this->sort_subjects($this->exam_results->map(fn($exam_report) => $exam_report->subject)->unique());
+    }
+
+    private function sort_subjects(Collection $subjects) : \Illuminate\Support\Collection
+    {
+        //Sort subjects
+        $subjectSortingPriorities = [
+            "Anglický jazyk" => 3,
+            "Matematika" => 2,
+            "Český jazyk a literatura" => 1
+        ];
+
+        $sortedSubjects = [];
+
+        foreach ($subjects as $subject) {
+            $sortedSubjects[$subject] = $subjectSortingPriorities[$subject] ?? 0;
+        }
+
+        ksort($sortedSubjects);
+        return collect(array_keys($sortedSubjects));
     }
 
     private function get_exam_results()
@@ -65,4 +86,5 @@ class ShowSpecialization extends Component
             'fmtPrc' => fn($num) => $fmt($num * 100)
         ]);
     }
+
 }
