@@ -50,43 +50,59 @@
                                         <th class="cell empty"></th>
                                         <th class="cell text-center relative px-6" colspan="2">
                                             Průměrný percentil
-                                            <livewire:tooltip title="Průměrný percentil" :content="$textPercentil"/>
+                                            <div class="livewire-tooltip">
+                                                <livewire:tooltip title="Průměrný percentil" :content="$textPercentil"/>
+                                            </div>
                                         </th>
                                         <th class="cell text-center relative px-6" colspan="2">
                                             Medián
-                                            <livewire:tooltip title="Medián" :content="$textMedian"/>
+                                            <div class="livewire-tooltip">
+                                                <livewire:tooltip title="Medián" :content="$textMedian"/>
+                                            </div>
                                         </th>
                                         <th class="cell text-center relative px-6" colspan="2">
                                             Celková úspěšnost %
-                                            <livewire:tooltip title="Celková úspěšnost %"
+                                            <div class="livewire-tooltip">
+                                                <livewire:tooltip title="Celková úspěšnost %"
                                                               :content="$textUspesnost"/>
+                                            </div>
                                         </th>
                                         <th class="cell text-center relative px-6" colspan="2">
                                             Nekonalo 1. termín %
-                                            <livewire:tooltip title="Nekonalo 1. termín %"
+                                            <div class="livewire-tooltip">
+                                                <livewire:tooltip title="Nekonalo 1. termín %"
                                                               :content="$textNeuspesnost"/>
+                                            </div>
                                         </th>
                                     </tr>
                                     <tr>
                                         <th class="cell empty"></th>
                                         <th class="cell text-center relative px-6">
                                             lepší <br/> než...
+                                            <div class="livewire-tooltip">
                                             <livewire:tooltip title="Lepší než..." :content="$textLepsiNez"/>
+                                            </div>
                                         </th>
                                         <th class="cell">škola</th>
                                         <th class="cell text-center relative px-6">
                                             lepší <br/> než...
+                                            <div class="livewire-tooltip">
                                             <livewire:tooltip title="Lepší než..." :content="$textLepsiNez"/>
+                                            </div>
                                         </th>
                                         <th class="cell">škola</th>
                                         <th class="cell text-center relative px-6">
                                             lepší <br/> než...
+                                            <div class="livewire-tooltip">
                                             <livewire:tooltip title="Lepší než..." :content="$textLepsiNez"/>
+                                            </div>
                                         </th>
                                         <th class="cell">škola</th>
                                         <th class="cell text-center relative px-6">
                                             lepší <br/> než...
+                                            <div class="livewire-tooltip">
                                             <livewire:tooltip title="Lepší než..." :content="$textLepsiNez"/>
+                                            </div>
                                         </th>
                                         <th class="cell">škola</th>
                                     </tr>
