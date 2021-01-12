@@ -5,6 +5,8 @@ namespace App\Http\Livewire;
 use App\Models\ExamResult;
 use App\Models\School;
 use App\Models\Specialization;
+use App\Models\SpecializationGroup;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
@@ -16,10 +18,20 @@ class ShowSpecialization extends Component
     public $exam_results = [];
     public $subjects = [];
     public $years_to_display = [];
+    public $spec_group = null;
 
     public function mount()
     {
         $this->school = $this->specialization->school;
+
+        $this->spec_group = SpecializationGroup::query()
+            ->join("prescribed_specializations", "specialization_groups.id", "=", "prescribed_specializations.specialization_group_id")
+            ->join("specializations", "specializations.prescribed_specialization_id", "=", "prescribed_specializations.id")
+            ->where("specializations.id", "=", $this->specialization->id)
+            ->select("specialization_groups.*")
+            ->first();
+
+        $this->textSimiliarObory = $this->generateSimiliarOboryText($this->spec_group);
 
         $this->max_year = intval(ExamResult::max("year"));
 
@@ -34,6 +46,20 @@ class ShowSpecialization extends Component
         $this->subjects = $this->sort_subjects($this->exam_results->map(fn($exam_report) => $exam_report->subject)->unique());
     }
 
+    private function generateSimiliarOboryText(?SpecializationGroup $spec_group)
+    {
+        $res = "CERMAT u škol bohužel nezobrazuje výsledky po jednotlivých oborech ale pouze po SKUPINÁCH oborů. U každého oboru školy se proto zobrazují výsledky, kterých škola dosáhla v rámci celé skupiny."
+            + "<br/>Do skupiny oborů $spec_group->code spadají tyto obory:<ul>";
+
+        foreach($spec_group->prescribed_specializations() as $ps){
+            $res .= "<li>$ps->code - $ps->name</li>";
+        }
+
+        $res .= "</ul>";
+
+        return $res;
+    }
+
     private function sort_subjects(Collection $subjects) : Collection
     {
         //Sort subjects
@@ -45,7 +71,7 @@ class ShowSpecialization extends Component
 
         $sortedSubjects = [];
 
-        foreach ($subjects as $subject) {
+        foreach($subjects as $subject){
             $sortedSubjects[$subject] = $subjectSortingPriorities[$subject] ?? 0;
         }
 
@@ -69,6 +95,7 @@ class ShowSpecialization extends Component
     public string $textNeuspesnost = "Toto kritérium ukazuje především, jaké procento studentů <b>nebylo ke zkoušce připuštěno.</b> Spadnou sem však každoročně i \"speciální případy\" jako dlouhodobé nemoce, zanechání studia ve 4. ročníku před maturitou (po dovršení 18-ti let) apod.";
     public string $textDidaktak = "Server zobrazuje výsledky pouze z didaktických testů, protože ty jediné jsou objektivně porovnatelné. Ostatní zkoušky (písemnou práci i ústní zkoušku) hodnotí stovky různých hodnotitelů jejichž úroveň hodnocení se často diametrálně liší. Kompletní výsledky najdete na https://vysledky.cermat.cz.";
     public string $textLepsiNez = "Výsledek školy je v tomto kritériu lepší nebo stejný než ...% škol v ČR ze <b>stejné skupiny oborů</b>.";
+    public string $textSimiliarObory = "";
 
 
     /**
@@ -81,7 +108,6 @@ class ShowSpecialization extends Component
         $fmt = fn($num) => fmod($num, 1) == 0 ? number_format($num, 0) : number_format($num, 1, ",", " ");
 
 
-
         return view('livewire.show-specialization', [
             'exam_results' => $this->exam_results,
             'subjects' => $this->subjects,
@@ -90,5 +116,6 @@ class ShowSpecialization extends Component
             'fmtPrc' => fn($num) => $fmt($num * 100)
         ]);
     }
+
 
 }
