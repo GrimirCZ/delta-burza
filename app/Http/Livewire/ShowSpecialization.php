@@ -52,7 +52,7 @@ class ShowSpecialization extends Component
             . "<br/>Do skupiny oborů $spec_group->code spadají tyto obory:<ul>";
 
         foreach($spec_group->prescribed_specializations as $ps){
-            $res .= "<li>$ps->code - $ps->name</li>";
+            $res .= "<li class='text-sm text-gray-500 font-normal'>$ps->code - $ps->name</li>";
         }
 
         $res .= "</ul>";
