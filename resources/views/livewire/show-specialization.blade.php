@@ -37,10 +37,20 @@
                     <div class="flex justify-content-start mmb-3">
                         <div class="relative pr-8 py-4 pb-0">
                             <div class="text-2xl">
-                                Výsledky státních maturit za skupinu oborů {{$spec_group->code}} - {{$spec_group->name}}
+                                @if($spec_group == null)
+                                    Výsledky státních maturit
+                                @else
+                                    Výsledky státních maturit za skupinu oborů {{$spec_group->code}}
+                                    - {{$spec_group->name}}
+                                @endif
                             </div>
                             <div class="livewire-tooltip-in-title">
-                                <livewire:tooltip :title='"Výsledky státních maturit za skupinu oborů $spec_group->code - $spec_group->name"' :content="$textSimiliarObory"/>
+                                @if($spec_group == null)
+                                    <livewire:tooltip
+                                        :title='"Výsledky státních maturit za skupinu oborů $spec_group->code - $spec_group->name"'
+                                        :content="$textSimiliarObory"/>
+
+                                @endif
                             </div>
                         </div>
                     </div>

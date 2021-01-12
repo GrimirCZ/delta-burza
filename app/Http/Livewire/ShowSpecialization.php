@@ -48,6 +48,10 @@ class ShowSpecialization extends Component
 
     private function generateSimilarOboryText(?SpecializationGroup $spec_group) : string
     {
+        if($spec_group == null){
+            return "";
+        }
+
         $res = "<div class='text-sm text-gray-500 font-normal'>CERMAT u škol bohužel nezobrazuje výsledky po jednotlivých oborech ale pouze po SKUPINÁCH oborů. U každého oboru školy se proto zobrazují výsledky, kterých škola dosáhla v rámci celé skupiny.</div>"
             . "<div class='mt-6 text-sm text-gray-500 font-normal'>Do skupiny oborů $spec_group->code - $spec_group->name spadají tyto obory:</div><ul class='mt-2'>";
 
