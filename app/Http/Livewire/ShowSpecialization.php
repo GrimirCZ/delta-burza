@@ -31,7 +31,7 @@ class ShowSpecialization extends Component
             ->select("specialization_groups.*")
             ->first();
 
-        $this->textSimiliarObory = $this->generateSimiliarOboryText($this->spec_group);
+        $this->textSimiliarObory = $this->generateSimilarOboryText($this->spec_group);
 
         $this->max_year = intval(ExamResult::max("year"));
 
@@ -46,12 +46,12 @@ class ShowSpecialization extends Component
         $this->subjects = $this->sort_subjects($this->exam_results->map(fn($exam_report) => $exam_report->subject)->unique());
     }
 
-    private function generateSimiliarOboryText(?SpecializationGroup $spec_group)
+    private function generateSimilarOboryText(?SpecializationGroup $spec_group) : string
     {
         $res = "CERMAT u škol bohužel nezobrazuje výsledky po jednotlivých oborech ale pouze po SKUPINÁCH oborů. U každého oboru školy se proto zobrazují výsledky, kterých škola dosáhla v rámci celé skupiny."
-            + "<br/>Do skupiny oborů $spec_group->code spadají tyto obory:<ul>";
+            . "<br/>Do skupiny oborů $spec_group->code spadají tyto obory:<ul>";
 
-        foreach($spec_group->prescribed_specializations() as $ps){
+        foreach($spec_group->prescribed_specializations as $ps){
             $res .= "<li>$ps->code - $ps->name</li>";
         }
 
