@@ -31,27 +31,26 @@ class ShowSpecialization extends Component
             ->select("specialization_groups.*")
             ->first();
 
-        $this->textSimiliarObory = $this->generateSimilarOboryText($this->spec_group);
+        if($this->spec_group != null){
 
-        $this->max_year = intval(ExamResult::max("year"));
+            $this->textSimiliarObory = $this->generateSimilarOboryText($this->spec_group);
 
-        for($i = $this->max_year; $i > $this->max_year - 5; $i--){
-            array_push($this->years_to_display, $i);
+            $this->max_year = intval(ExamResult::max("year"));
+
+            for($i = $this->max_year; $i > $this->max_year - 5; $i--){
+                array_push($this->years_to_display, $i);
+            }
+
+            $last_year = end($this->years_to_display);
+
+            $this->exam_results = $this->get_exam_results()->where("year", ">=", $last_year)->distinct()->get();
+
+            $this->subjects = $this->sort_subjects($this->exam_results->map(fn($exam_report) => $exam_report->subject)->unique());
         }
-
-        $last_year = end($this->years_to_display);
-
-        $this->exam_results = $this->get_exam_results()->where("year", ">=", $last_year)->distinct()->get();
-
-        $this->subjects = $this->sort_subjects($this->exam_results->map(fn($exam_report) => $exam_report->subject)->unique());
     }
 
     private function generateSimilarOboryText(?SpecializationGroup $spec_group) : string
     {
-        if($spec_group == null){
-            return "";
-        }
-
         $res = "<div class='text-sm text-gray-500 font-normal'>CERMAT u škol bohužel nezobrazuje výsledky po jednotlivých oborech ale pouze po SKUPINÁCH oborů. U každého oboru školy se proto zobrazují výsledky, kterých škola dosáhla v rámci celé skupiny.</div>"
             . "<div class='mt-6 text-sm text-gray-500 font-normal'>Do skupiny oborů $spec_group->code - $spec_group->name spadají tyto obory:</div><ul class='mt-2'>";
 

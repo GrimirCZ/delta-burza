@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        @if($school->type_can_show_exam_results() && count($exam_results) > 0)
+        @if($school->type_can_show_exam_results() && $spec_group != null && count($exam_results) > 0)
             @php
                 $shown = false;
             @endphp
@@ -37,20 +37,13 @@
                     <div class="flex justify-content-start mmb-3">
                         <div class="relative pr-8 py-4 pb-0">
                             <div class="text-2xl">
-                                @if($spec_group == null)
-                                    Výsledky státních maturit
-                                @else
-                                    Výsledky státních maturit za skupinu oborů {{$spec_group->code}}
-                                    - {{$spec_group->name}}
-                                @endif
+                                Výsledky státních maturit za skupinu oborů {{$spec_group->code}}
+                                - {{$spec_group->name}}
                             </div>
                             <div class="livewire-tooltip-in-title">
-                                @if($spec_group == null)
-                                    <livewire:tooltip
-                                        :title='"Výsledky státních maturit za skupinu oborů $spec_group->code - $spec_group->name"'
-                                        :content="$textSimiliarObory"/>
-
-                                @endif
+                                <livewire:tooltip
+                                    :title='"Výsledky státních maturit za skupinu oborů $spec_group->code - $spec_group->name"'
+                                    :content="$textSimiliarObory"/>
                             </div>
                         </div>
                     </div>
