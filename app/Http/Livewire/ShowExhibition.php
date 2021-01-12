@@ -82,7 +82,7 @@ class ShowExhibition extends Component
     }
 
 
-    public function get_registered_schools()
+    public function get_paying_schools()
     {
         return $this->filtered_schools_restrictions(
             School::query()
@@ -113,21 +113,23 @@ class ShowExhibition extends Component
                 "districts.name as district_name",
                 "entity_types.type AS type_name",
                 "entity_types.data->importance AS importance",
-                DB::raw("1 AS is_registered")
+                DB::raw("1 AS is_paying")
             );
     }
 
-    function get_unregistered_schools()
+    function get_district_schools(Collection $paying_ids)
     {
         return $this->filtered_schools_restrictions(
-            School::unassociated_schools()
+            School::query()
                 ->join("districts", "district_id", "=", "districts.id")
                 ->whereIn("schools.district_id", function($q){
                     $q->select("district_id")
                         ->where("exhibition_id", "=", $this->exhibition->id)
                         ->from("district_exhibition");
                 })
+                ->whereNotIn("schools.id", $paying_ids)
                 ->join("entity_types", "entity_type_id", "=", "entity_types.id")
+
         )->select(
             "schools.id AS id",
             DB::raw("0 AS registration_id"),
@@ -142,23 +144,22 @@ class ShowExhibition extends Component
             "schools.entity_type_id",
             "districts.name as district_name",
             "entity_types.type AS type_name",
-            DB::raw("0 AS importance"),
-            DB::raw("0 as is_registered")
-        );
+            "entity_types.data->importance AS importance",
+            DB::raw("0 as is_paying")
+        )->orderByDesc("importance")->orderBy("schools.name");
     }
 
 
     private function get_schools()
     {
-        return $this->get_registered_schools()
-            ->union($this->get_unregistered_schools())
-            ->orderByDesc("is_registered")
-            ->orderByDesc("importance")
-            ->orderBy("name");
+        $paying_schools = $this->get_paying_schools()->get();
+        $same_district_schools = $this->get_district_schools($paying_schools->map(fn($sch) => $sch->id))->get();
+
+        return $paying_schools->concat($same_district_schools);
     }
 
 
-    private function get_logos(Collection  $school_ids)
+    private function get_logos(Collection $school_ids)
     {
         return File::query()
             ->whereIn("school_id", $school_ids)

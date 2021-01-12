@@ -179,54 +179,55 @@
                 @else
                     <div id="macyJS">
                         @foreach($schools as $school)
-                            @if($school->is_registered)
-                                <div
-                                    class="relative overflow-hidden shadow-sm box-border h-min-content bg-white {{$school->type_name == "school" ? "" : "border-2 border-teal-400"}}">
-                                    @if($school->id === 1)
-                                        <div class="flag bg-light-green text-sm text-center text-white shadow-md">
-                                            <span class="font-light">autoři portálu</span><br>
-                                            <span class="font-black">BurzaŠkol.Online</span>
+                            <div
+                                class="relative overflow-hidden shadow-sm box-border h-min-content bg-white {{$school->type_name == "school" ? "" : "border-2 border-teal-400"}}">
+                                @if($school->id === 1)
+                                    <div class="flag bg-light-green text-sm text-center text-white shadow-md">
+                                        <span class="font-light">autoři portálu</span><br>
+                                        <span class="font-black">BurzaŠkol.Online</span>
+                                    </div>
+                                @endif
+                                <div class="p-5">
+                                    <div class="leading-3 text-gray-400">
+                                        {!! \App\Models\School::get_pipe_text($school->type_name, $school->city, $school->district_name) !!}
+                                    </div>
+                                    <a href="/skola/{{$school->id}}">
+                                        <div class="flex mt-3">
+                                            @if($logos->contains(fn($logo) => $logo->school_id === $school->id))
+                                                <div class="mr-5 py-3">
+                                                    <img
+                                                        src="{{$logos->first(fn($logo) => $logo->school_id === $school->id)->name}}"
+                                                        alt="{{$school->name}} logo"
+                                                        class="card-logo">
+                                                </div>
+                                            @endif
+                                            <h3 class="text-2xl font-light">
+                                                {{$school->name}}
+                                            </h3>
                                         </div>
-                                    @endif
-                                    <div class="p-5">
-                                        <div class="leading-3 text-gray-400">
-                                            {!! \App\Models\School::get_pipe_text($school->type_name, $school->city, $school->district_name) !!}
-                                        </div>
-                                        <a href="/skola/{{$school->id}}">
-                                            <div class="flex mt-3">
-                                                @if($logos->contains(fn($logo) => $logo->school_id === $school->id))
-                                                    <div class="mr-5 py-3">
-                                                        <img src="{{$logos->first(fn($logo) => $logo->school_id === $school->id)->name}}"
-                                                             alt="{{$school->name}} logo"
-                                                             class="card-logo">
-                                                    </div>
-                                                @endif
-                                                <h3 class="text-2xl font-light">
-                                                    {{$school->name}}
-                                                </h3>
-                                            </div>
-                                        </a>
+                                    </a>
 
-                                        <table class="table w-full mt-5 text-sm text-gray-600">
-                                            <tbody class="divide-y divide-gray-200">
-                                            @foreach($specializations->filter(fn($spec) => $spec->school_id === $school->id) as $specialization)
-                                                <tr>
-                                                    <td class="py-3">
-                                                        <a href="/obor/{{$specialization->id}}">
-                                                            {{$specialization->prescribed_specialization_code}}
-                                                            - {{$specialization->prescribed_specialization_name}}
-                                                        </a>
-                                                    </td>
-                                                    <td class="py-3 text-right w-48">
-                                                        <a href="/obor/{{$specialization->id}}"
-                                                           class="btn btn-primary text-sm inline-block">Více
-                                                            informací o oboru</a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
+                                    <table class="table w-full mt-5 text-sm text-gray-600">
+                                        <tbody class="divide-y divide-gray-200">
+                                        @foreach($specializations->filter(fn($spec) => $spec->school_id === $school->id) as $specialization)
+                                            <tr>
+                                                <td class="py-3">
+                                                    <a href="/obor/{{$specialization->id}}">
+                                                        {{$specialization->prescribed_specialization_code}}
+                                                        - {{$specialization->prescribed_specialization_name}}
+                                                    </a>
+                                                </td>
+                                                <td class="py-3 text-right w-48">
+                                                    <a href="/obor/{{$specialization->id}}"
+                                                       class="btn btn-primary text-sm inline-block">Více
+                                                        informací o oboru</a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
 
+                                    @if($school->is_paying)
                                         <div class="flex justify-between mt-10 text-gray-900">
                                             <a href="{{$school->try_link}}" class="hover:text-teal-400">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -329,95 +330,34 @@
                                            class="btn text-sm text-center mt-1 block bg-teal-400 hover:bg-teal-500 text-white">
                                             Napište nám!
                                         </a>
+                                    @endif
 
-                                        <a href="/skola/{{$school->id}}"
-                                           class="btn text-sm text-center btn-primary mt-1 block">
-                                            Detail {{\App\Models\School::get_entity_type_intl($school->type_name,2)}}
-                                        </a>
+                                    <a href="/skola/{{$school->id}}"
+                                       class="btn text-sm text-center btn-primary mt-1 block">
+                                        Detail {{\App\Models\School::get_entity_type_intl($school->type_name,2)}}
+                                    </a>
 
-                                        @if($school->web != null)
-                                            <div class="mt-4 text-sm hover:underline text-gray-400">
-                                                <div>
+                                    @if($school->web != null)
+                                        <div class="mt-4 text-sm hover:underline text-gray-400">
+                                            <div>
 
-                                                    <a href="{{fix_url($school->web)}}" target="_blank"
-                                                       class="hover:text-teal-400">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                             viewBox="0 0 24 24"
-                                                             stroke="currentColor"
-                                                             class="inline-block h-4 align-middle">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2"
-                                                                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                                                        </svg>
-                                                        {{$school->web}}
-                                                    </a>
-                                                </div>
+                                                <a href="{{fix_url($school->web)}}" target="_blank"
+                                                   class="hover:text-teal-400">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                         viewBox="0 0 24 24"
+                                                         stroke="currentColor"
+                                                         class="inline-block h-4 align-middle">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                              stroke-width="2"
+                                                              d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
+                                                    </svg>
+                                                    {{$school->web}}
+                                                </a>
                                             </div>
-                                        @endif
-                                    </div>
-                                </div>
-                            @else
-                                <div
-                                    class="relative overflow-hidden shadow-sm box-border h-min-content bg-white">
-                                    <div class="p-5">
-                                        <div class="leading-3 text-gray-400">
-                                            {!! \App\Models\School::get_pipe_text($school->type_name, $school->city, $school->district_name) !!}
                                         </div>
-                                        <a href="/skola/{{$school->id}}">
-                                            <div class="flex mt-3">
-                                                <h3 class="text-2xl font-light">
-                                                    {{$school->name}}
-                                                </h3>
-                                            </div>
-                                        </a>
-
-                                        <table class="table w-full mt-5 text-sm text-gray-600">
-                                            <tbody class="divide-y divide-gray-200">
-                                            @foreach($specializations->filter(fn($spec) => $spec->school_id === $school->id) as $specialization)
-                                                <tr>
-                                                    <td class="py-3">
-                                                        <a href="/obor/{{$specialization->id}}">
-                                                            {{$specialization->prescribed_specialization_code}}
-                                                            - {{$specialization->prescribed_specialization_name}}
-                                                        </a>
-                                                    </td>
-                                                    <td class="py-3 text-right w-48">
-                                                        <a href="/obor/{{$specialization->id}}"
-                                                           class="btn btn-primary text-sm inline-block">Více
-                                                            informací o oboru</a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-
-                                        <a href="/skola/{{$school->id}}"
-                                           class="btn text-sm text-center btn-primary mt-1 block">
-                                            Detail {{\App\Models\School::get_entity_type_intl($school->type_name,2)}}
-                                        </a>
-
-                                        @if($school->web != null)
-                                            <div class="mt-4 text-sm hover:underline text-gray-400">
-                                                <div>
-
-                                                    <a href="{{fix_url($school->web)}}" target="_blank"
-                                                       class="hover:text-teal-400">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
-                                                             viewBox="0 0 24 24"
-                                                             stroke="currentColor"
-                                                             class="inline-block h-4 align-middle">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                  stroke-width="2"
-                                                                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
-                                                        </svg>
-                                                        {{$school->web}}
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        @endif
-                                    </div>
+                                    @endif
                                 </div>
-                            @endif
+                            </div>
                         @endforeach
                     </div>
 
