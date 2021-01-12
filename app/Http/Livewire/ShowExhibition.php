@@ -152,8 +152,8 @@ class ShowExhibition extends Component
 
     private function get_schools()
     {
-        $paying_schools = $this->get_paying_schools()->get();
-        $same_district_schools = $this->get_district_schools($paying_schools->map(fn($sch) => $sch->id))->get();
+        $paying_schools = $this->get_paying_schools()->distinct()->get();
+        $same_district_schools = $this->get_district_schools($paying_schools->map(fn($sch) => $sch->id))->distinct()->get();
 
         return $paying_schools->concat($same_district_schools);
     }
@@ -214,7 +214,7 @@ class ShowExhibition extends Component
 
         $has_test = $this->exhibition->has_test_event;
 
-        $schools = $this->get_schools()->distinct()->get();
+        $schools = $this->get_schools();
 
         $school_ids = $schools->map(fn($sch) => $sch->id);
 
