@@ -40,7 +40,7 @@
                                 Výsledky státních maturit za skupinu oborů {{$spec_group->code}} - {{$spec_group->name}}
                             </div>
                             <div class="livewire-tooltip-in-title">
-                                <livewire:tooltip :title='"Výsledky státních maturit za skupinu oborů $spec_group->code"' :content="$textSimiliarObory"/>
+                                <livewire:tooltip :title='"Výsledky státních maturit za skupinu oborů $spec_group->code - $spec_group->name"' :content="$textSimiliarObory"/>
                             </div>
                         </div>
                     </div>
