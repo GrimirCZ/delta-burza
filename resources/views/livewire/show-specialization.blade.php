@@ -34,10 +34,16 @@
             @endphp
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white p-5 shadow-sm box-border mt-3">
-                    <h2 class="text-2xl mb-3">
-                        Výsledky státních maturit za skupinu oborů {{$spec_group->code}}
-                        <livewire:tooltip :title='"Výsledky státních maturit za skupinu oborů $spec_group->code"' :content="$textSimiliarObory"/>
-                    </h2>
+                    <div class="flex justify-content-start mmb-3">
+                        <div class="relative pr-8 py-4 pb-0">
+                            <div class="text-2xl">
+                                Výsledky státních maturit za skupinu oborů {{$spec_group->code}}
+                            </div>
+                            <div class="livewire-tooltip-in-title">
+                                <livewire:tooltip :title='"Výsledky státních maturit za skupinu oborů $spec_group->code"' :content="$textSimiliarObory"/>
+                            </div>
+                        </div>
+                    </div>
                     <div>
                         @foreach($subjects as $subject)
                             @php
