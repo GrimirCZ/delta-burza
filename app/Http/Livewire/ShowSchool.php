@@ -33,6 +33,11 @@ class ShowSchool extends Component
                 "contest_levels.name AS level_name",
                 "year"
             )
+            ->orderByDesc("year")
+            ->orderByDesc("points")
+            ->orderByDesc("contest_levels.id")
+            ->orderBy("contests.name")
+            ->orderBy("place")
             ->get();
     }
 
