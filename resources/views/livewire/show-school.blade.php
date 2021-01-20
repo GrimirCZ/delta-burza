@@ -325,9 +325,6 @@
                                                       :content="$textBody"/>
                                 </div>
                             </th>
-                            <th class="cell th-background text-center relative px-6 fw">
-                                Pořadí
-                            </th>
                         </tr>
                         @foreach($contest_result_years as $year)
                             @php
@@ -349,7 +346,7 @@
                                         </td>
                                     @endif
                                     <td class="cell">
-                                        <b>{{$ycr->level_name}}</b>
+                                        <b>{{$ycr->place}} {{$ycr->level_name}}</b>
                                         {{$ycr->name}}
                                     </td>
                                     <td class="cell">
@@ -360,9 +357,6 @@
                                                 {{$ycr->points}}
                                             @endif
                                         </b>
-                                    </td>
-                                    <td class="cell">
-                                        {{$ycr->place}}
                                     </td>
                                 </tr>
                                 @php
