@@ -29,7 +29,7 @@ class ShowSchool extends Component
             ->join("contests", "contests.id", "=", "contest_results.contest_id")
             ->join("contest_levels", "contest_levels.id", "=", "contest_results.contest_level_id")
             ->select(
-                "sum(expoint) AS points",
+                DB::raw("sum(expoint) AS points"),
                 "contests.name AS name",
                 "contest_levels.name AS level_name",
                 "contest_levels.id",
