@@ -29,9 +29,10 @@ class ShowSchool extends Component
             ->join("contests", "contests.id", "=", "contest_results.contest_id")
             ->join("contest_levels", "contest_levels.id", "=", "contest_results.contest_level_id")
             ->select(
-                "expoint AS points",
+                "sum(expoint) AS points",
                 "contests.name AS name",
                 "contest_levels.name AS level_name",
+                "contest_levels.id",
                 "place",
                 "year"
             )
@@ -40,6 +41,7 @@ class ShowSchool extends Component
             ->orderByDesc("contest_levels.id")
             ->orderBy("contests.name")
             ->orderBy("place")
+            ->groupBy("year", "contest_levels.name", "place", "contests.name", "contest_levels.id")
             ->get();
     }
 

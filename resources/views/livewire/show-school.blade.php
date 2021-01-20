@@ -344,11 +344,11 @@
                                             </b>
                                         </td>
                                     @endif
-                                    <td class="cell" colspan="2">
+                                    <td class="cell">
                                         <b>{{$ycr->level_name}}</b>
                                         {{$ycr->name}}
                                     </td>
-                                    <td class="cell" colspan="2">
+                                    <td class="cell">
                                         <b>
                                             @if($ycr->points == 0)
                                                 -
