@@ -32,6 +32,7 @@ class ShowSchool extends Component
                 "expoint AS points",
                 "contests.name AS name",
                 "contest_levels.name AS level_name",
+                "place",
                 "year"
             )
             ->orderByDesc("year")

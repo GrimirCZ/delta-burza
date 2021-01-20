@@ -312,18 +312,21 @@
                     <table class="w-100 mb-4 overflow-x-auto">
                         <tr>
                             <th class="cell empty"></th>
-                            <th class="cell th-background text-center relative px-6 fw" colspan="2">
+                            <th class="cell th-background text-center relative px-6 fw">
                                 <b>&sum;</b>
                             </th>
-                            <th class="cell th-background text-center relative px-6 fw" colspan="2">
+                            <th class="cell th-background text-center relative px-6 fw">
                                 <b>Úmístění v soutěži</b>
                             </th>
-                            <th class="cell th-background text-center relative px-6 fw" colspan="2">
+                            <th class="cell th-background text-center relative px-6 fw">
                                 Body
                                 <div class="livewire-tooltip">
                                     <livewire:tooltip title="Body"
                                                       :content="$textBody"/>
                                 </div>
+                            </th>
+                            <th class="cell th-background text-center relative px-6 fw">
+                                Pořadí
                             </th>
                         </tr>
                         @foreach($contest_result_years as $year)
@@ -333,12 +336,14 @@
                             @endphp
                             @foreach($year_contest_results as $ycr)
                                 <tr>
-                                    <td class="cell">{{$year}}</td>
-                                    <td class="cell" colspan="2">
-                                        <b>
-                                            {{ceil($point_sum)}}
-                                        </b>
-                                    </td>
+                                    @if(!isset($last_year) || $last_year != $year)
+                                        <td class="cell" colspan="{{$year_contest_results->count()}}">{{$year}}</td>
+                                        <td class="cell" colspan="{{$year_contest_results->count()}}">
+                                            <b>
+                                                {{ceil($point_sum)}}
+                                            </b>
+                                        </td>
+                                    @endif
                                     <td class="cell" colspan="2">
                                         <b>{{$ycr->level_name}}</b>
                                         {{$ycr->name}}
@@ -352,7 +357,13 @@
                                             @endif
                                         </b>
                                     </td>
+                                    <td class="cell">
+                                        {{$ycr->place}}
+                                    </td>
                                 </tr>
+                                @php
+                                    $last_year = $year;
+                                @endphp
                             @endforeach
                         @endforeach
                     </table>
