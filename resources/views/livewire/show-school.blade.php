@@ -331,10 +331,10 @@
                         </tr>
                         @foreach($contest_result_years as $year)
                             @php
-                                $year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year)->take(5);
+                                $year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year);
                                 $point_sum = $year_contest_results->sum(fn($cr) => $cr->points);
                             @endphp
-                            @foreach($year_contest_results as $ycr)
+                            @foreach($year_contest_results->take(5) as $ycr)
                                 @php
                                     $is_first = !isset($last_year) || $last_year != $year;
                                 @endphp
