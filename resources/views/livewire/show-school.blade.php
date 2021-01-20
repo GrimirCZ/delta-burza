@@ -345,7 +345,7 @@
                                             </b>
                                         </td>
                                     @endif
-                                    <td class="cell text-left">
+                                    <td class="cell" style="text-align: left !important;">
                                         <b>{{$ycr->place}}. {{$ycr->level_name}}</b>
                                         {{$ycr->name}}
                                     </td>
