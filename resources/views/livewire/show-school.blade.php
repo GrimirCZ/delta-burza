@@ -337,8 +337,8 @@
                             @foreach($year_contest_results as $ycr)
                                 <tr>
                                     @if(!isset($last_year) || $last_year != $year)
-                                        <td class="cell" colspan="{{$year_contest_results->count()}}">{{$year}}</td>
-                                        <td class="cell" colspan="{{$year_contest_results->count()}}">
+                                        <td class="cell" rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
+                                        <td class="cell" rowspan="{{$year_contest_results->count()}}">
                                             <b>
                                                 {{ceil($point_sum)}}
                                             </b>
