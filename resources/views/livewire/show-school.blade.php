@@ -305,7 +305,7 @@
                 </div>
             @endif
             @if($school->type_can_show_contest_results() && count($contest_results) > 0)
-                <div class="bg-white p-5 shadow-sm box-border mt-3">
+                <div class="bg-white p-5 shadow-sm box-border overflow-x-auto mt-3">
                     <h2 class="text-2xl mb-3">
                         Výstavy
                     </h2>
