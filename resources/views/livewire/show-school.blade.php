@@ -335,14 +335,18 @@
                                 <tr>
                                     <td class="cell">{{$year}}</td>
                                     <td class="cell" colspan="2">
-                                        {{$point_sum}}
+                                        {{ceil($point_sum)}}
                                     </td>
                                     <td class="cell" colspan="2">
                                         <b>{{$ycr->level_name}}</b>
                                         {{$ycr->name}}
                                     </td>
                                     <td class="cell" colspan="2">
-                                        {{$ycr->points}}
+                                        @if($ycr->points == 0)
+                                            -
+                                        @else
+                                            {{$ycr->points}}
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
