@@ -346,7 +346,7 @@
                                         </td>
                                     @endif
                                     <td class="cell text-left">
-                                        <b>{{$ycr->place}} {{$ycr->level_name}}</b>
+                                        <b>{{$ycr->place}}. {{$ycr->level_name}}</b>
                                         {{$ycr->name}}
                                     </td>
                                     <td class="cell">
