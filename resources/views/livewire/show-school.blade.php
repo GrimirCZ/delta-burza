@@ -339,7 +339,7 @@
                                 @php
                                     $is_first = !isset($last_year) || $last_year != $year;
                                 @endphp
-                                <tr class="@if($is_first) border-t-2 border-gray-800  @endif">
+                                <tr class="@if($is_first) border-t-2 border-gray-600  @endif">
                                     @if($is_first)
                                         <td class="cell" rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
                                         <td class="cell" rowspan="{{$year_contest_results->count()}}">
