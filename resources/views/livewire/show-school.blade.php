@@ -313,7 +313,7 @@
                         <tr>
                             <th class="cell empty"></th>
                             <th class="cell th-background text-center relative px-6 fw" colspan="2">
-                                &sum;
+                                <b>&sum;</b>
                             </th>
                             <th class="cell th-background text-center relative px-6 fw" colspan="2">
                                 <b>Úmístění v soutěži</b>
