@@ -335,8 +335,11 @@
                                 $point_sum = $year_contest_results->sum(fn($cr) => $cr->points);
                             @endphp
                             @foreach($year_contest_results as $ycr)
-                                <tr>
-                                    @if(!isset($last_year) || $last_year != $year)
+                                @php
+                                    $is_first = !isset($last_year) || $last_year != $year;
+                                @endphp
+                                <tr class="@if($is_first) border-top border-gray-600  @endif">
+                                    @if($is_first)
                                         <td class="cell" rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
                                         <td class="cell" rowspan="{{$year_contest_results->count()}}">
                                             <b>
