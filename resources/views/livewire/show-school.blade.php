@@ -188,7 +188,7 @@
                                                     rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
                                                 <td class="cell" rowspan="{{$year_contest_results->count()}}">
                                                     <b>
-                                                        {{ceil($point_sum)}}
+                                                        {{$point_sum}}
                                                     </b>
                                                 </td>
                                             @endif
@@ -390,7 +390,7 @@
                                         <td class="cell" rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
                                         <td class="cell" rowspan="{{$year_contest_results->count()}}">
                                             <b>
-                                                {{ceil($point_sum)}}
+                                                {{$point_sum}}
                                             </b>
                                         </td>
                                     @endif
