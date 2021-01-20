@@ -188,7 +188,7 @@
                                                     rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
                                                 <td class="cell" rowspan="{{$year_contest_results->count()}}">
                                                     <b>
-                                                        {{$point_sum}}
+                                                        {{round($point_sum, 1)}}
                                                     </b>
                                                 </td>
                                             @endif
@@ -390,7 +390,7 @@
                                         <td class="cell" rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
                                         <td class="cell" rowspan="{{$year_contest_results->count()}}">
                                             <b>
-                                                {{$point_sum}}
+                                                {{round($point_sum, 1)}}
                                             </b>
                                         </td>
                                     @endif
