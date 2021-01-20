@@ -25,6 +25,7 @@ class ShowSchool extends Component
     {
         $this->contest_results = ContestResult::query()
             ->where("school_id", $this->school->id)
+            ->whereNotNull("expoint")
             ->join("contests", "contests.id", "=", "contest_results.contest_id")
             ->join("contest_levels", "contest_levels.id", "=", "contest_results.contest_level_id")
             ->select(
