@@ -151,13 +151,75 @@
                             @endforeach
                         </div>
                     @endif
+                    @if($school->type_can_show_contest_results() && count($contest_results) > 0)
+                        <div class="bg-white p-5 shadow-sm box-border mt-3 overflow-x-auto">
+                            <h2 class="p-2">Výsledky soutěží</h2>
+
+                            <table class="w-100 mb-4 overflow-x-auto">
+                                <tr>
+                                    <th class="cell empty"></th>
+                                    <th class="cell th-background text-center relative px-6 fw" colspan="2">
+                                        &sum;
+                                    </th>
+                                    <th class="cell th-background text-center relative px-6 fw" colspan="2">
+                                        <b>Úmístění v soutěži</b>
+                                    </th>
+                                    <th class="cell th-background text-center relative px-6 fw" colspan="2">
+                                        Body
+                                        <div class="livewire-tooltip">
+                                            <livewire:tooltip title="Body"
+                                                              :content="$textBody"/>
+                                        </div>
+                                    </th>
+                                </tr>
+                                @foreach($contest_result_years as $year)
+                                    @php
+                                        $year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year);
+                                        $point_sum = $year_contest_results->sum(fn($cr) => $cr->points);
+                                    @endphp
+                                    @foreach($year_contest_results as $ycr)
+                                        <tr>
+                                            <td class="cell">{{$year}}</td>
+                                            <td class="cell" colspan="2">
+                                                {{$point_sum}}
+                                            </td>
+                                            <td class="cell" colspan="2">
+                                                <b>{{$ycr->level_name}}</b>
+                                                {{$ycr->name}}
+                                            </td>
+                                            <td class="cell" colspan="2">
+                                                {{$ycr->points}}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endforeach
+                            </table>
+
+
+                            {{--                        @foreach ($school->related_schools as $related_schools)--}}
+                            {{--                                <div--}}
+                            {{--                                    class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">--}}
+                            {{--                                    <div class="text-sm leading-5 font-medium text-gray-500">--}}
+                            {{--                                        {{$related_schools->name}}--}}
+                            {{--                                    </div>--}}
+                            {{--                                    <div class="mt-5 leading-5 text-gray-900 md:mt-0 md:flex md:place-items-center--}}
+                            {{--                                        md:justify-end">--}}
+                            {{--                                        <a class="btn btn-primary truncate" href="/skola/{{$related_schools->id}}">--}}
+                            {{--                                            Zobrazit detail školy--}}
+                            {{--                                        </a>--}}
+                            {{--                                    </div>--}}
+                            {{--                                </div>--}}
+                            {{--                            @endforeach--}}
+                        </div>
+                    @endif
                     @if($school->type_can_have_inspection_reports() && count($inspection_reports) > 0)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <h2 class="p-2">Inspekční zprávy</h2>
                             @foreach($inspection_reports as $inspection_report)
-                                <div class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-3 text-gray-500 text-sm flex justify-between">
+                                <div
+                                    class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-3 text-gray-500 text-sm flex justify-between">
                                     <div>{{format_date($inspection_report->start_date)}}
-                                    - {{format_date($inspection_report->end_date)}}
+                                        - {{format_date($inspection_report->end_date)}}
                                     </div>
                                     <div>
                                         <a class="btn btn-primary truncate text-xs" target="_blank"

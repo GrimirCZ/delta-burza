@@ -134,27 +134,32 @@ class School extends Model
     }
 
 
-    public function type_can_have_inspection_reports()
+    public function type_can_have_inspection_reports() : bool
     {
         return $this->get_type_data()->can_have_inspection_reports ?? false;
     }
 
-    public function type_can_have_related()
+    public function type_can_have_related() : bool
     {
         return $this->get_type_data()->can_have_related ?? false;
     }
 
-    public function type_can_be_related_to()
+    public function type_can_be_related_to() : bool
     {
         return $this->get_type_data()->can_be_related_to ?? false;
     }
 
-    public function type_can_show_exam_results()
+    public function type_can_show_exam_results() : bool
     {
         return $this->get_type_data()->can_show_exam_results ?? false;
     }
 
-    public function type_has_free_exhibitions()
+    public function type_can_show_contest_results() : bool
+    {
+        return $this->get_type_data()->can_show_contest_results ?? false;
+    }
+
+    public function type_has_free_exhibitions() : bool
     {
         if($this->et == null){
             $this->et = $this->entity_type;

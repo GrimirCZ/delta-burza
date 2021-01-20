@@ -104,6 +104,6 @@ class Exhibition extends Model
 
     public function enable_chat() : bool
     {
-        return Carbon::now()->isoFormat("YYYY-MM-DD") == $this->date || $this->force_enable_join;
+        return $this->enable_morning_join_buttons() || $this->enable_evening_join_buttons();
     }
 }
