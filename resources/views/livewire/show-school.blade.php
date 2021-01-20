@@ -328,7 +328,7 @@
                         </tr>
                         @foreach($contest_result_years as $year)
                             @php
-                                $year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year);
+                                $year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year)->take(5);
                                 $point_sum = $year_contest_results->sum(fn($cr) => $cr->points);
                             @endphp
                             @foreach($year_contest_results as $ycr)
