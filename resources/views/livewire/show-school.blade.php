@@ -155,6 +155,13 @@
                     @if($school->type_can_show_contest_results() && count($contest_results) > 0)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <h2 class="p-2">Výsledky v soutěžích MŠMT</h2>
+                            <p>
+                                Pravidelné úspěchy v soutěžích ukazují na <b>systematickou práci</b> školy <b>s
+                                    talentovanými studenty</b>. U středních odborných škol a učilišť odráží <b>úroveň
+                                    výuky odborných předmětů</b>. Gymnázia mívají úspěchy především v humanitních a
+                                přírodovědných olympiádách.
+                                <br><i>Ročník soutěží MŠMT 2020 byl kvůli COVIDU úplně zrušen.</i>
+                            </p>
                             <div class="overflow-x-auto">
                                 <table class="w-100 mb-4">
                                     <tr>
@@ -200,14 +207,6 @@
                                                     {{$ycr['name']}}
                                                 </td>
                                             </tr>
-                                            {{--                                            @if($loop->last)--}}
-                                            {{--                                                @if($year_contest_results->count() < $all_year_contest_results->count())--}}
-                                            {{--                                                    <tr>--}}
-                                            {{--                                                        <td class="cell" colspan="3">--}}
-                                            {{--                                                        </td>--}}
-                                            {{--                                                    </tr>--}}
-                                            {{--                                                @endif--}}
-                                            {{--                                            @endif--}}
                                         @endforeach
                                     @endforeach
                                 </table>
