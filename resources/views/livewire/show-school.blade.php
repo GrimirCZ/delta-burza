@@ -227,6 +227,9 @@
                                             <livewire:tooltip title="Body"
                                                               :content="$textBody"/>
                                         </th>
+                                        <th class="cell th-background text-center relative px-6 fw hidden sm:visible">
+                                            Počet bodů
+                                        </th>
                                     </tr>
                                     @foreach($all_year_contest_results as $ycr)
                                         <tr>
@@ -241,6 +244,13 @@
                                             <td class="cell" style="text-align: left !important;">
                                                 <b>{{$ycr['place']}}. {{$ycr['level_name']}}</b>
                                                 {{$ycr['name']}}
+                                            </td>
+                                            <td class="cell hidden sm:visible">
+                                                @if($ycr['points'] == 0)
+                                                    -
+                                                @else
+                                                    {{$ycr['points']}}
+                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
