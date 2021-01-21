@@ -232,7 +232,7 @@
                                         <th class="cell th-background text-center relative px-6 fw">
                                             <b>Úmístění v soutěži</b>
                                         </th>
-                                        <th class="cell th-background text-center relative px-6 fw hidden sm:visible">
+                                        <th class="cell th-background text-center relative px-6 fw">
                                             Počet bodů
                                         </th>
                                     </tr>
@@ -250,7 +250,7 @@
                                                 <b>{{$ycr['place']}}. {{$ycr['level_name']}}</b>
                                                 {{$ycr['name']}}
                                             </td>
-                                            <td class="cell hidden sm:visible">
+                                            <td class="cell">
                                                 @if($ycr['points'] == 0)
                                                     -
                                                 @else
