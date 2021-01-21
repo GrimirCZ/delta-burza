@@ -1,4 +1,4 @@
-<div class="fixed z-10 inset-0 max-h-full">
+<div class="fixed z-10 inset-0 overflow-y-auto">
     <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
         <div class="fixed inset-0 transition-opacity" aria-hidden="true">
             <div class="absolute inset-0 bg-black opacity-75"></div>
@@ -16,7 +16,7 @@
                             {{$title}}
                         </h3>
                         <div class="mt-2">
-                            <div class="max-h-full sm:max-h-1/3 overflow-auto">
+                            <div class="overflow-auto" id="overlay-content">
                                 {!! $slot !!}
                             </div>
                         </div>
