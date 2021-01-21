@@ -13,6 +13,7 @@ class ShowSchool extends Component
 {
     public School $school;
     public Collection $contest_results;
+    public array $contest_result_years;
 
     public ?int $show_more_for_year = null;
 
@@ -61,6 +62,8 @@ class ShowSchool extends Component
             ->orderBy("place")
             ->groupBy("year", "contest_levels.name", "place", "contests.name", "contest_levels.id")
             ->get();
+
+        $this->contest_result_years = collect($this->contest_results)->map(fn($cr) => $cr->year)->unique()->toArray();
     }
 
     /**
@@ -73,7 +76,6 @@ class ShowSchool extends Component
         return view('livewire.show-school', [
             'last_inspection_report' => $this->get_last_inspection_report()->first(),
             'inspection_reports' => $this->school->inspection_reports,
-            'contest_result_years' => collect($this->contest_results)->map(fn($cr) => $cr->year)->unique()->toArray()
         ]);
     }
 }

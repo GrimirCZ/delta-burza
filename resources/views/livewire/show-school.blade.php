@@ -194,7 +194,7 @@
                                             @if($year_contest_results->count() < $all_year_contest_results->count())
                                                 <tr>
                                                     <td class="cell" colspan="3">
-                                                        <button class="link" wire:click="$emitSelf('openDetail', {{$year}})">
+                                                        <button class="link" wire:click="$emitSelf('openDetail', {{$ycr->year}})">
                                                             Více
                                                         </button>
                                                     </td>
