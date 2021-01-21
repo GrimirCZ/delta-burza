@@ -154,18 +154,18 @@
 
                     @if($school->type_can_show_contest_results() && count($contest_results) > 0)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
-                            <h2 class="p-2">Výstavy</h2>
+                            <h2 class="p-2">Výsledky v soutěžích MŠMT</h2>
                             <div class="overflow-x-auto">
                                 <table class="w-100 mb-4">
                                     <tr>
                                         <th class="cell empty"></th>
                                         <th class="cell th-background text-center relative px-6 fw">
                                             <b>&sum;</b>
+                                            <livewire:tooltip title="Body"
+                                                              :content="$textBody"/>
                                         </th>
                                         <th class="cell th-background text-center relative px-6 fw">
                                             <b>Úmístění v soutěži</b>
-                                            <livewire:tooltip title="Body"
-                                                              :content="$textBody"/>
                                         </th>
                                     </tr>
                                     @foreach($contest_result_years as $year)
@@ -176,10 +176,19 @@
                                         @endphp
 
                                         @foreach($year_contest_results as $ycr)
-                                            <tr class="@if($loop->first) border-t-2 border-gray-600  @endif">
+                                            <tr>
                                                 @if($loop->first)
                                                     <td class="cell"
-                                                        rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
+                                                        rowspan="{{$year_contest_results->count()}}">
+                                                        {{$year}}
+                                                        @if($year_contest_results->count() < $all_year_contest_results->count())
+                                                            <br/>
+                                                            <button class="link"
+                                                                    wire:click="$emitSelf('openDetail', {{$year}})">
+                                                                Více
+                                                            </button>
+                                                        @endif
+                                                    </td>
                                                     <td class="cell" rowspan="{{$year_contest_results->count()}}">
                                                         <b>
                                                             {{round($point_sum, 1)}}
@@ -191,18 +200,14 @@
                                                     {{$ycr['name']}}
                                                 </td>
                                             </tr>
-                                            @if($loop->last)
-                                                @if($year_contest_results->count() < $all_year_contest_results->count())
-                                                    <tr>
-                                                        <td class="cell" colspan="3">
-                                                            <button class="link"
-                                                                    wire:click="$emitSelf('openDetail', {{$year}})">
-                                                                Více
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                @endif
-                                            @endif
+                                            {{--                                            @if($loop->last)--}}
+                                            {{--                                                @if($year_contest_results->count() < $all_year_contest_results->count())--}}
+                                            {{--                                                    <tr>--}}
+                                            {{--                                                        <td class="cell" colspan="3">--}}
+                                            {{--                                                        </td>--}}
+                                            {{--                                                    </tr>--}}
+                                            {{--                                                @endif--}}
+                                            {{--                                            @endif--}}
                                         @endforeach
                                     @endforeach
                                 </table>
@@ -221,11 +226,11 @@
                                     <tr>
                                         <th class="cell th-background text-center relative px-6 fw">
                                             <b>&sum;</b>
+                                            <livewire:tooltip title="Body"
+                                                              :content="$textBody"/>
                                         </th>
                                         <th class="cell th-background text-center relative px-6 fw">
                                             <b>Úmístění v soutěži</b>
-                                            <livewire:tooltip title="Body"
-                                                              :content="$textBody"/>
                                         </th>
                                         <th class="cell th-background text-center relative px-6 fw hidden sm:visible">
                                             Počet bodů
