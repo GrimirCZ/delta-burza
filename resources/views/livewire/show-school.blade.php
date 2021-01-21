@@ -163,13 +163,8 @@
                                     </th>
                                     <th class="cell th-background text-center relative px-6 fw">
                                         <b>Úmístění v soutěži</b>
-                                    </th>
-                                    <th class="cell th-background text-center relative px-6 fw">
-                                        Body
-                                        <div class="livewire-tooltip">
-                                            <livewire:tooltip title="Body"
-                                                              :content="$textBody"/>
-                                        </div>
+                                        <livewire:tooltip title="Body"
+                                                          :content="$textBody"/>
                                     </th>
                                 </tr>
                                 @foreach($contest_result_years as $year)
