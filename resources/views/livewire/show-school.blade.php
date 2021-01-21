@@ -195,7 +195,9 @@
                                     @if($year_contest_results->count() < $all_year_contest_results->count())
                                         <tr>
                                             <td class="cell" colspan="3">
-                                                <button class="link" wire:click="$emitSelf('openDetail', {{$year}})">Více</button>
+                                                <button class="link" wire:click="$emitSelf('openDetail', {{$year}})">
+                                                    Více
+                                                </button>
                                             </td>
                                         </tr>
                                     @endif
@@ -205,19 +207,21 @@
                                                 Výsledky soutěží pro rok {{$year}}
                                             </x-slot>
 
-                                            <table class="w-100 mb-4 overflow-x-auto">
-                                                <tr>
-                                                    <th class="cell empty"></th>
-                                                    <th class="cell th-background text-center relative px-6 fw">
-                                                        <b>&sum;</b>
-                                                    </th>
-                                                    <th class="cell th-background text-center relative px-6 fw">
-                                                        <b>Úmístění v soutěži</b>
-                                                        <livewire:tooltip title="Body"
-                                                                          :content="$textBody"/>
-                                                    </th>
-                                                </tr>
-                                            </table>
+                                            <x-slot name="content">
+                                                <table class="w-100 mb-4 overflow-x-auto">
+                                                    <tr>
+                                                        <th class="cell empty"></th>
+                                                        <th class="cell th-background text-center relative px-6 fw">
+                                                            <b>&sum;</b>
+                                                        </th>
+                                                        <th class="cell th-background text-center relative px-6 fw">
+                                                            <b>Úmístění v soutěži</b>
+                                                            <livewire:tooltip title="Body"
+                                                                              :content="$textBody"/>
+                                                        </th>
+                                                    </tr>
+                                                </table>
+                                            </x-slot>
                                         </x-overlay>
                                     @endif
                                 @endforeach
