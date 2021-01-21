@@ -211,7 +211,7 @@
                                 @endphp
                                 <x-overlay>
                                     <x-slot name="title">
-                                        Výsledky soutěží pro rok {{$year}}
+                                        Výsledky soutěží pro rok {{$show_more_for_year}}
                                     </x-slot>
 
                                     <x-slot name="content">
