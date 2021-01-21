@@ -169,7 +169,7 @@
                                 </tr>
                                 @foreach($contest_result_years as $year)
                                     @php
-                                        $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year);
+                                        $all_year_contest_results = collect($contest_results)->filter(fn($cr) => $cr->year == $year);
                                         $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
                                         $year_contest_results = $all_year_contest_results->take(4);
                                     @endphp
@@ -209,7 +209,7 @@
                         </div>
                         @if($show_more_for_year != null)
                             @php
-                                $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $show_more_for_year);
+                                $all_year_contest_results = collect($contest_results)->filter(fn($cr) => $cr->year == $show_more_for_year);
                                 $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
                             @endphp
                             <x-overlay>
