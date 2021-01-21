@@ -171,14 +171,12 @@
                                     @php
                                         $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year);
                                         $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
-                                        $year_contest_results = $all_year_contest_results->take(5);
+                                        $year_contest_results = $all_year_contest_results->take(4);
                                     @endphp
+
                                     @foreach($year_contest_results as $ycr)
-                                        @php
-                                            $is_first = !isset($last_year) || $last_year != $year;
-                                        @endphp
-                                        <tr class="@if($is_first) border-t-2 border-gray-600  @endif">
-                                            @if($is_first)
+                                        <tr class="@if($loop->first) border-t-2 border-gray-600  @endif">
+                                            @if($loop->first)
                                                 <td class="cell"
                                                     rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
                                                 <td class="cell" rowspan="{{$year_contest_results->count()}}">
@@ -192,10 +190,36 @@
                                                 {{$ycr->name}}
                                             </td>
                                         </tr>
-                                        @php
-                                            $last_year = $year;
-                                        @endphp
                                     @endforeach
+
+                                    @if($year_contest_results->count() > $all_year_contest_results->count())
+                                        <tr>
+                                            <td class="cell">
+                                                <button class="link" wire:click="$emitSelf('openDetail', $year)">Více</button>
+                                            </td>
+                                        </tr>
+                                    @endif
+                                    @if($show_more_for_year == $year)
+                                        <x-overlay>
+                                            <x-slot name="title">
+                                                Výsledky soutěží pro rok {{$year}}
+                                            </x-slot>
+
+                                            <table class="w-100 mb-4 overflow-x-auto">
+                                                <tr>
+                                                    <th class="cell empty"></th>
+                                                    <th class="cell th-background text-center relative px-6 fw">
+                                                        <b>&sum;</b>
+                                                    </th>
+                                                    <th class="cell th-background text-center relative px-6 fw">
+                                                        <b>Úmístění v soutěži</b>
+                                                        <livewire:tooltip title="Body"
+                                                                          :content="$textBody"/>
+                                                    </th>
+                                                </tr>
+                                            </table>
+                                        </x-overlay>
+                                    @endif
                                 @endforeach
                             </table>
                         </div>

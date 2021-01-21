@@ -6,6 +6,7 @@ use App\Models\ContestResult;
 use App\Models\School;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Livewire\Component;
 
 class ShowSchool extends Component
@@ -13,7 +14,24 @@ class ShowSchool extends Component
     public School $school;
     public Collection $contest_results;
 
-    private function get_last_inspection_report()
+    public ?int $show_more_for_year = null;
+
+    protected $listeners = [
+        'openDetail' => 'open',
+        'closeTooltip' => 'close',
+    ];
+
+    public function open($year)
+    {
+        $this->show_more_for_year = $year;
+    }
+
+    public function close()
+    {
+        $this->show_more_for_year = null;
+    }
+
+    private function get_last_inspection_report() : HasMany
     {
         return $this->school->inspection_reports()->orderByDesc("start_date")->limit(1);
     }
