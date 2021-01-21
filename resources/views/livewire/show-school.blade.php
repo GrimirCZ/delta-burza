@@ -154,7 +154,7 @@
 
                     @if($school->type_can_show_contest_results() && count($contest_results) > 0)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
-                            <h2 class="p-2">Výsledky v soutěžích MŠMT</h2>
+                            <h2 class="p-2 text-lg">Výsledky v soutěžích MŠMT</h2>
                             <p class="p-2">
                                 Pravidelné úspěchy v soutěžích ukazují na <b>systematickou práci</b> školy <b>s
                                     talentovanými studenty</b>. U středních odborných škol a učilišť odráží <b>úroveň
@@ -197,7 +197,7 @@
                                                             <br/>
                                                             <button class="link"
                                                                     wire:click="$emitSelf('openDetail', {{$year}})">
-                                                                Více
+                                                                více
                                                             </button>
                                                         @endif
                                                     </td>
