@@ -176,7 +176,7 @@
                                         @endphp
 
                                         @foreach($year_contest_results as $ycr)
-                                            <tr class="@if($loop->first) border-t-2 border-gray-600  @endif">
+                                            <tr>
                                                 @if($loop->first)
                                                     <td class="cell"
                                                         rowspan="{{$year_contest_results->count()}}">
