@@ -215,6 +215,9 @@
                                     </x-slot>
 
                                     <x-slot name="content">
+                                        @php
+                                            dd($show_more_for_year,$all_year_contest_results,$contest_results);
+                                        @endphp
                                         <table class="w-100 mb-4 overflow-x-auto">
                                             <tr>
                                                 <th class="cell empty"></th>
