@@ -154,18 +154,18 @@
 
                     @if($school->type_can_show_contest_results() && count($contest_results) > 0)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
-                            <h2 class="p-2">Výstavy</h2>
+                            <h2 class="p-2">Výsledky v soutěžích MŠMT</h2>
                             <div class="overflow-x-auto">
                                 <table class="w-100 mb-4">
                                     <tr>
                                         <th class="cell empty"></th>
                                         <th class="cell th-background text-center relative px-6 fw">
                                             <b>&sum;</b>
+                                            <livewire:tooltip title="Body"
+                                                              :content="$textBody"/>
                                         </th>
                                         <th class="cell th-background text-center relative px-6 fw">
                                             <b>Úmístění v soutěži</b>
-                                            <livewire:tooltip title="Body"
-                                                              :content="$textBody"/>
                                         </th>
                                     </tr>
                                     @foreach($contest_result_years as $year)
@@ -182,7 +182,7 @@
                                                         rowspan="{{$year_contest_results->count()}}">
                                                         {{$year}}
                                                         @if($year_contest_results->count() < $all_year_contest_results->count())
-                                                        <br/>
+                                                            <br/>
                                                             <button class="link"
                                                                     wire:click="$emitSelf('openDetail', {{$year}})">
                                                                 Více
@@ -207,7 +207,7 @@
                                             {{--                                                        </td>--}}
                                             {{--                                                    </tr>--}}
                                             {{--                                                @endif--}}
-                                            @endif
+                                            {{--                                            @endif--}}
                                         @endforeach
                                     @endforeach
                                 </table>
@@ -226,11 +226,11 @@
                                     <tr>
                                         <th class="cell th-background text-center relative px-6 fw">
                                             <b>&sum;</b>
+                                            <livewire:tooltip title="Body"
+                                                              :content="$textBody"/>
                                         </th>
                                         <th class="cell th-background text-center relative px-6 fw">
                                             <b>Úmístění v soutěži</b>
-                                            <livewire:tooltip title="Body"
-                                                              :content="$textBody"/>
                                         </th>
                                         <th class="cell th-background text-center relative px-6 fw hidden sm:visible">
                                             Počet bodů
