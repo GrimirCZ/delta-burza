@@ -63,7 +63,7 @@ class ShowSchool extends Component
             ->groupBy("year", "contest_levels.name", "place", "contests.name", "contest_levels.id")
             ->get();
 
-        $this->contest_result_years = collect($this->contest_results)->map(fn($cr) => $cr->year)->unique()->toArray();
+        $this->contest_result_years = collect($contest_results)->map(fn($cr) => $cr->year)->unique()->toArray();
         $this->contest_results = $contest_results->toArray();
     }
 
