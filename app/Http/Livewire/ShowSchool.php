@@ -30,7 +30,7 @@ class ShowSchool extends Component
     public function close()
     {
         $this->show_more_for_year = null;
-    ▶}
+    }
 
     private function get_last_inspection_report() : HasMany
     {
