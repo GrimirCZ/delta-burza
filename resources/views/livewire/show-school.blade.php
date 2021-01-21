@@ -170,8 +170,8 @@
                                 @foreach($contest_result_years as $year)
                                     @php
                                     dd($contest_results);
-                                        $all_year_contest_results = collect($contest_results)->filter(fn($cr) => $cr->year == $year);
-                                        $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
+                                        $all_year_contest_results = collect($contest_results)->filter(fn($cr) => $cr['year'] == $year);
+                                        $point_sum = $all_year_contest_results->sum(fn($cr) => $cr['points']);
                                         $year_contest_results = $all_year_contest_results->take(4);
                                     @endphp
 
@@ -187,8 +187,8 @@
                                                 </td>
                                             @endif
                                             <td class="cell" style="text-align: left !important;">
-                                                <b>{{$ycr->place}}. {{$ycr->level_name}}</b>
-                                                {{$ycr->name}}
+                                                <b>{{$ycr['place']}}. {{$ycr['level_name']}}</b>
+                                                {{$ycr['name']}}
                                             </td>
                                         </tr>
                                         @if($loop->last)
@@ -196,7 +196,7 @@
                                                 <tr>
                                                     <td class="cell" colspan="3">
                                                         <button class="link"
-                                                                wire:click="$emitSelf('openDetail', {{$ycr->year}})">
+                                                                wire:click="$emitSelf('openDetail', {{$year}})">
                                                             Více
                                                         </button>
                                                     </td>
@@ -210,7 +210,7 @@
                         </div>
                         @if($show_more_for_year != null)
                             @php
-                                $all_year_contest_results = collect($contest_results)->filter(fn($cr) => $cr->year == $show_more_for_year);
+                                $all_year_contest_results = collect($contest_results)->filter(fn($cr) => $cr['year'] == $show_more_for_year);
                                 $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
                             @endphp
                             <x-overlay>
@@ -245,14 +245,14 @@
                                                 </td>
                                             @endif
                                             <td class="cell" style="text-align: left !important;">
-                                                <b>{{$ycr->place}}. {{$ycr->level_name}}</b>
-                                                {{$ycr->name}}
+                                                <b>{{$ycr['place']}}. {{$ycr['level_name']}}</b>
+                                                {{$ycr['name']}}
                                             </td>
                                             <td class="cell">
-                                                @if($ycr->points == 0)
+                                                @if($ycr['points'] == 0)
                                                     -
                                                 @else
-                                                    {{$ycr->points}}
+                                                    {{$ycr['points']}}
                                                 @endif
                                             </td>
                                         </tr>
