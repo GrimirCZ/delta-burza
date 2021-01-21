@@ -192,7 +192,7 @@
                                         </tr>
                                     @endforeach
 
-                                    @if($year_contest_results->count() > $all_year_contest_results->count())
+                                    @if($year_contest_results->count() < $all_year_contest_results->count())
                                         <tr>
                                             <td class="cell">
                                                 <button class="link" wire:click="$emitSelf('openDetail', $year)">Více</button>
