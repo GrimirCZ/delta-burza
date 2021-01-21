@@ -12,7 +12,7 @@ use Livewire\Component;
 class ShowSchool extends Component
 {
     public School $school;
-    public Collection $contest_results;
+    public array $contest_results;
     public array $contest_result_years;
 
     public ?int $show_more_for_year = null;
@@ -42,7 +42,7 @@ class ShowSchool extends Component
 
     public function mount()
     {
-        $this->contest_results = ContestResult::query()
+        $contest_results = ContestResult::query()
             ->where("school_id", $this->school->id)
             ->whereNotNull("expoint")
             ->join("contests", "contests.id", "=", "contest_results.contest_id")
@@ -64,6 +64,7 @@ class ShowSchool extends Component
             ->get();
 
         $this->contest_result_years = collect($this->contest_results)->map(fn($cr) => $cr->year)->unique()->toArray();
+        $this->contest_results = $contest_results->toArray();
     }
 
     /**
