@@ -179,7 +179,16 @@
                                             <tr class="@if($loop->first) border-t-2 border-gray-600  @endif">
                                                 @if($loop->first)
                                                     <td class="cell"
-                                                        rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
+                                                        rowspan="{{$year_contest_results->count()}}">
+                                                        {{$year}}
+                                                        @if($year_contest_results->count() < $all_year_contest_results->count())
+                                                        <br/>
+                                                            <button class="link"
+                                                                    wire:click="$emitSelf('openDetail', {{$year}})">
+                                                                Více
+                                                            </button>
+                                                        @endif
+                                                    </td>
                                                     <td class="cell" rowspan="{{$year_contest_results->count()}}">
                                                         <b>
                                                             {{round($point_sum, 1)}}
@@ -191,17 +200,13 @@
                                                     {{$ycr['name']}}
                                                 </td>
                                             </tr>
-                                            @if($loop->last)
-                                                @if($year_contest_results->count() < $all_year_contest_results->count())
-                                                    <tr>
-                                                        <td class="cell" colspan="3">
-                                                            <button class="link"
-                                                                    wire:click="$emitSelf('openDetail', {{$year}})">
-                                                                Více
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                @endif
+                                            {{--                                            @if($loop->last)--}}
+                                            {{--                                                @if($year_contest_results->count() < $all_year_contest_results->count())--}}
+                                            {{--                                                    <tr>--}}
+                                            {{--                                                        <td class="cell" colspan="3">--}}
+                                            {{--                                                        </td>--}}
+                                            {{--                                                    </tr>--}}
+                                            {{--                                                @endif--}}
                                             @endif
                                         @endforeach
                                     @endforeach
