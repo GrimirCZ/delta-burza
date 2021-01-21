@@ -155,6 +155,9 @@
                     @if($school->type_can_show_contest_results() && count($contest_results) > 0)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <h2 class="p-2">Výstavy</h2>
+                            @php
+                            dump($contest_result_years, $contest_results);
+                            @endphp
                             <table class="w-100 mb-4 overflow-x-auto">
                                 <tr>
                                     <th class="cell empty"></th>
@@ -169,7 +172,6 @@
                                 </tr>
                                 @foreach($contest_result_years as $year)
                                     @php
-                                    dump($contest_result_years);
                                         $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year);
                                         $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
                                         $year_contest_results = $all_year_contest_results->take(4);
