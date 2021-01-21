@@ -190,23 +190,22 @@
                                                 {{$ycr->name}}
                                             </td>
                                         </tr>
+                                        @if($loop->last)
+                                            @if($year_contest_results->count() < $all_year_contest_results->count())
+                                                <tr>
+                                                    <td class="cell" colspan="3">
+                                                        <button class="link" wire:click="$emitSelf('openDetail', {{$year}})">
+                                                            Více
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endif
                                     @endforeach
-
-                                    @if($year_contest_results->count() < $all_year_contest_results->count())
-                                        <tr>
-                                            <td class="cell" colspan="3">
-                                                <button class="link" wire:click="$emitSelf('openDetail', {{$year}})">
-                                                    Více
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    @endif
-
                                 @endforeach
                             </table>
                             @if($show_more_for_year != null)
                                 @php
-                                    dd($show_more_for_year, $year,$contest_results,$contest_result_years);
                                         $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $show_more_for_year);
                                         $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
                                 @endphp
