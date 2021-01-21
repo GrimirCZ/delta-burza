@@ -210,7 +210,7 @@
                         @if($show_more_for_year != null)
                             @php
                                 $all_year_contest_results = collect($contest_results)->filter(fn($cr) => $cr['year'] == $show_more_for_year);
-                                $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
+                                $point_sum = $all_year_contest_results->sum(fn($cr) => $cr['points']);
                             @endphp
                             <x-overlay>
                                 <x-slot name="title">
