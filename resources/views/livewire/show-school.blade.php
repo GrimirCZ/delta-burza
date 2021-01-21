@@ -156,7 +156,7 @@
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <h2 class="p-2">Výstavy</h2>
                             @php
-                            dump($contest_result_years, $contest_results);
+                                dump($contest_result_years, $contest_results);
                             @endphp
                             <table class="w-100 mb-4 overflow-x-auto">
                                 <tr>
@@ -197,7 +197,8 @@
                                             @if($year_contest_results->count() < $all_year_contest_results->count())
                                                 <tr>
                                                     <td class="cell" colspan="3">
-                                                        <button class="link" wire:click="$emitSelf('openDetail', {{$ycr->year}})">
+                                                        <button class="link"
+                                                                wire:click="$emitSelf('openDetail', {{$ycr->year}})">
                                                             Více
                                                         </button>
                                                     </td>
@@ -218,50 +219,47 @@
                                 <x-slot name="title">
                                     Výsledky soutěží pro rok {{$show_more_for_year}}
                                 </x-slot>
-
-                                <x-slot name="content">
-                                    <table class="w-100 mb-4 overflow-x-auto">
-                                        <tr>
-                                            <th class="cell empty"></th>
-                                            <th class="cell th-background text-center relative px-6 fw">
-                                                <b>&sum;</b>
-                                            </th>
-                                            <th class="cell th-background text-center relative px-6 fw">
-                                                <b>Úmístění v soutěži</b>
-                                                <livewire:tooltip title="Body"
-                                                                  :content="$textBody"/>
-                                            </th>
-                                            <th class="cell th-background text-center relative px-6 fw">
-                                                Počet bodů
-                                            </th>
-                                        </tr>
-                                        @foreach($all_year_contest_results as $ycr)
-                                            <tr class="@if($loop->first) border-t-2 border-gray-600  @endif">
-                                                @if($loop->first)
-                                                    <td class="cell"
-                                                        rowspan="{{$all_year_contest_results->count()}}">{{$year}}</td>
-                                                    <td class="cell"
-                                                        rowspan="{{$all_year_contest_results->count()}}">
-                                                        <b>
-                                                            {{round($point_sum, 1)}}
-                                                        </b>
-                                                    </td>
+                                <table class="w-100 mb-4 overflow-x-auto">
+                                    <tr>
+                                        <th class="cell empty"></th>
+                                        <th class="cell th-background text-center relative px-6 fw">
+                                            <b>&sum;</b>
+                                        </th>
+                                        <th class="cell th-background text-center relative px-6 fw">
+                                            <b>Úmístění v soutěži</b>
+                                            <livewire:tooltip title="Body"
+                                                              :content="$textBody"/>
+                                        </th>
+                                        <th class="cell th-background text-center relative px-6 fw">
+                                            Počet bodů
+                                        </th>
+                                    </tr>
+                                    @foreach($all_year_contest_results as $ycr)
+                                        <tr class="@if($loop->first) border-t-2 border-gray-600  @endif">
+                                            @if($loop->first)
+                                                <td class="cell"
+                                                    rowspan="{{$all_year_contest_results->count()}}">{{$year}}</td>
+                                                <td class="cell"
+                                                    rowspan="{{$all_year_contest_results->count()}}">
+                                                    <b>
+                                                        {{round($point_sum, 1)}}
+                                                    </b>
+                                                </td>
+                                            @endif
+                                            <td class="cell" style="text-align: left !important;">
+                                                <b>{{$ycr->place}}. {{$ycr->level_name}}</b>
+                                                {{$ycr->name}}
+                                            </td>
+                                            <td class="cell">
+                                                @if($ycr->points == 0)
+                                                    -
+                                                @else
+                                                    {{$ycr->points}}
                                                 @endif
-                                                <td class="cell" style="text-align: left !important;">
-                                                    <b>{{$ycr->place}}. {{$ycr->level_name}}</b>
-                                                    {{$ycr->name}}
-                                                </td>
-                                                <td class="cell">
-                                                    @if($ycr->points == 0)
-                                                        -
-                                                    @else
-                                                        {{$ycr->points}}
-                                                    @endif
-                                                </td>
-                                            </tr>
-                                        @endforeach
-                                    </table>
-                                </x-slot>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
                             </x-overlay>
                         @endif
                     @endif
