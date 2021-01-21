@@ -169,6 +169,7 @@
                                 </tr>
                                 @foreach($contest_result_years as $year)
                                     @php
+                                    dump($contest_result_years);
                                         $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year);
                                         $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
                                         $year_contest_results = $all_year_contest_results->take(4);
@@ -204,62 +205,63 @@
                                     @endforeach
                                 @endforeach
                             </table>
-                            @if($show_more_for_year != null)
-                                @php
-                                        $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $show_more_for_year);
-                                        $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
-                                @endphp
-                                <x-overlay>
-                                    <x-slot name="title">
-                                        Výsledky soutěží pro rok {{$show_more_for_year}}
-                                    </x-slot>
 
-                                    <x-slot name="content">
-                                        <table class="w-100 mb-4 overflow-x-auto">
-                                            <tr>
-                                                <th class="cell empty"></th>
-                                                <th class="cell th-background text-center relative px-6 fw">
-                                                    <b>&sum;</b>
-                                                </th>
-                                                <th class="cell th-background text-center relative px-6 fw">
-                                                    <b>Úmístění v soutěži</b>
-                                                    <livewire:tooltip title="Body"
-                                                                      :content="$textBody"/>
-                                                </th>
-                                                <th class="cell th-background text-center relative px-6 fw">
-                                                    Počet bodů
-                                                </th>
-                                            </tr>
-                                            @foreach($all_year_contest_results as $ycr)
-                                                <tr class="@if($loop->first) border-t-2 border-gray-600  @endif">
-                                                    @if($loop->first)
-                                                        <td class="cell"
-                                                            rowspan="{{$all_year_contest_results->count()}}">{{$year}}</td>
-                                                        <td class="cell"
-                                                            rowspan="{{$all_year_contest_results->count()}}">
-                                                            <b>
-                                                                {{round($point_sum, 1)}}
-                                                            </b>
-                                                        </td>
-                                                    @endif
-                                                    <td class="cell" style="text-align: left !important;">
-                                                        <b>{{$ycr->place}}. {{$ycr->level_name}}</b>
-                                                        {{$ycr->name}}
-                                                    </td>
-                                                    <td class="cell">
-                                                        @if($ycr->points == 0)
-                                                            -
-                                                        @else
-                                                            {{$ycr->points}}
-                                                        @endif
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </table>
-                                    </x-slot>
-                                </x-overlay>
-                            @endif
                         </div>
+                        @if($show_more_for_year != null)
+                            @php
+                                $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $show_more_for_year);
+                                $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
+                            @endphp
+                            <x-overlay>
+                                <x-slot name="title">
+                                    Výsledky soutěží pro rok {{$show_more_for_year}}
+                                </x-slot>
+
+                                <x-slot name="content">
+                                    <table class="w-100 mb-4 overflow-x-auto">
+                                        <tr>
+                                            <th class="cell empty"></th>
+                                            <th class="cell th-background text-center relative px-6 fw">
+                                                <b>&sum;</b>
+                                            </th>
+                                            <th class="cell th-background text-center relative px-6 fw">
+                                                <b>Úmístění v soutěži</b>
+                                                <livewire:tooltip title="Body"
+                                                                  :content="$textBody"/>
+                                            </th>
+                                            <th class="cell th-background text-center relative px-6 fw">
+                                                Počet bodů
+                                            </th>
+                                        </tr>
+                                        @foreach($all_year_contest_results as $ycr)
+                                            <tr class="@if($loop->first) border-t-2 border-gray-600  @endif">
+                                                @if($loop->first)
+                                                    <td class="cell"
+                                                        rowspan="{{$all_year_contest_results->count()}}">{{$year}}</td>
+                                                    <td class="cell"
+                                                        rowspan="{{$all_year_contest_results->count()}}">
+                                                        <b>
+                                                            {{round($point_sum, 1)}}
+                                                        </b>
+                                                    </td>
+                                                @endif
+                                                <td class="cell" style="text-align: left !important;">
+                                                    <b>{{$ycr->place}}. {{$ycr->level_name}}</b>
+                                                    {{$ycr->name}}
+                                                </td>
+                                                <td class="cell">
+                                                    @if($ycr->points == 0)
+                                                        -
+                                                    @else
+                                                        {{$ycr->points}}
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </table>
+                                </x-slot>
+                            </x-overlay>
+                        @endif
                     @endif
 
                     @if($school->type_can_have_inspection_reports() && count($inspection_reports) > 0)
