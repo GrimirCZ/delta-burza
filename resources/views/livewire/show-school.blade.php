@@ -196,15 +196,6 @@
                                                 <b>{{$ycr->place}}. {{$ycr->level_name}}</b>
                                                 {{$ycr->name}}
                                             </td>
-                                            <td class="cell">
-                                                <b>
-                                                    @if($ycr->points == 0)
-                                                        -
-                                                    @else
-                                                        {{$ycr->points}}
-                                                    @endif
-                                                </b>
-                                            </td>
                                         </tr>
                                         @php
                                             $last_year = $year;
@@ -351,69 +342,6 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
-            @endif
-            @if($school->type_can_show_contest_results() && count($contest_results) > 0)
-                <div class="bg-white p-5 shadow-sm box-border overflow-x-auto mt-3">
-                    <h2 class="text-2xl mb-3">
-                        Výstavy
-                    </h2>
-                    <table class="w-100 mb-4 overflow-x-auto">
-                        <tr>
-                            <th class="cell empty"></th>
-                            <th class="cell th-background text-center relative px-6 fw">
-                                <b>&sum;</b>
-                            </th>
-                            <th class="cell th-background text-center relative px-6 fw">
-                                <b>Úmístění v soutěži</b>
-                            </th>
-                            <th class="cell th-background text-center relative px-6 fw">
-                                Body
-                                <div class="livewire-tooltip">
-                                    <livewire:tooltip title="Body"
-                                                      :content="$textBody"/>
-                                </div>
-                            </th>
-                        </tr>
-                        @foreach($contest_result_years as $year)
-                            @php
-                                $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year);
-                                $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
-                                $year_contest_results = $all_year_contest_results->take(5);
-                            @endphp
-                            @foreach($year_contest_results as $ycr)
-                                @php
-                                    $is_first = !isset($last_year) || $last_year != $year;
-                                @endphp
-                                <tr class="@if($is_first) border-t-2 border-gray-600  @endif">
-                                    @if($is_first)
-                                        <td class="cell" rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
-                                        <td class="cell" rowspan="{{$year_contest_results->count()}}">
-                                            <b>
-                                                {{round($point_sum, 1)}}
-                                            </b>
-                                        </td>
-                                    @endif
-                                    <td class="cell" style="text-align: left !important;">
-                                        <b>{{$ycr->place}}. {{$ycr->level_name}}</b>
-                                        {{$ycr->name}}
-                                    </td>
-                                    <td class="cell">
-                                        <b>
-                                            @if($ycr->points == 0)
-                                                -
-                                            @else
-                                                {{$ycr->points}}
-                                            @endif
-                                        </b>
-                                    </td>
-                                </tr>
-                                @php
-                                    $last_year = $year;
-                                @endphp
-                            @endforeach
-                        @endforeach
-                    </table>
                 </div>
             @endif
         </div>
