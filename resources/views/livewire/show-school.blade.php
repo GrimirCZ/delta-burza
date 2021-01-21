@@ -219,7 +219,6 @@
                                 </x-slot>
                                 <table class="w-100 mb-4 overflow-x-auto">
                                     <tr>
-                                        <th class="cell empty"></th>
                                         <th class="cell th-background text-center relative px-6 fw">
                                             <b>&sum;</b>
                                         </th>
@@ -228,15 +227,10 @@
                                             <livewire:tooltip title="Body"
                                                               :content="$textBody"/>
                                         </th>
-                                        <th class="cell th-background text-center relative px-6 fw">
-                                            Počet bodů
-                                        </th>
                                     </tr>
                                     @foreach($all_year_contest_results as $ycr)
                                         <tr>
                                             @if($loop->first)
-                                                <td class="cell"
-                                                    rowspan="{{$all_year_contest_results->count()}}">{{$show_more_for_year}}</td>
                                                 <td class="cell"
                                                     rowspan="{{$all_year_contest_results->count()}}">
                                                     <b>
@@ -247,13 +241,6 @@
                                             <td class="cell" style="text-align: left !important;">
                                                 <b>{{$ycr['place']}}. {{$ycr['level_name']}}</b>
                                                 {{$ycr['name']}}
-                                            </td>
-                                            <td class="cell">
-                                                @if($ycr['points'] == 0)
-                                                    -
-                                                @else
-                                                    {{$ycr['points']}}
-                                                @endif
                                             </td>
                                         </tr>
                                     @endforeach
