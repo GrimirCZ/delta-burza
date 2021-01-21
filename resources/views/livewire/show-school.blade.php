@@ -235,7 +235,7 @@
                                         <tr>
                                             @if($loop->first)
                                                 <td class="cell"
-                                                    rowspan="{{$all_year_contest_results->count()}}">{{$year}}</td>
+                                                    rowspan="{{$all_year_contest_results->count()}}">{{$show_more_for_year}}</td>
                                                 <td class="cell"
                                                     rowspan="{{$all_year_contest_results->count()}}">
                                                     <b>
