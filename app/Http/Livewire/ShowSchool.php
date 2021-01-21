@@ -23,6 +23,7 @@ class ShowSchool extends Component
 
     public function open($year)
     {
+        dd($year);
         $this->show_more_for_year = $year;
     }
 
