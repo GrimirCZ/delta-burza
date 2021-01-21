@@ -204,3 +204,19 @@ body, .body {
 .flash-container .flash-message.flash-error::after {
     content: '' !important;
 }
+
+
+.school-detail-grid {
+    grid-template-columns: 1fr;
+}
+
+#overlay-content{
+    max-height: 96rem;
+}
+
+@media (min-width: theme('screens.sm')) {
+    #overlay-content{
+        max-height: 100%;
+    }
+}
+
