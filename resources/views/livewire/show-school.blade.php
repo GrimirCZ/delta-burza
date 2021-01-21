@@ -208,7 +208,7 @@
 
                         </div>
                         @php
-                            dump($show_more_for_year,$all_year_contest_results, $point_sum,$contest_result_years, $contest_results);
+                            dump($show_more_for_year,$show_more_for_year != null,$all_year_contest_results, $point_sum,$contest_result_years, $contest_results);
                         @endphp
                         @if($show_more_for_year != null)
                             @php
