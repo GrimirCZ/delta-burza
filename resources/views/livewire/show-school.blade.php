@@ -155,57 +155,58 @@
                     @if($school->type_can_show_contest_results() && count($contest_results) > 0)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <h2 class="p-2">Výstavy</h2>
-                            <table class="w-100 mb-4 overflow-x-auto">
-                                <tr>
-                                    <th class="cell empty"></th>
-                                    <th class="cell th-background text-center relative px-6 fw">
-                                        <b>&sum;</b>
-                                    </th>
-                                    <th class="cell th-background text-center relative px-6 fw">
-                                        <b>Úmístění v soutěži</b>
-                                        <livewire:tooltip title="Body"
-                                                          :content="$textBody"/>
-                                    </th>
-                                </tr>
-                                @foreach($contest_result_years as $year)
-                                    @php
-                                        $all_year_contest_results = collect($contest_results)->filter(fn($cr) => $cr['year'] == $year);
-                                        $point_sum = $all_year_contest_results->sum(fn($cr) => $cr['points']);
-                                        $year_contest_results = $all_year_contest_results->take(4);
-                                    @endphp
+                            <div class="overflow-x-auto">
+                                <table class="w-100 mb-4">
+                                    <tr>
+                                        <th class="cell empty"></th>
+                                        <th class="cell th-background text-center relative px-6 fw">
+                                            <b>&sum;</b>
+                                        </th>
+                                        <th class="cell th-background text-center relative px-6 fw">
+                                            <b>Úmístění v soutěži</b>
+                                            <livewire:tooltip title="Body"
+                                                              :content="$textBody"/>
+                                        </th>
+                                    </tr>
+                                    @foreach($contest_result_years as $year)
+                                        @php
+                                            $all_year_contest_results = collect($contest_results)->filter(fn($cr) => $cr['year'] == $year);
+                                            $point_sum = $all_year_contest_results->sum(fn($cr) => $cr['points']);
+                                            $year_contest_results = $all_year_contest_results->take(4);
+                                        @endphp
 
-                                    @foreach($year_contest_results as $ycr)
-                                        <tr class="@if($loop->first) border-t-2 border-gray-600  @endif">
-                                            @if($loop->first)
-                                                <td class="cell"
-                                                    rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
-                                                <td class="cell" rowspan="{{$year_contest_results->count()}}">
-                                                    <b>
-                                                        {{round($point_sum, 1)}}
-                                                    </b>
-                                                </td>
-                                            @endif
-                                            <td class="cell" style="text-align: left !important;">
-                                                <b>{{$ycr['place']}}. {{$ycr['level_name']}}</b>
-                                                {{$ycr['name']}}
-                                            </td>
-                                        </tr>
-                                        @if($loop->last)
-                                            @if($year_contest_results->count() < $all_year_contest_results->count())
-                                                <tr>
-                                                    <td class="cell" colspan="3">
-                                                        <button class="link"
-                                                                wire:click="$emitSelf('openDetail', {{$year}})">
-                                                            Více
-                                                        </button>
+                                        @foreach($year_contest_results as $ycr)
+                                            <tr class="@if($loop->first) border-t-2 border-gray-600  @endif">
+                                                @if($loop->first)
+                                                    <td class="cell"
+                                                        rowspan="{{$year_contest_results->count()}}">{{$year}}</td>
+                                                    <td class="cell" rowspan="{{$year_contest_results->count()}}">
+                                                        <b>
+                                                            {{round($point_sum, 1)}}
+                                                        </b>
                                                     </td>
-                                                </tr>
+                                                @endif
+                                                <td class="cell" style="text-align: left !important;">
+                                                    <b>{{$ycr['place']}}. {{$ycr['level_name']}}</b>
+                                                    {{$ycr['name']}}
+                                                </td>
+                                            </tr>
+                                            @if($loop->last)
+                                                @if($year_contest_results->count() < $all_year_contest_results->count())
+                                                    <tr>
+                                                        <td class="cell" colspan="3">
+                                                            <button class="link"
+                                                                    wire:click="$emitSelf('openDetail', {{$year}})">
+                                                                Více
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                @endif
                                             @endif
-                                        @endif
+                                        @endforeach
                                     @endforeach
-                                @endforeach
-                            </table>
-
+                                </table>
+                            </div>
                         </div>
                         @if($show_more_for_year != null)
                             @php
