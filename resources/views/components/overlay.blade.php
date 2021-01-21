@@ -16,7 +16,7 @@
                             {{$title}}
                         </h3>
                         <div class="mt-2">
-                            <p class="text-sm text-gray-500 font-normal">
+                            <p class="text-sm text-gray-500 font-normal max-h-full sm:max-h-3/4 overflow-y-auto">
                                 {!! $slot !!}
                             </p>
                         </div>
