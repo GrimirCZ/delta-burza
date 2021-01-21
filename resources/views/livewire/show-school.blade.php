@@ -169,9 +169,10 @@
                                 </tr>
                                 @foreach($contest_result_years as $year)
                                     @php
-                                        $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year);
-                                        $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
-                                        $year_contest_results = $all_year_contest_results->take(4);
+                                        dd($contest_results);
+                                    $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $year);
+                                    $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
+                                    $year_contest_results = $all_year_contest_results->take(4);
                                     @endphp
 
                                     @foreach($year_contest_results as $ycr)
