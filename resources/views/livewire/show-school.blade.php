@@ -154,8 +154,8 @@
 
                     @if($school->type_can_show_contest_results() && count($contest_results) > 0)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
-                            <h2 class="p-2">Výsledky v soutěžích MŠMT</h2>
-                            <p>
+                            <h2 class="p-2 text-lg">Výsledky v soutěžích MŠMT</h2>
+                            <p class="p-2">
                                 Pravidelné úspěchy v soutěžích ukazují na <b>systematickou práci</b> školy <b>s
                                     talentovanými studenty</b>. U středních odborných škol a učilišť odráží <b>úroveň
                                     výuky odborných předmětů</b>. Gymnázia mívají úspěchy především v humanitních a
@@ -188,18 +188,18 @@
                                                     <td class="cell"
                                                         rowspan="{{$year_contest_results->count()}}">
                                                         {{$year}}
-                                                        @if($year_contest_results->count() < $all_year_contest_results->count())
-                                                            <br/>
-                                                            <button class="link"
-                                                                    wire:click="$emitSelf('openDetail', {{$year}})">
-                                                                Více
-                                                            </button>
-                                                        @endif
                                                     </td>
                                                     <td class="cell" rowspan="{{$year_contest_results->count()}}">
                                                         <b>
                                                             {{round($point_sum, 1)}}
                                                         </b>
+                                                        @if($year_contest_results->count() < $all_year_contest_results->count())
+                                                            <br/>
+                                                            <button class="link"
+                                                                    wire:click="$emitSelf('openDetail', {{$year}})">
+                                                                více
+                                                            </button>
+                                                        @endif
                                                     </td>
                                                 @endif
                                                 <td class="cell" style="text-align: left !important;">
