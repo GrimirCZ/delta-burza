@@ -155,9 +155,6 @@
                     @if($school->type_can_show_contest_results() && count($contest_results) > 0)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <h2 class="p-2">Výstavy</h2>
-                            @php
-                                dump($contest_result_years, $contest_results);
-                            @endphp
                             <table class="w-100 mb-4 overflow-x-auto">
                                 <tr>
                                     <th class="cell empty"></th>
@@ -215,6 +212,9 @@
                                 $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $show_more_for_year);
                                 $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
                             @endphp
+                            @php
+                                dump($show_more_for_year,$all_year_contest_results, $point_sum,$contest_result_years, $contest_results);
+                            @endphp
                             <x-overlay>
                                 <x-slot name="title">
                                     Výsledky soutěží pro rok {{$show_more_for_year}}
@@ -235,7 +235,7 @@
                                         </th>
                                     </tr>
                                     @foreach($all_year_contest_results as $ycr)
-                                        <tr class="@if($loop->first) border-t-2 border-gray-600  @endif">
+                                        <tr>
                                             @if($loop->first)
                                                 <td class="cell"
                                                     rowspan="{{$all_year_contest_results->count()}}">{{$year}}</td>
