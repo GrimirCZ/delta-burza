@@ -207,13 +207,13 @@
                             </table>
 
                         </div>
+                        @php
+                            dump($show_more_for_year,$all_year_contest_results, $point_sum,$contest_result_years, $contest_results);
+                        @endphp
                         @if($show_more_for_year != null)
                             @php
                                 $all_year_contest_results = $contest_results->filter(fn($cr) => $cr->year == $show_more_for_year);
                                 $point_sum = $all_year_contest_results->sum(fn($cr) => $cr->points);
-                            @endphp
-                            @php
-                                dump($show_more_for_year,$all_year_contest_results, $point_sum,$contest_result_years, $contest_results);
                             @endphp
                             <x-overlay>
                                 <x-slot name="title">
