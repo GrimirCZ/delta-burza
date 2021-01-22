@@ -48,6 +48,10 @@
                         </div>
                     </div>
                     <div>
+                        <i class="text-sm">(zdroj: <a class="link" href="https://vysledky.cermat.cz"
+                                                      target="_blank">https://vysledky.cermat.cz</a>)</i>
+                    </div>
+                    <div>
                         @foreach($subjects as $subject)
                             @php
                                 $shown = true;
