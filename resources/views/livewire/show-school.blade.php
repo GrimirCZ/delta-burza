@@ -72,14 +72,6 @@
                                     stažení</a>
                             </div>
                         @endif
-                        @if($school->type_can_have_inspection_reports() && $last_inspection_report !== null)
-                            <div class="mt-2">
-                                <a href="{{$last_inspection_report->url}}" target="_blank"
-                                   class="btn bg-teal-400 text-white w-100 block text-center">Inspekční
-                                    zpráva ({{format_date($last_inspection_report->start_date)}}
-                                    - {{format_date($last_inspection_report->end_date)}})</a>
-                            </div>
-                        @endif
                         @if($school->is_registered())
                             <div class="mt-2">
                                 <a href="/skola/{{$school->id}}/zajem"
@@ -275,7 +267,10 @@
 
                     @if($school->type_can_have_inspection_reports() && count($inspection_reports) > 0)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
-                            <h2 class="p-2">Inspekční zprávy</h2>
+                            <div class="p-2">
+                                <h2 class="text-lg">Inspekční zprávy</h2>
+                                <i class="text-sm">(zdroj: <a class="link" href="http://excelence.msmt.cz" target="_blank">https://excelence.msmt.cz</a>)</i>
+                            </div>
                             @foreach($inspection_reports as $inspection_report)
                                 <div
                                     class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-3 text-gray-500 text-sm flex justify-between">
