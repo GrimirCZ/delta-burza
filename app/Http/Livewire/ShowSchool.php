@@ -16,7 +16,7 @@ class ShowSchool extends Component
     public School $school;
     public array $contest_results;
     public array $contest_result_years;
-    public bool $has_only_non_maturita = false;
+    public bool $show_maturita_exam_result_notice = false;
 
     public ?int $show_more_for_year = null;
 
@@ -73,13 +73,13 @@ Například za matematickou olympiádu získá účastník 1 bod, když se umís
 
         $this->contest_results = $contest_results->toArray();
 
-        $this->has_only_non_maturita = Specialization::query()
+        $this->show_maturita_exam_result_notice = Specialization::query()
                 ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
                 ->join("field_of_studies", "field_of_studies.id", "=", "prescribed_specializations.field_of_study_id")
                 ->join("type_of_studies", "type_of_studies.id", "=", "field_of_studies.type_of_study_id")
                 ->where("school_id", $this->school->id)
                 ->whereBetween("type_of_studies.id", [2, 4])
-                ->count() == 0;
+                ->exists();
     }
 
     /**
