@@ -32,11 +32,6 @@ class ShowSchool extends Component
         $this->show_more_for_year = null;
     }
 
-    private function get_last_inspection_report() : HasMany
-    {
-        return $this->school->inspection_reports()->orderByDesc("start_date")->limit(1);
-    }
-
     public string $textBody = "";
 
 
@@ -64,7 +59,10 @@ class ShowSchool extends Component
             ->get();
 
         $this->contest_result_years = collect($contest_results)->map(fn($cr) => $cr->year)->unique()->toArray();
-        $this->contest_results = $contest_results->toArray();
+
+        $allowed_years = collect([2019, 2018, 2017]);
+
+        $this->contest_results = $contest_results->filter(fn($y) => $allowed_years->contains($y))->toArray();
     }
 
     /**
@@ -75,7 +73,6 @@ class ShowSchool extends Component
     public function render()
     {
         return view('livewire.show-school', [
-            'last_inspection_report' => $this->get_last_inspection_report()->first(),
             'inspection_reports' => $this->school->inspection_reports,
         ]);
     }
