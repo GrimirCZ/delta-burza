@@ -156,9 +156,9 @@
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <h2 class="p-2 text-lg">Výsledky v soutěžích MŠMT</h2>
                             <p class="p-2">
-                                Pravidelné úspěchy v soutěžích ukazují na <b>systematickou práci</b> školy <b>s
-                                    talentovanými studenty</b>. U středních odborných škol a učilišť odráží <b>úroveň
-                                    výuky odborných předmětů</b>. Gymnázia mívají úspěchy především v humanitních a
+                                Pravidelné úspěchy v soutěžích ukazují na <b>systematickou práci</b> školy <b>s&nbsp;talentovanými
+                                    studenty</b>. U středních odborných škol a učilišť odráží <b>úroveň
+                                    výuky odborných předmětů</b>. Gymnázia mívají úspěchy především v&nbsp;humanitních a
                                 přírodovědných olympiádách.
                                 <br><i>Ročník soutěží MŠMT 2020 byl kvůli COVIDU úplně zrušen.</i>
                             </p>
@@ -189,7 +189,8 @@
                                                         rowspan="{{$year_contest_results->count()}}">
                                                         {{$year}}
                                                     </td>
-                                                    <td class="tighter-cell" rowspan="{{$year_contest_results->count()}}">
+                                                    <td class="tighter-cell"
+                                                        rowspan="{{$year_contest_results->count()}}">
                                                         <b>
                                                             {{round($point_sum, 1)}}
                                                         </b>
