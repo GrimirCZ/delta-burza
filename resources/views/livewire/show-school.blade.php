@@ -156,7 +156,7 @@
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <div class="p-2">
                                 <h2 class="text-lg">Výsledky v soutěžích MŠMT</h2>
-                                (zdroj: <a href="http://excelence.msmt.cz" target="_blank">https://excelence.msmt.cz</a>)
+                                <i class="text-sm">(zdroj: <a class="link" href="http://excelence.msmt.cz" target="_blank">https://excelence.msmt.cz</a>)</i>
                             </div>
                             <p class="p-2">
                                 Pravidelné úspěchy v soutěžích ukazují na <b>systematickou práci</b> školy <b>s&nbsp;talentovanými
