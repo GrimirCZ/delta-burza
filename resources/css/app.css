@@ -217,13 +217,18 @@ body, .body {
 
 @media (min-width: theme('screens.md'))  and (max-width: theme('screens.lg')) {
     #overlay-content {
+        max-height: 32rem;
+    }
+}
+
+@media (min-width: theme('screens.lg')) and (max-width: theme('screens.xl')) {
+    #overlay-content {
         max-height: 34rem;
     }
 }
 
-@media (min-width: theme('screens.lg')) {
+@media (min-width: theme('screens.xl')) {
     #overlay-content {
-        max-height: 38rem;
+        max-height: 36rem;
     }
 }
-
