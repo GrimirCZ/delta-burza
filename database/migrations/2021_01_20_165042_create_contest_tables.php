@@ -19,9 +19,6 @@ class CreateContestTables extends Migration
             ]);
         });
 
-        DB::unprepared(file_get_contents(resource_path("sql/tmp_tables.sql")));
-        DB::unprepared(file_get_contents(resource_path("sql/sql_souteze.sql")));
-        DB::unprepared(file_get_contents(resource_path("sql/excelence_points.sql")));
     }
 
     public function down()

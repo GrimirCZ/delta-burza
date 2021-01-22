@@ -32,7 +32,9 @@ class ShowSchool extends Component
         $this->show_more_for_year = null;
     }
 
-    public string $textBody = "";
+    public string $textBody = "Soutěže jsou podle své \"prestiže\" (počtu účastníků, tradice, sturktury - okresní/krajské/celostátní/mezinárodní kolo) rozřazeny do různých kategorií a podle toho hodnoceny.
+Například za matematickou olympiádu získá účastník 1 bod, když se umístí do 6. místa v krajském kole a max. do 10. místa v celostátním kole.
+    Za méně přestižní soutěže, které například okresní a krajská kola nemají a mají pouze celostátní, obdrží účastník 1 bod, když se umístí do 3. místa v celostátním kole. Podrobné informace o zařazení soutěží do jednotlivých kategorií najdete zde: <a href='http://excelence.msmt.cz/' class='link'>http://excelence.msmt.cz/</a>.";
 
 
     public function mount()
