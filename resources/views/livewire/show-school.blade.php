@@ -21,9 +21,7 @@
                 <div>
                     <div class="bg-white p-5 shadow-sm box-border">
                         <div class="p-2">
-                            <h2 class="text-lg">Informace z veřejně dostupných zdrojů</h2>
-                            <i class="text-sm">(zdroj: <a class="link" href="https://rejstriky.msmt.cz/rejskol"
-                                                          target="_blank">https://rejstriky.msmt.cz/rejskol</a>)</i>
+                            <h2 class="text-lg">Informace</h2>
                         </div>
                         <dl>
                             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -117,7 +115,7 @@
                     @if($school->type_can_be_related_to())
                         @if($school->related_companies()->count() > 0)
                             <div class="bg-white p-5 shadow-sm box-border mt-3">
-                                <h2 class="p-2">Spolupracující firmy</h2>
+                                <h2 class="p-2 text-lg">Spolupracující firmy</h2>
                                 @foreach ($school->related_companies as $related_company)
                                     <div
                                         class="{{ $loop->index % 2 === 0 ? "bg-gray-50": "bg-white"}} px-4 py-5 md:grid md:grid-cols-2 sm:gap-4 md:px-6">
