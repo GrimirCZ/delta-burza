@@ -203,7 +203,7 @@
                                                     </td>
                                                 @endif
                                                 <td class="cell tighter" style="text-align: left !important;">
-                                                    <b>{{$ycr['place']}}. {{$ycr['level_name']}}</b>
+                                                    <b>{{$ycr['place']}}. místo - {{$ycr['level_name']}}</b>
                                                     {{$ycr['name']}}
                                                 </td>
                                             </tr>
@@ -248,7 +248,7 @@
                                                 </td>
                                             @endif
                                             <td class="cell tighter" style="text-align: left !important;">
-                                                <b>{{$ycr['place']}}. {{$ycr['level_name']}}</b>
+                                                <b>{{$ycr['place']}}. místo - {{$ycr['level_name']}}</b>
                                                 {{$ycr['name']}}
                                             </td>
                                             <td class="cell tighter">
