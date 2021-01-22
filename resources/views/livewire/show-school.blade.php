@@ -84,9 +84,7 @@
                     @if($school->type_can_have_specializations())
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <h2 class="p-2">Obory</h2>
-                            <p class="p-2">Ještě tento text hoďte pod nadpis obory - u oborů školy. Ideálně pouze u
-                                těch, které mají
-                                maturitní obory: V detailu maturitních oborů najdete <b>výsledky školy u státních
+                            <p class="p-2">V detailu maturitních oborů najdete <b>výsledky školy u státních
                                     maturit</b> za posledních 5 let.</p>
                             @foreach ($school->ordered_specializations()->get() as $specialization)
                                 <div
