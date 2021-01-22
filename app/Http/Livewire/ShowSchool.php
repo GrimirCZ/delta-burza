@@ -42,44 +42,46 @@ Například za matematickou olympiádu získá účastník 1 bod, když se umís
 
     public function mount()
     {
-        $contest_results = ContestResult::query()
-            ->where("school_id", $this->school->id)
-            ->whereNotNull("expoint")
-            ->join("contests", "contests.id", "=", "contest_results.contest_id")
-            ->join("contest_levels", "contest_levels.id", "=", "contest_results.contest_level_id")
-            ->select(
-                DB::raw("sum(expoint) AS points"),
-                "contests.name AS name",
-                "contest_levels.name AS level_name",
-                "contest_levels.id",
-                "place",
-                "year"
-            )
-            ->orderByDesc("year")
-            ->orderByDesc("points")
-            ->orderByDesc("contest_levels.id")
-            ->orderBy("contests.name")
-            ->orderBy("place")
-            ->groupBy("year", "contest_levels.name", "place", "contests.name", "contest_levels.id")
-            ->get();
+        if($this->school->type_can_show_contest_results()){
+            $contest_results = ContestResult::query()
+                ->where("school_id", $this->school->id)
+                ->whereNotNull("expoint")
+                ->join("contests", "contests.id", "=", "contest_results.contest_id")
+                ->join("contest_levels", "contest_levels.id", "=", "contest_results.contest_level_id")
+                ->select(
+                    DB::raw("sum(expoint) AS points"),
+                    "contests.name AS name",
+                    "contest_levels.name AS level_name",
+                    "contest_levels.id",
+                    "place",
+                    "year"
+                )
+                ->orderByDesc("year")
+                ->orderByDesc("points")
+                ->orderByDesc("contest_levels.id")
+                ->orderBy("contests.name")
+                ->orderBy("place")
+                ->groupBy("year", "contest_levels.name", "place", "contests.name", "contest_levels.id")
+                ->get();
 
-        $allowed_years = collect([2019, 2018, 2017]);
+            $allowed_years = collect([2019, 2018, 2017]);
 
-        $this->contest_result_years = collect($contest_results)
-            ->map(fn($cr) => $cr->year)
-            ->unique()
-            ->filter(fn($y) => $allowed_years->contains($y))
-            ->toArray();
+            $this->contest_result_years = collect($contest_results)
+                ->map(fn($cr) => $cr->year)
+                ->unique()
+                ->filter(fn($y) => $allowed_years->contains($y))
+                ->toArray();
 
-        $this->contest_results = $contest_results->toArray();
+            $this->contest_results = $contest_results->toArray();
+        }
 
         $this->show_maturita_exam_result_notice = Specialization::query()
-                ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
-                ->join("field_of_studies", "field_of_studies.id", "=", "prescribed_specializations.field_of_study_id")
-                ->join("type_of_studies", "type_of_studies.id", "=", "field_of_studies.type_of_study_id")
-                ->where("school_id", $this->school->id)
-                ->whereBetween("type_of_studies.id", [2, 4])
-                ->exists();
+            ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
+            ->join("field_of_studies", "field_of_studies.id", "=", "prescribed_specializations.field_of_study_id")
+            ->join("type_of_studies", "type_of_studies.id", "=", "field_of_studies.type_of_study_id")
+            ->where("school_id", $this->school->id)
+            ->whereBetween("type_of_studies.id", [2, 4])
+            ->exists();
     }
 
     /**
@@ -87,7 +89,8 @@ Například za matematickou olympiádu získá účastník 1 bod, když se umís
      *
      * @return \Illuminate\View\View|string
      */
-    public function render()
+    public
+    function render()
     {
         return view('livewire.show-school', [
             'specializations' => $this->school->ordered_specializations()->get(),
