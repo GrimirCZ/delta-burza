@@ -154,14 +154,19 @@
 
                     @if($school->type_can_show_contest_results() && count($contest_results) > 0)
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
-                            <h2 class="p-2 text-lg">Výsledky v soutěžích MŠMT</h2>
+                            <div class="p-2">
+                                <h2 class="text-lg">Výsledky v soutěžích MŠMT</h2>
+                                (zdroj: <a href="http://excelence.msmt.cz" target="_blank">https://excelence.msmt.cz</a>)
+                            </div>
                             <p class="p-2">
                                 Pravidelné úspěchy v soutěžích ukazují na <b>systematickou práci</b> školy <b>s&nbsp;talentovanými
                                     studenty</b>. U středních odborných škol a učilišť odráží <b>úroveň
                                     výuky odborných předmětů</b>. Gymnázia mívají úspěchy především v&nbsp;humanitních a
                                 přírodovědných olympiádách.
-                                <br><i>Ročník soutěží MŠMT 2020 byl kvůli COVIDU úplně zrušen.</i>
                             </p>
+                            <div class="p-2">
+                                <i>Ročník soutěží MŠMT 2020 byl kvůli COVIDU úplně zrušen.</i>
+                            </div>
                             <div class="overflow-x-auto">
                                 <table class="w-100 mb-4">
                                     <tr>
