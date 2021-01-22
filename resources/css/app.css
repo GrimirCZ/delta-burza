@@ -51,7 +51,7 @@ body, .body {
     text-shadow: 4px 5px 15px black;
 }
 
-@media screen and (min-width: 1050px){
+@media screen and (min-width: 1050px) {
     .header-image {
         background-image: url("/images/podklad_foto.jpg");
         background-size: contain;
@@ -210,19 +210,19 @@ body, .body {
     grid-template-columns: 1fr;
 }
 
-#overlay-content{
+#overlay-content {
     max-height: 28rem;
 }
 
 
-@media (min-width: theme('screens.md')) {
+@media (min-width: theme('screens.md'))  and (max-width: theme('screens.lg')) {
     #overlay-content {
         max-height: 36rem;
     }
 }
 
 @media (min-width: theme('screens.lg')) {
-    #overlay-content{
+    #overlay-content {
         max-height: 42rem;
     }
 }
