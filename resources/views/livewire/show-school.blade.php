@@ -148,7 +148,7 @@
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <div class="p-2">
                                 <h2 class="text-lg">Výsledky v soutěžích MŠMT</h2>
-                                <i class="text-sm">(zdroj: <a class="link" href="http://excelence.msmt.cz" target="_blank">https://excelence.msmt.cz</a>)</i>
+                                <i class="text-sm">(zdroj: <a class="link" href="https://excelence.msmt.cz" target="_blank">https://excelence.msmt.cz</a>)</i>
                             </div>
                             <p class="p-2">
                                 Pravidelné úspěchy v soutěžích ukazují na <b>systematickou práci</b> školy <b>s&nbsp;talentovanými
@@ -269,7 +269,7 @@
                         <div class="bg-white p-5 shadow-sm box-border mt-3">
                             <div class="p-2">
                                 <h2 class="text-lg">Inspekční zprávy</h2>
-                                <i class="text-sm">(zdroj: <a class="link" href="http://excelence.msmt.cz" target="_blank">https://excelence.msmt.cz</a>)</i>
+                                <i class="text-sm">(zdroj: Portál České školní inspekce <a class="link" href="https://csisr.cz/cz/Dokumenty/Inspekcni-zpravy" target="_blank">https://csisr.cz/cz/Dokumenty/Inspekcni-zpravy</a>)</i>
                             </div>
                             @foreach($inspection_reports as $inspection_report)
                                 <div
