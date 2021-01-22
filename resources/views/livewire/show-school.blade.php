@@ -226,7 +226,7 @@
                                 </x-slot>
                                 <table class="w-100 mb-4 overflow-x-auto">
                                     <tr>
-                                        <th class="cell th-background text-center relative px-6 fw">
+                                        <th class="cell bg-red-700 text-center relative px-6 fw">
                                             <b>&sum;</b>
                                             <div class="livewire-tooltip">
                                                 <livewire:tooltip title="Body"
