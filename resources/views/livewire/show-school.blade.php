@@ -226,35 +226,35 @@
                                 </x-slot>
                                 <table class="w-100 mb-4 overflow-x-auto">
                                     <tr>
-                                        <th class="cell tighter th-background text-center relative px-6 fw">
+                                        <th class="cell th-background text-center relative px-6 fw">
                                             <b>&sum;</b>
                                             <div class="livewire-tooltip">
                                                 <livewire:tooltip title="Body"
                                                                   :content="$textBody"/>
                                             </div>
                                         </th>
-                                        <th class="cell tighter th-background text-center relative px-6 fw">
+                                        <th class="cell th-background text-center relative px-6 fw">
                                             <b>Umístění v soutěži</b>
                                         </th>
-                                        <th class="cell tighter th-background text-center relative px-6 fw">
+                                        <th class="cell th-background text-center relative px-6 fw">
                                             Počet bodů
                                         </th>
                                     </tr>
                                     @foreach($all_year_contest_results as $ycr)
                                         <tr>
                                             @if($loop->first)
-                                                <td class="cell tighter"
+                                                <td class="cell"
                                                     rowspan="{{$all_year_contest_results->count()}}">
                                                     <b>
                                                         {{round($point_sum, 1)}}
                                                     </b>
                                                 </td>
                                             @endif
-                                            <td class="cell tighter" style="text-align: left !important;">
+                                            <td class="cell" style="text-align: left !important;">
                                                 <b>{{$ycr['place']}}. {{$ycr['level_name']}}</b>
                                                 {{$ycr['name']}}
                                             </td>
-                                            <td class="cell tighter">
+                                            <td class="cell">
                                                 @if($ycr['points'] == 0)
                                                     -
                                                 @else
