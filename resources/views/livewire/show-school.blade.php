@@ -233,10 +233,10 @@
                                                                   :content="$textBody"/>
                                             </div>
                                         </th>
-                                        <th class="cell th-background text-center relative px-6 fw">
+                                        <th class="cell tighter th-background text-center relative px-6 fw">
                                             <b>Umístění v soutěži</b>
                                         </th>
-                                        <th class="cell th-background text-center relative px-6 fw">
+                                        <th class="cell tighter th-background text-center relative px-6 fw">
                                             Počet bodů
                                         </th>
                                     </tr>
@@ -250,11 +250,11 @@
                                                     </b>
                                                 </td>
                                             @endif
-                                            <td class="cell" style="text-align: left !important;">
+                                            <td class="cell tighter" style="text-align: left !important;">
                                                 <b>{{$ycr['place']}}. {{$ycr['level_name']}}</b>
                                                 {{$ycr['name']}}
                                             </td>
-                                            <td class="cell">
+                                            <td class="cell tighter">
                                                 @if($ycr['points'] == 0)
                                                     -
                                                 @else
