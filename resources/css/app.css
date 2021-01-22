@@ -211,7 +211,7 @@ body, .body {
 }
 
 #overlay-content{
-    max-height: 38rem;
+    max-height: 28rem;
 }
 
 @media (min-width: theme('screens.sm')) {
