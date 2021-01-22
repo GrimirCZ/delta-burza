@@ -20,7 +20,11 @@
                 </div>
                 <div>
                     <div class="bg-white p-5 shadow-sm box-border">
-                        <h2 class="p-2">Informace</h2>
+                        <div class="p-2">
+                            <h2 class="text-lg">Informace z veřejně dostupných zdrojů</h2>
+                            <i class="text-sm">(zdroj: <a class="link" href="https://rejstriky.msmt.cz/rejskol"
+                                                          target="_blank">https://rejstriky.msmt.cz/rejskol</a>)</i>
+                        </div>
                         <dl>
                             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                                 <dt class="text-sm leading-5 font-medium text-gray-500">

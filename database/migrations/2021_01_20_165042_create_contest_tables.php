@@ -15,7 +15,7 @@ class CreateContestTables extends Migration
             ]);
 
             EntityType::query()->where("type", "=", "school")->update([
-                'data->can_show_contest_results' => true,
+                'data->can_show_contest_results' => false,
             ]);
         });
 
