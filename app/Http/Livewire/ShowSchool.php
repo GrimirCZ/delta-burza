@@ -58,11 +58,15 @@ class ShowSchool extends Component
             ->groupBy("year", "contest_levels.name", "place", "contests.name", "contest_levels.id")
             ->get();
 
-        $this->contest_result_years = collect($contest_results)->map(fn($cr) => $cr->year)->unique()->toArray();
-
         $allowed_years = collect([2019, 2018, 2017]);
 
-        $this->contest_results = $contest_results->filter(fn($y) => $allowed_years->contains($y))->toArray();
+        $this->contest_result_years = collect($contest_results)
+            ->map(fn($cr) => $cr->year)
+            ->unique()
+            ->filter(fn($y) => $allowed_years->contains($y))
+            ->toArray();
+
+        $this->contest_results = $contest_results->toArray();
     }
 
     /**
