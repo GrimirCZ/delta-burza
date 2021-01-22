@@ -168,8 +168,10 @@
                                         <th class="cell tighter empty"></th>
                                         <th class="cell tighter th-background text-center relative px-6 fw">
                                             <b>&sum;</b>
-                                            <livewire:tooltip title="Body"
-                                                              :content="$textBody"/>
+                                            <div class="livewire-tooltip">
+                                                <livewire:tooltip title="Body"
+                                                                  :content="$textBody"/>
+                                            </div>
                                         </th>
                                         <th class="cell tighter th-background text-center relative px-6 fw">
                                             <b>Umístění v soutěži</b>
@@ -226,8 +228,10 @@
                                     <tr>
                                         <th class="cell tighter th-background text-center relative px-6 fw">
                                             <b>&sum;</b>
-                                            <livewire:tooltip title="Body"
-                                                              :content="$textBody"/>
+                                            <div class="livewire-tooltip">
+                                                <livewire:tooltip title="Body"
+                                                                  :content="$textBody"/>
+                                            </div>
                                         </th>
                                         <th class="cell tighter th-background text-center relative px-6 fw">
                                             <b>Umístění v soutěži</b>
