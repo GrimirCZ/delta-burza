@@ -17,4 +17,5 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss'),
     ])
     .sass("resources/css/desc.scss", "public/css")
-    .sass("resources/css/invoice.scss", "public/css");
+    .sass("resources/css/invoice.scss", "public/css")
+    .version();

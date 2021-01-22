@@ -26,12 +26,12 @@
         <link rel="stylesheet" href="https://use.typekit.net/vxo6dnf.css">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/desc.css') }}">
+        <link rel="stylesheet" href="{{ asset(mix('css/app.css')) }}">
+        <link rel="stylesheet" href="{{ asset(mix('css/desc.css')) }}">
 
         <!-- Scripts -->
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.2.1/dist/alpine.js" defer></script>
-        <script src="{{asset("js/app.js")}}"></script>
+        <script src="{{asset(mix("js/app.js"))}}"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/macy@2"></script>
 
