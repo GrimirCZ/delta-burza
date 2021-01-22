@@ -4,16 +4,19 @@ namespace App\Http\Livewire;
 
 use App\Models\ContestResult;
 use App\Models\School;
+use App\Models\Specialization;
 use DB;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Livewire\Component;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class ShowSchool extends Component
 {
     public School $school;
     public array $contest_results;
     public array $contest_result_years;
+    public bool $has_only_non_maturita = false;
 
     public ?int $show_more_for_year = null;
 
@@ -69,6 +72,14 @@ Například za matematickou olympiádu získá účastník 1 bod, když se umís
             ->toArray();
 
         $this->contest_results = $contest_results->toArray();
+
+        $this->has_only_non_maturita = Specialization::query()
+                ->join("prescribed_specializations", "prescribed_specializations.id", "=", "specializations.prescribed_specialization_id")
+                ->join("field_of_studies", "field_of_studies.id", "=", "prescribed_specializations.field_of_study_id")
+                ->join("type_of_studies", "type_of_studies.id", "=", "field_of_studies.type_of_study_id")
+                ->where("school_id", $this->school->id)
+                ->whereBetween("type_of_studies.id", [2, 4])
+                ->count() > 0;
     }
 
     /**
@@ -79,6 +90,7 @@ Například za matematickou olympiádu získá účastník 1 bod, když se umís
     public function render()
     {
         return view('livewire.show-school', [
+            'specializations' => $this->school->ordered_specializations()->get(),
             'inspection_reports' => $this->school->inspection_reports,
         ]);
     }
