@@ -79,7 +79,7 @@ Například za matematickou olympiádu získá účastník 1 bod, když se umís
                 ->join("type_of_studies", "type_of_studies.id", "=", "field_of_studies.type_of_study_id")
                 ->where("school_id", $this->school->id)
                 ->whereBetween("type_of_studies.id", [2, 4])
-                ->count() > 0;
+                ->count() == 0;
     }
 
     /**
