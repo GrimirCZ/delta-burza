@@ -6,6 +6,8 @@ Deváťáci mají možnost si v jeden čas a na jednom místě prohlédnout nab�
 
 Vzhledem k pandemické situaci roku 2020 spojené s nemocí COVID-19, ale nebylo možné tyto Burzy uspořádat. Systém *BurzaŠkol.Online* umožnil přesunutí celého náboru deváťáků do virtuálního prostředí internetu.
 
+## Jak to funguje?
+
 *BurzaŠkol.Online* je internetový portál zprostředkující kontakt mezi deváťáky a středními školami za pomoci on-line video konferencí (nejčastěji MS Teams, Google Meet, Zoom, ...). Běžnému návštěvníkovi portál nabízí seznam virtuálních burz škol, ve kterém má každá burza přiřazený termín a lokalitu konání.
 
 Střední školy se mohou registrovat k jednotlivým burzám a vložit odkaz na svou on-line konferenci. V den konání burzy se mohou deváťáci kliknutím na odkaz připojit do on-line konference vybrané školy.
